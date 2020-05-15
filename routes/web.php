@@ -14,11 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@index')->name('home');
+Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard');
 
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');

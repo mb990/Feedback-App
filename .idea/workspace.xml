@@ -2,6 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70fa9dfb-d904-472f-9854-3f52d3c007ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Company.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Feedback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/SkillController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Skill.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/permission.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105725_create_profiles_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105737_create_feedback_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105748_create_skills_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105806_create_companies_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105901_create_permission_tables.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Feedback-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Feedback-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +137,21 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable" />
+      <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
     </include_path>
   </component>
   <component name="ProjectId" id="1btEN4XdHeMcrycJUH0u9kD4C7x" />
@@ -125,6 +165,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -144,6 +185,7 @@
       <updated>1589442945936</updated>
       <workItem from="1589442948999" duration="2298000" />
       <workItem from="1589448160997" duration="122000" />
+      <workItem from="1589540851738" duration="1581000" />
     </task>
     <servers />
   </component>
@@ -151,6 +193,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589541204753">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1589541204753" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1589448158219">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -171,9 +217,13 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1589448159337" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1589448245819">
+    <state x="301" y="75" key="SettingsEditor" timestamp="1589540808467">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1589448245819" />
+    <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1589540808467" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1589542419305">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1589542419305" />
   </component>
 </project>
