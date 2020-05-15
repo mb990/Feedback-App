@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="70fa9dfb-d904-472f-9854-3f52d3c007ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CompanyRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/CompanyService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/FeedbackService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/ProfileService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/SkillService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105725_create_profiles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105725_create_profiles_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105737_create_feedback_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105737_create_feedback_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105748_create_skills_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105748_create_skills_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105806_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105806_create_companies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105806_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_14_105806_create_companies_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +188,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589541204753">
