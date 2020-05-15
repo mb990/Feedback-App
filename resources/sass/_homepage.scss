@@ -1,12 +1,14 @@
 .web-name{
-    margin: 8vh 8vw;
+    // margin: 8vh 8vw;
     display: flex;
 }.aside{
     height: 100vh;
-    width: 25vw;
+    width: 20vw;
     background-color: #22282d;
+    display: flex;
+    flex-direction: column;
+    padding: 5vw;
 }
-
 .logo{
     background-color: #ec1940;
     color: white;

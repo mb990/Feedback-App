@@ -11,8 +11,10 @@
     <div class="web-name">
         <div class="logo">F</div>
         <span class="logo-name">FEEDBACK
+            <br>
         APP</span>
     </div>
+    @yield('users')
 </div>
 <div class="main">
     @yield('content')

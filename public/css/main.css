@@ -1,12 +1,14 @@
 .web-name {
-  margin: 8vh 8vw;
   display: flex;
 }
 
 .aside {
   height: 100vh;
-  width: 25vw;
+  width: 20vw;
   background-color: #22282d;
+  display: flex;
+  flex-direction: column;
+  padding: 5vw;
 }
 
 .logo {
@@ -97,6 +99,81 @@
 .hidden {
   display: none;
   color: #ec1940;
+}
+
+.user-box {
+  padding: 5vh 0vw;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.user {
+  display: flex;
+}
+
+.user-image {
+  background-color: yellowgreen;
+  width: 45px;
+  height: 45px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.user-status {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.logout-btn {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0px;
+  margin-top: 15px;
+}
+
+.search-area {
+  height: 50vh;
+}
+
+.search-teammate {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #616161;
+  outline: none;
+}
+
+.teammate-name {
+  position: absolute;
+  transform: translateY(25%);
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.list {
+  height: 30vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.teammate {
+  list-style: none;
+  transform: translateX(-40px);
+  margin-bottom: 20px;
+}
+
+.teammate-image {
+  background-color: salmon;
+  width: 25px;
+  height: 25px;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 
 body {
