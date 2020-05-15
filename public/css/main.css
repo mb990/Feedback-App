@@ -1,18 +1,12 @@
-body {
+.web-name {
+  margin: 8vh 8vw;
   display: flex;
-  margin: 0px;
-  padding: 0px;
 }
 
 .aside {
   height: 100vh;
   width: 25vw;
   background-color: #22282d;
-}
-
-.web-name {
-  margin: 8vh 8vw;
-  display: flex;
 }
 
 .logo {
@@ -103,5 +97,11 @@ body {
 .hidden {
   display: none;
   color: #ec1940;
+}
+
+body {
+  display: flex;
+  margin: 0px;
+  padding: 0px;
 }
 
