@@ -47,7 +47,7 @@ body{
     font-size: 4rem;
     color: #4e5357;
 }
-.e-mail{
+.e-mail, .password{
     width: 43vw;
     max-width: 658px;
     border: none;
@@ -68,4 +68,10 @@ body{
     border-radius: 4px;
     float: right;
     margin-top: 10vh;
+    cursor: pointer;
+    outline: none;
+}
+.hidden{
+    display: none;
+    color: #ec1940;
 }
