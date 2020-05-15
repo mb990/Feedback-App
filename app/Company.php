@@ -21,4 +21,9 @@ class Company extends Model
             ]
         ];
     }
+
+    public function members()
+    {
+        return $this->hasMany(User::class);
+    }
 }
