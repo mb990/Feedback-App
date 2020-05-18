@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);@charset "UTF-8";
+
 .web-name {
   display: flex;
 }
@@ -238,6 +240,88 @@
   color: #d3d4d5;
   font-size: 3rem;
   margin-bottom: 20px;
+}
+
+.single-feedback {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+}
+
+.feedback-person {
+  display: flex;
+}
+
+.feedback-image {
+  background-color: indigo;
+  width: 60px;
+  height: 60px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.feedback-person-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  margin-left: 5px;
+}
+
+.single-skill {
+  display: flex;
+}
+
+.skill-name {
+  flex-grow: 1;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\F005";
+}
+
+.rating > .half:before {
+  content: "\F089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ec1940;
+}
+
+/* hover previous stars in list */
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #f57089;
 }
 
 body {
