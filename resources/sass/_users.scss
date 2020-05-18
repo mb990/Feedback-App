@@ -19,6 +19,11 @@
     flex-direction: column;
     margin-left: 10px;
 }
+.user-name{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
 .logout-btn{
     color: white;
     background: none;
@@ -35,7 +40,20 @@
     background: none;
     border: none;
     border-bottom: 2px solid #616161;
+    color: white;
     outline: none;
+    width: 13vw;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.fas{
+    color: gray;
+    border-bottom: 2px solid #616161;
+    padding-bottom: 2px;
+}
+.js-filled{
+    color: #ec1940;
+    border-color:#ec1940;
 }
 .teammate-name{
     position: absolute;
@@ -46,7 +64,8 @@
     cursor: pointer;
 }
 .list{
-    height:30vh;
+    width: 13vw;
+    height:40vh;
     overflow:hidden; 
     overflow-y:scroll;
 }
@@ -61,4 +80,23 @@
     height: 25px;
     border: 1px solid white;
     border-radius: 50%;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #424242; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #9e9e9e; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
