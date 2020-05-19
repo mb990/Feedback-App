@@ -12,7 +12,7 @@
     <div class="search-area">
         <h4>YOUR TEAMMATES</h4>
         <input class="search-teammate js-search js-live-search" type="text" placeholder="Search a teammate">
-        <ul class="list" data-role="listview" data-filter="true">
+        <ul class="list">
             <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Adele Dean</a></li>
             <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Daryl Benitez</a></li>
             <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Maverick Zhang</a></li>
@@ -50,17 +50,20 @@
             <span>teammate position</span>
         </div>
     </div>
+    <div class="feedback-title">Provide feedback</div>
+    <span>Personal skills and competences</span>
+
 
     @forelse($skills as $skill)
 
         <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
-                    <input type="radio" id="star5" name="rating_{{$skill->id}}" value="5" /><label class = "full" for="star5" title="Awesome"></label>
-                    <input type="radio" id="star4" name="rating_{{$skill->id}}" value="4" /><label class = "full" for="star4" title="Pretty good"></label>
-                    <input type="radio" id="star3" name="rating_{{$skill->id}}" value="3" /><label class = "full" for="star3" title="Meh"></label>
-                    <input type="radio" id="star2" name="rating_{{$skill->id}}" value="2" /><label class = "full" for="star2" title="Kinda bad"></label>
-                    <input type="radio" id="star1" name="rating_{{$skill->id}}" value="1" /><label class = "full" for="star1" title="Really bad"></label>
+                    <input type="radio" id="star5_{{$skill->id}}" name="rating_{{$skill->id}}" value="5" /><label class = "full" for="star5_{{$skill->id}}" title="Awesome"></label>
+                    <input type="radio" id="star4_{{$skill->id}}" name="rating_{{$skill->id}}" value="4" /><label class = "full" for="star4_{{$skill->id}}" title="Pretty good"></label>
+                    <input type="radio" id="star3_{{$skill->id}}" name="rating_{{$skill->id}}" value="3" /><label class = "full" for="star3_{{$skill->id}}" title="Meh"></label>
+                    <input type="radio" id="star2_{{$skill->id}}" name="rating_{{$skill->id}}" value="2" /><label class = "full" for="star2_{{$skill->id}}" title="Kinda bad"></label>
+                    <input type="radio" id="star1_{{$skill->id}}" name="rating_{{$skill->id}}" value="1" /><label class = "full" for="star1_{{$skill->id}}" title="Really bad"></label>
                 </fieldset>
         </span>
 
@@ -70,5 +73,12 @@
 
     @endforelse
 
+    <label class="hide js-hide" for="feedback-1">What is wrong</label>
+    <input value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required>
+    <label class="hide js-hide" for="feedback-2">What could be improved</label>
+    <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required>
+    <div class="submit-feedback">
+        <input class="submit-feedback-btn" type="button" value="SUBMIT">
+    </div>
 </div>
 @endsection

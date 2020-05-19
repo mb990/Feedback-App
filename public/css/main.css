@@ -33,7 +33,6 @@
 }
 
 .main {
-  height: 100vh;
   width: 75vw;
   position: relative;
 }
@@ -245,11 +244,10 @@
 .single-feedback {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 50vw;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px auto;
+  margin-bottom: 30px;
 }
 
 .feedback-person {
@@ -271,12 +269,71 @@
   margin-left: 5px;
 }
 
+.feedback-title {
+  color: #ec1940;
+  margin: 20px 0px;
+  font-size: 1.3rem;
+}
+
 .single-skill {
   display: flex;
 }
 
 .skill-name {
   flex-grow: 1;
+  color: #7a7e81;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hide {
+  display: none;
+}
+
+.write-feedback {
+  border: none;
+  border-bottom: 2px solid #d3d4d5;
+  outline: none;
+  margin: 30px 0px;
+  padding-bottom: 5px;
+}
+
+.write-feedback::-webkit-input-placeholder {
+  color: #adadad;
+}
+
+.write-feedback::-moz-placeholder {
+  color: #adadad;
+}
+
+.write-feedback:-ms-input-placeholder {
+  color: #adadad;
+}
+
+.write-feedback::-ms-input-placeholder {
+  color: #adadad;
+}
+
+.write-feedback::placeholder {
+  color: #adadad;
+}
+
+.written {
+  border-bottom: 2px solid #ec1940;
+}
+
+.submit-feedback {
+  text-align: right;
+}
+
+.submit-feedback-btn {
+  background-color: #ec1940;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 40px;
+  font-size: 1.08rem;
+  outline: none;
+  cursor: pointer;
 }
 
 /****** Style Star Rating Widget *****/
@@ -328,5 +385,6 @@ body {
   display: flex;
   margin: 0px;
   padding: 0px;
+  min-height: 100vh;
 }
 

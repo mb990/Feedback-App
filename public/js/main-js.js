@@ -26,10 +26,13 @@ $(document).ready(function(){
         $('.js-live-search').toggleClass('js-filled', $filled.length > 0);
     });
 
-
-
-
-
-
-
+    $('.js-write, .js-write-two').blur(function(){
+        if(!$(this).val()){
+            $(this).removeClass("written");
+            // $('.js-hide').addClass("hide");
+        } else{
+            $(this).addClass("written");
+            // $('.js-hide').removeClass("hide");
+        }
+    });
 });
