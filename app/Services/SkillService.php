@@ -17,4 +17,9 @@ class SkillService
     {
         $this->skill = $skill;
     }
+
+    public function all()
+    {
+        return $this->skill->all();
+    }
 }

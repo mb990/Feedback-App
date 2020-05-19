@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\SkillService;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    /**
+     * @var SkillService
+     */
+    private $skillService;
+
+    public function __construct(SkillService $skillService)
+    {
+        $this->skillService = $skillService;
+    }
+
     public function index()
     {
         return view('homepage');
@@ -13,6 +24,8 @@ class PageController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        $skills = $this->skillService->all();
+
+        return view('dashboard', compact('skills'));
     }
 }

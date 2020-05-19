@@ -17,4 +17,9 @@ class FeedbackService
     {
         $this->feedback = $feedback;
     }
+
+    public function store($data)
+    {
+        return $this->feedback->store($data);
+    }
 }

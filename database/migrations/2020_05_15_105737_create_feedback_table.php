@@ -17,8 +17,8 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->bigInteger('creator_id')->unsigned();
             $table->bigInteger('target_user_id')->unsigned();
-            $table->string('comment_wrong');
-            $table->string('comment_improve');
+            $table->text('comment_wrong');
+            $table->text('comment_improve');
             $table->timestamps();
 
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
