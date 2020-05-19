@@ -16,9 +16,10 @@ $(document).ready(function(){
         });
     });
     //Search teammate input
-    $(".js-search").before("<i class='fas js-live-search'>&#xf002;</i>");
+    $(".js-search").before("<i class='fas fasa js-live-search'>&#xf002;</i>");
 
     $(".js-search").attr('spellcheck',false);
+    $(".write-feedback").attr('spellcheck',false);
 
     var $inputs = $(".js-search");      
     $inputs.on("input", function() {
@@ -30,9 +31,22 @@ $(document).ready(function(){
         if(!$(this).val()){
             $(this).removeClass("written");
             // $('.js-hide').addClass("hide");
+            // $('.js-hide-two').addClass("hide");
+
         } else{
             $(this).addClass("written");
             // $('.js-hide').removeClass("hide");
+        } 
+        if (!$('.js-write').val()){
+            $('.js-hide').addClass("hide");
+        } else{
+            $('.js-hide').removeClass("hide");
+        }
+        if (!$('.js-write-two').val()){
+            $('.js-hide-2').addClass("hide");
+        } else{
+            $('.js-hide-2').removeClass("hide");
+
         }
     });
 });

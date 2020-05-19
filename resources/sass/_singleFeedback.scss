@@ -8,6 +8,7 @@
     width: 50vw;
     font-family: Arial, Helvetica, sans-serif;
     // margin-top: 20vh;
+    padding-top: 10vh;
     margin: 0px auto;
     margin-bottom: 30px;
 }
@@ -42,16 +43,23 @@
 }
 .hide{
     display: none;
+
+}
+.show{
+    color: #ec1940;
+    font-size: 0.8rem;
 }
 
 .write-feedback{
     border: none;
     border-bottom: 2px solid #d3d4d5;
     outline: none;
-    margin: 30px 0px;
-    padding-bottom: 5px;
+    margin: 5px 0px 25px 0px;
+    resize: none;
+    // padding-bottom: 5px;
     &::placeholder{
         color: #adadad;
+        font-family: Arial, Helvetica, sans-serif;
     }
 }
 .written{
