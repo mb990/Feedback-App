@@ -28,12 +28,12 @@ class FeedbackRepository
         return $this->feedback->create($data);
     }
 
-    public function update($id, $data)
-    {
-        $feedback = $this->find($id);
-
-        $feedback->update($data);
-    }
+//    public function update($id, $data)
+//    {
+//        $feedback = $this->find($id);
+//
+//        return $feedback->update($data);
+//    }
 
     public function addSkill($id, $score)
     {

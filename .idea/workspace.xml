@@ -20,17 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fa9dfb-d904-472f-9854-3f52d3c007ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_18_122039_create_feedback_skill_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/FeedbackService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FeedbackService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/SkillService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/SkillService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105737_create_feedback_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105737_create_feedback_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,17 +235,17 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="576" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1589873449553" />
-    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1589542492722">
+    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1589891305398">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1589542492722" />
+    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1589891305398" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1589540808467">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1589540808467" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1589874008359">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1589891311473">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1589874008359" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1589891311473" />
   </component>
 </project>

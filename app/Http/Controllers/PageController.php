@@ -28,4 +28,9 @@ class PageController extends Controller
 
         return view('dashboard', compact('skills'));
     }
+
+    public function feedback()
+    {
+        return view('feedback');
+    }
 }
