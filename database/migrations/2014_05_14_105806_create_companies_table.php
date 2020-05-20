@@ -17,6 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->integer('feedback_time')->default(7948800); // ~ 3 months
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

@@ -13,18 +13,29 @@
         <h4>YOUR TEAMMATES</h4>
         <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
         <ul class="list">
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Adele Dean</a><i class="fas fa-check reviewed"></i></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Daryl Benitez</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Maverick Zhang</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Louise Alcock</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Madeline Huber</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Lacie Mcguire</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darrel Searle</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Jeanne Gamble</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Ilyas Parrish</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Charlotte Berger</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Hermione Hackett</a></li>
-            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darien Cobb</a></li>
+
+            @forelse(json_decode($users) as $user)
+
+                <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+
+            @empty
+
+                <p>No users in this team.</p>
+
+            @endforelse
+
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Adele Dean</a><i class="fas fa-check reviewed"></i></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Daryl Benitez</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Maverick Zhang</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Louise Alcock</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Madeline Huber</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Lacie Mcguire</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darrel Searle</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Jeanne Gamble</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Ilyas Parrish</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Charlotte Berger</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Hermione Hackett</a></li>--}}
+{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darien Cobb</a></li>--}}
         </ul>
     </div>
 </div>
@@ -73,16 +84,20 @@
 
     @endforelse
 
+    <div class="alert alert-success">
+
+    </div>
+
     <span style="margin:20px 0px;">Write a feedback</span>
 
     <label class="hide show js-hide" for="feedback-1">What is wrong</label>
     <!-- <input value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required> -->
-    <textarea value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required></textarea>
+    <textarea value="" id="comment_wrong" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback_1" required></textarea>
     <label class="hide show js-hide-2" for="feedback-2">What could be improved</label>
     <!-- <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required> -->
-    <textarea class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required></textarea>
+    <textarea class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback_2" required></textarea>
     <div class="submit-feedback">
-        <input class="submit-feedback-btn" type="submit" value="SUBMIT">
+        <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
     </div>
 </div>
 @endsection

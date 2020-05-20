@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@index')->name('home');
 Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard');
 Route::get('/feedback', 'PageController@feedback')->name('user.feedback');
+Route::post('/test', 'PageController@test')->name('user.test');
 
 //Route::get('/', function () {
 //    return view('welcome');

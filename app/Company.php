@@ -10,7 +10,7 @@ class Company extends Model
     use Sluggable;
 
     protected $fillable = [
-        'name', 'slug', 'active'
+        'name', 'slug', 'active', 'feedback_time'
     ];
 
     public function sluggable()

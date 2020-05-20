@@ -17,4 +17,9 @@ class CompanyService
     {
         $this->company = $company;
     }
+
+    public function all()
+    {
+        return $this->company->all();
+    }
 }
