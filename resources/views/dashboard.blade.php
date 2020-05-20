@@ -97,7 +97,7 @@
     <!-- <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required> -->
     <textarea class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback_2" required></textarea>
     <div class="submit-feedback">
-        <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
+        <input class="submit-feedback-btn js-test" type="submit" id="submit" value="SUBMIT">
     </div>
 </div>
 @endsection
