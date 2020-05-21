@@ -23,20 +23,18 @@ class FeedbackRepository
         return $this->feedback->find($id);
     }
 
-    public function store($data)
+    public function store($request)
     {
-        return $this->feedback->create($data);
+        return $this->feedback->create([
+            'creator_id' => 1,
+            'target_user_id' => 1,
+            'comment_wrong' => $request->data['feedback_1'],
+            'comment_improve' => $request->data['feedback_2']
+        ]);
     }
 
-//    public function update($id, $data)
-//    {
-//        $feedback = $this->find($id);
-//
-//        return $feedback->update($data);
-//    }
-
-    public function addSkill($id, $score)
+    public function addSkill($feedback, $id, $score)
     {
-        $this->skills()->attach($id, ['score' => $score]);
+        $feedback->skills()->attach($id, ['score' => $score]);
     }
 }

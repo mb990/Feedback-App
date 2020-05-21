@@ -14,9 +14,9 @@
         <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
         <ul class="list">
 
-            @forelse(json_decode($users) as $user)
-
-                <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+            @forelse($users as $user)
+{{--@dd($user)--}}
+                <li data-userId="{{$user->id}}" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
 
             @empty
 
@@ -66,10 +66,10 @@
 
 
     @forelse($skills as $skill)
-
         <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
+{{--                    <input type="hidden" id="skill_{{$skill->id}}" name="skill_{{$skill->id}}" value="{{$skill->id}}">--}}
                     <input type="radio" id="star5_{{$skill->id}}" name="rating_{{$skill->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}" title="Awesome"></label>
                     <input type="radio" id="star4_{{$skill->id}}" name="rating_{{$skill->id}}" value="4" required/><label class = "full" for="star4_{{$skill->id}}" title="Pretty good"></label>
                     <input type="radio" id="star3_{{$skill->id}}" name="rating_{{$skill->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}" title="Meh"></label>
@@ -77,7 +77,6 @@
                     <input type="radio" id="star1_{{$skill->id}}" name="rating_{{$skill->id}}" value="1" required/><label class = "full" for="star1_{{$skill->id}}" title="Really bad"></label>
                 </fieldset>
         </span>
-
     @empty
 
         <p>Currently no skills.</p>
@@ -90,14 +89,55 @@
 
     <span style="margin:20px 0px;">Write a feedback</span>
 
-    <label class="hide show js-hide" for="feedback-1">What is wrong</label>
+    <label class="hide show js-hide" for="feedback_1">What is wrong</label>
     <!-- <input value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required> -->
-    <textarea value="" id="comment_wrong" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback_1" required></textarea>
-    <label class="hide show js-hide-2" for="feedback-2">What could be improved</label>
+    <textarea id="comment_wrong" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" required></textarea>
+    <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
     <!-- <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required> -->
-    <textarea class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback_2" required></textarea>
+    <textarea id="comment_improve" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" required></textarea>
+
+{{--    <label for="skill_name">Skill name test</label>--}}
+{{--    <input type="text" id="skill_name" name="skill_name">--}}
+
     <div class="submit-feedback">
         <input class="submit-feedback-btn js-test" type="submit" id="submit" value="SUBMIT">
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        var skills = {!! $skills !!};
+
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                var data = {
+                    // skill_name: $('#skill_name').val(),
+                    feedback_1: $('#comment_wrong').val(),
+                    feedback_2: $('#comment_improve').val()
+                };
+                var ratings = {};
+                for (var i = 1; i < skills.length + 1; ++i) {
+                    var current = 'rating_' + i;
+                    ratings[current] = $(`input[name="${current}"]:checked`).val();
+                }
+
+                $.ajax({
+                    url: 'feedback/store',
+                    method: 'POST',
+                    data: {
+                        data: data,
+                        ratings: ratings,
+                        skills: skills
+                    },
+                    success: function (result) {
+                        console.log(data);
+
+                        // $('.alert').show();
+                        $('.alert').html(result.success);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

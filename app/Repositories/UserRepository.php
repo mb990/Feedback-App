@@ -25,6 +25,8 @@ class UserRepository
 
     public function byCompany($company)
     {
-        return $this->user->where('company_id', $company->id)->get();
+        return $this->user->whereHas('profile', function ($q) use ($company) {
+            $q->where('company_id', $company->id);
+        })->get();
     }
 }

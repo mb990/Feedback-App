@@ -22,4 +22,11 @@ class SkillRepository
     {
         return $this->skill->all();
     }
+
+    public function store($name)
+    {
+        return $this->skill->create([
+            'name' => $name
+            ]);
+    }
 }

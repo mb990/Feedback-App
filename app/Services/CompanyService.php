@@ -22,4 +22,9 @@ class CompanyService
     {
         return $this->company->all();
     }
+
+    public function find($id)
+    {
+        return $this->company->find($id);
+    }
 }

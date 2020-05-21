@@ -22,12 +22,25 @@
     <list default="true" id="70fa9dfb-d904-472f-9854-3f52d3c007ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Company.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/CompanyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CompanyRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/CompanyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CompanyService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_05_14_105806_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_05_14_105806_create_companies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/FeedbackService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FeedbackService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/ProfileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ProfileService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/SkillService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/SkillService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_15_105725_create_profiles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_15_105725_create_profiles_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -202,7 +215,8 @@
       <workItem from="1589792367104" duration="6989000" />
       <workItem from="1589873350487" duration="1100000" />
       <workItem from="1589900743722" duration="661000" />
-      <workItem from="1589960243980" duration="9176000" />
+      <workItem from="1589960243980" duration="11782000" />
+      <workItem from="1590045066720" duration="23512000" />
     </task>
     <servers />
   </component>
@@ -222,10 +236,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589541204753">
+    <state x="605" y="146" key="#com.intellij.ide.util.MemberChooser" timestamp="1589981524273">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1589541204753" />
+    <state x="605" y="146" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1589981524273" />
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590069020301">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1590069020301" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1589448158219">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -246,10 +264,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1589448159337" />
-    <state x="576" y="153" key="NewPhpClassDialog" timestamp="1589893986303">
+    <state x="576" y="153" key="NewPhpClassDialog" timestamp="1590069452960">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="576" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1589893986303" />
+    <state x="576" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1590069452960" />
     <state x="634" y="353" key="NewPhpFileDialog" timestamp="1589891305398">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -258,9 +276,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1589540808467" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1589964616282">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1590069773903">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1589964616282" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1590069773903" />
   </component>
 </project>

@@ -12,10 +12,15 @@ class FeedbackService
      * @var FeedbackRepository
      */
     private $feedback;
+    /**
+     * @var SkillService
+     */
+    private $skillService;
 
-    public function __construct(FeedbackRepository $feedback)
+    public function __construct(FeedbackRepository $feedback, SkillService $skillService)
     {
         $this->feedback = $feedback;
+        $this->skillService = $skillService;
     }
 
     public function find($id)
@@ -23,21 +28,29 @@ class FeedbackService
         return $this->feedback->find($id);
     }
 
-    public function store($data)
+    public function store($request)
     {
         // svaki skill iz feedback-a dodaj u feedback - addSkill
 
-        return $this->feedback->store($data);
+        return $this->feedback->store($request);
     }
 
-//    public function update($id, $data)
-//    {
-//        return $this->feedback->update($id, $data);
-//    }
-
-    public function addSkill($id, $score)
+    public function addSkill($feedback, $id, $score)
     {
-        return $this->feedback->addSkill($id, $score);
+        return $this->feedback->addSkill($feedback, $id, $score);
+    }
 
+    public function saveData($request)
+    {
+        $feedback = $this->store($request);
+
+        $skills = $request->skills;
+
+        foreach ($request->ratings as $rating) {
+
+            $this->addSkill($feedback, $skills[0]['id'], $rating);
+
+            array_shift($skills);
+        }
     }
 }

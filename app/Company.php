@@ -24,6 +24,6 @@ class Company extends Model
 
     public function members()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Profile::class);
     }
 }

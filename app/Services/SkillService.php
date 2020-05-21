@@ -22,4 +22,9 @@ class SkillService
     {
         return $this->skill->all();
     }
+
+    public function store($name)
+    {
+        return $this->skill->store($name);
+    }
 }

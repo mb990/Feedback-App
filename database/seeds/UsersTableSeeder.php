@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $companies = $this->companyService->all()->pluck('id')->toArray();
+//        $companies = $this->companyService->all()->pluck('id')->toArray();
 
         for ($i = 0; $i < 30; $i++) {
 
@@ -42,7 +42,6 @@ class UsersTableSeeder extends Seeder
             $user->email_verified_at = now();
             $user->password = Hash::make(12345678);
             $user->remember_token = Str::random(10);
-            $user->company_id = $companies[array_rand($companies)];
 
             $user->save();
         }
