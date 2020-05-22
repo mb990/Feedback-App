@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@index')->name('home');
-Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard');
+Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard')->middleware('auth');
 Route::get('/feedback', 'PageController@feedback')->name('user.feedback');
 Route::get('/test-get', 'PageController@testGet')->name('user.testGet');
 Route::post('/feedback/store', 'FeedbackController@storeData')->name('feedback.store');
@@ -28,5 +28,3 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
-
-Route::get('/home', 'HomeController@index')->name('home');

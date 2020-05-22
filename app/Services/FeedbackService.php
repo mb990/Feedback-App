@@ -30,7 +30,6 @@ class FeedbackService
 
     public function store($request)
     {
-        // svaki skill iz feedback-a dodaj u feedback - addSkill
 
         return $this->feedback->store($request);
     }
