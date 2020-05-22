@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DashboardRequest;
 use App\Services\CompanyService;
 use App\Services\FeedbackService;
 use App\Services\SkillService;
@@ -37,7 +38,7 @@ class PageController extends Controller
         return view('homepage');
     }
 
-    public function dashboard(Request $request)
+    public function dashboard(DashboardRequest $request)
     {
         $skills = $this->skillService->all();
 

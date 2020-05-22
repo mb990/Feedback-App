@@ -122,21 +122,34 @@
                     ratings[current] = $(`input[name="${current}"]:checked`).val();
                 }
 
-                $.ajax({
-                    url: 'feedback/store',
-                    method: 'POST',
-                    data: {
+                // $.ajax({
+                //     url: 'feedback/store',
+                //     method: 'POST',
+                //     data: {
+                //         data: data,
+                //         ratings: ratings,
+                //         skills: skills
+                //     },
+                //     success: function (result) {
+                //         console.log(data);
+                //
+                //         // $('.alert').show();
+                //         $('.alert').html(result.success);
+                //     }
+                // });
+
+                $.post('feedback/store',
+                    {
                         data: data,
                         ratings: ratings,
                         skills: skills
                     },
-                    success: function (result) {
+                    function (result) {
                         console.log(data);
 
                         // $('.alert').show();
                         $('.alert').html(result.success);
-                    }
-                });
+                    })
             });
         });
     </script>

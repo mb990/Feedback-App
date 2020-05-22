@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Services\SkillService;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackSkillRequest extends FormRequest
 {
@@ -25,7 +26,12 @@ class FeedbackSkillRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::check()) {
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -36,14 +42,14 @@ class FeedbackSkillRequest extends FormRequest
     public function rules()
     {
         $rules = [
-//            'feedback_1' => 'required',
-//            'feedback_2' => 'required',
+            'data.feedback_1' => 'required',
+            'data.feedback_2' => 'required',
         ];
 
-//        foreach($this->skillService->all() as $skill)
-//        {
-//            $rules['rating_' . $skill->id] = 'required';
-//        }
+        foreach($this->skillService->all() as $skill)
+        {
+            $rules['ratings.rating_' . $skill->id] = 'required';
+        }
         return $rules;
     }
 }
