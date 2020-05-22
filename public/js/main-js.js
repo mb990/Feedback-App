@@ -50,6 +50,36 @@ $(document).ready(function(){
         }
     });
 
+        // $('.js-test').click(function(){
+        //     $('.main').load('feedback');
+        // });
 
+        // $('.js-test').click(function(){
+        //     $('body').load('dashboard');
+        // });
+
+        // function buttonClick() { 
+            //var request = new XMLHttpRequest(); 
+            //request.open('GET ili POST', 'url sa podacima ili lokalni fajl', true ili false (za asinhrono(true) ili sinhrono(false), uglavnom se stavlja true)) 
+            //request.onload = function(){...} ovde proveravamo stanje request-a, ako je 200 sto je ok, onda manipulisemo podacima koje dobijamo iz request-a i prikazujemo ih na stranici 
+            // i na kraju 
+            // request.send()  saljemo request// 
+        // }
+
+            // $('.js-test').click(test);
+            // function test(){
+            //     let xhr = new XMLHttpRequest();
+            //     console.log(xhr)
+            //     xhr.open('GET', 'url', true)
+            //     xhr.onload = function(){
+            //         if(this.status == 200){
+            //     }
+            // }
+            //     xhr.send();
+            // }
+
+
+
+            // $('.tester').click(getFeedback1);
 
 });

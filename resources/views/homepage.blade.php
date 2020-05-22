@@ -10,7 +10,7 @@
         <br><br><br>
         <label class="hidden js-pass" for="password">Password</label>
         <input class="password js-password" type="password" name="password" placeholder="password" required><br>
-        <input type="submit" class="login-btn" value="LOG IN">
+        <input type="submit" class="login-btn js-test" value="LOG IN">
     </form>
 </div>
 @endsection

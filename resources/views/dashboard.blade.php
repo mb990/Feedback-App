@@ -23,19 +23,6 @@
                 <p>No users in this team.</p>
 
             @endforelse
-
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Adele Dean</a><i class="fas fa-check reviewed"></i></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Daryl Benitez</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Maverick Zhang</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Louise Alcock</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Madeline Huber</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Lacie Mcguire</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darrel Searle</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Jeanne Gamble</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Ilyas Parrish</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Charlotte Berger</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Hermione Hackett</a></li>--}}
-{{--            <li class="teammate"><a href="#"><img class="teammate-image"></a> <a href="#" class="teammate-name">Darien Cobb</a></li>--}}
         </ul>
     </div>
 </div>
@@ -100,7 +87,7 @@
 {{--    <input type="text" id="skill_name" name="skill_name">--}}
 
     <div class="submit-feedback">
-        <input class="submit-feedback-btn js-test" type="submit" id="submit" value="SUBMIT">
+        <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
     </div>
 </div>
 @endsection
@@ -146,10 +133,14 @@
                     },
                     function (result) {
                         console.log(data);
-
                         // $('.alert').show();
-                        $('.alert').html(result.success);
-                    })
+                        // $('.alert').html(result.success);
+                        $('.main').html("<div class='container'> <i class='far'>&#xf11a;</i> <div class='messages'> No teammate <br>selected</div><p class='info'>To provide a feedback you should select <br>an employee from teammmates list or<br>to search by a name using the search field</p></div>");
+
+                        
+                    }
+
+                ).fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
             });
         });
     </script>
