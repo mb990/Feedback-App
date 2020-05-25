@@ -3,7 +3,7 @@
 @section("users")
     <div class="user-box">
         <div class="user">
-            <img class="user-image">
+            <img src="https://source.unsplash.com/random" class="user-image">
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
@@ -32,7 +32,7 @@
 @endsection
 
 @section('content')
-    <!-- <div class="container">
+<div class="container">
     <i class='far'>&#xf11a;</i>
     <div class="messages">
         No teammate <br>selected
@@ -42,7 +42,7 @@
         an employee from teammmates list or<br>
         to search by a name using the search field
     </p>
-</div> -->
+</div>
 
 
 <!--Modal-->

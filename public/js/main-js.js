@@ -83,8 +83,11 @@ $('.list li').click(userFeedback);
 // getUser(id);
 
 function userFeedback(){
-    $('.modal').show();
+    $('.modal').toggle();
+    $('.container').toggle();
+
 }
+
 
 });
 
@@ -101,7 +104,5 @@ function getUser(id) {
         console.log($data.user_id);
     });
 
-    function userFeedback(){
-        $('.modal').show();
-    }
+
 }

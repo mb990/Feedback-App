@@ -1,0 +1,42 @@
+.admin{
+    display: inline-block;
+    flex-direction: column;
+    
+    margin: 0 auto;
+}
+.inline-flex{
+    display: inline-flex;
+}
+.tab{
+    list-style: none;
+    a{
+        padding: 10px;
+        text-decoration: none;
+        outline: none;
+        cursor: pointer;
+        background-color: #7a7e81;
+        &:hover{
+            background-color: #aaaaaa;
+        }
+    }
+}
+.tab-view{
+    padding: 10px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: #7a7e81;
+    li{
+        list-style: none;
+    }
+}
+.admin-btn{
+    background-color: #ec1940;
+    border: none;
+    margin: 10px 0px;
+    border-radius: 4px;
+    padding: 10px 0px;
+    width: 10vw;
+    color: white;
+    cursor: pointer;
+}
