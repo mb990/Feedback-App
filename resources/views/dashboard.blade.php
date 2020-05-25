@@ -19,11 +19,7 @@
 
                 @forelse($users as $user)
 
-<<<<<<< Updated upstream
-                    <li data-userId="{{$user->id}}"  class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
-=======
                     <li data-userId="{{$user->id}}" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
->>>>>>> Stashed changes
 
                 @empty
 
