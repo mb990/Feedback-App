@@ -19,7 +19,7 @@
 
                 @forelse($users as $user)
 
-                    <li data-userId="{{$user->id}}" onclick="getUser('{{$user->id}}')" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+                    <li data-userId="{{$user->id}}"  class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
 
                 @empty
 
@@ -108,15 +108,9 @@
 @section('script')
     <script>
         var skills = {!! $skills !!};
-//         var id = $('.list li').attr('data-userId');
-// console.log(id);
-        // $('.list li').click(getUser($('.list li').attr('data-userId')));
-
-        // console.log($('.list li').attr('data-userId'));
-
-
 
         $(document).ready(function () {
+
             $('#submit').click(function () {
                 var data = {
                     feedback_1: $('#comment_wrong').val(),

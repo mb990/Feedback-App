@@ -78,20 +78,15 @@ $(document).ready(function(){
             //     xhr.send();
             // }
 
-$('.list li').click(userFeedback);
-
-// getUser(id);
+$('.list li').click(userFeedback, getUser);
 
 function userFeedback(){
     $('.modal').toggle();
     $('.container').toggle();
-
 }
+function getUser() {
 
-
-});
-
-function getUser(id) {
+    var id = $(this).attr('data-userId');
 
     $.get('/feedback/user/'+id,
         {
@@ -102,7 +97,9 @@ function getUser(id) {
         },
     ).done(function ($data) {
         console.log($data.user_id);
+        console.log(id);
     });
-
-
 }
+});
+
+
