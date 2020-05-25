@@ -79,7 +79,9 @@ $(document).ready(function(){
             // }
 
 
-
-            // $('.tester').click(getFeedback1);
+$('.list li').click(userFeedback);
+function userFeedback(){
+    $('.modal').show();
+}
 
 });

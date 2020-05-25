@@ -43,6 +43,10 @@
         to search by a name using the search field
     </p>
 </div> -->
+
+
+<!--Modal-->
+<div class="modal">
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image">
@@ -93,6 +97,13 @@
             <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
         </div>
     </div>
+</div>
+
+
+
+
+
+
 @endsection
 
 @section('script')
@@ -138,7 +149,7 @@
                         console.log(data);
                         // $('.alert').show();
                         // $('.alert').html(result.success);
-                        $('.main').html("<div class='container'> <i class='far'>&#xf11a;</i> <div class='messages'> No teammate <br>selected</div><p class='info'>To provide a feedback you should select <br>an employee from teammmates list or<br>to search by a name using the search field</p></div>");
+                        $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
 
 
                     }
