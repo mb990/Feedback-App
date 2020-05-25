@@ -31,6 +31,12 @@
                     <th>Team</th>
                     <th>Position</th>
                 </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>bestPassword123</td>
+                    <td>BG</td>
+                    <td>Cleaner</td>
+                </tr>
             </table>
 
         </div>

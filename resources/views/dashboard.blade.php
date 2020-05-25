@@ -7,7 +7,7 @@
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
-                    <a class="user-name" href="/">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
+                    <a class="user-name" href="">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
                     <span><button type="submit" class="logout-btn">Log out</button></span>
                 </form>
             </div>
@@ -19,7 +19,11 @@
 
                 @forelse($users as $user)
 
+<<<<<<< Updated upstream
                     <li data-userId="{{$user->id}}"  class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+=======
+                    <li data-userId="{{$user->id}}" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+>>>>>>> Stashed changes
 
                 @empty
 

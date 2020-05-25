@@ -78,28 +78,31 @@ $(document).ready(function(){
             //     xhr.send();
             // }
 
-$('.list li').click(userFeedback, getUser);
+$('.list li').click(getUser);
+$('.list li').click(userFeedback);
+// getUser(id);
 
-function userFeedback(){
-    $('.modal').toggle();
-    $('.container').toggle();
-}
-function getUser() {
+    function userFeedback(e){
+        e.preventDefault();
+        $('.modal').show();
+        $('.container').hide();
+    };
 
-    var id = $(this).attr('data-userId');
 
-    $.get('/feedback/user/'+id,
-        {
-            // data: {
-            //     user_id: id,
-            // },
-            success: console.log('bravo')
-        },
-    ).done(function ($data) {
-        console.log($data.user_id);
-        console.log(id);
-    });
-}
+    function getUser(e) {
+        e.preventDefault();
+        let id = $(this).attr('data-userId');
+        $.get('/feedback/user/'+id,
+            {
+                // data: {
+                //     user_id: id,
+                // },
+                success: console.log('bravo')
+            }
+        ).done(function ($data) {
+            console.log($data.user_id);
+        });
+    }
 });
 
 
