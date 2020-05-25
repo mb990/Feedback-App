@@ -52,4 +52,9 @@ class FeedbackService
             array_shift($skills);
         }
     }
+
+    public function check()
+    {
+        //ako user nije napravio feedback za ovog teammate-a, da moze da napravi, ako vec ima, da samo ispise podatke.
+    }
 }

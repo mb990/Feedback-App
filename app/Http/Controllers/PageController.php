@@ -42,7 +42,7 @@ class PageController extends Controller
     {
         $skills = $this->skillService->all();
 
-        $users = $this->userService->byCompany();
+        $users = $this->userService->teammates();
 
         return view('dashboard', compact(['skills', 'users']));
     }

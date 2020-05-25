@@ -23,6 +23,11 @@ class UserRepository
         return $this->user->all();
     }
 
+    public function find($id)
+    {
+        return $this->user->find($id);
+    }
+
     public function byCompany($company)
     {
         return $this->user->whereHas('profile', function ($q) use ($company) {

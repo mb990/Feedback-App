@@ -18,9 +18,10 @@ class FeedbackController extends Controller
         $this->feedbackService = $feedbackService;
     }
 
-    public function store(Request $request)
+    public function getUser(Request $request, $id)
     {
-        $this->feedbackService->store($request);
+
+        return response()->json(['user_id' => $id]);
     }
 
     public function storeData(FeedbackSkillRequest $request)

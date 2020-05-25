@@ -26,7 +26,7 @@ class FeedbackRepository
     public function store($request)
     {
         return $this->feedback->create([
-            'creator_id' => 1,
+            'creator_id' => auth()->user()->id,
             'target_user_id' => 1,
             'comment_wrong' => $request->data['feedback_1'],
             'comment_improve' => $request->data['feedback_2']

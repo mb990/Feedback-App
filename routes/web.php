@@ -17,11 +17,8 @@ Route::get('/', 'PageController@index')->name('home');
 Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard')->middleware('auth');
 Route::get('/feedback', 'PageController@feedback')->name('user.feedback');
 Route::get('/test-get', 'PageController@testGet')->name('user.testGet');
+Route::get('/feedback/user/{id}', 'FeedbackController@getUser')->name('feedback.user');
 Route::post('/feedback/store', 'FeedbackController@storeData')->name('feedback.store');
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
 Auth::routes([
     'register' => false,
