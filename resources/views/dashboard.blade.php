@@ -47,7 +47,7 @@
 @forelse($users as $user)
 
 <!--Modal-->
-<div class="modal">
+<div data-userId="{{$user->id}}" class="modal">
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image">

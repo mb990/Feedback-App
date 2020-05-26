@@ -79,14 +79,14 @@ $(document).ready(function(){
             // }
 
     $('.list li').click(getUser);
-    $('.list li').click(userFeedback);
+    // $('.list li').click(userFeedback);
     $('.js-close').click(closeFeedback);
 
-    function userFeedback(e){
-        e.preventDefault();
-        $('.modal').show();
-        $('.container').hide();
-    };
+    // function userFeedback(e){
+    //     e.preventDefault();
+    //     $('.modal').show();
+    //     $('.container').hide();
+    // };
     function closeFeedback(){
         $('.modal').hide();
         $('.container').show();
@@ -99,9 +99,14 @@ $(document).ready(function(){
         $.get('/feedback/user/'+id,
             {
                 // data: {
-                //     user_id: id,
+                //     user_id: id, console.log('bravo')
                 // },
-                success: console.log('bravo')
+                success:  function test(){
+                    $('.list li').click(function(){
+                        $('.modal').show();
+                        $('.container').hide();
+                    })
+                }
             }
         ).done(function ($data) {
             console.log($data.user_id);
