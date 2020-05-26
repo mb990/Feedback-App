@@ -18,9 +18,9 @@
             <ul class="list">
 
                 @forelse($users as $user)
-{{--@if(auth()->user()->didFeedbackOnTeammate($user->id))--}}
-                    <li data-userId="{{$user->id}}" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
-{{--@endif--}}
+
+                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
+
                 @empty
 
                     <p>No users in this team.</p>
@@ -47,7 +47,7 @@
 @forelse($users as $user)
 
 <!--Modal-->
-<div data-userId="{{$user->id}}" class="modal">
+<div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image">

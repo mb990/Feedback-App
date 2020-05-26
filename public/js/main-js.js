@@ -102,9 +102,21 @@ $(document).ready(function(){
                 //     user_id: id, console.log('bravo')
                 // },
                 success:  function test(){
+
                     $('.list li').click(function(){
-                        $('.modal').show();
-                        $('.container').hide();
+                        let x ='';
+                        let y ='';
+                        x = $(this).attr('data-userId')
+                        y = $('.modal'+x);
+                        // var id = '';
+                        // id = $(this).attr('data-userId');
+                        // var modal = $(this).attr('data-userId');
+                        y.show();
+                        $('.container').hide()
+                        console.log(id)
+                        console.log(x)
+                        console.log(y)
+
                     })
                 }
             }
@@ -112,6 +124,12 @@ $(document).ready(function(){
             console.log($data.feedback.comment_wrong);
         });
     }
+
+    // $('.list li').click(function () {
+    //     var id = '';
+    //     id = $(this).attr('data-userId');
+    //     console.log(id)
+    // });
 });
 
 
