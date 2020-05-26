@@ -54,6 +54,7 @@
                 <span>teammate Full Name</span>
                 <span>teammate position</span>
             </div>
+            <button class="close-btn js-close"><i class="fas fa-times"> <br> ESC</i></button>
         </div>
         <div class="feedback-title">Provide feedback</div>
         <span>Personal skills and competences</span>

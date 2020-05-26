@@ -78,15 +78,19 @@ $(document).ready(function(){
             //     xhr.send();
             // }
 
-$('.list li').click(getUser);
-$('.list li').click(userFeedback);
-// getUser(id);
+    $('.list li').click(getUser);
+    $('.list li').click(userFeedback);
+    $('.js-close').click(closeFeedback);
 
     function userFeedback(e){
         e.preventDefault();
         $('.modal').show();
         $('.container').hide();
     };
+    function closeFeedback(){
+        $('.modal').hide();
+        $('.container').show();
+    }
 
 
     function getUser(e) {
