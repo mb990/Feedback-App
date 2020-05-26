@@ -16,4 +16,9 @@ class Feedback extends Model
             ->withPivot('score')
             ->withTimestamps();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
 }
