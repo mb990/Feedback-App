@@ -21,7 +21,9 @@ class FeedbackController extends Controller
     public function getUser(Request $request, $id)
     {
 
-        return response()->json(['user_id' => $id]);
+        $feedback = $this->feedbackService->findByUser($id);
+
+        return response()->json(['user_id' => $id, 'feedback' => $feedback]);
     }
 
     public function storeData(FeedbackSkillRequest $request)

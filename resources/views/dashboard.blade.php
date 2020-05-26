@@ -18,9 +18,9 @@
             <ul class="list">
 
                 @forelse($users as $user)
-
+{{--@if(auth()->user()->didFeedbackOnTeammate($user->id))--}}
                     <li data-userId="{{$user->id}}" class="teammate"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a><i class="fas fa-check reviewed"></i></li>
-
+{{--@endif--}}
                 @empty
 
                     <p>No users in this team.</p>
@@ -62,10 +62,12 @@
 
 
         @forelse($skills as $skill)
+{{--            @foreach($skill->feedbacks as $bla)--}}
+{{--                @dd($bla->pivot)--}}
+{{--            @endforeach--}}
             <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
-{{--                    <input type="hidden" id="skill_{{$skill->id}}" name="skill_{{$skill->id}}" value="{{$skill->id}}">--}}
                     <input type="radio" id="star5_{{$skill->id}}" name="rating_{{$skill->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}" title="Awesome"></label>
                     <input type="radio" id="star4_{{$skill->id}}" name="rating_{{$skill->id}}" value="4" required/><label class = "full" for="star4_{{$skill->id}}" title="Pretty good"></label>
                     <input type="radio" id="star3_{{$skill->id}}" name="rating_{{$skill->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}" title="Meh"></label>
@@ -117,10 +119,18 @@
 
         $(document).ready(function () {
 
+            var id = '';
+
+            $(document).on('click', '.list li', function () {
+                id = $(this).attr('data-userId');
+            });
+
             $('#submit').click(function () {
+                console.log(id);
                 var data = {
                     feedback_1: $('#comment_wrong').val(),
-                    feedback_2: $('#comment_improve').val()
+                    feedback_2: $('#comment_improve').val(),
+                    user_id: id
                 };
                 var ratings = {};
                 for (var i = 1; i < skills.length + 1; ++i) {

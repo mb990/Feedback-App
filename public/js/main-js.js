@@ -109,7 +109,7 @@ $(document).ready(function(){
                 }
             }
         ).done(function ($data) {
-            console.log($data.user_id);
+            console.log($data.feedback.comment_wrong);
         });
     }
 });

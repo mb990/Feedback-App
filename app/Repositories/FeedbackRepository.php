@@ -23,11 +23,19 @@ class FeedbackRepository
         return $this->feedback->find($id);
     }
 
+    public function findByUser($id)
+    {
+        return $this->feedback->where('target_user_id', $id)
+            ->where('creator_id', auth()->user()->id)
+            ->latest()
+            ->first();
+    }
+
     public function store($request)
     {
         return $this->feedback->create([
             'creator_id' => auth()->user()->id,
-            'target_user_id' => 1,
+            'target_user_id' => $request->data['user_id'],
             'comment_wrong' => $request->data['feedback_1'],
             'comment_improve' => $request->data['feedback_2']
         ]);

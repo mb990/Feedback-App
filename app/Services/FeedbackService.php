@@ -28,6 +28,11 @@ class FeedbackService
         return $this->feedback->find($id);
     }
 
+    public function findByUser($id)
+    {
+        return $this->feedback->findByUser($id);
+    }
+
     public function store($request)
     {
 

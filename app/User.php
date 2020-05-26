@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\FeedbackService;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +12,15 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable, Sluggable, hasRoles;
+
+    /**
+     * @var FeedbackService
+     */
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -51,5 +61,10 @@ class User extends Authenticatable
     public function profile() {
 
         return $this->hasOne(Profile::class);
+    }
+
+    public function didFeedBackOnTeammate($id) {
+
+        //
     }
 }
