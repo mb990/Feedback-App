@@ -44,6 +44,7 @@
     </p>
 </div>
 
+@forelse($users as $user)
 
 <!--Modal-->
 <div class="modal">
@@ -51,8 +52,8 @@
         <div class="feedback-person">
             <img class="feedback-image">
             <div class="feedback-person-info">
-                <span>teammate Full Name</span>
-                <span>teammate position</span>
+                <span>{{$user->first_name}} {{$user->last_name}}</span>
+                <span>{{$user->profile->position}}</span>
             </div>
             <button class="close-btn js-close"><i class="fas fa-times"> <br> ESC</i></button>
         </div>
@@ -99,7 +100,11 @@
         </div>
     </div>
 </div>
+@empty
 
+<p>No users in this team.</p>
+
+@endforelse
 
 
 
