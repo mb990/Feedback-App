@@ -105,7 +105,7 @@ $(document).ready(function(){
                     $('.list li').click(function(){
                         $('.modal').show();
                         $('.container').hide()
-
+                        console.log(id);
 
                     })
                 }

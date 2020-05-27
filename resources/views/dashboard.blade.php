@@ -84,7 +84,6 @@
                         <input type="radio" id="star3_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}{{$user->id}}" title="Meh"></label>
                         <input type="radio" id="star2_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="2" required/><label class = "full" for="star2_{{$skill->id}}{{$user->id}}" title="Kinda bad"></label>
                         <input type="radio" id="star1_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="1" required/><label class = "full" for="star1_{{$skill->id}}{{$user->id}}" title="Really bad"></label>
-
                 </fieldset>
         </span>
         @empty
@@ -145,10 +144,11 @@
                     user_id: id
                 };
                 var ratings = {};
-                for (var i = 1; i < skills.length + 1; ++i) {
-                    var current = 'rating_' + i;
+
+                skills.forEach(function (entry) {
+                    var current = 'rating_' + entry.id + id;
                     ratings[current] = $(`input[name="${current}"]:checked`).val();
-                }
+                });
 
                 // $.ajax({
                 //     url: 'feedback/store',
@@ -188,7 +188,6 @@
                     $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
                 .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
-                
             });
         });
     </script>
