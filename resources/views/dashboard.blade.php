@@ -19,7 +19,7 @@
 
                 @forelse($users as $user)
 
-                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a>@if(auth()->user()->didFeedbackOnTeammate($user->id))<i class="fas fa-check reviewed"></i>@endif</li>
+                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
 
                 @empty
 
@@ -61,18 +61,31 @@
         <span>Personal skills and competences</span>
 
 
+        @if($user->hasFeedback())
+            @foreach($user->hasFeedback()->skills as $skill)
+
+                <span class="single-skill">
+            <p class="skill-name">{{$skill->name}}</p>
+                <fieldset class="rating">
+                    @for($i = 5; $i > 0; $i--)
+                        <input type="radio" id="star{{$i}}_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" @if($skill->pivot->score == $i) checked @endif/><label class = "full" for="star{{$i}}_{{$skill->id}}{{$user->id}}" title="{{$titles[$i-1]}}"></label>
+                    @endfor
+                </fieldset>
+        </span>
+            @endforeach
+        @else
+
         @forelse($skills as $skill)
-{{--            @foreach($skill->feedbacks as $bla)--}}
-{{--                @dd($bla->pivot)--}}
-{{--            @endforeach--}}
+
             <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
-                    <input type="radio" id="star5_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}" title="Awesome"></label>
-                    <input type="radio" id="star4_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}" value="4" checked/><label class = "full" for="star4_{{$skill->id}}" title="Pretty good"></label>
-                    <input type="radio" id="star3_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}" title="Meh"></label>
-                    <input type="radio" id="star2_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}" value="2" required/><label class = "full" for="star2_{{$skill->id}}" title="Kinda bad"></label>
-                    <input type="radio" id="star1_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}" value="1" required/><label class = "full" for="star1_{{$skill->id}}" title="Really bad"></label>
+                        <input type="radio" id="star5_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}{{$user->id}}" title="Awesome"></label>
+                        <input type="radio" id="star4_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="4" required/><label class = "full" for="star4_{{$skill->id}}{{$user->id}}" title="Pretty good"></label>
+                        <input type="radio" id="star3_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}{{$user->id}}" title="Meh"></label>
+                        <input type="radio" id="star2_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="2" required/><label class = "full" for="star2_{{$skill->id}}{{$user->id}}" title="Kinda bad"></label>
+                        <input type="radio" id="star1_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="1" required/><label class = "full" for="star1_{{$skill->id}}{{$user->id}}" title="Really bad"></label>
+
                 </fieldset>
         </span>
         @empty
@@ -80,6 +93,8 @@
             <p>Currently no skills.</p>
 
         @endforelse
+
+        @endif
 
         <div class="alert alert-success">
 
@@ -89,17 +104,21 @@
 
         <label class="hide show js-hide" for="feedback_1">What is wrong</label>
         <!-- <input value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required> -->
-        <textarea id="comment_wrong" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" required></textarea>
+        <textarea id="comment_wrong" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
         <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
         <!-- <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required> -->
-        <textarea id="comment_improve" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" required></textarea>
+        <textarea id="comment_improve" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
 
         {{--    <label for="skill_name">Skill name test</label>--}}
         {{--    <input type="text" id="skill_name" name="skill_name">--}}
 
-        <div class="submit-feedback">
-            <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
-        </div>
+        @if(!$user->hasFeedback())
+
+            <div class="submit-feedback">
+                <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
+            </div>
+
+        @endif
     </div>
 </div>
 @empty
@@ -107,9 +126,6 @@
 <p>No users in this team.</p>
 
 @endforelse
-
-
-
 
 @endsection
 

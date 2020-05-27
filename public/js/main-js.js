@@ -121,7 +121,7 @@ $(document).ready(function(){
                 }
             }
         ).done(function ($data) {
-            console.log($data.feedback.comment_wrong);
+            // console.log($data.feedback.comment_wrong);
         });
     }
 

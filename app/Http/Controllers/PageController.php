@@ -44,7 +44,11 @@ class PageController extends Controller
 
         $users = $this->userService->teammates();
 
-        return view('dashboard', compact(['skills', 'users']));
+        $titles = [
+            'Really bad', 'Kinda bad', 'Meh', 'Pretty good', 'Awesome'
+        ];
+
+        return view('dashboard', compact(['skills', 'users', 'titles']));
     }
 
     public function testGet(Request $request)

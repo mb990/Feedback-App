@@ -58,20 +58,22 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class, 'creator_id');
     }
 
-    public function didFeedBackOnTeammate($id) {
+    public function feedbacked()
+    {
+        return $this->hasMany(Feedback::class, 'target_user_id');
+    }
+
+    public function didFeedbackOnTeammate($id) {
 
         return $this->feedbacks()->where('target_user_id', $id)
             ->latest()
             ->first();
     }
 
-    public function hasFeedback($id, $score)
+    public function hasFeedback()
     {
-        return $this->feedbacks()->where('creator_id', $id)
-            ->whereHas('skills', function ($q) use ($score) {
-                $q->where('score', $score);
-            })
-            ->latest()
-            ->first();
+        return $this->feedbacked()->where('creator_id', auth()->user()->id)
+         ->latest()
+         ->first();
     }
 }
