@@ -46,10 +46,10 @@ class FeedbackSkillRequest extends FormRequest
             'data.feedback_2' => 'required',
         ];
 
-        foreach($this->skillService->all() as $skill)
-        {
-            $rules['ratings.rating_' . $skill->id] = 'required';
-        }
-        return $rules;
+        // foreach($this->skillService->all() as $skill)
+        // {
+        //     $rules['ratings.rating_' . $skill->id] = 'required';
+        // }
+        // return $rules;
     }
 }

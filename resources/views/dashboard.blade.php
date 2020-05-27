@@ -44,10 +44,9 @@
     </p>
 </div>
 
-@forelse($users as $user)
 
 <!--Modal-->
-<div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
+<div data-userId="{{$user->id}}" class="modal">
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image">
@@ -115,17 +114,14 @@
         @if(!$user->hasFeedback())
 
             <div class="submit-feedback">
-                <input class="submit-feedback-btn" type="submit" id="submit" value="SUBMIT">
+                <input class="submit-feedback-btn js-submit" type="submit" id="submit" value="SUBMIT">
+                <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
             </div>
 
         @endif
     </div>
 </div>
-@empty
 
-<p>No users in this team.</p>
-
-@endforelse
 
 @endsection
 
@@ -141,8 +137,8 @@
                 id = $(this).attr('data-userId');
             });
 
-            $('#submit').click(function () {
-                console.log(id);
+            $('#submit').click(function(e) {
+                e.preventDefault();
                 var data = {
                     feedback_1: $('#comment_wrong').val(),
                     feedback_2: $('#comment_improve').val(),
@@ -176,16 +172,23 @@
                         ratings: ratings,
                         skills: skills
                     },
-                    function (result) {
-                        console.log(data);
-                        // $('.alert').show();
-                        // $('.alert').html(result.success);
-                        $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
+                    // function (result) {
+                    //     console.log(data);
+                    //     // $('.alert').show();
+                    //     // $('.alert').html(result.success);
+                    //     $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
 
 
-                    }
-
-                ).fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
+                    // }
+                        function(data, status, xhr) {
+                            $('.modal').show()
+                            }
+                ).done(function(){
+                    $('#common_wrong').val('')
+                    $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
+                })
+                .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
+                
             });
         });
     </script>

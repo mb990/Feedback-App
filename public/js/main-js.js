@@ -101,21 +101,11 @@ $(document).ready(function(){
                 // data: {
                 //     user_id: id, console.log('bravo')
                 // },
-                success:  function test(){
-
+                success:  function(){
                     $('.list li').click(function(){
-                        let x ='';
-                        let y ='';
-                        x = $(this).attr('data-userId')
-                        y = $('.modal'+x);
-                        // var id = '';
-                        // id = $(this).attr('data-userId');
-                        // var modal = $(this).attr('data-userId');
-                        y.show();
+                        $('.modal').show();
                         $('.container').hide()
-                        console.log(id)
-                        console.log(x)
-                        console.log(y)
+
 
                     })
                 }
