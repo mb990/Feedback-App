@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DashboardRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Services\CompanyService;
 use App\Services\FeedbackService;
+use App\Services\ProfileService;
 use App\Services\SkillService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -24,13 +26,18 @@ class PageController extends Controller
      */
     private $companyService;
     private $userService;
+    /**
+     * @var ProfileService
+     */
+    private $profileService;
 
-    public function __construct(SkillService $skillService,UserService $userService, FeedbackService $feedbackService, CompanyService $companyService)
+    public function __construct(ProfileService $profileService, SkillService $skillService,UserService $userService, FeedbackService $feedbackService, CompanyService $companyService)
     {
         $this->skillService = $skillService;
         $this->feedbackService = $feedbackService;
         $this->companyService = $companyService;
         $this->userService = $userService;
+        $this->profileService = $profileService;
     }
 
     public function index()
@@ -54,6 +61,15 @@ class PageController extends Controller
     public function testGet(Request $request)
     {
 //        return response()->json(['success' => 'Success message','result' => $request->feedback_1]);
+    }
+
+    public function profile(ProfileRequest $request, $id)
+    {
+        $users = $this->userService->teammates();
+
+        $data = $this->profileService->profileData(auth()->user());
+
+        return view('profile', compact(['users', 'data']));
     }
 
     public function feedback()

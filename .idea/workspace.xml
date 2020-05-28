@@ -20,10 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70fa9dfb-d904-472f-9854-3f52d3c007ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/FeedbackSkillRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/FeedbackSkillRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main-js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Feedback.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Feedback.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FeedbackRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/FeedbackService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/FeedbackService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/ProfileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ProfileService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,6 +209,8 @@
       <workItem from="1590132637301" duration="8499000" />
       <workItem from="1590521548422" duration="35000" />
       <workItem from="1590562530732" duration="12205000" />
+      <workItem from="1590649160239" duration="12698000" />
+      <workItem from="1590676033308" duration="3020000" />
     </task>
     <servers />
   </component>
@@ -228,14 +238,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1590154367595" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590069020301">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590660127799">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1590069020301" />
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1590155218704">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1590660127799" />
+    <state x="92" y="92" width="1416" height="676" maximized="true" key="DiffContextDialog" timestamp="1590671676246">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1590155218704" />
+    <state x="92" y="92" width="1416" height="676" maximized="true" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1590671676246" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1589448158219">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -260,25 +270,25 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="576" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1590069452960" />
-    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1589891305398">
+    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1590658737910">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1589891305398" />
+    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1590658737910" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1590568879755">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1590568879755" />
-    <state x="92" y="92" width="1416" height="676" key="ShowDiffWithBranchDialog" timestamp="1590155218704">
+    <state x="92" y="92" width="1416" height="676" key="ShowDiffWithBranchDialog" timestamp="1590671676247">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="92" y="92" width="1416" height="676" key="ShowDiffWithBranchDialog/0.0.1600.860@0.0.1600.860" timestamp="1590155218704" />
+    <state x="92" y="92" width="1416" height="676" key="ShowDiffWithBranchDialog/0.0.1600.860@0.0.1600.860" timestamp="1590671676247" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1590498040826">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1590498040826" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1590581223682">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1590678505316">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1590581223682" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1590678505316" />
   </component>
 </project>

@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Feedback;
+use Carbon\Carbon;
 
 class FeedbackRepository
 {
@@ -44,5 +45,12 @@ class FeedbackRepository
     public function addSkill($feedback, $id, $score)
     {
         $feedback->skills()->attach($id, ['score' => $score]);
+    }
+
+    public function allActiveForUser($user)
+    {
+        return $this->feedback->where('created_at', '>=', Carbon::now()->subSeconds($user->profile->company->feedback_time))
+            ->where('target_user_id', $user->id)
+            ->get();
     }
 }

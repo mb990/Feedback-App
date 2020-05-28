@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,6 +67,7 @@ class User extends Authenticatable
     public function didFeedbackOnTeammate($id) {
 
         return $this->feedbacks()->where('target_user_id', $id)
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
             ->latest()
             ->first();
     }
@@ -73,7 +75,29 @@ class User extends Authenticatable
     public function hasFeedback()
     {
         return $this->feedbacked()->where('creator_id', auth()->user()->id)
-         ->latest()
-         ->first();
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->latest()
+            ->first();
     }
+
+    public function activeFeedback()
+    {
+        return $this->feedbacked()->where('target_user_id', auth()->user()->id)
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->latest()
+            ->first();
+    }
+
+    public function activeFeedbacks()
+    {
+        return $this->feedbacked()->where('target_user_id', auth()->user()->id)
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->latest()
+            ->get();
+    }
+
+//    public function averageFeedbackScore()
+//    {
+//        return (new Services\ProfileService)->profileData($this)['average_score'];
+//    }
 }

@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Repositories\FeedbackRepository;
+use App\User;
 
 class FeedbackService
 {
@@ -58,8 +59,8 @@ class FeedbackService
         }
     }
 
-    public function check()
+    public function allActiveForUser(User $user)
     {
-        //ako user nije napravio feedback za ovog teammate-a, da moze da napravi, ako vec ima, da samo ispise podatke.
+        return $this->feedback->allActiveForUser($user);
     }
 }

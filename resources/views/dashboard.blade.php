@@ -7,7 +7,7 @@
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
-                    <a class="user-name" href="">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
+                    <a class="user-name" href="{{route('user.profile', auth()->user()->id)}}">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
                     <span><button type="submit" class="logout-btn">Log out</button></span>
                 </form>
             </div>
@@ -20,8 +20,8 @@
                 @forelse($users as $user)
 
                     <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
-                        <!-- @if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif -->
-                    
+                <!-- @if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif -->
+
                 @empty
 
                     <p>No users in this team.</p>
@@ -33,43 +33,43 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <i class='far'>&#xf11a;</i>
-    <div class="messages">
-        No teammate <br>selected
-    </div>
-    <p class="info">
-        To provide a feedback you should select <br>
-        an employee from teammmates list or<br>
-        to search by a name using the search field
-    </p>
-</div>
-<div class='container js-container'> 
-    <i class='far'>&#xf118;</i> 
-    <div class='messages'> Your feedback <br>accepted</div>
-    <p class='info'>You can review other your teammate</p>
-</div>
-@forelse($users as $user)
-
-<!--Modal-->
-<div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
-    <div class="single-feedback">
-        <div class="feedback-person">
-            <img class="feedback-image">
-            <div class="feedback-person-info">
-                <span class="js-user">{{$user->first_name}} {{$user->last_name}}</span>
-                <span class="js-position">{{$user->profile->position}}</span>
-            </div>
-            <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button>
+    <div class="container">
+        <i class='far'>&#xf11a;</i>
+        <div class="messages">
+            No teammate <br>selected
         </div>
-        <div class="feedback-title">Provide feedback</div>
-        <span>Personal skills and competences</span>
+        <p class="info">
+            To provide a feedback you should select <br>
+            an employee from teammmates list or<br>
+            to search by a name using the search field
+        </p>
+    </div>
+    <div class='container js-container'>
+        <i class='far'>&#xf118;</i>
+        <div class='messages'> Your feedback <br>accepted</div>
+        <p class='info'>You can review other your teammate</p>
+    </div>
+    @forelse($users as $user)
+
+        <!--Modal-->
+        <div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
+            <div class="single-feedback">
+                <div class="feedback-person">
+                    <img class="feedback-image">
+                    <div class="feedback-person-info">
+                        <span class="js-user">{{$user->first_name}} {{$user->last_name}}</span>
+                        <span class="js-position">{{$user->profile->position}}</span>
+                    </div>
+                    <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button>
+                </div>
+                <div class="feedback-title">Provide feedback</div>
+                <span>Personal skills and competences</span>
 
 
-        @if($user->hasFeedback())
-            @foreach($user->hasFeedback()->skills as $skill)
+                @if($user->hasFeedback())
+                    @foreach($user->hasFeedback()->skills as $skill)
 
-                <span class="single-skill">
+                        <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
                     @for($i = 5; $i > 0; $i--)
@@ -77,12 +77,12 @@
                     @endfor
                 </fieldset>
         </span>
-            @endforeach
-        @else
+                    @endforeach
+                @else
 
-        @forelse($skills as $skill)
+                    @forelse($skills as $skill)
 
-            <span class="single-skill">
+                        <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
                         <input type="radio" id="star5_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}{{$user->id}}" title="Awesome"></label>
@@ -92,44 +92,44 @@
                         <input type="radio" id="star1_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="1" required/><label class = "full" for="star1_{{$skill->id}}{{$user->id}}" title="Really bad"></label>
                 </fieldset>
         </span>
-        @empty
+                    @empty
 
-            <p>Currently no skills.</p>
+                        <p>Currently no skills.</p>
 
-        @endforelse
+                    @endforelse
 
-        @endif
+                @endif
 
-        <div class="alert alert-success">
+                <div class="alert alert-success">
 
+                </div>
+
+                <span style="margin:20px 0px;">Write a feedback</span>
+
+                <label class="hide show js-hide" for="feedback_1">What is wrong</label>
+                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
+                <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
+                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+
+                {{--    <label for="skill_name">Skill name test</label>--}}
+                {{--    <input type="text" id="skill_name" name="skill_name">--}}
+
+                @if(!$user->hasFeedback())
+
+                    <div class="submit-feedback">
+                        <input class="submit-feedback-btn js-submit{{$user->id}}" type="submit" id="submit" value="SUBMIT">
+                    <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
+                    </div>
+
+                @endif
+            </div>
         </div>
 
-        <span style="margin:20px 0px;">Write a feedback</span>
+    @empty
 
-        <label class="hide show js-hide" for="feedback_1">What is wrong</label>
-        <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
-        <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
-        <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+        <p>No users in this team.</p>
 
-        {{--    <label for="skill_name">Skill name test</label>--}}
-        {{--    <input type="text" id="skill_name" name="skill_name">--}}
-
-        @if(!$user->hasFeedback())
-
-            <div class="submit-feedback">
-                <input class="submit-feedback-btn js-submit{{$user->id}}" type="submit" id="submit" value="SUBMIT">
-                <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
-            </div>
-
-        @endif
-    </div>
-</div>
-
-@empty
-
-<p>No users in this team.</p>
-
-@endforelse
+    @endforelse
 
 
 
@@ -200,14 +200,14 @@
 
 
                     // }
-                        function(data, status, xhr) {
-                            }
+                    function(data, status, xhr) {
+                    }
                 ).done(function(){
                     $('.js-container').show()
                     $('.modal').hide()
                     // $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
-                .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
+                    .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
             });
         });
     </script>

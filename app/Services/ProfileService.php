@@ -4,7 +4,6 @@
 namespace App\Services;
 
 
-use App\Profile;
 use App\Repositories\ProfileRepository;
 
 class ProfileService
@@ -13,9 +12,71 @@ class ProfileService
      * @var ProfileRepository
      */
     private $profile;
+    /**
+     * @var UserService
+     */
+    private $userService;
+    /**
+     * @var FeedbackService
+     */
+    private $feedbackService;
 
-    public function __construct(ProfileRepository $profile)
+    public function __construct(ProfileRepository $profile, UserService $userService, FeedbackService $feedbackService)
     {
         $this->profile = $profile;
+        $this->userService = $userService;
+        $this->feedbackService = $feedbackService;
+    }
+
+    public function profileData($user)
+    {
+        $feedback = $this->feedbackService->allActiveForUser($user);
+
+        $scores = [];
+
+        $totalScore = 0;
+
+        $totalSkillsScore = [];
+
+        $averageSkillsScore = [];
+
+        $count = 0;
+
+        foreach ($feedback as $fback) {
+
+            foreach ($fback->skills as $skill) {
+
+                if (!array_key_exists($skill->id, $scores)) {
+
+                    $totalSkillsScore[$skill->id] = $skill->pivot->score;
+                }
+
+                else {
+
+                    $totalSkillsScore[$skill->id] += $skill->pivot->score;
+                }
+
+                $scores[$skill->id][$fback->id] = $skill->pivot->score;
+
+                $totalScore += $skill->pivot->score;
+
+                $count += 1;
+            }
+        }
+
+        $i = 1;
+
+        foreach ($totalSkillsScore as $score) {
+
+            $averageSkillsScore[$i] = number_format($score / count($feedback), 1, '.', '');
+
+            $i++;
+        }
+
+        $data['average_score'] = $totalScore / $count;
+
+        $data['skills_score'] = $averageSkillsScore;
+//dd($data);
+        return $data;
     }
 }
