@@ -19,8 +19,7 @@
 
                 @forelse($users as $user)
 
-                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
-
+                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
                 @empty
 
                     <p>No users in this team.</p>
@@ -44,15 +43,16 @@
     </p>
 </div>
 
+@forelse($users as $user)
 
 <!--Modal-->
-<div data-userId="{{$user->id}}" class="modal">
+<div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image">
             <div class="feedback-person-info">
-                <span>{{$user->first_name}} {{$user->last_name}}</span>
-                <span>{{$user->profile->position}}</span>
+                <span class="js-user">USER FULL NAME</span>
+                <span class="js-position">USER POSITION</span>
             </div>
             <button class="close-btn js-close"><i class="fas fa-times"> <br> ESC</i></button>
         </div>
@@ -121,6 +121,13 @@
     </div>
 </div>
 
+@empty
+
+<p>No users in this team.</p>
+
+@endforelse
+
+
 
 @endsection
 
@@ -130,10 +137,11 @@
 
         $(document).ready(function () {
 
-            var id = '';
+            var id1 = '';
 
             $(document).on('click', '.list li', function () {
-                id = $(this).attr('data-userId');
+                id1 = $(this).attr('data-userId');
+                console.log('id1 = ' + id1)
             });
 
             $('#submit').click(function(e) {
@@ -141,12 +149,12 @@
                 var data = {
                     feedback_1: $('#comment_wrong').val(),
                     feedback_2: $('#comment_improve').val(),
-                    user_id: id
+                    user_id: id1
                 };
                 var ratings = {};
 
                 skills.forEach(function (entry) {
-                    var current = 'rating_' + entry.id + id;
+                    var current = 'rating_' + entry.id + id1;
                     ratings[current] = $(`input[name="${current}"]:checked`).val();
                 });
 
@@ -181,10 +189,8 @@
 
                     // }
                         function(data, status, xhr) {
-                            $('.modal').show()
                             }
                 ).done(function(){
-                    $('#common_wrong').val('')
                     $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
                 .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });

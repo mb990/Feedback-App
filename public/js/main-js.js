@@ -77,24 +77,33 @@ $(document).ready(function(){
             // }
             //     xhr.send();
             // }
-
     $('.list li').click(getUser);
     // $('.list li').click(userFeedback);
-    $('.js-close').click(closeFeedback);
+    // $('.js-close').click(closeFeedback);
 
     // function userFeedback(e){
     //     e.preventDefault();
     //     $('.modal').show();
     //     $('.container').hide();
     // };
-    function closeFeedback(){
-        $('.modal').hide();
-        $('.container').show();
-    }
+    // function closeFeedback(){
+    //     $('.modal').hide();
+    //     $('.container').show();
+    // }
 
 
-    function getUser(e) {
-        e.preventDefault();
+
+
+
+    
+
+    function getUser() {
+        // e.preventDefault();
+        $('.js-close').click(closeFeedback);
+        function closeFeedback(){
+            $('.modal'+id).hide();
+            $('.container').show();
+        }
         let id = $(this).attr('data-userId');
         $.get('/feedback/user/'+id,
             {
@@ -102,16 +111,13 @@ $(document).ready(function(){
                 //     user_id: id, console.log('bravo')
                 // },
                 success:  function(){
-                    $('.list li').click(function(){
-                        $('.modal').show();
+                        $(".js-user").html($('.js'+id).html());
+                        $('.modal'+id).show();
                         $('.container').hide()
-                        console.log(id);
-
-                    })
                 }
             }
         ).done(function ($data) {
-            // console.log($data.feedback.comment_wrong);
+            console.log($data.feedback.comment_wrong);
         });
     }
 
