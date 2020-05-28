@@ -20,6 +20,8 @@
                 @forelse($users as $user)
 
                     <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
+                        <!-- @if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif -->
+                    
                 @empty
 
                     <p>No users in this team.</p>
@@ -42,7 +44,11 @@
         to search by a name using the search field
     </p>
 </div>
-
+<div class='container js-container'> 
+    <i class='far'>&#xf118;</i> 
+    <div class='messages'> Your feedback <br>accepted</div>
+    <p class='info'>You can review other your teammate</p>
+</div>
 @forelse($users as $user)
 
 <!--Modal-->
@@ -51,10 +57,10 @@
         <div class="feedback-person">
             <img class="feedback-image">
             <div class="feedback-person-info">
-                <span class="js-user">USER FULL NAME</span>
-                <span class="js-position">USER POSITION</span>
+                <span class="js-user">{{$user->first_name}} {{$user->last_name}}</span>
+                <span class="js-position">{{$user->profile->position}}</span>
             </div>
-            <button class="close-btn js-close"><i class="fas fa-times"> <br> ESC</i></button>
+            <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button>
         </div>
         <div class="feedback-title">Provide feedback</div>
         <span>Personal skills and competences</span>
@@ -101,11 +107,9 @@
         <span style="margin:20px 0px;">Write a feedback</span>
 
         <label class="hide show js-hide" for="feedback_1">What is wrong</label>
-        <!-- <input value="" class="write-feedback js-write" type="text" placeholder="What is wrong" name="feedback-1" required> -->
-        <textarea id="comment_wrong" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
+        <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
         <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
-        <!-- <input class="write-feedback js-write-two" type="text" placeholder="What could be improved" name="feedback-2" required> -->
-        <textarea id="comment_improve" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+        <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
 
         {{--    <label for="skill_name">Skill name test</label>--}}
         {{--    <input type="text" id="skill_name" name="skill_name">--}}
@@ -113,7 +117,7 @@
         @if(!$user->hasFeedback())
 
             <div class="submit-feedback">
-                <input class="submit-feedback-btn js-submit" type="submit" id="submit" value="SUBMIT">
+                <input class="submit-feedback-btn js-submit{{$user->id}}" type="submit" id="submit" value="SUBMIT">
                 <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
             </div>
 
@@ -147,8 +151,8 @@
             $('#submit').click(function(e) {
                 e.preventDefault();
                 var data = {
-                    feedback_1: $('#comment_wrong').val(),
-                    feedback_2: $('#comment_improve').val(),
+                    feedback_1: $('#comment_wrong'+id1).val(),
+                    feedback_2: $('#comment_improve'+id1).val(),
                     user_id: id1
                 };
                 var ratings = {};
@@ -174,6 +178,14 @@
                 //     }
                 // });
 
+
+
+
+
+
+
+
+
                 $.post('feedback/store',
                     {
                         data: data,
@@ -191,7 +203,9 @@
                         function(data, status, xhr) {
                             }
                 ).done(function(){
-                    $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
+                    $('.js-container').show()
+                    $('.modal').hide()
+                    // $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
                 .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
             });

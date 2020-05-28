@@ -91,7 +91,7 @@ $(document).ready(function(){
     //     $('.container').show();
     // }
 
-
+$('.js-container').hide()
 
 
 
@@ -99,19 +99,17 @@ $(document).ready(function(){
 
     function getUser() {
         // e.preventDefault();
-        $('.js-close').click(closeFeedback);
+        let id = $(this).attr('data-userId');
+
+        $('.js-close'+id).click(closeFeedback);
         function closeFeedback(){
             $('.modal'+id).hide();
             $('.container').show();
         }
-        let id = $(this).attr('data-userId');
         $.get('/feedback/user/'+id,
             {
-                // data: {
-                //     user_id: id, console.log('bravo')
-                // },
                 success:  function(){
-                        $(".js-user").html($('.js'+id).html());
+                        $('.modal').css('display', 'none')
                         $('.modal'+id).show();
                         $('.container').hide()
                 }
