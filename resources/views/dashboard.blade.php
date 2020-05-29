@@ -117,7 +117,7 @@
                 @if(!$user->hasFeedback())
 
                     <div class="submit-feedback">
-                        <input class="submit-feedback-btn js-submit" type="submit" id="submit" value="SUBMIT">
+                        <input class="submit-feedback-btn js-submit js-submit{{$user->id}}" type="submit" id="submit" value="SUBMIT">
                     <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
                     </div>
 
@@ -205,6 +205,8 @@
                 ).done(function(){
                     $('.js-accepted').show()
                     $('.modal').hide()
+                    $('.js-submit'+id1).hide()
+
 
                     // $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
