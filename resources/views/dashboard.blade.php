@@ -33,7 +33,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container js-no-selected">
         <i class='far'>&#xf11a;</i>
         <div class="messages">
             No teammate <br>selected
@@ -44,7 +44,7 @@
             to search by a name using the search field
         </p>
     </div>
-    <div class='container js-container'>
+    <div class='container js-accepted'>
         <i class='far'>&#xf118;</i>
         <div class='messages'> Your feedback <br>accepted</div>
         <p class='info'>You can review other your teammate</p>
@@ -73,7 +73,7 @@
             <p class="skill-name">{{$skill->name}}</p>
                 <fieldset class="rating">
                     @for($i = 5; $i > 0; $i--)
-                        <input type="radio" id="star{{$i}}_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" @if($skill->pivot->score == $i) checked @endif/><label class = "full" for="star{{$i}}_{{$skill->id}}{{$user->id}}" title="{{$titles[$i-1]}}"></label>
+                        <input disabled type="radio" id="star{{$i}}_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" @if($skill->pivot->score == $i) checked @endif/><label class = "full" for="star{{$i}}_{{$skill->id}}{{$user->id}}" title="{{$titles[$i-1]}}"></label>
                     @endfor
                 </fieldset>
         </span>
@@ -84,7 +84,7 @@
 
                         <span class="single-skill">
             <p class="skill-name">{{$skill->name}}</p>
-                <fieldset class="rating">
+                <fieldset class="rating js-rating{{$user->id}}">
                         <input type="radio" id="star5_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="5" required/><label class = "full" for="star5_{{$skill->id}}{{$user->id}}" title="Awesome"></label>
                         <input type="radio" id="star4_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="4" required/><label class = "full" for="star4_{{$skill->id}}{{$user->id}}" title="Pretty good"></label>
                         <input type="radio" id="star3_{{$skill->id}}{{$user->id}}" name="rating_{{$skill->id}}{{$user->id}}" value="3" required/><label class = "full" for="star3_{{$skill->id}}{{$user->id}}" title="Meh"></label>
@@ -107,9 +107,9 @@
                 <span style="margin:20px 0px;">Write a feedback</span>
 
                 <label class="hide show js-hide" for="feedback_1">What is wrong</label>
-                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
+                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write js-wrong{{$user->id}}" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
                 <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
-                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two js-improve{{$user->id}}" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
 
                 {{--    <label for="skill_name">Skill name test</label>--}}
                 {{--    <input type="text" id="skill_name" name="skill_name">--}}
@@ -117,7 +117,7 @@
                 @if(!$user->hasFeedback())
 
                     <div class="submit-feedback">
-                        <input class="submit-feedback-btn js-submit{{$user->id}}" type="submit" id="submit" value="SUBMIT">
+                        <input class="submit-feedback-btn js-submit" type="submit" id="submit" value="SUBMIT">
                     <!-- <button class="submit-feedback-btn js-submit{{$user->id}}"  id="submit{{$user->id}}" type="submit">SUBMIT</button> -->
                     </div>
 
@@ -148,7 +148,7 @@
                 console.log('id1 = ' + id1)
             });
 
-            $('#submit').click(function(e) {
+            $('.js-submit').click(function(e) {
                 e.preventDefault();
                 var data = {
                     feedback_1: $('#comment_wrong'+id1).val(),
@@ -200,11 +200,12 @@
 
 
                     // }
-                    function(data, status, xhr) {
-                    }
+                    // function(data, status, xhr) {
+                    // }
                 ).done(function(){
-                    $('.js-container').show()
+                    $('.js-accepted').show()
                     $('.modal').hide()
+
                     // $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
                 })
                     .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
