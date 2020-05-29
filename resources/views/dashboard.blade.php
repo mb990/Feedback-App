@@ -106,10 +106,10 @@
 
                 <span style="margin:20px 0px;">Write a feedback</span>
 
-                <label class="hide show js-hide" for="feedback_1">What is wrong</label>
-                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write js-wrong{{$user->id}}" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
-                <label class="hide show js-hide-2" for="feedback_2">What could be improved</label>
-                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two js-improve{{$user->id}}" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+                <label class="hide show js-hide{{$user->id}}" for="feedback_1">What is wrong</label>
+                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write{{$user->id}} js-wrong{{$user->id}}" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
+                <label class="hide show js-hide-2{{$user->id}}" for="feedback_2">What could be improved</label>
+                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two{{$user->id}} js-improve{{$user->id}}" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
 
                 {{--    <label for="skill_name">Skill name test</label>--}}
                 {{--    <input type="text" id="skill_name" name="skill_name">--}}
