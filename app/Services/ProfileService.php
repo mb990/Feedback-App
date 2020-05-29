@@ -34,13 +34,9 @@ class ProfileService
 
         $scores = [];
 
-        $totalScore = 0;
-
         $totalSkillsScore = [];
 
         $averageSkillsScore = [];
-
-        $count = 0;
 
         foreach ($feedback as $fback) {
 
@@ -57,10 +53,6 @@ class ProfileService
                 }
 
                 $scores[$skill->id][$fback->id] = $skill->pivot->score;
-
-                $totalScore += $skill->pivot->score;
-
-                $count += 1;
             }
         }
 
@@ -73,10 +65,8 @@ class ProfileService
             $i++;
         }
 
-        $data['average_score'] = $totalScore / $count;
-
         $data['skills_score'] = $averageSkillsScore;
-//dd($data);
+
         return $data;
     }
 }

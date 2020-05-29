@@ -64,14 +64,6 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class, 'target_user_id');
     }
 
-    public function didFeedbackOnTeammate($id) {
-
-        return $this->feedbacks()->where('target_user_id', $id)
-            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
-            ->latest()
-            ->first();
-    }
-
     public function hasFeedback()
     {
         return $this->feedbacked()->where('creator_id', auth()->user()->id)
@@ -96,8 +88,21 @@ class User extends Authenticatable
             ->get();
     }
 
-//    public function averageFeedbackScore()
-//    {
-//        return (new Services\ProfileService)->profileData($this)['average_score'];
-//    }
+    public function allFeedback()
+    {
+        return $this->feedbacked()->where('target_user_id', auth()->user()->id)
+            ->get();
+    }
+
+    public function averageFeedbackScore()
+    {
+        $pivots = [];
+
+        foreach ($this->allFeedback() as $feedback) {
+
+            $pivots[] = $feedback->skills->avg('pivot.score');
+        }
+
+        return collect($pivots)->avg();
+    }
 }

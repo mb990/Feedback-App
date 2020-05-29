@@ -38,13 +38,17 @@
 
         <div class="col-md-12">
 
-            <p>Average score: {{$data['average_score']}}</p><br>
+            @if(count(auth()->user()->activeFeedbacks()))
 
-            @foreach($data['skills_score'] as $key => $score)
+                <p>Average score: {{auth()->user()->averageFeedbackScore()}}</p><br>
 
-                <p>Skill {{$key}}: {{$score}}</p>
+                @foreach($data['skills_score'] as $key => $score)
 
-            @endforeach
+                    <p>Skill {{$key}}: {{$score}}</p>
+
+                @endforeach
+
+            @endif
 
         </div>
 
@@ -61,7 +65,8 @@
                 <div class="user">
                     <img src="https://source.unsplash.com/random" class="user-image">
                     <div class="user-status">
-                        <p>{{$feedback->creator->first_name}} {{$feedback->creator->last_name}} avg score: neki value}</p>
+                        <p>{{$feedback->creator->first_name}} {{$feedback->creator->last_name}}
+                            avg score: @if($feedback->creator->averageFeedbackScore()){{$feedback->creator->averageFeedbackScore()}} @else 0 @endif</p>
                     </div>
                 </div>
 
