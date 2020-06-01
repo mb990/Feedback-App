@@ -40,11 +40,17 @@
 
             @if(count(auth()->user()->activeFeedbacks()))
 
-                <p>Average score: {{auth()->user()->averageFeedbackScore()}}</p><br>
+                <p>Average score: {{round(auth()->user()->averageFeedbackScore(), 1)}}</p><br>
 
-                @foreach($data['skills_score'] as $key => $score)
+{{--                @foreach($data['skills_score'] as $key => $score)--}}
 
-                    <p>Skill {{$key}}: {{$score}}</p>
+{{--                    <p>Skill {{$key}}: {{$score}}</p>--}}
+
+{{--                @endforeach--}}
+
+                @foreach($skills as $skill)
+
+                    <p>{{$skill->name}}: {{$skill->averageForUser(auth()->user())}}</p>
 
                 @endforeach
 
@@ -66,7 +72,7 @@
                     <img src="https://source.unsplash.com/random" class="user-image">
                     <div class="user-status">
                         <p>{{$feedback->creator->first_name}} {{$feedback->creator->last_name}}
-                            avg score: @if($feedback->creator->averageFeedbackScore()){{$feedback->creator->averageFeedbackScore()}} @else 0 @endif</p>
+                            avg score: @if($feedback->creator->averageFeedbackScore()){{round($feedback->creator->averageFeedbackScore(), 1)}} @else 0 @endif</p>
                     </div>
                 </div>
 

@@ -67,9 +67,11 @@ class PageController extends Controller
     {
         $users = $this->userService->teammates();
 
-        $data = $this->profileService->profileData(auth()->user());
+//        $data = $this->profileService->profileData(auth()->user());
 
-        return view('profile', compact(['users', 'data']));
+        $skills = $this->skillService->all();
+
+        return view('profile', compact(['users', 'skills']));
     }
 
     public function feedback()

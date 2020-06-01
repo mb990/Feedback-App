@@ -17,9 +17,4 @@ class ProfileRepository
     {
         $this->profile = $profile;
     }
-
-//    public function averageScore($user)
-//    {
-//        return $user->
-//    }
 }

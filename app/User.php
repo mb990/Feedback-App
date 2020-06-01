@@ -90,7 +90,7 @@ class User extends Authenticatable
 
     public function allFeedback()
     {
-        return $this->feedbacked()->where('target_user_id', auth()->user()->id)
+        return $this->feedbacked()->where('target_user_id', $this->id)
             ->get();
     }
 

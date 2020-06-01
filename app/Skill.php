@@ -28,4 +28,16 @@ class Skill extends Model
             ->withPivot('score')
             ->withTimestamps();
     }
+
+    public function averageForUser($user)
+    {
+        $perUser = [];
+
+        foreach ($this->feedbacks()->where('target_user_id', $user->id)->get() as $feedback)  {
+
+            $perUser[] = $feedback->skills->where('id', $this->id)->avg('pivot.score');
+        }
+
+        return collect($perUser)->avg();
+    }
 }
