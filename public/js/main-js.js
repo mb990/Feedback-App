@@ -79,6 +79,7 @@ $(document).ready(function(){
             // }
 
     $('.list li').click(getUser);
+
     // $('.list li').click(userFeedback);
     // $('.js-close').click(closeFeedback);
 
@@ -93,7 +94,6 @@ $(document).ready(function(){
     // }
 
 $('.js-accepted').hide()
-
 
 
     
@@ -147,7 +147,6 @@ $('.js-accepted').hide()
                         $('.modal'+id).show();
                         $('.js-no-selected').hide()
                         $('.js-accepted').hide()
-
                 }
             }
         ).done(function ($data) {
@@ -155,6 +154,8 @@ $('.js-accepted').hide()
             $('.js-wrong'+id).attr('disabled', true)
             $('.js-improve'+id).attr('disabled', true)
             $('.js-rating'+id).attr('disabled', true)
+            // $('.js-hide'+id).removeClass("hide");
+            // $('.js-hide-2'+id).removeClass("hide");
             console.log($data.feedback.comment_wrong);
         });
     }

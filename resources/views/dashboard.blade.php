@@ -19,8 +19,7 @@
 
                 @forelse($users as $user)
 
-                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
-                <!-- @if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif -->
+                    <li data-userId="{{$user->id}}" class="teammate js"><img src="https://source.unsplash.com/random" class="teammate-image"><a href="#{{$user->first_name}}" class="teammate-name js">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif<span class="hidden js{{$user->id}}"><i class="fas fa-check reviewed"></i></span></li>
 
                 @empty
 
@@ -44,7 +43,7 @@
             to search by a name using the search field
         </p>
     </div>
-    <div class='container js-accepted'>
+    <div class='container js-accepted hide'>
         <i class='far'>&#xf118;</i>
         <div class='messages'> Your feedback <br>accepted</div>
         <p class='info'>You can review other your teammate</p>
@@ -106,10 +105,10 @@
 
                 <span style="margin:20px 0px;">Write a feedback</span>
 
-                <label class="hide show js-hide{{$user->id}}" for="feedback_1">What is wrong</label>
-                <textarea id="comment_wrong{{$user->id}}" class="write-feedback js-write{{$user->id}} js-wrong{{$user->id}}" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
-                <label class="hide show js-hide-2{{$user->id}}" for="feedback_2">What could be improved</label>
-                <textarea id="comment_improve{{$user->id}}" class="write-feedback js-write-two{{$user->id}} js-improve{{$user->id}}" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
+                <label class="show js-hide{{$user->id}}" for="feedback_1">What is wrong</label>
+                <textarea id="comment_wrong{{$user->id}}" class="written write-feedback js-write{{$user->id}} js-wrong{{$user->id}}" placeholder="What is wrong" name="feedback_1" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_wrong}} @endif</textarea>
+                <label class="show js-hide-2{{$user->id}}" for="feedback_2">What could be improved</label>
+                <textarea id="comment_improve{{$user->id}}" class="written write-feedback js-write-two{{$user->id}} js-improve{{$user->id}}" placeholder="What could be improved" name="feedback_2" @if($user->hasFeedback()) disabled @else required @endif>@if($user->hasFeedback()) {{$user->hasFeedback()->comment_improve}} @endif</textarea>
 
                 {{--    <label for="skill_name">Skill name test</label>--}}
                 {{--    <input type="text" id="skill_name" name="skill_name">--}}
@@ -202,16 +201,16 @@
                     // }
                     // function(data, status, xhr) {
                     // }
+
                 ).done(function(){
-                    $('.js-accepted').show()
-                    $('.modal').hide()
-                    $('.js-submit'+id1).hide()
-
-
-                    // $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
+                    $('.js-accepted').show();
+                    $('.modal').hide();
+                    $('.js-submit'+id1).hide();
+                    $('.js'+id1).removeClass('hidden');
                 })
-                    .fail(function(jqxhr, settings, ex) { alert('Enter all data'); });
+                    .fail(function(jqxhr, settings, ex) { alert('Enter all data'); })
             });
+
         });
     </script>
 @endsection
