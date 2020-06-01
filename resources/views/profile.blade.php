@@ -42,15 +42,9 @@
 
                 <p>Average score: {{round(auth()->user()->averageFeedbackScore(), 1)}}</p><br>
 
-{{--                @foreach($data['skills_score'] as $key => $score)--}}
-
-{{--                    <p>Skill {{$key}}: {{$score}}</p>--}}
-
-{{--                @endforeach--}}
-
                 @foreach($skills as $skill)
 
-                    <p>{{$skill->name}}: {{$skill->averageForUser(auth()->user())}}</p>
+                    <p>{{$skill->name}}: @if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}} @else 0 @endif</p>
 
                 @endforeach
 
