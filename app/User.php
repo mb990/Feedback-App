@@ -105,4 +105,22 @@ class User extends Authenticatable
 
         return collect($pivots)->avg();
     }
+
+    public function doneFeedback()
+    {
+        foreach ($this->profile->company->members->pluck('id')->toArray() as $memberId) {
+
+            if ($memberId !== auth()->user()->id) {
+
+                if (!$this->feedbacks()->where('target_user_id', $memberId)
+                    ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+                    ->latest()
+                    ->exists()) {
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
