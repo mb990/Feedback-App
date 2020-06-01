@@ -11,8 +11,12 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .idea/*
 /*.idea/*
+=======
+.idea
+>>>>>>> Stashed changes
 =======
 .idea
 >>>>>>> Stashed changes
