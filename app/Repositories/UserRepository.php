@@ -34,4 +34,10 @@ class UserRepository
             $q->where('company_id', $company->id);
         })->get();
     }
+
+    public function admins()
+    {
+        return $this->user->role('admin')
+            ->get();
+    }
 }

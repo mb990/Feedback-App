@@ -26,3 +26,14 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
+
+// SUPERADMIN
+
+Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin.index');
+Route::get('/superadmin/companies', 'SuperAdminController@companies')->name('superadmin.companies');
+Route::get('/superadmin/admins', 'SuperAdminController@admins')->name('superadmin.admins');
+Route::get('/superadmin/skills', 'SuperAdminController@skills')->name('superadmin.skills');
+Route::get('/admin/{id}', 'SuperAdminController@admin')->name('superadmin.admin');
+
+
+Route::get('/company/{id}', 'CompanyController@index')->name('company.index');

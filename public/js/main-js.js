@@ -101,7 +101,7 @@ $(document).ready(function(){
 $('.js-accepted').hide()
 
 
-    
+
 
     function getUser() {
         // e.preventDefault();
@@ -167,7 +167,6 @@ $('.js-accepted').hide()
     let star = $('.star-rating').text()
     $('.star-rating').html(getStars(star))
     function getStars(star) {
-        alert(star)
         star = Math.round(star * 2) / 2;
         let output = [];
         // Append all the filled whole stars

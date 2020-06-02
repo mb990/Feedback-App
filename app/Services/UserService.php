@@ -55,4 +55,9 @@ class UserService
 
         return $teamamtes;
     }
+
+    public function admins()
+    {
+        return $this->user->admins();
+    }
 }

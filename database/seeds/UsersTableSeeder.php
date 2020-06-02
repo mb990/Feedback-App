@@ -1,6 +1,5 @@
 <?php
 
-use App\Services\CompanyService;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -8,18 +7,14 @@ use App\User;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * @var \App\Services\CompanyService
-     */
-    private $companyService;
+
     /**
      * @var Faker
      */
     private $faker;
 
-    public function __construct(CompanyService $companyService, Faker $faker)
+    public function __construct(Faker $faker)
     {
-        $this->companyService = $companyService;
         $this->faker = $faker;
     }
 
@@ -30,7 +25,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-//        $companies = $this->companyService->all()->pluck('id')->toArray();
 
         for ($i = 0; $i < 30; $i++) {
 
