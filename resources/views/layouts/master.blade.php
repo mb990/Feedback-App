@@ -4,8 +4,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ asset('js/main-js.js') }}"></script>
 {{--        <script src="{{ asset('js/test.js') }}"></script>--}}
@@ -18,7 +16,6 @@
             });
         </script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
     </head>
     <body>
 <div class="aside">

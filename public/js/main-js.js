@@ -80,6 +80,11 @@ $(document).ready(function(){
 
     $('.list li').click(getUser);
 
+    $('.js-comments').click(getComments);
+    function getComments(){
+        $('.comments').slideToggle('500');
+        $('.btn-container').find('i').toggleClass('fa-chevron-down fa-chevron-up')
+    }
     // $('.list li').click(userFeedback);
     // $('.js-close').click(closeFeedback);
 
@@ -159,6 +164,25 @@ $('.js-accepted').hide()
             console.log($data.feedback.comment_wrong);
         });
     }
+    let star = $('.star-rating').text()
+    $('.star-rating').html(getStars(star))
+    function getStars(star) {
+        alert(star)
+        star = Math.round(star * 2) / 2;
+        let output = [];
+        // Append all the filled whole stars
+        for (var i = star; i >= 1; i--)
+        output.push('<i class="fa fa-star"  style="color: red;"></i>&nbsp;');
+
+        // If there is a half a star, append it
+        if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: blue;"></i>&nbsp;');
+        // Fill the empty stars
+        for (let i = (5 - star); i >= 1; i--)
+        output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: green;"></i>&nbsp;');
+
+        return output.join('');
+    }
+
 });
 
 

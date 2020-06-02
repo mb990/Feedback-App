@@ -32,22 +32,22 @@
 @endsection
 
 @section('content')
-    <div class="container js-no-selected">
-        <i class='far'>&#xf11a;</i>
-        <div class="messages">
-            No teammate <br>selected
-        </div>
-        <p class="info">
-            To provide a feedback you should select <br>
-            an employee from teammmates list or<br>
-            to search by a name using the search field
-        </p>
+<div class="container js-no-selected">
+    <i class='far'>&#xf11a;</i>
+    <div class="messages">
+        No teammate <br>selected
     </div>
-    <div class='container js-accepted hide'>
-        <i class='far'>&#xf118;</i>
-        <div class='messages'> Your feedback <br>accepted</div>
-        <p class='info'>You can review other your teammate</p>
-    </div>
+    <p class="info">
+        To provide a feedback you should select <br>
+        an employee from teammmates list or<br>
+        to search by a name using the search field
+    </p>
+</div>
+<div class='container js-accepted hide'>
+    <i class='far'>&#xf118;</i>
+    <div class='messages'> Your feedback <br>accepted</div>
+    <p class='info'>You can review other your teammate</p>
+</div>
     @forelse($users as $user)
 
         <!--Modal-->
@@ -212,5 +212,7 @@
             });
 
         });
+
     </script>
+
 @endsection

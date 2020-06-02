@@ -1,0 +1,36 @@
+.comments{
+    display: none;
+    color: #7a7e81;
+}
+.all-feedbacks{
+    display: flex;
+    border-bottom: 1px solid #7a7e81;
+    margin-bottom: 20px;
+}
+.btn-container{
+    margin: auto 0;
+    position: relative;
+}
+.all-feedback-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    right: 10px;
+}
+.red{
+    color: #ec1940;
+}
+.single-review{
+    border: 1px solid #9c9c9c;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.position{
+    margin: 0;
+    font-size: 0.8rem;
+}
+.feed{
+    padding-left: 15px;
+}
