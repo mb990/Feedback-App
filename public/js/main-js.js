@@ -172,13 +172,13 @@ $('.js-accepted').hide()
         let output = [];
         // Append all the filled whole stars
         for (var i = star; i >= 1; i--)
-        output.push('<i class="fa fa-star"  style="color: red;"></i>&nbsp;');
+        output.push('<i class="fa fa-star"  style="color: #ec1940;"></i>&nbsp;');
 
         // If there is a half a star, append it
-        if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: blue;"></i>&nbsp;');
+        if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: #ec1940;"></i>&nbsp;');
         // Fill the empty stars
         for (let i = (5 - star); i >= 1; i--)
-        output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: green;"></i>&nbsp;');
+        output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: #ec1940;"></i>&nbsp;');
 
         return output.join('');
     }

@@ -16,6 +16,7 @@
             });
         </script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     </head>
     <body>
 <div class="aside">
