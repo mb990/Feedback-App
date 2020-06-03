@@ -29,11 +29,12 @@ Auth::routes([
 
 // SUPERADMIN
 
-Route::get('/superadmin', 'SuperAdminController@index')->name('superadmin.index');
-Route::get('/superadmin/companies', 'SuperAdminController@companies')->name('superadmin.companies');
-Route::get('/superadmin/admins', 'SuperAdminController@admins')->name('superadmin.admins');
-Route::get('/superadmin/skills', 'SuperAdminController@skills')->name('superadmin.skills');
-Route::get('/admin/{id}', 'SuperAdminController@admin')->name('superadmin.admin');
+Route::get('/superadmin', 'SuperAdmin\SuperAdminController@index')->name('superadmin.index');
+Route::get('/superadmin/companies', 'SuperAdmin\CompanyController@index')->name('superadmin.companies');
+Route::get('/superadmin/admins', 'SuperAdmin\AdminController@index')->name('superadmin.admins');
+Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('superadmin.skills');
+Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
+Route::post('superadmin/companies', 'CompanyController@store')->name('company.store');
 
 
-Route::get('/company/{id}', 'CompanyController@index')->name('company.index');
+Route::get('/company/{id}', 'CompanyController@show')->name('company.show');

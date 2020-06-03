@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShowCompanyRequest;
+use App\Http\Requests\SuperAdminRequest;
 use App\Services\CompanyService;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -17,10 +18,22 @@ class CompanyController extends Controller
         $this->companyService = $companyService;
     }
 
-    public function index($id)
+    public function show(ShowCompanyRequest $request, $id)
     {
         $company = $this->companyService->find($id);
 
-        return view('companies.index', compact('company'));
+        return response()->json(['company' => $company]);
     }
+
+    public function store(SuperAdminRequest $request)
+    {
+        $this->companyService->store($request);
+
+        return response()->json(['success' => 'Good job, fella. You successfully stored a new company']);
+    }
+
+//    public function update(Admi)
+//    {
+//
+//    }
 }

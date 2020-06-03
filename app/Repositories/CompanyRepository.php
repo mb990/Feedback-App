@@ -27,4 +27,19 @@ class CompanyRepository
     {
         return $this->company->find($id);
     }
+
+    public function store($request)
+    {
+        return $this->company->create($request);
+    }
+
+    public function update($company, $request)
+    {
+        return $company->update($request);
+    }
+
+    public function delete($company)
+    {
+        $company->delete();
+    }
 }

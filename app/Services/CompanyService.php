@@ -27,4 +27,23 @@ class CompanyService
     {
         return $this->company->find($id);
     }
+
+    public function store($request)
+    {
+        return $this->company->store($request);
+    }
+
+    public function update($request, $id)
+    {
+        $company = $this->company->find($id);
+
+        return $this->company->update($company, $request);
+    }
+
+    public function delete($id)
+    {
+        $company = $this->find($id);
+
+        return $this->company->delete($company);
+    }
 }
