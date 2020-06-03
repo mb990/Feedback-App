@@ -19,31 +19,31 @@
 
 @section('content')
 
-    <div class="row">
+    <div id="companies-div" class="row">
 
         <div class="col-md-12">
 
-            <h2><a href="{{route('superadmin.companies')}}">Companies</a></h2>
+            <input type="submit" name="companies" id="companies" value="Companies">
 
         </div>
 
     </div>
 
-    <div class="row">
+    <div id="skills-div" class="row">
 
         <div class="col-md-12">
 
-            <h2><a href="{{route('superadmin.skills')}}">Skills</a></h2>
+            <input type="submit" name="skills" id="skills" value="Skills">
 
         </div>
 
     </div>
 
-    <div class="row">
+    <div id="admins-div" class="row">
 
         <div class="col-md-12">
 
-            <h2><a href="{{route('superadmin.admins')}}">Admins</a></h2>
+            <input type="submit" name="admins" id="admins" value="Admins">
 
         </div>
 

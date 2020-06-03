@@ -13,7 +13,7 @@ class SuperAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        if (auth()->user()->hasRole('superadmin')) {
+        if (\Auth::check() && auth()->user()->hasRole('superadmin')) {
 
             return true;
         }

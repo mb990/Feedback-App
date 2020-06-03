@@ -46,21 +46,21 @@ class SuperAdminController extends Controller
     {
         $companies = $this->companyService->all();
 
-        return view('superadmin.companies.index', compact('companies'));
+       return response()->json(['companies' => $companies]);
     }
 
     public function admins(SuperAdminRequest $request)
     {
         $admins = $this->userService->admins();
 
-        return view('superadmin.admins.index', compact('admins'));
+        return response()->json(['admins' => $admins]);
     }
 
     public function skills(SuperAdminRequest $request)
     {
         $skills = $this->skillService->all();
 
-        return view('superadmin.skills.index', compact('skills'));
+        return response()->json(['skills' => $skills]);
     }
 
     public function admin(SuperAdminRequest $request, $id)

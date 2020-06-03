@@ -43,7 +43,7 @@
                 <span class="js-position">{{$user->profile->position}}</span>
             </div>
             <div class="feedback-person-info"><span style="font-size: 0.8rem; color: #9c9c9c;">Average score: </span>
-                <span class="average-score-big">{{round(auth()->user()->averageFeedbackScore(), 1)}}<span class="star-rating">{{round(auth()->user()->averageFeedbackScore(), 1)}}</span></span></div>
+                <span class="average-score-big">{{number_format(auth()->user()->averageFeedbackScore(), 1, '.', '')}}<span class="star-rating">{{round(auth()->user()->averageFeedbackScore(), 1)}}</span></span></div>
             <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button>
         </div>
     <div class="row">
@@ -87,7 +87,7 @@
                         <p class="user-info">{{$feedback->creator->first_name}} {{$feedback->creator->last_name}}
                             <span class="position"><br>{{$user->profile->position}}</span>
                         </p>
-                            <span style="margin: auto 0;">@if($feedback->creator->averageFeedbackScore()){{round($feedback->creator->averageFeedbackScore(), 1)}} 
+                            <span style="margin: auto 0;">@if($feedback->creator->averageFeedbackScore()){{round($feedback->creator->averageFeedbackScore(), 1)}}
                             <span class="test1">{{round($feedback->creator->averageFeedbackScore(), 1)}}</span>@else 0 @endif
                             </span>
                     </div>
