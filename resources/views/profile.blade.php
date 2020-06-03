@@ -54,7 +54,11 @@
             <div class="my-rating"></div>
                 @foreach($skills as $skill)
                 <span>
-                    <p style="color: #bdbcbc;">{{$skill->name}}: <span class="test1">@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}</span> @else 0 @endif</p>
+                    <p style="color: #bdbcbc;">{{$skill->name}}: 
+                    <span class="float-right">
+                    <span>(@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}) </span> @else 0 @endif
+                    <span class="test1">@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}</span> @else 0 @endif</p>
+                    </span>
                 </span>
                 @endforeach
 

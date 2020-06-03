@@ -132,14 +132,6 @@ $('.js-accepted').hide()
             }
         });
 
-
-
-
-
-
-
-
-
         $('.js-close'+id).click(closeFeedback);
         function closeFeedback(){
             $('.modal'+id).hide();
@@ -155,7 +147,6 @@ $('.js-accepted').hide()
                 }
             }
         ).done(function ($data) {
-            alert($data.feedback.comment_wrong  +  $data.feedback.comment_improve)
             $('.js-wrong'+id).attr('disabled', true)
             $('.js-improve'+id).attr('disabled', true)
             $('.js-rating'+id).attr('disabled', true)

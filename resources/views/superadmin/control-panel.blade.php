@@ -19,34 +19,32 @@
 
 @section('content')
 
-    <div id="companies-div" class="row">
-
-        <div class="col-md-12">
-
-            <input type="submit" name="companies" id="companies" value="Companies">
-
+<div class="admin">   
+            <h2>Superadmin panel</h2>
+        
+            <div id="tabs">
+                <ul class="inline-flex tabs">
+                    <li class="tab"><a href="#tabs-1">All Companies</a></li>
+                    <li class="tab"><a href="#tabs-2">All Admins</a></li>
+                    <li class="tab"><a href="#tabs-3">All Skills</a></li>
+                </ul>
+                <div id="tabs-1" class="tab-view js-companies">
+                Companies:
+                </div>
+                <div id="tabs-2" class="tab-view js-admins">
+                Admins:
+                </div>
+                <div id="tabs-3" class="tab-view js-skills">
+                Skills:
+                </div>
+            </div>
         </div>
 
-    </div>
-
-    <div id="skills-div" class="row">
-
-        <div class="col-md-12">
-
-            <input type="submit" name="skills" id="skills" value="Skills">
-
-        </div>
-
-    </div>
-
-    <div id="admins-div" class="row">
-
-        <div class="col-md-12">
-
-            <input type="submit" name="admins" id="admins" value="Admins">
-
-        </div>
-
-    </div>
-
+@endsection
+@section('script')
+<script>
+    $( function() {
+        $( "#tabs" ).tabs();       
+    } );
+</script>
 @endsection
