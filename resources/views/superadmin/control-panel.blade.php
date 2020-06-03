@@ -29,13 +29,20 @@
                     <li class="tab"><a href="#tabs-3">All Skills</a></li>
                 </ul>
                 <div id="tabs-1" class="tab-view js-companies">
-                Companies:
+                    <span>
+                        Companies:<br>
+                        <input class="js-company"><button class="js-add-company-btn">ADD</button>
+                    </span>
                 </div>
                 <div id="tabs-2" class="tab-view js-admins">
-                Admins:
+                <span>
+                    Admins:<button>ADD</button>
+                </span>
                 </div>
                 <div id="tabs-3" class="tab-view js-skills">
-                Skills:
+                    <span>
+                        Skills:<button>ADD</button>
+                    </span>
                 </div>
             </div>
         </div>

@@ -34,7 +34,6 @@ Route::get('/superadmin/companies', 'SuperAdmin\CompanyController@index')->name(
 Route::get('/superadmin/admins', 'SuperAdmin\AdminController@index')->name('superadmin.admins');
 Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('superadmin.skills');
 Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
-Route::post('superadmin/companies', 'CompanyController@store')->name('company.store');
-
+Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
