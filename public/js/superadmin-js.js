@@ -33,13 +33,13 @@ $(document).ready(function () {
         $('.js-add-company-btn').click(addCompany);
         function addCompany(){
             var company = $('.js-company').val()
-            alert(company)
-            $.post('/superadmin/companies', 
+            console.log(company)
+            $.post('superadmin/companies',
             {
                 name: company
             },
-        ).done(function(){
-            alert("done")
+        ).done(function(data){
+            console.log(data)
         })
         }
 })

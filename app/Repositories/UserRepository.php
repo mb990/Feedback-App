@@ -40,4 +40,9 @@ class UserRepository
         return $this->user->role('admin')
             ->get();
     }
+
+    public function storeAdmin($request)
+    {
+        return $this->user->create($request->all())->assignRole('admin');
+    }
 }

@@ -30,7 +30,8 @@ class CompanyRepository
 
     public function store($request)
     {
-        return $this->company->create($request);
+
+        return $this->company->create($request->all());
     }
 
     public function update($company, $request)

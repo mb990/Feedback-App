@@ -23,10 +23,8 @@ class SkillRepository
         return $this->skill->all();
     }
 
-    public function store($name)
+    public function store($request)
     {
-        return $this->skill->create([
-            'name' => $name
-            ]);
+        return $this->skill->create($request->all());
     }
 }

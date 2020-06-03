@@ -60,4 +60,9 @@ class UserService
     {
         return $this->user->admins();
     }
+
+    public function storeAdmin($request)
+    {
+        return $this->user->storeAdmin($request);
+    }
 }

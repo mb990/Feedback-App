@@ -29,7 +29,7 @@ class CompanyController extends Controller
     {
         $this->companyService->store($request);
 
-        return response()->json(['success' => 'Good job, fella. You successfully stored a new company']);
+        return response()->json(['request' => $request, 'success' => 'Good job, fella. You successfully stored a new company']);
     }
 
 //    public function update(Admi)

@@ -25,4 +25,11 @@ class SkillController extends Controller
 
         return response()->json(['skills' => $skills]);
     }
+
+    public function store(SuperAdminRequest $request)
+    {
+        $this->skillService->store($request);
+
+        return response()->json(['success' => 'New skill is stored']);
+    }
 }

@@ -23,8 +23,8 @@ class SkillService
         return $this->skill->all();
     }
 
-    public function store($name)
+    public function store($request)
     {
-        return $this->skill->store($name);
+        return $this->skill->store($request);
     }
 }

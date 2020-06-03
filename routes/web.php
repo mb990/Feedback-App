@@ -36,4 +36,7 @@ Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('supe
 Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
 Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
 
+Route::post('/superadmin/skills', 'SuperAdminSkillController@store')->name('skill.store');
+
+
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
