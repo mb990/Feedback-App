@@ -278,6 +278,7 @@
   flex-direction: column;
   padding-top: 10px;
   margin-left: 5px;
+  flex-grow: 1;
 }
 
 .close-btn {
@@ -467,7 +468,7 @@
 
 .all-feedbacks {
   display: flex;
-  border-bottom: 1px solid #7a7e81;
+  border-bottom: 1px solid #bdbcbc;
   margin-bottom: 20px;
 }
 
@@ -483,6 +484,7 @@
   outline: none;
   position: absolute;
   right: 10px;
+  color: #bdbcbc;
 }
 
 .red {
@@ -490,9 +492,15 @@
 }
 
 .single-review {
-  border: 1px solid #9c9c9c;
+  border: 1px solid #bdbcbc;
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.user-status-profile {
+  display: flex;
+  margin-left: 10px;
+  flex-grow: 1;
 }
 
 .position {
@@ -502,6 +510,24 @@
 
 .feed {
   padding-left: 15px;
+}
+
+.average-score-big {
+  font-size: 1.99rem;
+  color: #6b6e70;
+}
+
+.star-rating {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.test1 {
+  float: right;
 }
 
 body {
