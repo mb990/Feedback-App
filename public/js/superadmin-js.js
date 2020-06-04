@@ -127,5 +127,20 @@ $(document).ready(function () {
                 alert('obrisano');
             $('.js-skills').empty().append(getSkills);
         })
-    });
+    })
+
+    $(document).on ('click', '.edit-skill', function () {
+        let id = $(this).data('id');
+        let name = $('.js-edit-input'+id).val();
+        $.ajax(
+            {
+                url: "/superadmin/skills/" + id + "/update",
+                type: 'PUT',
+                data: {
+                    name: name
+                },
+            }).done(function (data) {
+            $('.js-skills').empty().append(getSkills);
+        })
+    })
 })

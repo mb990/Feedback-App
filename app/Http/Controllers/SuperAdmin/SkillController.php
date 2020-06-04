@@ -36,7 +36,9 @@ class SkillController extends Controller
 
     public function update(EditSkillRequest $request, $id)
     {
-        //
+        $this->skillService->update($request, $id);
+
+        return response()->json(['success' => 'Skill updated']);
     }
 
     public function destroy(SuperAdminRequest $request, $id)

@@ -33,6 +33,13 @@ class SkillService
         return $this->skill->store($request);
     }
 
+    public function update($request, $id)
+    {
+        $skill = $this->find($id);
+
+        return $this->skill->update($request, $skill);
+    }
+
     public function delete($id)
     {
         $skill = $this->find($id);

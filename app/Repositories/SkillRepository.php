@@ -33,6 +33,11 @@ class SkillRepository
         return $this->skill->create($request->all());
     }
 
+    public function update($request, $skill)
+    {
+        return $skill->update($request->all());
+    }
+
     public function delete($skill)
     {
         $skill->delete();
