@@ -47,11 +47,15 @@ $(document).ready(function () {
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
             var name = $('.js-skill').val()
+            alert(name)
+
             $.post('/superadmin/skills', 
             {
                 name: name
             },
         ).done(function(data){
+            console.log(data)
+
         })
         }
 })
