@@ -38,4 +38,11 @@ class SkillController extends Controller
     {
         //
     }
+
+    public function destroy(SuperAdminRequest $request, $id)
+    {
+        $this->skillService->delete($id);
+
+        return response()->json(['success' => 'Skill deleted']);
+    }
 }

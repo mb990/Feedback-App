@@ -41,4 +41,7 @@ Route::get('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@ed
 Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('superadmin.company.update');
 Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('superadmin.company.delete');
 
+Route::put('/superadmin/skills/{id}/update', 'SuperAdmin\SkillController@update')->name('superadmin.skill.update');
+Route::delete('/superadmin/skills/{id}/delete', 'SuperAdmin\SkillController@destroy')->name('superadmin.skill.delete');
+
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');

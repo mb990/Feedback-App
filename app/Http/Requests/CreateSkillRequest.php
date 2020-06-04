@@ -29,7 +29,7 @@ class CreateSkillRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:skills'
+            'name' => 'required|unique:skills'
         ];
     }
 }

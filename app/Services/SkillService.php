@@ -23,8 +23,20 @@ class SkillService
         return $this->skill->all();
     }
 
+    public function find($id)
+    {
+        return $this->skill->find($id);
+    }
+
     public function store($request)
     {
         return $this->skill->store($request);
+    }
+
+    public function delete($id)
+    {
+        $skill = $this->find($id);
+
+        return $this->skill->delete($skill);
     }
 }

@@ -4,7 +4,7 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p>' + e.name + 
+                    output += '<p>' + e.name +
                     '<button data-id="'+ e.id +
                     '" class="delete-company" name="delete-company">DEL</button>'+
                     '<button data-id="'+ e.id +
@@ -27,7 +27,7 @@ $(document).ready(function () {
                 $('.js-admins').append(output);
             }
         )
-    };
+    }
     getAdmins();
 
     function getSkills(){
@@ -35,12 +35,17 @@ $(document).ready(function () {
             '/superadmin/skills', function (data) {
                 let output = [];
                 data.skills.forEach(function (e) {
-                    output += '<p>' + e.name + '<button>DEL</button><button>EDIT</button></p>';
+                    output += '<p>' + e.name +
+                        '<button data-id="'+ e.id +
+                        '" class="delete-skill" name="delete-skill">DEL</button>'+
+                        '<button data-id="'+ e.id +
+                        '"class="edit-skill" name="edit-skill">EDIT</button><input data-id="'+ e.id +
+                        '"class="js-edit-input'+ e.id +'" placeholder="Update skill name"></p>';
                 })
                 $('.js-skills').append(output);
             }
         )
-    };
+    }
     getSkills();
         //ADD COMPANY
         $('.js-add-company-btn').click(addCompany);
@@ -51,27 +56,21 @@ $(document).ready(function () {
                 name: name
             },
         ).done(function(data){
-            $('.js-companies').empty();
-            $('.js-companies').append(getCompany)
+            $('.js-companies').empty().append(getCompany);
         })
         }
         $('.js-add-admin-btn').click(addAdmin);
         function addAdmin(){
             var name = $('.js-admin').val()
             alert(name)
-            $.post('/superadmin/admins', 
+            $.post('/superadmin/admins',
             {
                 name: name
             },
         ).done(function(data){
-            $('.js-admins').empty();
-            $('.js-admins').append(getAdmins)
+            $('.js-admins').empty().append(getAdmins);
         })
         }
-
-
-
-
 
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
@@ -83,9 +82,7 @@ $(document).ready(function () {
                 name: name
             },
         ).done(function(data){
-            $('.js-skills').empty();
-            $('.js-skills').append(getSkills)
-
+            $('.js-skills').empty().append(getSkills);
         })
         }
 
@@ -99,8 +96,7 @@ $(document).ready(function () {
                         id: id
                     },
             }).done(function (data) {
-                $('.js-companies').empty();
-                $('.js-companies').append(getCompany)
+                $('.js-companies').empty().append(getCompany);
             })
         });
         $(document).on ('click', '.edit-company', function () {
@@ -114,8 +110,22 @@ $(document).ready(function () {
                         name: name
                     },
             }).done(function (data) {
-                $('.js-companies').empty();
-                $('.js-companies').append(getCompany)
+                $('.js-companies').empty().append(getCompany);
             })
         })
+
+    $(document).on ('click', '.delete-skill', function () {
+        let id = $(this).data('id');
+        $.ajax(
+            {
+                url: "/superadmin/skills/" + id + "/delete",
+                type: 'DELETE',
+                data: {
+                    id: id
+                },
+            }).done(function (data) {
+                alert('obrisano');
+            $('.js-skills').empty().append(getSkills);
+        })
+    });
 })

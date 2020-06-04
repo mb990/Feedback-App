@@ -23,8 +23,18 @@ class SkillRepository
         return $this->skill->all();
     }
 
+    public function find($id)
+    {
+        return $this->skill->find($id);
+    }
+
     public function store($request)
     {
         return $this->skill->create($request->all());
+    }
+
+    public function delete($skill)
+    {
+        $skill->delete();
     }
 }
