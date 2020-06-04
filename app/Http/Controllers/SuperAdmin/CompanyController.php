@@ -29,5 +29,14 @@ class CompanyController extends Controller
     public function update(SuperAdminRequest $request, $id)
     {
         $this->companyService->update($request, $id);
+
+        return response()->json(['success' => 'Company is updated']);
+    }
+
+    public function destroy(SuperAdminRequest $request, $id)
+    {
+        $this->companyService->delete($id);
+
+        return response()->json(['success' => 'Company is deleted']);
     }
 }
