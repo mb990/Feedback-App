@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateSkillRequest;
+use App\Http\Requests\EditSkillRequest;
 use App\Http\Requests\SuperAdminRequest;
 use App\Services\SkillService;
-use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
@@ -26,10 +27,15 @@ class SkillController extends Controller
         return response()->json(['skills' => $skills]);
     }
 
-    public function store(SuperAdminRequest $request)
+    public function store(CreateSkillRequest $request)
     {
         $this->skillService->store($request);
 
         return response()->json(['success' => 'New skill is stored']);
+    }
+
+    public function update(EditSkillRequest $request, $id)
+    {
+        //
     }
 }

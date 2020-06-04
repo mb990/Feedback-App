@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditCompanyRequest;
 use App\Http\Requests\SuperAdminRequest;
 use App\Services\CompanyService;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -26,7 +26,7 @@ class CompanyController extends Controller
         return response()->json(['companies' => $companies]);
     }
 
-    public function update(SuperAdminRequest $request, $id)
+    public function update(EditCompanyRequest $request, $id)
     {
         $this->companyService->update($request, $id);
 

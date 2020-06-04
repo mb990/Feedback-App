@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCompanyRequest;
 use App\Http\Requests\ShowCompanyRequest;
 use App\Http\Requests\SuperAdminRequest;
 use App\Services\CompanyService;
@@ -25,7 +26,7 @@ class CompanyController extends Controller
         return response()->json(['company' => $company]);
     }
 
-    public function store(SuperAdminRequest $request)
+    public function store(CreateCompanyRequest $request)
     {
         $this->companyService->store($request);
 
