@@ -4,7 +4,7 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p>' + e.name + '<button>DEL</button><button>EDIT</button><input></p>';
+                    output += '<p>' + e.name + '<button data-id="'+ e.id +'" class="delete-company" name="delete-company">DEL</button><button>EDIT</button><input></p>';
                 })
                 $('.js-companies').append(output);
             }
@@ -35,7 +35,7 @@ $(document).ready(function () {
         function addCompany(){
             var name = $('.js-company').val()
             alert(name)
-            $.post('/superadmin/companies', 
+            $.post('/superadmin/companies',
             {
                 name: name
             },
@@ -49,7 +49,7 @@ $(document).ready(function () {
             var name = $('.js-skill').val()
             alert(name)
 
-            $.post('/superadmin/skills', 
+            $.post('/superadmin/skills',
             {
                 name: name
             },
@@ -58,4 +58,21 @@ $(document).ready(function () {
 
         })
         }
+
+        $(document).on ('click', '.delete-company', function () {
+            let id = $(this).data('id');
+            console.log(id);
+
+            $.ajax(
+                {
+                    url: "/superadmin/companies/" + id + "/delete",
+                    type: 'DELETE',
+                    data: {
+                        id: id
+                    },
+                success: 'deleted'
+            }).done(function (data) {
+                alert(data.success);
+            })
+        });
 })

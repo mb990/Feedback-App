@@ -26,6 +26,13 @@ class CompanyController extends Controller
         return response()->json(['companies' => $companies]);
     }
 
+    public function edit(SuperAdminRequest $request, $id)
+    {
+        $company = $this->companyService->find($id);
+
+        return response()->json(['company', $company]);
+    }
+
     public function update(EditCompanyRequest $request, $id)
     {
         $this->companyService->update($request, $id);
