@@ -41,7 +41,9 @@
                 </div>
                 <div id="tabs-3" class="tab-view js-skills">
                     <span>
-                        Skills:<button>ADD</button>
+                        Skills:<br>
+                        <input class="js-skill"><button class="js-add-skill-btn">ADD</button>
+
                     </span>
                 </div>
             </div>
