@@ -4,7 +4,12 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p>' + e.name + '<button data-id="'+ e.id +'" class="delete-company" name="delete-company">DEL</button><button>EDIT</button><input></p>';
+                    output += '<p>' + e.name + 
+                    '<button data-id="'+ e.id +
+                    '" class="delete-company" name="delete-company">DEL</button>'+
+                    '<button data-id="'+ e.id +
+                    '"class="edit-company" name="edit-company">EDIT</button><input data-id="'+ e.id +
+                    '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></p>';
                 })
                 $('.js-companies').append(output);
             }
@@ -98,4 +103,19 @@ $(document).ready(function () {
                 $('.js-companies').append(getCompany)
             })
         });
+        $(document).on ('click', '.edit-company', function () {
+            let id = $(this).data('id');
+            let name = $('.js-edit-input'+id).val();
+            $.ajax(
+                {
+                    url: "/superadmin/companies/" + id + "/update",
+                    type: 'PUT',
+                    data: {
+                        name: name
+                    },
+            }).done(function (data) {
+                $('.js-companies').empty();
+                $('.js-companies').append(getCompany)
+            })
+        })
 })
