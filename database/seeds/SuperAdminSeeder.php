@@ -1,17 +1,55 @@
 <?php
 
+use App\Services\CompanyService;
 use App\User;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
 class SuperAdminSeeder extends Seeder
 {
     /**
+     * @var CompanyService
+     */
+    private $companyService;
+    /**
+     * @var Faker
+     */
+    private $faker;
+
+    /**
      * Run the database seeds.
      *
      * @return void
      */
+
+    public function __construct(CompanyService $companyService, Faker $faker)
+    {
+        $this->companyService = $companyService;
+        $this->faker = $faker;
+    }
+
     public function run()
     {
+        // admins
+
+        foreach ($this->companyService->all() as $company) {
+
+            $admin = new User();
+
+            $admin->first_name = $this->faker->firstName;
+            $admin->last_name = $this->faker->lastName;
+            $admin->email = $company->name . '-admin@feedback-app.com';
+            $admin->email_verified_at = now();
+            $admin->password = Hash::make('admin123');
+            $admin->remember_token = Str::random(10);
+
+            $admin->save();
+
+            $admin->assignRole('admin');
+        }
+
+        // superadmin
+
         $superadmin = new User();
 
         $superadmin->first_name = 'my name is';

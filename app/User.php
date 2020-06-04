@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'active', 'slug',
+        'first_name', 'last_name', 'email', 'password', 'active', 'slug', 'company_id'
     ];
 
     /**
@@ -52,6 +52,11 @@ class User extends Authenticatable
     public function profile() {
 
         return $this->hasOne(Profile::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 
     public function feedbacks()
@@ -108,7 +113,7 @@ class User extends Authenticatable
 
     public function doneFeedback()
     {
-        foreach ($this->profile->company->members->pluck('id')->toArray() as $memberId) {
+        foreach ($this->company->members->pluck('id')->toArray() as $memberId) {
 
             if ($memberId !== auth()->user()->id) {
 

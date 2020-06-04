@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\SuperAdminRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -31,5 +32,22 @@ class AdminController extends Controller
         $admin = $this->userService->find($id);
 
         return view('superadmin.admins.single', compact('admin'));
+    }
+
+    public function store(CreateAdminRequest $request)
+    {
+        $this->userService->createAdmin($request);
+
+        return response()->json(['success' => 'Admin is created']);
+    }
+
+    public function edit()
+    {
+        //
+    }
+
+    public function update()
+    {
+        //
     }
 }

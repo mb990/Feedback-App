@@ -61,8 +61,20 @@ class UserService
         return $this->user->admins();
     }
 
-    public function storeAdmin($request)
+    public function hashPassword($value)
     {
-        return $this->user->storeAdmin($request);
+        return \Hash::make($value);
+    }
+
+    public function store($request)
+    {
+        $password = $this->hashPassword($request->password);
+
+        return $this->user->store($request, $password);
+    }
+
+    public function createAdmin($request)
+    {
+        return $this->store($request);
     }
 }

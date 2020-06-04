@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\User;
+use Illuminate\Support\Str;
 
 class UserRepository
 {
@@ -41,8 +42,18 @@ class UserRepository
             ->get();
     }
 
-    public function storeAdmin($request)
+    public function store($request, $password)
     {
-        return $this->user->create($request->all())->assignRole('admin');
+        return $this->user->create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => $password,
+            'company_id' => $request->company_id,
+//            'email_verified_at' => now(),
+//            'remember_token' => Str::random(10)
+
+
+        ])->assignRole('admin');
     }
 }

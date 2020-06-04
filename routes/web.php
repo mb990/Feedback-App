@@ -34,14 +34,19 @@ Route::get('/superadmin/companies', 'SuperAdmin\CompanyController@index')->name(
 Route::get('/superadmin/admins', 'SuperAdmin\AdminController@index')->name('superadmin.admins');
 Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('superadmin.skills');
 Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
-Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
-Route::post('/superadmin/skills', 'SuperAdmin\SkillController@store')->name('skill.store');
 
-Route::get('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@edit')->name('superadmin.company.edit');
+Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
+//Route::get('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@edit')->name('superadmin.company.edit');
 Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('superadmin.company.update');
 Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('superadmin.company.delete');
 
+Route::post('/superadmin/skills', 'SuperAdmin\SkillController@store')->name('skill.store');
 Route::put('/superadmin/skills/{id}/update', 'SuperAdmin\SkillController@update')->name('superadmin.skill.update');
 Route::delete('/superadmin/skills/{id}/delete', 'SuperAdmin\SkillController@destroy')->name('superadmin.skill.delete');
+
+Route::post('/superadmin/admins', 'SuperAdmin\AdminController@store')->name('admin.store');
+Route::get('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@edit')->name('admin.edit');
+Route::put('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@update')->name('admin.update');
+
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');

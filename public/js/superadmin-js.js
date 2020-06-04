@@ -22,7 +22,7 @@ $(document).ready(function () {
             '/superadmin/admins', function (data) {
                 let output = [];
                 data.admins.forEach(function (e) {
-                    output += '<p>' + e.first_name + e.last_name + '<button>DEL</button><button>EDIT</button></p>';
+                    output += '<p>' + e.first_name + ' ' + e.last_name + ' <button>DEL</button><button>EDIT</button></p>';
                 })
                 $('.js-admins').append(output);
             }
@@ -61,13 +61,23 @@ $(document).ready(function () {
         }
         $('.js-add-admin-btn').click(addAdmin);
         function addAdmin(){
-            var name = $('.js-admin').val()
-            alert(name)
+            let first_name = $('#first-name').val()
+            let last_name = $('#last-name').val()
+            let email = $('#email').val()
+            let password = $('#password').val()
+            let password_confirmation = $('#password-confirm').val()
+            let company_id = $('#company-id').val()
             $.post('/superadmin/admins',
             {
-                name: name
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                password: password,
+                password_confirmation: password_confirmation,
+                company_id: company_id
             },
         ).done(function(data){
+            alert(data.success);
             $('.js-admins').empty().append(getAdmins);
         })
         }
