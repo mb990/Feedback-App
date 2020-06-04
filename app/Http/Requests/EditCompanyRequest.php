@@ -29,7 +29,7 @@ class EditCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'companies:unique'
+            'name' => 'required|unique:companies'
         ];
     }
 }

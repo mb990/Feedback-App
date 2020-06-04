@@ -36,7 +36,9 @@ class CompanyRepository
 
     public function update($company, $request)
     {
-        return $company->update($request);
+        $company->slug = null;
+
+        return $company->update($request->all());
     }
 
     public function delete($company)

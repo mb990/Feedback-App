@@ -38,7 +38,7 @@ Route::post('/superadmin/companies', 'CompanyController@store')->name('company.s
 Route::post('/superadmin/skills', 'SuperAdmin\SkillController@store')->name('skill.store');
 
 Route::get('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@edit')->name('superadmin.company.edit');
-Route::post('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('superadmin.company.update');
+Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('superadmin.company.update');
 Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('superadmin.company.delete');
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
