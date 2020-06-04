@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // function getCompany(){
+    function getCompany(){
         $.get(
             '/superadmin/companies', function (data) {
                 let output = [];
@@ -9,10 +9,10 @@ $(document).ready(function () {
                 $('.js-companies').append(output);
             }
         )
-//     }
-// getCompany();
+    }
+    getCompany();
 
-
+    function getAdmins(){
         $.get(
             '/superadmin/admins', function (data) {
                 let output = [];
@@ -22,6 +22,10 @@ $(document).ready(function () {
                 $('.js-admins').append(output);
             }
         )
+    };
+    getAdmins();
+
+    function getSkills(){
         $.get(
             '/superadmin/skills', function (data) {
                 let output = [];
@@ -31,18 +35,38 @@ $(document).ready(function () {
                 $('.js-skills').append(output);
             }
         )
+    };
+    getSkills();
+        //ADD COMPANY
         $('.js-add-company-btn').click(addCompany);
         function addCompany(){
             var name = $('.js-company').val()
-            alert(name)
             $.post('/superadmin/companies',
             {
                 name: name
             },
         ).done(function(data){
-            console.log(data)
+            $('.js-companies').empty();
+            $('.js-companies').append(getCompany)
         })
         }
+        $('.js-add-admin-btn').click(addAdmin);
+        function addAdmin(){
+            var name = $('.js-admin').val()
+            alert(name)
+            $.post('/superadmin/admins', 
+            {
+                name: name
+            },
+        ).done(function(data){
+            $('.js-admins').empty();
+            $('.js-admins').append(getAdmins)
+        })
+        }
+
+
+
+
 
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
@@ -54,15 +78,14 @@ $(document).ready(function () {
                 name: name
             },
         ).done(function(data){
-            console.log(data)
+            $('.js-skills').empty();
+            $('.js-skills').append(getSkills)
 
         })
         }
 
         $(document).on ('click', '.delete-company', function () {
             let id = $(this).data('id');
-            console.log(id);
-
             $.ajax(
                 {
                     url: "/superadmin/companies/" + id + "/delete",
@@ -70,9 +93,9 @@ $(document).ready(function () {
                     data: {
                         id: id
                     },
-                success: 'deleted'
             }).done(function (data) {
-                alert(data.success);
+                $('.js-companies').empty();
+                $('.js-companies').append(getCompany)
             })
         });
 })

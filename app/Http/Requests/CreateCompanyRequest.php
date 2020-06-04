@@ -29,7 +29,7 @@ class CreateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required, unique:companies'
+            'name' => 'required|unique:companies'
         ];
     }
 }

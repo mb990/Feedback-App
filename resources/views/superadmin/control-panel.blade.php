@@ -28,22 +28,26 @@
                     <li class="tab"><a href="#tabs-2">All Admins</a></li>
                     <li class="tab"><a href="#tabs-3">All Skills</a></li>
                 </ul>
-                <div id="tabs-1" class="tab-view js-companies">
+                <div id="tabs-1" class="tab-view">
                     <span>
                         Companies:<br>
                         <input class="js-company"><button class="js-add-company-btn">ADD</button>
+                        <div class="js-companies">                            
+                        </div>
                     </span>
                 </div>
-                <div id="tabs-2" class="tab-view js-admins">
+                <div id="tabs-2" class="tab-view">
                 <span>
-                    Admins:<button>ADD</button>
+                    Admins:<br>
+                    <input class="js-admin"><button class="js-add-admin-btn">ADD</button>
+                    <div class="js-admins"></div>
                 </span>
                 </div>
-                <div id="tabs-3" class="tab-view js-skills">
+                <div id="tabs-3" class="tab-view">
                     <span>
                         Skills:<br>
                         <input class="js-skill"><button class="js-add-skill-btn">ADD</button>
-
+                        <div class="js-skills"></div>
                     </span>
                 </div>
             </div>
