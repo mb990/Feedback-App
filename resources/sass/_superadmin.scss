@@ -1,0 +1,31 @@
+.super-admin-btn{
+    background-color: #ec1940;
+    border: none;
+    border-radius: 4px;
+    padding: 3px;
+    cursor: pointer;
+    margin: 2px;
+}
+.add{
+    cursor: pointer;
+}
+.admin-tab{
+        padding: 10px;
+        text-decoration: none;
+        outline: none;
+        cursor: pointer;
+        background-color: #7a7e81;
+        color: white;
+        &:hover{
+            background-color: #aaaaaa;
+        }
+    }
+.tabs{
+    margin-bottom: 9px;
+}
+.current-tab{
+    background-color: #22282d;
+}
+.search-company{
+    width: max-content;
+}

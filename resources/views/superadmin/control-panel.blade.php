@@ -24,14 +24,15 @@
 
             <div id="tabs">
                 <ul class="inline-flex tabs">
-                    <li class="tab"><a href="#tabs-1">All Companies</a></li>
-                    <li class="tab"><a href="#tabs-2">All Admins</a></li>
-                    <li class="tab"><a href="#tabs-3">All Skills</a></li>
+                    <li class="tab"><a class="admin-tab current-tab" href="#tabs-1">All Companies</a></li>
+                    <li class="tab"><a class="admin-tab" href="#tabs-2">All Admins</a></li>
+                    <li class="tab"><a class="admin-tab" href="#tabs-3">All Skills</a></li>
                 </ul>
                 <div id="tabs-1" class="tab-view">
                     <span>
                         Companies:<br>
-                        <input class="js-company"><button class="js-add-company-btn">ADD</button>
+                        <input class="js-company" value="" placeholder="Add company name"><button class="super-admin-btn js-add-company-btn">ADD</button>
+                        <input class="search-company" type="search" placeholder="Search company"><i class="js-find-company fas fa-search"></i>
                         <div class="js-companies">
                         </div>
                     </span>
@@ -55,14 +56,14 @@
 
                         @endforelse
                     </select>
-                    <button type="submit" class="js-add-admin-btn">ADD</button>
+                    <button type="submit" class="super-admin-btn js-add-admin-btn">ADD</button>
                     <div class="js-admins"></div>
                 </span>
                 </div>
                 <div id="tabs-3" class="tab-view">
                     <span>
                         Skills:<br>
-                        <input class="js-skill"><button class="js-add-skill-btn">ADD</button>
+                        <input class="js-skill"><button class="super-admin-btn js-add-skill-btn">ADD</button>
                         <div class="js-skills"></div>
                     </span>
                 </div>

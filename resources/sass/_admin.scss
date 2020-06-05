@@ -9,16 +9,16 @@
 }
 .tab{
     list-style: none;
-    a{
-        padding: 10px;
-        text-decoration: none;
-        outline: none;
-        cursor: pointer;
-        background-color: #7a7e81;
-        &:hover{
-            background-color: #aaaaaa;
-        }
-    }
+    // a{
+    //     padding: 10px;
+    //     text-decoration: none;
+    //     outline: none;
+    //     cursor: pointer;
+    //     background-color: #7a7e81;
+    //     &:hover{
+    //         background-color: #aaaaaa;
+    //     }
+    // }
 }
 .tab-view{
     padding: 10px;
@@ -26,7 +26,8 @@
     width: 35vw;
     display: flex;
     flex-direction: column;
-    background-color: #7a7e81;
+    background-color: #22282d;
+    color: white;
     li{
         list-style: none;
     }

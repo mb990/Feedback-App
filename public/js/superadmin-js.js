@@ -4,18 +4,16 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p>' + e.name +
+                    output += '<p style="display:flex">' + e.name +
                     '<button data-id="'+ e.id +
-                    '" class="delete-company" name="delete-company">DEL</button>'+
-                    '<button data-id="'+ e.id +
-                    '"class="edit-company" name="edit-company">EDIT</button><input data-id="'+ e.id +
-                    '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></p>'
-                    +
-                    '<input name="active" id="active-'+ e.id +'" type="checkbox"' +
-                    // ((e.active === 1)) ?  : ''
+                    '" class="delete-company super-admin-btn" name="delete-company">DEL</button>'+
+                    '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
+                    '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
+                    '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
+                    '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></span>'+
+                    '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
                         (e.active === 1 ? "checked" : "")
-                        + ">";
-                // ‘<input type=“checkbox” ${e.active ? “Checked”:””} />’
+                        + ">"+'</p>';
                 })
 
                 $('.js-companies').append(output);
@@ -43,12 +41,13 @@ $(document).ready(function () {
             '/superadmin/skills', function (data) {
                 let output = [];
                 data.skills.forEach(function (e) {
-                    output += '<p>' + e.name +
+                    output += '<p style="display:flex">' + e.name +
                         '<button data-id="'+ e.id +
-                        '" class="delete-skill" name="delete-skill">DEL</button>'+
-                        '<button data-id="'+ e.id +
-                        '"class="edit-skill" name="edit-skill">EDIT</button><input data-id="'+ e.id +
-                        '"class="js-edit-input'+ e.id +'" placeholder="Update skill name"></p>';
+                        '" class="delete-skill super-admin-btn" name="delete-skill">DEL</button>'+
+                        '<i style="margin:auto 0" class="add fas fa-plus-circle js-skill-show" data-id="'+ e.id +'"></i>'+
+                        '<span class="hide js-skill-hide'+ e.id +'"><button data-id="'+ e.id +
+                        '"class="edit-skill super-admin-btn" name="edit-skill">Update</button><input data-id="'+ e.id +
+                        '"class="js-edit-input'+ e.id +'" placeholder="Update skill name"></span></p>';
                 })
                 $('.js-skills').append(output);
             }
@@ -65,6 +64,7 @@ $(document).ready(function () {
             },
         ).done(function(data){
             $('.js-companies').empty().append(getCompany);
+            $('.js-company').val("");
         })
         }
         $('.js-add-admin-btn').click(addAdmin);
@@ -93,7 +93,6 @@ $(document).ready(function () {
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
             var name = $('.js-skill').val()
-            alert(name)
 
             $.post('/superadmin/skills',
             {
@@ -177,4 +176,31 @@ $(document).ready(function () {
             $('.js-admins').empty().append(getAdmins);
         })
     })
+    $(document).on ('click', '.js-super-show', function(){
+        let id = $(this).data('id');
+        let field = $('.js-super-hide'+id)
+        field.toggle()
+        $(this).toggleClass('fa-plus-circle fa-minus-circle')
+
+    });
+    $(document).on ('click', '.js-skill-show', function(){
+        let id = $(this).data('id');
+        let field = $('.js-skill-hide'+id)
+        field.toggle()
+        $(this).toggleClass('fa-plus-circle fa-minus-circle')
+
+    });
+    $('#tabs ul li a').click(function(){
+        $('#tabs ul li a').removeClass('current-tab');
+        $(this).addClass('current-tab');
+    });
+
+    $(document).ready(function(){
+        $(".search-company").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $(".js-companies p").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
 })
