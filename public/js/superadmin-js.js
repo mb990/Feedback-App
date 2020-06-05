@@ -88,6 +88,7 @@ $(document).ready(function () {
         ).done(function(data){
             $('.js-admins').empty().append(getAdmins);
             $(".superadmin-modal").hide()
+            $(".superadmin-modal > input").val("")
         })
         }
 
