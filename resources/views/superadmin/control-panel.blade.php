@@ -39,24 +39,26 @@
                 </div>
                 <div id="tabs-2" class="tab-view">
                 <span>
-                    Admins:<br>
-                    <input class="js-admin" type="text" name="first-name" id="first-name" placeholder="first name" value="{{old('first_name')}}" required>
-                    <input class="js-admin" type="text" name="last-name" id="last-name" placeholder="last name" value="{{old('last_name')}}" required>
-                    <input class="js-admin" type="email" name="email" id="email" placeholder="email address" value="{{old('email')}}" required>
-                    <input class="js-admin" type="password" name="password" id="password" placeholder="password" value="{{old('password')}}" required>
-                    <input class="js-admin" type="password" name="password_confirmation" id="password-confirm" placeholder="confirm password" required>
-                    <select name="company-id" id="company-id">
-                        @forelse($companies as $company)
+                    Admins:<br><button class="js-superadmin-modal-btn">Add new admin</button>
+                    <div class="modal superadmin-modal">
+                        <input class="js-admin" type="text" name="first-name" id="first-name" placeholder="first name" value="{{old('first_name')}}" required>
+                        <input class="js-admin" type="text" name="last-name" id="last-name" placeholder="last name" value="{{old('last_name')}}" required>
+                        <input class="js-admin" type="email" name="email" id="email" placeholder="email address" value="{{old('email')}}" required>
+                        <input class="js-admin" type="password" name="password" id="password" placeholder="password" value="{{old('password')}}" required>
+                        <input class="js-admin" type="password" name="password_confirmation" id="password-confirm" placeholder="confirm password" required>
+                        <select name="company-id" id="company-id">
+                            @forelse($companies as $company)
 
-                            <option value="{{$company->id}}">{{$company->name}}</option>
+                                <option value="{{$company->id}}">{{$company->name}}</option>
 
-                        @empty
+                            @empty
 
-                            <option disabled>No companies</option>
+                                <option disabled>No companies</option>
 
-                        @endforelse
-                    </select>
-                    <button type="submit" class="super-admin-btn js-add-admin-btn">ADD</button>
+                            @endforelse
+                        </select>
+                        <button type="submit" class="super-admin-btn js-add-admin-btn">ADD</button>
+                    </div>
                     <div class="js-admins"></div>
                 </span>
                 </div>

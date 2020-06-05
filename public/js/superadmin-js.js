@@ -10,10 +10,10 @@ $(document).ready(function () {
                     '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
                     '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
                     '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
-                    '"class="js-edit-input'+ e.id +'" value="'+ e.name +'"></span>'+
+                    '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
                     '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
                         (e.active === 1 ? "checked" : "")
-                        + ">"+'</p>';
+                        + ">"+'</span></p>';
                 })
 
                 $('.js-companies').append(output);
@@ -67,6 +67,7 @@ $(document).ready(function () {
             $('.js-company').val("");
         })
         }
+        //ADD ADMIN
         $('.js-add-admin-btn').click(addAdmin);
         function addAdmin(){
             let first_name = $('#first-name').val()
@@ -85,8 +86,8 @@ $(document).ready(function () {
                 company_id: company_id
             },
         ).done(function(data){
-            alert(data.success);
             $('.js-admins').empty().append(getAdmins);
+            $(".superadmin-modal").hide()
         })
         }
 
@@ -137,7 +138,16 @@ $(document).ready(function () {
             }).done(function (data) {
                 alert('updated');
                 $('.js-companies').empty().append(getCompany);
-            })
+            });
+            // $.ajax({
+            //     type: "GET",
+            //     url: "/superadmin/companies/" + id + "/edit",
+            //     data: "data",
+            //     dataType: "dataType",
+            //     success: function (response) {
+                    
+            //     }
+            // });
         })
 
     $(document).on ('click', '.delete-skill', function () {
@@ -205,10 +215,14 @@ $(document).ready(function () {
 
     $(document).ready(function(){
         $(".search-company").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $(".js-companies p").filter(function() {
+            var value = $(this).val().toLowerCase();
+            $(".js-companies p").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
+            });
         });
-      });
+    });
+    $(".js-superadmin-modal-btn").click(getModal);
+    function getModal(){
+        $(".superadmin-modal").show()
+    }
 })
