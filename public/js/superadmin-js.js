@@ -9,9 +9,15 @@ $(document).ready(function () {
                     '" class="delete-company" name="delete-company">DEL</button>'+
                     '<button data-id="'+ e.id +
                     '"class="edit-company" name="edit-company">EDIT</button><input data-id="'+ e.id +
-                    '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></p>';
-                        // '<input value="'+ e.active +'" type="checkbox" ' + (e.active == 1) ? checked : "" + '>Active</input>';
+                    '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></p>'
+                    +
+                    '<input name="active" id="active-'+ e.id +'" type="checkbox"' +
+                    // ((e.active === 1)) ?  : ''
+                        (e.active === 1 ? "checked" : "")
+                        + ">";
+                // ‘<input type=“checkbox” ${e.active ? “Checked”:””} />’
                 })
+
                 $('.js-companies').append(output);
             }
         )
@@ -119,7 +125,8 @@ $(document).ready(function () {
                     url: "/superadmin/companies/" + id + "/update",
                     type: 'PUT',
                     data: {
-                        name: name
+                        name: name,
+                        active: 1
                     },
             }).done(function (data) {
                 $('.js-companies').empty().append(getCompany);
