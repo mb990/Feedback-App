@@ -50,4 +50,11 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function destroy(SuperAdminRequest $request, $id)
+    {
+        $this->userService->delete($id);
+
+        return response()->json(['success' => 'User is deleted']);
+    }
 }

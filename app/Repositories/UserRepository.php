@@ -56,4 +56,9 @@ class UserRepository
 
         ])->assignRole('admin');
     }
+
+    public function delete($user)
+    {
+        $user->delete();
+    }
 }

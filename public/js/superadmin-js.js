@@ -10,6 +10,7 @@ $(document).ready(function () {
                     '<button data-id="'+ e.id +
                     '"class="edit-company" name="edit-company">EDIT</button><input data-id="'+ e.id +
                     '"class="js-edit-input'+ e.id +'" placeholder="Update company name"></p>';
+                        // '<input value="'+ e.active +'" type="checkbox" ' + (e.active == 1) ? checked : "" + '>Active</input>';
                 })
                 $('.js-companies').append(output);
             }
@@ -22,7 +23,8 @@ $(document).ready(function () {
             '/superadmin/admins', function (data) {
                 let output = [];
                 data.admins.forEach(function (e) {
-                    output += '<p>' + e.first_name + ' ' + e.last_name + ' <button>DEL</button><button>EDIT</button></p>';
+                    output += '<p>' + e.first_name + ' ' + e.last_name + ' <button data-id="'+ e.id +
+                        '" class="delete-admin" name="delete-admin">DEL</button><button>EDIT</button></p>';
                 })
                 $('.js-admins').append(output);
             }
@@ -151,6 +153,21 @@ $(document).ready(function () {
                 },
             }).done(function (data) {
             $('.js-skills').empty().append(getSkills);
+        })
+    })
+
+    $(document).on ('click', '.delete-admin', function () {
+        let id = $(this).data('id');
+        $.ajax(
+            {
+                url: "/superadmin/users/" + id + "/delete",
+                type: 'DELETE',
+                data: {
+                    id: id
+                },
+            }).done(function (data) {
+            alert(data.success);
+            $('.js-admins').empty().append(getAdmins);
         })
     })
 })

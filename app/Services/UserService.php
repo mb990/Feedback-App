@@ -73,6 +73,11 @@ class UserService
         return $this->user->store($request, $password);
     }
 
+    public function delete($id)
+    {
+        return $this->user->delete($this->find($id));
+    }
+
     public function createAdmin($request)
     {
         return $this->store($request);

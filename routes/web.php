@@ -47,6 +47,7 @@ Route::delete('/superadmin/skills/{id}/delete', 'SuperAdmin\SkillController@dest
 Route::post('/superadmin/admins', 'SuperAdmin\AdminController@store')->name('admin.store');
 Route::get('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@edit')->name('admin.edit');
 Route::put('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@update')->name('admin.update');
+Route::delete('/superadmin/users/{id}/delete', 'SuperAdmin\AdminController@destroy')->name('admin.delete');
 
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
