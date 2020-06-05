@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditCompanyRequest extends FormRequest
 {
@@ -29,7 +30,8 @@ class EditCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:companies'
+            'name' => 'required',
+            Rule::unique('companies')->ignore($this->company), // prilikom update-a ako se input ne menja u odnosu na vrednost iz baze
         ];
     }
 }
