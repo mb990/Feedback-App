@@ -559,6 +559,63 @@
   width: max-content;
 }
 
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto 5px;
+}
+
+.dot-red {
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto 5px;
+}
+
+.edit-modal {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.edit-title {
+  background-color: #fc5977;
+  font-size: 1.3rem;
+  display: flex;
+  width: 30vw;
+}
+
+.edit-form {
+  background-color: #ec1940;
+  display: grid;
+  width: 30vw;
+}
+
+.edit-btn {
+  position: relative;
+}
+
 body {
   display: flex;
   margin: 0px;

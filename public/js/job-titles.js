@@ -7,12 +7,12 @@ $(document).ready(function () {
                     output += '<p style="display:flex">' + e.name +
                         '<button data-id="'+ e.id +
                         '" class="delete-position super-admin-btn" name="delete-position">DEL</button>'+
-                        '<i style="margin:auto 0" class="add fas fa-plus-circle js-position-show" data-id="'+ e.id +'"></i>'+
-                        '<button data-id="'+ e.id +
+                        '<i style="margin:auto 0" class="add fas fa-plus-circle js-job-show" data-id="'+ e.id +'"></i>'+
+                        '<span class="js-job-hide'+ e.id +' hide"><button data-id="'+ e.id +
                         '"class="edit-position super-admin-btn" id="edit-position">Update</button>' +
                         '<input type="text" name="edit-position'+ e.id +'" id="edit-position'+ e.id +'" data-id="'+ e.id +
                         '"class="js-edit-input'+ e.id +'" placeholder="Update job title">' +
-                        '</p>';
+                        '</span></p>';
                 })
                 $('.js-positions').append(output);
             }

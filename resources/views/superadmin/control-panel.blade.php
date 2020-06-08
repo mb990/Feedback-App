@@ -40,7 +40,7 @@
                 </div>
                 <div id="tabs-2" class="tab-view">
                 <span>
-                    Admins:<br><button class="js-superadmin-modal-btn">Add new admin</button>
+                    Admins:<br><button class="js-superadmin-modal-btn js-new-admin-title super-admin-btn">Add new admin</button>
                     <div class="modal superadmin-modal">
                         <input class="js-admin" type="text" name="first-name" id="first-name" placeholder="first name" value="{{old('first_name')}}" required>
                         <input class="js-admin" type="text" name="last-name" id="last-name" placeholder="last name" value="{{old('last_name')}}" required>
@@ -74,7 +74,7 @@
                 <div id="tabs-4" class="tab-view">
                     <span>
                         Job Titles:<br>
-                        <input name="position-name" class="js-positions" value="" placeholder="Add job title"><button class="super-admin-btn js-add-position-btn">ADD</button>
+                        <input name="position-name" class="js-position" value="" placeholder="Add job title"><button class="super-admin-btn js-add-position-btn">ADD</button>
                         <input class="search-position" type="search" placeholder="Search job titles"><i class="js-find-position fas fa-search"></i>
                         <div class="js-positions">
                         </div>
@@ -82,6 +82,34 @@
                 </div>
             </div>
         </div>
+<!-- Modal -->
+<div class="edit-modal">
+    <div class="edit-title">EDIT ADMIN<button class="close-btn edit-btn js-edit-close"><i class="fas fa-times"></i></button></div>
+    <div class="edit-form">
+        <span>
+            <label for="first_name">First name</label>
+            <input id="first_name" name="first_name" type="text">
+        </span>
+        <br>
+        <span>
+            <label for="last-name">Last name</label>
+            <input name="last-name" type="text">
+        </span>
+        <br>
+        <span>
+            <label for="email">Email</label>
+            <input name="email" type="email">
+        </span>
+        <br>
+        <span>
+            <label for="password">Password</label>
+            <input name="password" type="password">
+        </span>
+        <br>
+        <button type="button">Edit</button>
+        <input type="hidden" name="hidden_id" id="hidden_id">
+    </div>
+</div>
 
 @endsection
 @section('script')

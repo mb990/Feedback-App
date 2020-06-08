@@ -4,8 +4,8 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += (e.active === 1 ? 'active' : 'not-active') + '<p style="display:flex">' + e.name +
-                    '<button data-id="'+ e.id +
+                    output += '<p style="display:flex">' + e.name +
+                    (e.active === 1 ? '<span title="active company"class="dot"></span>' : '<span title="Inactive company" class="dot-red"></span>') + '<button data-id="'+ e.id +
                     '" class="delete-company super-admin-btn" name="delete-company">DEL</button>'+
                     '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
                     '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
@@ -15,8 +15,8 @@ $(document).ready(function () {
                         (e.active === 1 ? "checked" : "")
                         + ">"+'</span></p>';
                 })
-
                 $('.js-companies').append(output);
+                
             }
         )
     }
@@ -28,12 +28,19 @@ $(document).ready(function () {
                 let output = [];
                 data.admins.forEach(function (e) {
                     output += '<p>' + e.first_name + ' ' + e.last_name + ' <button data-id="'+ e.id +
-                        '" class="delete-admin" name="delete-admin">DEL</button><button>EDIT</button></p>';
+                        '" class="delete-admin super-admin-btn" name="delete-admin">DEL</button>'+
+                        '<button name="edit-admin" id="'+ e.id +'" class="super-admin-btn js-edit-modal">EDIT</button></p>';
                 })
                 $('.js-admins').append(output);
+                $(".js-edit-modal").click(editAdmin);
+                function editAdmin(){
+                    id = $(this).attr('id')
+                    $(".edit-modal").show();
+                }
             }
         )
     }
+
     getAdmins();
 
     function getSkills(){
@@ -207,7 +214,12 @@ $(document).ready(function () {
         let field = $('.js-skill-hide'+id)
         field.toggle()
         $(this).toggleClass('fa-plus-circle fa-minus-circle')
-
+    });
+    $(document).on ('click', '.js-job-show', function(){
+        let id = $(this).data('id');
+        let field = $('.js-job-hide'+id)
+        field.toggle()
+        $(this).toggleClass('fa-plus-circle fa-minus-circle')
     });
     $('#tabs ul li a').click(function(){
         $('#tabs ul li a').removeClass('current-tab');
@@ -224,6 +236,19 @@ $(document).ready(function () {
     });
     $(".js-superadmin-modal-btn").click(getModal);
     function getModal(){
-        $(".superadmin-modal").show()
+        $(".superadmin-modal").toggle()
+        $(this).text(function(i, text){
+            return text === "Close" ? "Add new admin" : "Close";
+        })
     }
+    $(".js-edit-modal").click(editAdmin);
+    function editAdmin(){
+        $(".edit-modal").show();
+    }
+
+    $('.js-edit-close').click(closeEdit);
+    function closeEdit(){
+        $('.edit-modal').hide();
+    }
+
 })
