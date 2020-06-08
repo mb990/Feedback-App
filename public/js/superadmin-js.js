@@ -4,7 +4,7 @@ $(document).ready(function () {
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p style="display:flex">' + e.name +
+                    output += (e.active === 1 ? 'active' : 'not-active') + '<p style="display:flex">' + e.name +
                     '<button data-id="'+ e.id +
                     '" class="delete-company super-admin-btn" name="delete-company">DEL</button>'+
                     '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
@@ -12,7 +12,7 @@ $(document).ready(function () {
                     '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
                     '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
                     '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
-                        (e.active === 1 ? "checked" : "")
+                        j(e.active === 1 ? "checked" : "")
                         + ">"+'</span></p>';
                 })
 
@@ -146,7 +146,7 @@ $(document).ready(function () {
             //     data: "data",
             //     dataType: "dataType",
             //     success: function (response) {
-                    
+
             //     }
             // });
         })

@@ -1,6 +1,7 @@
 <?php
 
 use App\Profile;
+use App\Services\JobTitleService;
 use App\Services\UserService;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -16,11 +17,16 @@ class ProfilesTableSeeder extends Seeder
      * @var Faker
      */
     private $faker;
+    /**
+     * @var \App\Services\JobTitleService
+     */
+    private $jobTitleService;
 
-    public function __construct(UserService $userService, Faker $faker)
+    public function __construct(UserService $userService, Faker $faker, JobTitleService $jobTitleService)
     {
         $this->userService = $userService;
         $this->faker = $faker;
+        $this->jobTitleService = $jobTitleService;
     }
 
     /**
@@ -31,17 +37,14 @@ class ProfilesTableSeeder extends Seeder
     public function run()
     {
         $users = $this->userService->all()->pluck('id')->toArray();
-        $positions = [
-            'Senior Software Engineer', 'QA Automation Lead', 'Paid Intern', 'Poor non-paid Intern', 'Junior Web Developer',
-            'Medior Web Developer', 'HR Manager', 'Team Leader', 'Project Manager', 'Web Designer', 'Graphic Designer'
-        ];
+        $positions = $this->jobTitleService->all()->pluck('id')->toArray();
 
         foreach ($users as $userId) {
 
             $profile = new Profile();
 
             $profile->user_id = $userId;
-            $profile->position = $positions[array_rand($positions)];
+            $profile->job_title_id = $positions[array_rand($positions)];
 
 //            $company = $this->companyService->find($profile->company_id);
 //            $directory = 'profile-pictures/' . $company->name;

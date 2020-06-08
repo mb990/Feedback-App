@@ -57,7 +57,7 @@
                     <img class="feedback-image">
                     <div class="feedback-person-info">
                         <span class="js-user">{{$user->first_name}} {{$user->last_name}}</span>
-                        <span class="js-position">{{$user->profile->position}}</span>
+                        <span class="js-position">{{$user->profile->jobTitle->name}}</span>
                     </div>
                     <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button>
                 </div>

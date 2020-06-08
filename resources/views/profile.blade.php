@@ -40,7 +40,7 @@
             <img class="feedback-image">
             <div class="feedback-person-info">
                 <span class="js-user">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
-                <span class="js-position">{{$user->profile->position}}</span>
+                <span class="js-position">{{$user->profile->jobTitle->name}}</span>
             </div>
             <div class="feedback-person-info"><span style="font-size: 0.8rem; color: #9c9c9c;">Average score: </span>
                 <span class="average-score-big">{{number_format(auth()->user()->averageFeedbackScore(), 1, '.', '')}}<span class="star-rating">{{round(auth()->user()->averageFeedbackScore(), 1)}}</span></span></div>
@@ -54,7 +54,7 @@
             <div class="my-rating"></div>
                 @foreach($skills as $skill)
                 <span>
-                    <p style="color: #bdbcbc;">{{$skill->name}}: 
+                    <p style="color: #bdbcbc;">{{$skill->name}}:
                     <span class="float-right">
                     <span>(@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}) </span> @else 0 @endif
                     <span class="test1">@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}</span> @else 0 @endif</p>
