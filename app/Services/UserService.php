@@ -78,6 +78,11 @@ class UserService
         return $this->user->delete($this->find($id));
     }
 
+    public function update($request, $id)
+    {
+        return $this->user->update($request, $this->find($id));
+    }
+
     public function createAdmin($request)
     {
         return $this->store($request);

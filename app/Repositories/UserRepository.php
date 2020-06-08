@@ -57,6 +57,11 @@ class UserRepository
         ])->assignRole('admin');
     }
 
+    public function update($request, $user)
+    {
+        return $user->update($request->all());
+    }
+
     public function delete($user)
     {
         $user->delete();

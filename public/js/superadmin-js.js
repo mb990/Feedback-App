@@ -12,7 +12,7 @@ $(document).ready(function () {
                     '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
                     '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
                     '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
-                        j(e.active === 1 ? "checked" : "")
+                        (e.active === 1 ? "checked" : "")
                         + ">"+'</span></p>';
                 })
 

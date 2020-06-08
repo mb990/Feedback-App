@@ -16,12 +16,12 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('picture');
-            $table->bigInteger('job_title_id')->unsigned();
+            $table->bigInteger('job_title_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('cascade');
+            $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('set null');
         });
     }
 

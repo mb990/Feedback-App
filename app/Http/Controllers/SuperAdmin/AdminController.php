@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\SuperAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -41,14 +42,18 @@ class AdminController extends Controller
         return response()->json(['success' => 'Admin is created']);
     }
 
-    public function edit()
+    public function edit(SuperAdminRequest $request, $id)
     {
-        //
+        $admin = $this->userService->find($id);
+
+        return response()->json(['admin' => $admin]);
     }
 
-    public function update()
+    public function update(UpdateAdminRequest $request, $id)
     {
-        //
+        $admin = $this->userService->update($request, $id);
+
+        return response()->json(['admin', $admin]);
     }
 
     public function destroy(SuperAdminRequest $request, $id)

@@ -36,9 +36,9 @@ Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('supe
 Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
 
 Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
-Route::get('/superadmin/companies/{id}/edit', 'SuperAdmin\CompanyController@edit')->name('superadmin.company.edit');
-Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('superadmin.company.update');
-Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('superadmin.company.delete');
+Route::get('/superadmin/companies/{id}/edit', 'SuperAdmin\CompanyController@edit')->name('company.edit');
+Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('company.update');
+Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('company.delete');
 
 Route::post('/superadmin/skills', 'SuperAdmin\SkillController@store')->name('skill.store');
 Route::put('/superadmin/skills/{id}/update', 'SuperAdmin\SkillController@update')->name('superadmin.skill.update');
@@ -48,6 +48,11 @@ Route::post('/superadmin/admins', 'SuperAdmin\AdminController@store')->name('adm
 Route::get('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@edit')->name('admin.edit');
 Route::put('/superadmin/admins/{id}/update', 'SuperAdmin\AdminController@update')->name('admin.update');
 Route::delete('/superadmin/users/{id}/delete', 'SuperAdmin\AdminController@destroy')->name('admin.delete');
+
+Route::get('/superadmin/job-titles', 'SuperAdmin\JobTitleController@index');
+Route::post('/superadmin/job-titles', 'SuperAdmin\JobTitleController@store')->name('job-title.store');
+Route::put('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@update')->name('job-title.update');
+Route::delete('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@destroy')->name('job-title.delete');
 
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');

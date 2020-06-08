@@ -25,7 +25,7 @@ class JobTitleRepository
 
     public function find($id)
     {
-        return $this->jobTitle->find($id);p
+        return $this->jobTitle->find($id);
     }
 
     public function create($request)

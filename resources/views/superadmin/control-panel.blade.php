@@ -27,6 +27,7 @@
                     <li class="tab"><a class="admin-tab current-tab" href="#tabs-1">All Companies</a></li>
                     <li class="tab"><a class="admin-tab" href="#tabs-2">All Admins</a></li>
                     <li class="tab"><a class="admin-tab" href="#tabs-3">All Skills</a></li>
+                    <li class="tab"><a class="admin-tab" href="#tabs-4">All Job Titles</a></li>
                 </ul>
                 <div id="tabs-1" class="tab-view">
                     <span>
@@ -67,6 +68,16 @@
                         Skills:<br>
                         <input class="js-skill"><button class="super-admin-btn js-add-skill-btn">ADD</button>
                         <div class="js-skills"></div>
+                    </span>
+                </div>
+
+                <div id="tabs-4" class="tab-view">
+                    <span>
+                        Job Titles:<br>
+                        <input name="position-name" class="js-positions" value="" placeholder="Add job title"><button class="super-admin-btn js-add-position-btn">ADD</button>
+                        <input class="search-position" type="search" placeholder="Search job titles"><i class="js-find-position fas fa-search"></i>
+                        <div class="js-positions">
+                        </div>
                     </span>
                 </div>
             </div>
