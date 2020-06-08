@@ -19,7 +19,7 @@
 
 @section('content')
 
-    @forelse($companyMembers as $user)
+    @forelse(auth()->user()->company->users() as $user)
 
         <p>{{$user->first_name}} {{$user->last_name}}</p>
 

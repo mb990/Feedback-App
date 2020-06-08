@@ -29,16 +29,11 @@ class Company extends Model
 
     public function users()
     {
-        $users = $this->members()->where();
+        $users = $this->members()->where('company_id', $this->id)
+            ->get();
 
-      foreach ($users as $member) {
-
-//          if ($member->hasRole('admin')) {
-
-              $users->reject($member);
-//          }
-      }
-
-      return $users;
+        return $users->filter(function ($user) {
+            return !$user->hasRole('admin');
+        });
     }
 }

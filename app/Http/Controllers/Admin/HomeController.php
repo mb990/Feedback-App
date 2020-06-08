@@ -21,8 +21,6 @@ class HomeController extends Controller
 
     public function index(AdminRequest $request)
     {
-        $companyMembers = $this->companyService->users(auth()->user()->company->id);
-
-        return view('admin.index', compact(['companyMembers']));
+        return view('admin.index');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Repositories\CompanyRepository;
+use App\User;
 
 class CompanyService
 {
@@ -45,25 +46,5 @@ class CompanyService
         $company = $this->find($id);
 
         return $this->company->delete($company);
-    }
-
-    public function users($id)
-    {
-        $company = $this->find($id);
-
-        $users = [];
-
-        foreach ($company->members as $key => $member) {
-
-            if ($member->hasRole('admin')) {
-
-                unset($company[$key]);
-            }
-            else {
-                $users[] = $member;
-            }
-        }
-
-        return collect($users);
     }
 }
