@@ -93,17 +93,22 @@
         <br>
         <span>
             <label for="last-name">Last name</label>
-            <input name="last-name" type="text">
+            <input id="last_name" name="last-name" type="text" required>
         </span>
         <br>
         <span>
             <label for="email">Email</label>
-            <input name="email" type="email">
+            <input id="email" name="email" type="email" required>
         </span>
         <br>
         <span>
             <label for="password">Password</label>
-            <input name="password" type="password">
+            <input id="password" name="password" type="password" required>
+        </span>
+        <br>
+        <span>
+            <label for="password">Conform password</label>
+            <input name="password_confirmation" id="password-confirm" type="password" required>
         </span>
         <br>
         <button type="button">Edit</button>

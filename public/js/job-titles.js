@@ -51,7 +51,7 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
             alert(data.success);
-            $('.js-companies').empty().append(getCompany);
+            $('.js-positions').empty().append(getJobTitles);
         });
     })
 

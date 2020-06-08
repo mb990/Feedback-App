@@ -35,6 +35,14 @@ $(document).ready(function () {
                 $(".js-edit-modal").click(editAdmin);
                 function editAdmin(){
                     id = $(this).attr('id')
+                    $.get('/superadmin/admins/'+id+'/update', function(data){
+                        $('#first_name').val(data.admin.first_name)
+                        $('#last_name').val(data.admin.last_name)
+                        $('#email').val(data.admin.e-mail)
+                        $('#password').val(data.admin.password)
+
+                    }
+                    )
                     $(".edit-modal").show();
                 }
             }
