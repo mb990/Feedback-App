@@ -42,18 +42,17 @@ $(document).ready(function () {
     $(document).on ('click', '.edit-position', function () {
         let id = $(this).data('id');
         let name = $('#edit-position'+id).val();
-        alert(name);
-        // $.ajax(
-        //     {
-        //         url: "/superadmin/job-titles/" + id,
-        //         type: 'PUT',
-        //         data: {
-        //             name: name,
-        //         }
-        //     }).done(function (data) {
-        //     alert(data.success);
-        //     $('.js-companies').empty().append(getCompany);
-        // });
+        $.ajax(
+            {
+                url: "/superadmin/job-titles/" + id,
+                type: 'PUT',
+                data: {
+                    name: name,
+                }
+            }).done(function (data) {
+            alert(data.success);
+            $('.js-companies').empty().append(getCompany);
+        });
     })
 
     // Delete job title

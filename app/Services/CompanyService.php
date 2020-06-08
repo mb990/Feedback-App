@@ -46,4 +46,24 @@ class CompanyService
 
         return $this->company->delete($company);
     }
+
+    public function users($id)
+    {
+        $company = $this->find($id);
+
+        $users = [];
+
+        foreach ($company->members as $key => $member) {
+
+            if ($member->hasRole('admin')) {
+
+                unset($company[$key]);
+            }
+            else {
+                $users[] = $member;
+            }
+        }
+
+        return collect($users);
+    }
 }

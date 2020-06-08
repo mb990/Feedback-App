@@ -45,6 +45,11 @@ class LoginController extends Controller
             return '/superadmin';
         }
 
+        else if (auth()->user()->hasRole('admin')) {
+
+            return '/admin';
+        }
+
         return '/dashboard';
     }
 }

@@ -26,4 +26,19 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function users()
+    {
+        $users = $this->members()->where();
+
+      foreach ($users as $member) {
+
+//          if ($member->hasRole('admin')) {
+
+              $users->reject($member);
+//          }
+      }
+
+      return $users;
+    }
 }

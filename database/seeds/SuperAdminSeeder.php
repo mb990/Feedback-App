@@ -42,6 +42,7 @@ class SuperAdminSeeder extends Seeder
             $admin->email_verified_at = now();
             $admin->password = Hash::make('admin123');
             $admin->remember_token = Str::random(10);
+            $admin->company_id = $company->id;
 
             $admin->save();
 

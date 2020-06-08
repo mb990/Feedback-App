@@ -54,5 +54,9 @@ Route::post('/superadmin/job-titles', 'SuperAdmin\JobTitleController@store')->na
 Route::put('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@update')->name('job-title.update');
 Route::delete('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@destroy')->name('job-title.delete');
 
+// ADMIN
+
+Route::get('/admin', 'Admin\HomeController@index');
+
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
