@@ -18,8 +18,8 @@ class FeedbackDurationRepository
         $this->feedbackDuration = $feedbackDuration;
     }
 
-    public function store($request)
+    public function all()
     {
-
+        return $this->feedbackDuration->all();
     }
 }

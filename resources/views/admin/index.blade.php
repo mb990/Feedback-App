@@ -77,10 +77,12 @@
             <div id="tabs-2" class="tab-view">
                 <label for="feedback-time">Change feedback time</label>
                 <select name="feedback_time" id="feedback-time">
-                    <option value="2649600‬">1 month</option>
-                    <option value="7948800">3 months</option>
-                    <option value="15897600">6 months</option>
-                    <option value="31795200‬">12 months</option>
+                    @foreach($durations as $duration)
+
+                        <option value="{{$duration->id}}‬" @if(auth()->user()->company->feedback_duration_id === $duration->id) selected @endif >{{$duration->name}} </option>
+
+                    @endforeach
+
                 </select>
                 <button class="admin-btn">Submit</button>
             </div>

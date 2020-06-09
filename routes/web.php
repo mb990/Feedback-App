@@ -59,5 +59,6 @@ Route::delete('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@dest
 
 Route::get('/admin', 'Admin\HomeController@index');
 
+Route::get('/admin/users', 'Admin\UserController@index');
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
