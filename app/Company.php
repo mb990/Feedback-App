@@ -10,7 +10,7 @@ class Company extends Model
     use Sluggable;
 
     protected $fillable = [
-        'name', 'slug', 'active', 'feedback_time'
+        'name', 'slug', 'active', 'feedback_duration_id'
     ];
 
     public function sluggable()
@@ -20,6 +20,11 @@ class Company extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function feedbackDuration()
+    {
+        return $this->belongsTo(FeedbackDuration::class);
     }
 
     public function members()

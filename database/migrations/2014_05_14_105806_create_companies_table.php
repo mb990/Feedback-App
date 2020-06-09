@@ -17,9 +17,11 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->integer('feedback_time')->default(7948800); // ~ 3 months
+            $table->bigInteger('feedback_duration_id')->default(2)->unsigned()->nullable(); // ~ 3 months
             $table->boolean('active')->default(true);
             $table->timestamps();
+
+            $table->foreign('feedback_duration_id')->references('id')->on('feedback_durations')->onDelete('set null');
         });
     }
 

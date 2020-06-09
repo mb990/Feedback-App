@@ -45,7 +45,9 @@
                         <option disabled>No positions</option>
 
                     @endforelse
+
                 </select>
+
                 <button class="admin-btn">Add user</button>
 
                 <table>
@@ -83,13 +85,7 @@
                 <button class="admin-btn">Submit</button>
             </div>
 
-
         </div>
-
-
-
-
-
 
     </div>
 

@@ -9,6 +9,7 @@
         <script src="{{ asset('js/main-js.js') }}"></script>
         <script src="{{ asset('js/superadmin-js.js') }}"></script>
         <script src="{{ asset('js/job-titles.js') }}"></script>
+        <script src="{{ asset('js/admin-js.js') }}"></script>
 {{--        <script src="{{ asset('js/test.js') }}"></script>--}}
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <script type="text/javascript">
