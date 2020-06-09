@@ -66,6 +66,13 @@ class UserRepository
         ]);
     }
 
+    public function updatePassword($password, $user)
+    {
+        return $user->update([
+           'password' => $password
+        ]);
+    }
+
     public function delete($user)
     {
         $user->delete();

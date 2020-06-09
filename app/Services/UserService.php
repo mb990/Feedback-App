@@ -83,6 +83,13 @@ class UserService
         return $this->user->update($request, $this->find($id));
     }
 
+    public function updatePassword($request, $id)
+    {
+        $password = $this->hashPassword($request->password);
+
+        return $this->user->updatePassword($password, $this->find($id));
+    }
+
     public function createAdmin($request)
     {
         return $this->store($request);

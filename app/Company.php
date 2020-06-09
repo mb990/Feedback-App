@@ -27,6 +27,7 @@ class Company extends Model
         return $this->hasMany(User::class);
     }
 
+    // without admin
     public function users()
     {
         $users = $this->members()->where('company_id', $this->id)
