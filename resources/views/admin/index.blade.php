@@ -19,14 +19,78 @@
 
 @section('content')
 
-    @forelse(auth()->user()->company->users() as $user)
+    <div class="admin">
+        <h2>Admin panel</h2>
 
-        <p>{{$user->first_name}} {{$user->last_name}}</p>
+        <div id="tabs">
+            <ul class="inline-flex tabs">
+                <li class="tab"><a href="#tabs-1">Users</a></li>
+                <li class="tab"><a href="#tabs-2">Feedback Time</a></li>
+            </ul>
+            <div id="tabs-1" class="tab-view">
+                <input type="text" name="first_name" placeholder="User first name">
+                <input type="text" name="last_name" placeholder="User last name">
+                <input type="email" name="email" placeholder="User e-mail">
+                <input type="password" name="password" placeholder="User password">
+                <input type="password" name="password_confirmation" placeholder="Confirm password">
+                <select>
+                    @forelse($positions as $position)
 
-    @empty
+                        <option value="{{$position->id}}">
+                            {{$position->name}}
+                        </option>
 
-        no users.
+                    @empty
 
-    @endforelse
+                        <option disabled>No positions</option>
+
+                    @endforelse
+                </select>
+                <button class="admin-btn">Add user</button>
+
+                <table>
+
+                    @forelse(auth()->user()->company->users() as $user)
+
+                        <tr>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Position</th>
+                        </tr>
+                        <tr>
+                            <td>{{$user->first_name}} {{$user->last_name}}</td>
+                            <td>{{$user->company->name}}</td>
+                            <td>{{$user->profile->jobTitle->name}}</td>
+                        </tr>
+                </table>
+
+                @empty
+
+                    no users.
+
+                @endforelse
+
+            </div>
+
+            <div id="tabs-2" class="tab-view">
+                <label for="feedback-time">Change feedback time</label>
+                <select name="feedback_time" id="feedback-time">
+                    <option value="2649600‬">1 month</option>
+                    <option value="7948800">3 months</option>
+                    <option value="15897600">6 months</option>
+                    <option value="31795200‬">12 months</option>
+                </select>
+                <button class="admin-btn">Submit</button>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
 
 @endsection

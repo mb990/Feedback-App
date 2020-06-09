@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCompanyRequest;
 use App\Http\Requests\EditCompanyRequest;
 use App\Http\Requests\SuperAdminRequest;
 use App\Services\CompanyService;
@@ -24,6 +25,13 @@ class CompanyController extends Controller
         $companies = $this->companyService->all();
 
         return response()->json(['companies' => $companies]);
+    }
+
+    public function store(CreateCompanyRequest $request)
+    {
+        $company = $this->companyService->store($request);
+
+        return response()->json(['company' => $company, 'success' => 'Good job, fella. You successfully stored a new company']);
     }
 
     public function edit(SuperAdminRequest $request, $id)

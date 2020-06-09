@@ -35,7 +35,7 @@ Route::get('/superadmin/admins', 'SuperAdmin\AdminController@index')->name('supe
 Route::get('/superadmin/skills', 'SuperAdmin\SkillController@index')->name('superadmin.skills');
 Route::get('/admin/{id}', 'SuperAdmin\SuperAdminController@show')->name('superadmin.admin');
 
-Route::post('/superadmin/companies', 'CompanyController@store')->name('company.store');
+Route::post('/superadmin/companies', 'SuperAdmin\CompanyController@store')->name('company.store');
 Route::get('/superadmin/companies/{id}/edit', 'SuperAdmin\CompanyController@edit')->name('company.edit');
 Route::put('/superadmin/companies/{id}/update', 'SuperAdmin\CompanyController@update')->name('company.update');
 Route::delete('/superadmin/companies/{id}/delete', 'SuperAdmin\CompanyController@destroy')->name('company.delete');

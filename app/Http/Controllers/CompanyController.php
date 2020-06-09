@@ -25,16 +25,4 @@ class CompanyController extends Controller
 
         return response()->json(['company' => $company]);
     }
-
-    public function store(CreateCompanyRequest $request)
-    {
-        $this->companyService->store($request);
-
-        return response()->json(['request' => $request, 'success' => 'Good job, fella. You successfully stored a new company']);
-    }
-
-//    public function update(Admi)
-//    {
-//
-//    }
 }
