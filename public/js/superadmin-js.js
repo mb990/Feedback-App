@@ -38,17 +38,29 @@ $(document).ready(function () {
                     $.get('/superadmin/admins/'+id+'/update', function(data){
                         $('#first_name').val(data.admin.first_name)
                         $('#last_name').val(data.admin.last_name)
-                        $('#email').val(data.admin.e-mail)
-                        $('#password').val(data.admin.password)
-
+                        $('#admin-email').val(data.admin.email)
                     }
                     )
+                    $('#hidden_id').val(id)
+
                     $(".edit-modal").show();
                 }
             }
         )
     }
-
+$('.js-edit-admin-btn').click(updateAdmin)
+function updateAdmin(){
+    id = $('#hidden_id').val()
+    first_name = $('#first_name').val()
+    $.ajax(
+        {
+            url: "/superadmin/admins/" + id + "/update",
+            type: 'PUT',
+            data: {
+                first_name: first_name
+            }
+    }).done(alert(first_name))
+}
     getAdmins();
 
     function getSkills(){

@@ -98,7 +98,7 @@
         <br>
         <span>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
+            <input id="admin-email" name="email" type="email" required>
         </span>
         <br>
         <span>
@@ -111,8 +111,8 @@
             <input name="password_confirmation" id="password-confirm" type="password" required>
         </span>
         <br>
-        <button type="button">Edit</button>
         <input type="hidden" name="hidden_id" id="hidden_id">
+        <button type="button" class="js-edit-admin-btn">Edit</button>
     </div>
 </div>
 
