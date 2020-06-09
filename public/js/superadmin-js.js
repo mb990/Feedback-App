@@ -1,27 +1,4 @@
 $(document).ready(function () {
-    function getCompany(){
-        $.get(
-            '/superadmin/companies', function (data) {
-                let output = [];
-                data.companies.forEach(function (e) {
-                    output += '<p style="display:flex">' + e.name +
-                    (e.active === 1 ? '<span title="active company"class="dot"></span>' : '<span title="Inactive company" class="dot-red"></span>') + '<button data-id="'+ e.id +
-                    '" class="delete-company super-admin-btn" name="delete-company">DEL</button>'+
-                    '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
-                    '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
-                    '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
-                    '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
-                    '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
-                        (e.active === 1 ? "checked" : "")
-                        + ">"+'</span></p>';
-                })
-                $('.js-companies').append(output);
-
-            }
-        )
-    }
-    getCompany();
-
     function getAdmins(){
         $.get(
             '/superadmin/admins', function (data) {
@@ -64,16 +41,18 @@ function updateAdmin(){
                 last_name: last_name,
                 email: email
             }
-    }).done(
-        $('.js-admins').empty().append(getAdmins()),$(".edit-modal").hide());
-}
+    }).done(function(data){
+        $(".js-admins").empty().append(getAdmins),
+        $(".edit-modal").hide()
+    })
+    }
 
     function getSkills(){
         $.get(
             '/superadmin/skills', function (data) {
                 let output = [];
                 data.skills.forEach(function (e) {
-                    output += '<p style="display:flex">' + e.name +
+                    output += '<p style="display:flex"><span style="margin:auto 0; margin-right:10px">'+ e.name + '</span>' +
                         '<button data-id="'+ e.id +
                         '" class="delete-skill super-admin-btn" name="delete-skill">DEL</button>'+
                         '<i style="margin:auto 0" class="add fas fa-plus-circle js-skill-show" data-id="'+ e.id +'"></i>'+
@@ -86,20 +65,7 @@ function updateAdmin(){
         )
     }
     getSkills();
-        //ADD COMPANY
-        $('.js-add-company-btn').click(addCompany);
-        function addCompany(){
-            var name = $('.js-company').val()
-            $.post('/superadmin/companies',
-            {
-                name: name
-            },
-        ).done(function(data){
-            $('.js-companies').empty().append(getCompany);
-            $('#company-id').append('<option value="'+ data.company.id +'">'+ name +'</option>')
-            $('.js-company').val("");
-        })
-        }
+
         //ADD ADMIN
         $('.js-add-admin-btn').click(addAdmin);
         function addAdmin(){
@@ -137,51 +103,8 @@ function updateAdmin(){
         })
         }
 
-        $(document).on ('click', '.delete-company', function () {
-            let id = $(this).data('id');
-            $.ajax(
-                {
-                    url: "/superadmin/companies/" + id + "/delete",
-                    type: 'DELETE',
-                    data: {
-                        id: id
-                    },
-            }).done(function (data) {
-                $('.js-companies').empty().append(getCompany);
-                $("#company-id option[value='"+id+"']").remove();
-            })
-        });
-        $(document).on ('click', '.edit-company', function () {
-            let id = $(this).data('id');
-            let active = '';
-            let name = $('.js-edit-input'+id).val();
-            if (document.getElementById('active-' + id).checked) {
-                active = 1;
-            }
-            else {
-                active = 0;
-            }
-            $.ajax(
-                {
-                    url: "/superadmin/companies/" + id + "/update",
-                    type: 'PUT',
-                    data: {
-                        name: name,
-                        active: active
-                    }
-            }).done(function (data) {
-                $('.js-companies').empty().append(getCompany);
-            });
-            // $.ajax({
-            //     type: "GET",
-            //     url: "/superadmin/companies/" + id + "/edit",
-            //     data: "data",
-            //     dataType: "dataType",
-            //     success: function (response) {
 
-            //     }
-            // });
-        })
+
 
     $(document).on ('click', '.delete-skill', function () {
         let id = $(this).data('id');
@@ -237,17 +160,12 @@ function updateAdmin(){
         field.toggle()
         $(this).toggleClass('fa-plus-circle fa-minus-circle')
     });
-    $(document).on ('click', '.js-job-show', function(){
-        let id = $(this).data('id');
-        let field = $('.js-job-hide'+id)
-        field.toggle()
-        $(this).toggleClass('fa-plus-circle fa-minus-circle')
-    });
+
     $('#tabs ul li a').click(function(){
         $('#tabs ul li a').removeClass('current-tab');
         $(this).addClass('current-tab');
     });
-
+    //Search company
     $(document).ready(function(){
         $(".search-company").on("keyup", function() {
             var value = $(this).val().toLowerCase();
@@ -256,6 +174,7 @@ function updateAdmin(){
             });
         });
     });
+
     $(".js-superadmin-modal-btn").click(getModal);
     function getModal(){
         $(".superadmin-modal").toggle()

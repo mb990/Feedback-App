@@ -68,4 +68,20 @@ $(document).ready(function () {
             $('.js-positions').empty().append(getJobTitles);
         })
     })
+
+        //Search positions
+        $(".search-position").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".js-positions p").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        //Update job
+        $(document).on ('click', '.js-job-show', function(){
+            let id = $(this).data('id');
+            let field = $('.js-job-hide'+id)
+            field.toggle()
+            $(this).toggleClass('fa-plus-circle fa-minus-circle')
+        });
 })
