@@ -59,7 +59,11 @@ class UserRepository
 
     public function update($request, $user)
     {
-        return $user->update($request->all());
+        return $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email
+        ]);
     }
 
     public function delete($user)

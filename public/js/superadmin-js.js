@@ -16,7 +16,7 @@ $(document).ready(function () {
                         + ">"+'</span></p>';
                 })
                 $('.js-companies').append(output);
-                
+
             }
         )
     }
@@ -50,14 +50,18 @@ $(document).ready(function () {
     }
 $('.js-edit-admin-btn').click(updateAdmin)
 function updateAdmin(){
-    id = $('#hidden_id').val()
-    first_name = $('#first_name').val()
+    id = $('#hidden_id').val();
+    first_name = $('#first_name').val();
+    last_name = $('#last_name').val();
+    email = $('#admin-email').val();
     $.ajax(
         {
             url: "/superadmin/admins/" + id + "/update",
             type: 'PUT',
             data: {
-                first_name: first_name
+                first_name: first_name,
+                last_name: last_name,
+                email: email
             }
     }).done(alert(first_name))
 }
