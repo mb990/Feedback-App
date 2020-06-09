@@ -66,11 +66,10 @@
                 <div id="tabs-3" class="tab-view">
                     <span>
                         Skills:<br>
-                        <input class="js-skill"><button class="super-admin-btn js-add-skill-btn">ADD</button>
+                        <input class="js-skill" placeholder="Add new skill"><button class="super-admin-btn js-add-skill-btn">ADD</button>
                         <div class="js-skills"></div>
                     </span>
                 </div>
-
                 <div id="tabs-4" class="tab-view">
                     <span>
                         Job Titles:<br>
@@ -86,6 +85,7 @@
 <div class="edit-modal">
     <div class="edit-title">EDIT ADMIN<button class="close-btn edit-btn js-edit-close"><i class="fas fa-times"></i></button></div>
     <div class="edit-form">
+        <br>
         <span>
             <label for="first_name">First name</label>
             <input id="first_name" name="first_name" type="text">
@@ -101,19 +101,26 @@
             <input id="admin-email" name="email" type="email" required>
         </span>
         <br>
-        <span>
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required>
-        </span>
-        <br>
-        <span>
-            <label for="password">Conform password</label>
-            <input name="password_confirmation" id="password-confirm" type="password" required>
-        </span>
-        <br>
+        <div style="background-color: rgb(139, 139, 139);">
+            <span>
+                <label for="password">Password</label>
+                <input class="js-admin" type="password" name="password" id="password1" placeholder="New password" required>
+            </span>
+            <br>        
+            <span>
+                <label for="password_confirmation">Password Confirm</label>
+                <input class="js-admin" type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
+            </span>
+            <br>
+            <button type="button" class="super-admin-btn js-update-password">Update password</button>
+        </div>
         <input type="hidden" name="hidden_id" id="hidden_id">
-        <button type="button" class="js-edit-admin-btn">Edit</button>
+        <div style="width:30vw; text-align:center;">
+            <button style="padding: 5px;" type="button" class="super-admin-btn js-edit-admin-btn">Edit</button>
+        </div>
     </div>
+
+
 </div>
 
 @endsection

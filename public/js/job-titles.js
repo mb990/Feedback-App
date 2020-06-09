@@ -31,7 +31,6 @@ $(document).ready(function () {
                 name: $('[name="position-name"]').val()
             })
             .done(function(data){
-                alert(data.success);
                 $('.js-positions').empty().append(getJobTitles);
                 $('.js-position').val("");
         })
@@ -50,7 +49,6 @@ $(document).ready(function () {
                     name: name,
                 }
             }).done(function (data) {
-            alert(data.success);
             $('.js-positions').empty().append(getJobTitles);
         });
     })
@@ -67,7 +65,6 @@ $(document).ready(function () {
                     id: id
                 },
             }).done(function (data) {
-            alert(data.success);
             $('.js-positions').empty().append(getJobTitles);
         })
     })

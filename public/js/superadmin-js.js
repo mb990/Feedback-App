@@ -42,12 +42,13 @@ $(document).ready(function () {
                     }
                     )
                     $('#hidden_id').val(id)
-
                     $(".edit-modal").show();
                 }
             }
         )
     }
+    getAdmins();
+
 $('.js-edit-admin-btn').click(updateAdmin)
 function updateAdmin(){
     id = $('#hidden_id').val();
@@ -63,9 +64,9 @@ function updateAdmin(){
                 last_name: last_name,
                 email: email
             }
-    }).done(alert(first_name))
+    }).done(
+        $('.js-admins').empty().append(getAdmins()),$(".edit-modal").hide());
 }
-    getAdmins();
 
     function getSkills(){
         $.get(
@@ -95,6 +96,7 @@ function updateAdmin(){
             },
         ).done(function(data){
             $('.js-companies').empty().append(getCompany);
+            $('#company-id').append('<option value="'+ data.company.id +'">'+ name +'</option>')
             $('.js-company').val("");
         })
         }
@@ -122,16 +124,15 @@ function updateAdmin(){
             $(".superadmin-modal > input").val("")
         })
         }
-
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
             var name = $('.js-skill').val()
-
             $.post('/superadmin/skills',
             {
                 name: name
             },
         ).done(function(data){
+            $('.js-skill').val('')
             $('.js-skills').empty().append(getSkills);
         })
         }
@@ -147,6 +148,7 @@ function updateAdmin(){
                     },
             }).done(function (data) {
                 $('.js-companies').empty().append(getCompany);
+                $("#company-id option[value='"+id+"']").remove();
             })
         });
         $(document).on ('click', '.edit-company', function () {
@@ -168,7 +170,6 @@ function updateAdmin(){
                         active: active
                     }
             }).done(function (data) {
-                alert('updated');
                 $('.js-companies').empty().append(getCompany);
             });
             // $.ajax({
@@ -192,7 +193,6 @@ function updateAdmin(){
                     id: id
                 },
             }).done(function (data) {
-                alert('obrisano');
             $('.js-skills').empty().append(getSkills);
         })
     })
@@ -211,7 +211,6 @@ function updateAdmin(){
             $('.js-skills').empty().append(getSkills);
         })
     })
-
     $(document).on ('click', '.delete-admin', function () {
         let id = $(this).data('id');
         $.ajax(
@@ -222,7 +221,6 @@ function updateAdmin(){
                     id: id
                 },
             }).done(function (data) {
-            alert(data.success);
             $('.js-admins').empty().append(getAdmins);
         })
     })
@@ -274,5 +272,27 @@ function updateAdmin(){
     function closeEdit(){
         $('.edit-modal').hide();
     }
+
+$('.js-update-password').click(updatePassword);
+function updatePassword(){
+    id = $('#hidden_id').val();
+    password = $('#password1').val();
+    password_confirmation = $('#password-confirm1').val();
+    alert(password)
+    $.ajax(            {
+        url: "superadmin/admins/"+id+"/update/password",
+        type: 'PUT',
+        data: {
+            password: password,
+            password_confirmation: password_confirmation
+        },
+    }).done(
+        alert('updated'),
+        $('#password').val(''),
+        $('#password-confirm').val('')
+        );
+}
+
+
 
 })
