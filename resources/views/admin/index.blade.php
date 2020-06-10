@@ -66,14 +66,19 @@
 
                 <button class="admin-btn">Add user</button>
 
-                <table class="js-admins-list">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Options</th>
-                </tr>
+                <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="position: sticky;top: 0;background-color: #22282d;">First Name</th>
+                        <th style="position: sticky;top: 0;background-color: #22282d;">Last Name</th>
+                        <th style="position: sticky;top: 0;background-color: #22282d;">Email</th>
+                        <th style="position: sticky;top: 0;background-color: #22282d;">Status</th>
+                        <th style="position: sticky;top: 0;background-color: #22282d;">Options</th>
+                    </tr>
+                </thead>
+                <tbody class="js-admins-list">
+
+                </tbody>
             </div>
 
             <div id="tabs-2" class="tab-view" style="margin-left: 0px; width: 10vw; min-width: 100px;">
@@ -86,7 +91,7 @@
                     @endforeach
 
                 </select>
-                <button data-id="{{auth()->user()->company->id}}" class="admin-btn-feedback-duration">Submit</button>
+                <button data-id="{{auth()->user()->company->id}}" class="admin-btn admin-btn-feedback-duration">Submit</button>
             </div>
 
         </div>

@@ -476,6 +476,12 @@
   margin-top: 100px;
 }
 
+.admin-table {
+  height: 25vh;
+  overflow: auto;
+  display: block;
+}
+
 .comments {
   display: none;
   color: #7a7e81;
