@@ -24,7 +24,7 @@
 
         <div id="tabs">
             <ul class="inline-flex tabs">
-                <li class="tab"><a href="#tabs-1">Users</a></li>
+                <li class="tab"><a class="admin-tab current-tab"href="#tabs-1">Users</a></li>
             </ul>
             <div id="tabs-1" class="tab-view">
                 <input type="text" name="first-name" id="first-name" placeholder="User first name">
@@ -50,15 +50,21 @@
 
                 <button class="admin-btn">Add user</button>
 
-                <table>
-
+                <table class="js-admins-list">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Options</th>
+                </tr>
                     @forelse(auth()->user()->company->users() as $user)
 
-                        <tr>
+                        <!-- <tr>
                             <th>Name</th>
                             <th>Team</th>
                             <th>Position</th>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>{{$user->first_name}} {{$user->last_name}}</td>
                             <td>{{$user->company->name}}</td>
@@ -74,7 +80,7 @@
 
             </div>
 
-            <div id="tabs-2" class="tab-view">
+            <div id="tabs-2" class="tab-view" style="margin-left: 0px; width: 10vw; min-width: 100px;">
                 <label for="feedback-time">Change feedback time</label>
                 <select name="feedback_time" id="feedback-time">
                     @foreach($durations as $duration)
@@ -93,3 +99,10 @@
 
 @endsection
 
+@section('script')
+<script>
+    $( function() {
+        $( "#tabs" ).tabs();
+    } );
+</script>
+@endsection

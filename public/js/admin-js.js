@@ -5,9 +5,11 @@ $(document).ready(function () {
                 let output = [];
                 data.users.forEach(function (e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
-                    output += '';
+                    output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+ 
+                    e.email+'</td><td>'+e.active+'</td><td><button data-id='+e.id+'>Delete</button></td>'+
+                    '<td><button data-id='+e.id+'>Edit</button></td></tr>';
                 })
-                // $('.js-users').append(output);
+                $('.js-admins-list').append(output);
             }
         )
     }
