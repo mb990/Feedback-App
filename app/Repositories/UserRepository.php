@@ -64,11 +64,18 @@ class UserRepository
 
     public function update($request, $user)
     {
-        return $user->update([
+        $user->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email
         ]);
+
+        $user->profile()->update([
+            'job_title_id' => $request->job_title_id,
+            'picture' => $request->picture
+        ]);
+
+        return $user;
     }
 
     public function updatePassword($password, $user)

@@ -58,6 +58,8 @@
                     <th>Status</th>
                     <th>Options</th>
                 </tr>
+
+{{--                    @dd(auth()->user()->company->users())--}}
                     @forelse(auth()->user()->company->users() as $user)
 
                         <!-- <tr>
@@ -65,11 +67,11 @@
                             <th>Team</th>
                             <th>Position</th>
                         </tr> -->
-                        <tr>
-                            <td>{{$user->first_name}} {{$user->last_name}}</td>
-                            <td>{{$user->company->name}}</td>
-                            <td>{{$user->profile->jobTitle->name}}</td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <td>{{$user->first_name}} {{$user->last_name}}</td>--}}
+{{--                            <td>{{$user->company->name}}</td>--}}
+{{--                            <td>{{$user->profile->jobTitle->name}}</td>--}}
+{{--                        </tr>--}}
                 </table>
 
                 @empty

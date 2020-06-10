@@ -2,10 +2,12 @@ $(document).ready(function () {
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
+                console.log(data.users);
                 let output = [];
-                data.users.forEach(function (e) {
+
+                $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
-                    output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+ 
+                    output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                     e.email+'</td><td>'+e.active+'</td><td><button data-id='+e.id+'>Delete</button></td>'+
                     '<td><button data-id='+e.id+'>Edit</button></td></tr>';
                 })
