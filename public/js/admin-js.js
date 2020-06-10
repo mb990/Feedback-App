@@ -8,8 +8,8 @@ $(document).ready(function () {
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+e.active+'</td><td><button data-id='+e.id+'>Delete</button></td>'+
-                    '<td><button data-id='+e.id+'>Edit</button></td></tr>';
+                    e.email+'</td><td>'+e.active+'</td><td><button id="delete-user" data-id='+e.id+'>Delete</button></td>'+
+                    '<td><button id="edit-user" data-id='+e.id+'>Edit</button></td></tr>';
                 })
                 $('.js-admins-list').append(output);
             }
@@ -46,4 +46,21 @@ $(document).ready(function () {
                 alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
             })
     }
+
+    // DELETE USER
+
+    $(document).on ('click', '#delete-user', function () {
+        let id = $(this).data('id');
+        $.ajax(
+            {
+                url: "/admin/users/" + id,
+                type: 'DELETE',
+                data: {
+                    id: id
+                },
+            }).done(function (data) {
+                alert(data.success);
+            $('.js-admins-list').empty().append(getUsers);
+        })
+    })
 })

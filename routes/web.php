@@ -61,5 +61,7 @@ Route::get('/admin', 'Admin\HomeController@index');
 
 Route::get('/admin/users', 'Admin\UserController@index');
 Route::post('/admin/users', 'Admin\UserController@store')->name('user.store');
+Route::put('/admin/users/{id}', 'Admin\UserController@update')->name('user.update');
+Route::delete('/admin/users/{id}', 'Admin\UserController@destroy')->name('user.delete');
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');

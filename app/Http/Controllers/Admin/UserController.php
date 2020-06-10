@@ -33,4 +33,11 @@ class UserController extends Controller
 
         return response()->json(['user' => $user, 'success' => 'User is saved and profile is created.']);
     }
+
+    public function destroy(AdminRequest $request, $id)
+    {
+        $this->userService->delete($id);
+
+        return response()->json(['success' => 'User is deleted']);
+    }
 }
