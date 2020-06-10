@@ -92,6 +92,6 @@ class UserService
 
     public function createAdmin($request)
     {
-        return $this->store($request);
+        return $this->store($request)->assignRole('admin');
     }
 }

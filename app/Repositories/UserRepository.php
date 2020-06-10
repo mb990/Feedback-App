@@ -44,7 +44,7 @@ class UserRepository
 
     public function store($request, $password)
     {
-        return $this->user->create([
+       $user = $this->user->create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -52,9 +52,14 @@ class UserRepository
             'company_id' => $request->company_id,
 //            'email_verified_at' => now(),
 //            'remember_token' => Str::random(10)
+       ]);
 
+       $user->profile()->create([
+            'job_title_id' => $request->job_title_id,
+            'picture' => $request->picture
+       ]);
 
-        ])->assignRole('admin');
+            return $user;
     }
 
     public function update($request, $user)

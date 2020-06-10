@@ -25,15 +25,15 @@
         <div id="tabs">
             <ul class="inline-flex tabs">
                 <li class="tab"><a href="#tabs-1">Users</a></li>
-                <li class="tab"><a href="#tabs-2">Feedback Time</a></li>
             </ul>
             <div id="tabs-1" class="tab-view">
-                <input type="text" name="first_name" placeholder="User first name">
-                <input type="text" name="last_name" placeholder="User last name">
-                <input type="email" name="email" placeholder="User e-mail">
-                <input type="password" name="password" placeholder="User password">
-                <input type="password" name="password_confirmation" placeholder="Confirm password">
-                <select>
+                <input type="text" name="first-name" id="first-name" placeholder="User first name">
+                <input type="text" name="last-name" id="last-name" placeholder="User last name">
+                <input type="email" name="email" id="email" placeholder="User e-mail">
+                <input type="hidden" name="company-id" id="company-id" value="{{auth()->user()->company_id}}">
+                <input type="password" name="password" id="password" placeholder="User password">
+                <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
+                <select name="job-title" id="job-title">
                     @forelse($positions as $position)
 
                         <option value="{{$position->id}}">
@@ -92,3 +92,4 @@
     </div>
 
 @endsection
+

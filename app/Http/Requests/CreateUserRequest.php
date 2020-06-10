@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAdminRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CreateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        if (\Auth::check() && auth()->user()->hasRole('superadmin')) {
+        if (\Auth::check() && auth()->user()->hasRole('admin')) {
 
             return true;
         }
