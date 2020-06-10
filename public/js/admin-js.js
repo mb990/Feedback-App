@@ -2,14 +2,27 @@ $(document).ready(function () {
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
-                console.log(data.users);
+                console.log(data.positions[0].name);
                 let output = [];
 
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                     e.email+'</td><td>'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+'</td><td><button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button>'+' '+
-                    '<button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button></td></tr>';
+                    '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
+                    '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
+                    '<input type="text" id="edit-user-last-name '+ e.id +'" name="edit-user-last-name" value="'+ e.last_name +'">' +
+                    '<input type="text" id="edit-user-email '+ e.id +'" name="edit-user-email" value="'+ e.email +'">' +
+                    '<select>'
+                        data.positions.forEach(function (e) {
+                            + '<option value="'+ e.id +'">'+ e.name + '</option>'
+                        })
+                    '</select>' +
+                    '<button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>' +
+                    '<input type="hidden" id="hidden_pass_id" name="id" value="'+ e.id +'">' +
+                    '<input type="password" id="edit-user-password '+ e.id +'" name="password" placeholder="update password">' +
+                    '<input type="password" id="password-confirm '+ e.id +'" name="password_confirmation" placeholder="confirm password">' +
+                    '<button id="edit-user-password" class="admin-btn js-edit-user-password" data-id='+e.id+'>Update password</button></td></tr>';
                 })
                 $('.js-admins-list').append(output);
                 $(".js-edit-user").click(editUser)
@@ -51,6 +64,52 @@ $(document).ready(function () {
             })
     }
 
+    // EDIT USER
+
+    function editUser() {
+        id = $(this).attr('id');
+        $.get('/admin/users/'+id, function(data){
+            // $('#first_name').val(data.user.first_name);
+            // $('#last_name').val(data.user.last_name);
+            // $('#admin-email').val(data.user.email);
+    })}
+
+    // UPDATE USER
+
+    $('.js-edit-user').click(updateUser)
+    function updateUser(){
+        id = $('#hidden_user_id').val();
+        first_name = $('#edit-user-first_name').val();
+        last_name = $('#edit-user-last_name').val();
+        email = $('#edit-user-email').val();
+        $.ajax(
+            {
+                url: "/admin/users/" + id,
+                type: 'PUT',
+                data: {
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email
+                }
+            })
+
+    // UPDATE USER PASSWORD
+
+    $('.js-edit-user-password').click(updatePassword);
+    function updatePassword(){
+        id = $('#hidden_pass_id').val();
+        password = $('#password' + id).val();
+        password_confirmation = $('#password-confirm' + id).val();
+        alert(password)
+        $.ajax(            {
+            url: "superadmin/admins/"+id+"/update/password",
+            type: 'PUT',
+            data: {
+                password: password,
+                password_confirmation: password_confirmation
+            },
+        })
+
     // DELETE USER
 
     $(document).on ('click', '#delete-user', function () {
@@ -67,8 +126,6 @@ $(document).ready(function () {
             $('.js-admins-list').empty().append(getUsers);
         })
     })
-
-
 
     // UPDATE COMPANY FEEDBACK DURATION
 
@@ -95,4 +152,4 @@ $(document).ready(function () {
         $(".js-user-modal").hide()
 
     }
-})
+}}})
