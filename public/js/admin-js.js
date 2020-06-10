@@ -63,4 +63,23 @@ $(document).ready(function () {
             $('.js-admins-list').empty().append(getUsers);
         })
     })
+
+
+
+    // UPDATE COMPANY FEEDBACK DURATION
+
+    $(document).on ('click', '.admin-btn-feedback-duration', function () {
+        let id = $(this).data('id');
+        let feedback_duration_id = $('#feedback-time').val();
+        $.ajax(
+            {
+                url: "/admin/companies/" + id,
+                type: 'PUT',
+                data: {
+                    feedback_duration_id: feedback_duration_id,
+                }
+            }).done(function (data) {
+                alert(data.success);
+        });
+    })
 })

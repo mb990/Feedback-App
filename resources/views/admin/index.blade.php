@@ -92,7 +92,7 @@
                     @endforeach
 
                 </select>
-                <button class="admin-btn">Submit</button>
+                <button data-id="{{auth()->user()->company->id}}" class="admin-btn-feedback-duration">Submit</button>
             </div>
 
         </div>

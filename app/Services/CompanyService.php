@@ -38,6 +38,11 @@ class CompanyService
     {
         $company = $this->company->find($id);
 
+        if ($request->feedback_duration_id) {
+
+            return $this->company->updateFeedbackDurationTime($company, $request);
+        }
+
         return $this->company->update($company, $request);
     }
 

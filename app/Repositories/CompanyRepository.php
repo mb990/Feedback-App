@@ -30,7 +30,6 @@ class CompanyRepository
 
     public function store($request)
     {
-
         return $this->company->create($request->all());
     }
 
@@ -39,6 +38,13 @@ class CompanyRepository
         $company->slug = null;
 
         return $company->update($request->all());
+    }
+
+    public function updateFeedbackDurationTime($company, $request)
+    {
+        return $company->update([
+            'feedback_duration_id' => intval($request->feedback_duration_id)
+        ]);
     }
 
     public function delete($company)

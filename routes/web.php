@@ -64,4 +64,6 @@ Route::post('/admin/users', 'Admin\UserController@store')->name('user.store');
 Route::put('/admin/users/{id}', 'Admin\UserController@update')->name('user.update');
 Route::delete('/admin/users/{id}', 'Admin\UserController@destroy')->name('user.delete');
 
+Route::put('/admin/companies/{id}', 'Admin\CompanyController@update')->name('admin.company.update');
+
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
