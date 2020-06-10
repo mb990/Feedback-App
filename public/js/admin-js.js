@@ -8,10 +8,14 @@ $(document).ready(function () {
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+e.active+'</td><td><button id="delete-user" data-id='+e.id+'>Delete</button></td>'+
-                    '<td><button id="edit-user" data-id='+e.id+'>Edit</button></td></tr>';
+                    e.email+'</td><td>'+e.active+'</td><td><button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td>'+
+                    '<td><button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button></td></tr>';
                 })
                 $('.js-admins-list').append(output);
+                $(".js-edit-user").click(editUser)
+                function editUser(){
+                    $(".js-user-modal").show()
+                }
             }
         )
     }
@@ -82,4 +86,13 @@ $(document).ready(function () {
                 alert(data.success);
         });
     })
+    // $(".js-edit-user").click(editUser)
+    // function editUser(){
+    //     $(".js-user-modal").show()
+    // }
+    $('.js-edit-user-close').click(closeEdit)
+    function closeEdit(){
+        $(".js-user-modal").hide()
+
+    }
 })

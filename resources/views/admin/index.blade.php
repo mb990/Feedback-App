@@ -20,11 +20,27 @@
 @section('content')
 
     <div class="admin">
+
+        <div class="edit-user-modal js-user-modal">
+            <div class="edit-title">EDIT USER<button class="close-btn edit-btn js-edit-user-close"><i class="fas fa-times"></i></button></div>
+            <div class="edit-form-admin">
+                <label>First name</label>
+                <input type="text">
+                <label>Last name</label>
+                <input type="text">
+                <label>Email</label>
+                <input type="text">
+                <div>
+                    <button class="admin-btn js-update-user">Update</button>
+                </div>
+            </div>
+        </div>
+
         <h2>Admin panel</h2>
 
         <div id="tabs">
             <ul class="inline-flex tabs">
-                <li class="tab"><a class="admin-tab current-tab"href="#tabs-1">Users</a></li>
+                <li class="tab"><a class="admin-tab current-tab">Users</a></li>
             </ul>
             <div id="tabs-1" class="tab-view">
                 <input type="text" name="first-name" id="first-name" placeholder="User first name">
@@ -58,28 +74,6 @@
                     <th>Status</th>
                     <th>Options</th>
                 </tr>
-
-{{--                    @dd(auth()->user()->company->users())--}}
-                    @forelse(auth()->user()->company->users() as $user)
-
-                        <!-- <tr>
-                            <th>Name</th>
-                            <th>Team</th>
-                            <th>Position</th>
-                        </tr> -->
-{{--                        <tr>--}}
-{{--                            <td>{{$user->first_name}} {{$user->last_name}}</td>--}}
-{{--                            <td>{{$user->company->name}}</td>--}}
-{{--                            <td>{{$user->profile->jobTitle->name}}</td>--}}
-{{--                        </tr>--}}
-                </table>
-
-                @empty
-
-                    no users.
-
-                @endforelse
-
             </div>
 
             <div id="tabs-2" class="tab-view" style="margin-left: 0px; width: 10vw; min-width: 100px;">
@@ -101,10 +95,4 @@
 
 @endsection
 
-@section('script')
-<script>
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
-</script>
-@endsection
+
