@@ -32,6 +32,7 @@ $(document).ready(function () {
                         $('.js-edit-fname').val(data.user.first_name)
                         $('.js-edit-lname').val(data.user.last_name)
                         $('.js-edit-mail').val(data.user.email)
+                        $('#update-job-title').val(data.user.profile.job_title_id)
                     }
                     )
                     $('#hidden_user_id').val(id)
@@ -164,4 +165,19 @@ $('.js-edit-user-close').click(closeEdit)
 function closeEdit(){
     $(".js-user-modal").hide()
 }
+$(".js-upload-img").on('click',(function(e){
+    e.preventDefault();
+    $.ajax({
+    url: "upload.php",
+    type: "POST",
+    data:  new FormData(this),
+    contentType: false,
+    cache: false,
+    processData:false,
+    success: function(data){
+    alert('Picture is uploaded')
+    },
+    error: function(){} 	        
+    });
+    }));
 })

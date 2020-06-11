@@ -28,16 +28,20 @@
         <div class="edit-user-modal js-user-modal">
             <div class="edit-title">EDIT USER<button class="close-btn edit-btn js-edit-user-close"><i class="fas fa-times"></i></button></div>
             <div class="edit-form-admin">
+                <div>
                 <label>First name</label>
-                <input class="js-edit-fname" type="text">
+                <input class="js-edit-fname" type="text" required>
+                <br>
                 <label>Last name</label>
-                <input class="js-edit-lname" type="text">
-                <label>Email</label>
-                <input class="js-edit-mail" type="email">
+                <input class="js-edit-lname" type="text" required>
+                <br>
+                <label>User email</label>
+                <input class="js-edit-mail" type="email" required>
+                <br>
                 <input type="hidden" name="hidden_user_id" id="hidden_user_id">
                 <label for="job-title">Positions:</label>
                 <span>
-                    <select name="job-title" id="update-job-title">
+                    <select name="job-title" id="update-job-title" required>
                         @forelse($positions as $position)
 
                             <option value="{{$position->id}}">
@@ -52,19 +56,28 @@
 
                     </select>
                 </span>
+            </div>
                 <br>
+                <div style="background-color: rgb(139, 139, 139);">
                 <label for="add-img">Add profile picture</label>
-                <input name="add-img" type='file' />
                 <br>
+                <input name="add-img" type='file' />
+                <span>
+                    <button class="admin-btn js-upload-img">Upload</button>
+                </span>
+                </div>
+                <br>
+                <div>
                 <label style="background-color: rgb(139, 139, 139);" for="user-password">Password</label>
                 <input type="password" name="user-password" id="password1" placeholder="New password" required>
-                <label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
+                <br><label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
                 <input type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
-                <div>
+                </div>
+                <div style="text-align: center;">
                     <button type="button" class="admin-btn js-update-password">Update password</button>
                 </div>
 
-                <div>
+                <div style="text-align: center;">
                     <button class="admin-btn js-update-user">Update</button>
                 </div>
             </div>
@@ -77,6 +90,10 @@
                 <li class="tab"><a class="admin-tab current-tab">Users</a></li>
             </ul>
             <div id="tabs-1" class="js-edit-form tab-view">
+                <div>
+                    <button class="admin-btn">New user</button>
+                </div>
+                <div class="admin-modal">
                 <input type="text" name="first-name" id="first-name" placeholder="User first name">
                 <input type="text" name="last-name" id="last-name" placeholder="User last name">
                 <input type="email" name="email" id="email" placeholder="User e-mail">
@@ -99,7 +116,7 @@
                 </select>
 
                 <button class="admin-btn">Add user</button>
-
+            </div>
                 <table class="admin-table">
                 <thead>
                     <tr>
