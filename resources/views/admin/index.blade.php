@@ -25,11 +25,40 @@
             <div class="edit-title">EDIT USER<button class="close-btn edit-btn js-edit-user-close"><i class="fas fa-times"></i></button></div>
             <div class="edit-form-admin">
                 <label>First name</label>
-                <input type="text">
+                <input class="js-edit-fname" type="text">
                 <label>Last name</label>
-                <input type="text">
+                <input class="js-edit-lname" type="text">
                 <label>Email</label>
-                <input type="text">
+                <input class="js-edit-mail" type="email">
+                <input type="hidden" name="hidden_user_id" id="hidden_user_id">
+                <label for="job-title">Positions:</label>
+                <span>
+                    <select name="job-title" id="update-job-title">
+                        @forelse($positions as $position)
+
+                            <option value="{{$position->id}}">
+                                {{$position->name}}
+                            </option>
+
+                        @empty
+
+                            <option disabled>No positions</option>
+
+                        @endforelse
+
+                    </select>
+                </span>
+                <br>
+                <br>
+
+                <label style="background-color: rgb(139, 139, 139);" for="user-password">Password</label>
+                <input type="password" name="user-password" id="password1" placeholder="New password" required>
+                <label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
+                <input type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
+                <div>
+                    <button type="button" class="admin-btn js-update-password">Update password</button>
+                </div>
+
                 <div>
                     <button class="admin-btn js-update-user">Update</button>
                 </div>

@@ -61,7 +61,7 @@ Route::get('/admin', 'Admin\HomeController@index');
 
 Route::get('/admin/users', 'Admin\UserController@index');
 Route::post('/admin/users', 'Admin\UserController@store')->name('user.store');
-Route::get('/admin/users{id}', 'Admin\UserController@edit')->name('user.edit');
+Route::get('/admin/users/{id}', 'Admin\UserController@edit')->name('user.edit');
 Route::put('/admin/users/{id}', 'Admin\UserController@update')->name('user.update');
 Route::put('/admin/users/{id}/update/password', 'Admin\UserController@updatePassword')->name('user.update-password');
 Route::delete('/admin/users/{id}', 'Admin\UserController@destroy')->name('user.delete');

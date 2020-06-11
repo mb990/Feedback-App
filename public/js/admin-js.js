@@ -8,31 +8,39 @@ $(document).ready(function () {
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+'</td><td><button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button>'+' '+
-                    '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
-                    '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
-                    '<input type="text" id="edit-user-last-name '+ e.id +'" name="edit-user-last-name" value="'+ e.last_name +'">' +
-                    '<input type="text" id="edit-user-email '+ e.id +'" name="edit-user-email" value="'+ e.email +'">' +
-                    '<select>'
-                        data.positions.forEach(function (e) {
-                            + '<option value="'+ e.id +'">'+ e.name + '</option>'
-                        })
-                    '</select>' +
-                    '<button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>' +
-                    '<input type="hidden" id="hidden_pass_id" name="id" value="'+ e.id +'">' +
-                    '<input type="password" id="edit-user-password '+ e.id +'" name="password" placeholder="update password">' +
-                    '<input type="password" id="password-confirm '+ e.id +'" name="password_confirmation" placeholder="confirm password">' +
-                    '<button id="edit-user-password" class="admin-btn js-edit-user-password" data-id='+e.id+'>Update password</button></td></tr>';
+                    e.email+'</td><td>'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
+                    '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
+                    // '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
+                    // '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
+                    // '<input type="text" id="edit-user-last-name '+ e.id +'" name="edit-user-last-name" value="'+ e.last_name +'">' +
+                    // '<input type="text" id="edit-user-email '+ e.id +'" name="edit-user-email" value="'+ e.email +'">' +
+                    // '<select>'
+                    //     data.positions.forEach(function (e) {
+                    //         + '<option value="'+ e.id +'">'+ e.name + '</option>'
+                    //     })
+                    // '</select>' +
+                    // '<button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>' +
+                    // '<input type="hidden" id="hidden_pass_id" name="id" value="'+ e.id +'">' +
+                    // '<input type="password" id="edit-user-password '+ e.id +'" name="password" placeholder="update password">' +
+                    // '<input type="password" id="password-confirm '+ e.id +'" name="password_confirmation" placeholder="confirm password">' +
+                    // '<button id="edit-user-password" class="admin-btn js-edit-user-password" data-id='+e.id+'>Update password</button></td></tr>';
                 })
                 $('.js-admins-list').append(output);
                 $(".js-edit-user").click(editUser)
                 function editUser(){
+                    id = $(this).attr('id')
+                    $.get('/admin/users/'+id, function(data){
+                        $('.js-edit-fname').val(data.user.first_name)
+                        $('.js-edit-lname').val(data.user.last_name)
+                        $('.js-edit-mail').val(data.user.email)
+                        $('#update-job-title').val(data.user.profile.job_title_id)
+                    }
+                    )
+                    $('#hidden_user_id').val(id)
                     $(".js-user-modal").show()
                 }
-            }
-        )
-    }
-    getUsers();
+
+
 
     // ADD USER
 
@@ -64,24 +72,35 @@ $(document).ready(function () {
             })
     }
 
+
+
+
+
+            }
+        )
+    }
+    getUsers();
+
+
+
     // EDIT USER
 
-    function editUser() {
-        id = $(this).attr('id');
-        $.get('/admin/users/'+id, function(data){
-            // $('#first_name').val(data.user.first_name);
-            // $('#last_name').val(data.user.last_name);
-            // $('#admin-email').val(data.user.email);
-    })}
+    // function editUser() {
+    //     id = $(this).attr('id');
+    //     $.get('/admin/users/'+id, function(data){
+    //         // $('#first_name').val(data.user.first_name);
+    //         // $('#last_name').val(data.user.last_name);
+    //         // $('#admin-email').val(data.user.email);
+    // })}
 
     // UPDATE USER
-
-    $('.js-edit-user').click(updateUser)
+    $('.js-update-user').click(updateUser)
     function updateUser(){
         id = $('#hidden_user_id').val();
-        first_name = $('#edit-user-first_name').val();
-        last_name = $('#edit-user-last_name').val();
-        email = $('#edit-user-email').val();
+        first_name = $('.js-edit-fname').val();
+        last_name = $('.js-edit-lname').val();
+        email = $('.js-edit-mail').val();
+        job_title_id = $('#update-job-title').val()
         $.ajax(
             {
                 url: "/admin/users/" + id,
@@ -89,27 +108,44 @@ $(document).ready(function () {
                 data: {
                     first_name: first_name,
                     last_name: last_name,
-                    email: email
+                    email: email,
+                    job_title_id: job_title_id
                 }
-            })
+            }).done(alert("User is updated"),
+            $(".js-user-modal").hide(),
+            $('.js-admins-list').empty().append(getUsers)
+            )
+
+
 
     // UPDATE USER PASSWORD
 
-    $('.js-edit-user-password').click(updatePassword);
-    function updatePassword(){
-        id = $('#hidden_pass_id').val();
-        password = $('#password' + id).val();
-        password_confirmation = $('#password-confirm' + id).val();
-        alert(password)
-        $.ajax(            {
-            url: "superadmin/admins/"+id+"/update/password",
-            type: 'PUT',
-            data: {
-                password: password,
-                password_confirmation: password_confirmation
-            },
-        })
+    // $('.js-edit-user-password').click(updatePassword);
+    // function updatePassword(){
+    //     id = $('#hidden_pass_id').val();
+    //     password = $('#password' + id).val();
+    //     password_confirmation = $('#password-confirm' + id).val();
+    //     alert(password)
+    //     $.ajax(            {
+    //         url: "superadmin/admins/"+id+"/update/password",
+    //         type: 'PUT',
+    //         data: {
+    //             password: password,
+    //             password_confirmation: password_confirmation
+    //         },
+    //     })
+    // }
 
+
+
+
+
+    // $(".js-edit-user").click(editUser)
+    // function editUser(){
+    //     $(".js-user-modal").show()
+    // }
+
+}
     // DELETE USER
 
     $(document).on ('click', '#delete-user', function () {
@@ -126,9 +162,7 @@ $(document).ready(function () {
             $('.js-admins-list').empty().append(getUsers);
         })
     })
-
     // UPDATE COMPANY FEEDBACK DURATION
-
     $(document).on ('click', '.admin-btn-feedback-duration', function () {
         let id = $(this).data('id');
         let feedback_duration_id = $('#feedback-time').val();
@@ -140,16 +174,11 @@ $(document).ready(function () {
                     feedback_duration_id: feedback_duration_id,
                 }
             }).done(function (data) {
-                alert(data.success);
+                alert('Feedback time is updated.')
         });
     })
-    // $(".js-edit-user").click(editUser)
-    // function editUser(){
-    //     $(".js-user-modal").show()
-    // }
-    $('.js-edit-user-close').click(closeEdit)
-    function closeEdit(){
-        $(".js-user-modal").hide()
-
-    }
-}}})
+$('.js-edit-user-close').click(closeEdit)
+function closeEdit(){
+    $(".js-user-modal").hide()
+}
+})
