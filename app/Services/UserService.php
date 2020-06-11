@@ -85,6 +85,13 @@ class UserService
 
     public function update($request, $id)
     {
+        if ($request->picture) {
+
+            $picture = $request->picture;
+
+            return $this->user->update($request, $this->find($id), $picture);
+        }
+
         return $this->user->update($request, $this->find($id));
     }
 

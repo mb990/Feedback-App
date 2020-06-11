@@ -12,6 +12,9 @@
                 </form>
             </div>
         </div>
+
+        @if(auth()->user()->active)
+
         <div class="search-area">
             <h4>YOUR TEAMMATES</h4>
             <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
@@ -29,10 +32,16 @@
                 @endforelse
             </ul>
         </div>
+        @endif
     </div>
 @endsection
 
 @section('content')
+
+    @if(!auth()->user()->active)
+        <h2>Your account is temporarily deactivated</h2>
+    @else
+
 @if(count(auth()->user()->activeFeedbacks()))
 <div data-userId="{{$user->id}}" class=" modal{{$user->id}}">
     <div class="single-feedback">
@@ -137,4 +146,6 @@ function getStars(){
     }
 
 </script>
+
+@endif
 @endsection

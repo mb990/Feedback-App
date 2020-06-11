@@ -49,7 +49,7 @@ class FeedbackRepository
 
     public function allActiveForUser($user)
     {
-        return $this->feedback->where('created_at', '>=', Carbon::now()->subSeconds($user->profile->company->feedback_time))
+        return $this->feedback->where('created_at', '>=', Carbon::now()->subSeconds($user->company->feedbackDuration->value))
             ->where('target_user_id', $user->id)
             ->get();
     }

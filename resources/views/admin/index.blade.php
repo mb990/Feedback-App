@@ -19,6 +19,10 @@
 
 @section('content')
 
+    @if(!auth()->user()->active)
+        <h2>Your account is temporarily deactivated</h2>
+    @else
+
     <div class="admin">
 
         <div class="edit-user-modal js-user-modal">
@@ -127,6 +131,8 @@
         </div>
 
     </div>
+
+@endif
 
 @endsection
 

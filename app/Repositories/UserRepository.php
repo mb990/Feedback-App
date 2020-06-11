@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserRepository
@@ -67,7 +68,7 @@ class UserRepository
             return $user;
     }
 
-    public function update($request, $user)
+    public function update($request, $user, $picture = null)
     {
         $user->update([
             'first_name' => $request->first_name,
@@ -77,8 +78,15 @@ class UserRepository
 
         $user->profile()->update([
             'job_title_id' => $request->job_title_id,
-//            'picture' => $request->picture
         ]);
+
+        if ($picture) {
+            $name = $user->id . '.' . $picture->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
+            $user->profile()->update([
+            'picture' => asset('storage/profile-pictures/' . $name)
+            ]);
+        }
 
         return $user;
     }

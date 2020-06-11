@@ -12,6 +12,9 @@
                 </form>
             </div>
         </div>
+
+        @if(auth()->user()->active)
+
         <div class="search-area">
             <h4>YOUR TEAMMATES</h4>
             <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
@@ -28,10 +31,17 @@
                 @endforelse
             </ul>
         </div>
+        @endif
     </div>
+
 @endsection
 
 @section('content')
+
+    @if(!auth()->user()->active)
+<h2>Your account is temporarily deactivated</h2>
+    @else
+
 <div class="container js-no-selected">
     <i class='far'>&#xf11a;</i>
     <div class="messages">
@@ -130,7 +140,7 @@
 
     @endforelse
 
-
+    @endif
 
 @endsection
 
@@ -207,7 +217,7 @@
                     $('.modal').hide();
                     $('.js-submit'+id1).hide();
                     $('.js'+id1).removeClass('hidden');
-                    
+
             $('.js-wrong'+id1).attr('disabled', true)
             $('.js-improve'+id1).attr('disabled', true)
             $('.js-rating'+id1).attr('disabled', true)
