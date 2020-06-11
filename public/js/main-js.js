@@ -85,23 +85,8 @@ $(document).ready(function(){
         $('.comments').slideToggle('500');
         $('.btn-container').find('i').toggleClass('fa-chevron-down fa-chevron-up')
     }
-    // $('.list li').click(userFeedback);
-    // $('.js-close').click(closeFeedback);
-
-    // function userFeedback(e){
-    //     e.preventDefault();
-    //     $('.modal').show();
-    //     $('.container').hide();
-    // };
-    // function closeFeedback(){
-    //     $('.modal').hide();
-    //     $('.container').show();
-    // }
 
 $('.js-accepted').hide()
-
-
-
 
     function getUser() {
         // e.preventDefault();
@@ -146,14 +131,7 @@ $('.js-accepted').hide()
                         $('.js-accepted').hide()
                 }
             }
-        ).done(function ($data) {
-            $('.js-wrong'+id).attr('disabled', true)
-            $('.js-improve'+id).attr('disabled', true)
-            $('.js-rating'+id).attr('disabled', true)
-            // $('.js-hide'+id).removeClass("hide");
-            // $('.js-hide-2'+id).removeClass("hide");
-            console.log($data.feedback.comment_wrong);
-        });
+        )
     }
     let star = $('.star-rating').text()
     $('.star-rating').html(getStars(star))

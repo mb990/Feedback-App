@@ -6,7 +6,7 @@ $(document).ready(function () {
 
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
-                    output += '<tr><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
+                    output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                     e.email+'</td><td>'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
                     '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
                     // '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
@@ -32,49 +32,43 @@ $(document).ready(function () {
                         $('.js-edit-fname').val(data.user.first_name)
                         $('.js-edit-lname').val(data.user.last_name)
                         $('.js-edit-mail').val(data.user.email)
-                        $('#update-job-title').val(data.user.profile.job_title_id)
                     }
                     )
                     $('#hidden_user_id').val(id)
                     $(".js-user-modal").show()
                 }
 
+                // ADD USER
 
+                $('.admin-btn').click(addUser);
 
-    // ADD USER
-
-    $('.admin-btn').click(addUser);
-
-    function addUser() {
-        let first_name = $('#first-name').val();
-        let last_name = $('#last-name').val();
-        let email = $('#email').val();
-        let password = $('#password').val();
-        let password_confirmation = $('#password-confirm').val();
-        let company_id = $('#company-id').val();
-        let job_title_id = $('#job-title').val();
-        $.post(
-            '/admin/users',
-            {
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                password: password,
-                password_confirmation: password_confirmation,
-                company_id: company_id,
-                job_title_id: job_title_id,
-                picture: 'https://picsum.photos/200/300'
-            })
-            .done(function(data){
-                // console.log(data.user);
-                alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
-            })
-    }
-
-
-
-
-
+                function addUser() {
+                    let first_name = $('#first-name').val();
+                    let last_name = $('#last-name').val();
+                    let email = $('#email').val();
+                    let password = $('#password').val();
+                    let password_confirmation = $('#password-confirm').val();
+                    let company_id = $('#company-id').val();
+                    let job_title_id = $('#job-title').val();
+                    $.post(
+                        '/admin/users',
+                        {
+                            first_name: first_name,
+                            last_name: last_name,
+                            email: email,
+                            password: password,
+                            password_confirmation: password_confirmation,
+                            company_id: company_id,
+                            job_title_id: job_title_id,
+                            picture: 'https://picsum.photos/200/300'
+                        })
+                        .done(function(data){
+                            // console.log(data.user);
+                            $(".js-admins-list").empty().append(getUsers),
+                            $('.js-edit-form input').val('')
+                            alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
+                        })
+                }
             }
         )
     }
@@ -119,34 +113,24 @@ $(document).ready(function () {
 
     // UPDATE USER PASSWORD
 
-    // $('.js-edit-user-password').click(updatePassword);
-    // function updatePassword(){
-    //     id = $('#hidden_pass_id').val();
-    //     password = $('#password' + id).val();
-    //     password_confirmation = $('#password-confirm' + id).val();
-    //     alert(password)
-    //     $.ajax(            {
-    //         url: "superadmin/admins/"+id+"/update/password",
-    //         type: 'PUT',
-    //         data: {
-    //             password: password,
-    //             password_confirmation: password_confirmation
-    //         },
-    //     })
-    // }
-
-
-
-
-
-    // $(".js-edit-user").click(editUser)
-    // function editUser(){
-    //     $(".js-user-modal").show()
-    // }
+    $('.js-update-password').click(updatePassword);
+    function updatePassword(){
+        id = $('#hidden_pass_id').val();
+        password = $('#password' + id).val();
+        password_confirmation = $('#password-confirm' + id).val();
+        alert(password)
+        $.ajax(            {
+            url: "superadmin/admins/"+id+"/update/password",
+            type: 'PUT',
+            data: {
+                password: password,
+                password_confirmation: password_confirmation
+            },
+        })
+    }
 
 }
     // DELETE USER
-
     $(document).on ('click', '#delete-user', function () {
         let id = $(this).data('id');
         $.ajax(
@@ -158,7 +142,7 @@ $(document).ready(function () {
                 },
             }).done(function (data) {
                 alert(data.success);
-            $('.js-admins-list').empty().append(getUsers);
+                $(".js-user-del"+id).remove();
         })
     })
     // UPDATE COMPANY FEEDBACK DURATION

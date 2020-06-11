@@ -49,8 +49,9 @@
                     </select>
                 </span>
                 <br>
+                <label for="add-img">Add profile picture</label>
+                <input name="add-img" type='file' />
                 <br>
-
                 <label style="background-color: rgb(139, 139, 139);" for="user-password">Password</label>
                 <input type="password" name="user-password" id="password1" placeholder="New password" required>
                 <label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
@@ -71,7 +72,7 @@
             <ul class="inline-flex tabs">
                 <li class="tab"><a class="admin-tab current-tab">Users</a></li>
             </ul>
-            <div id="tabs-1" class="tab-view">
+            <div id="tabs-1" class="js-edit-form tab-view">
                 <input type="text" name="first-name" id="first-name" placeholder="User first name">
                 <input type="text" name="last-name" id="last-name" placeholder="User last name">
                 <input type="email" name="email" id="email" placeholder="User e-mail">

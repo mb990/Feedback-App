@@ -207,6 +207,10 @@
                     $('.modal').hide();
                     $('.js-submit'+id1).hide();
                     $('.js'+id1).removeClass('hidden');
+                    
+            $('.js-wrong'+id1).attr('disabled', true)
+            $('.js-improve'+id1).attr('disabled', true)
+            $('.js-rating'+id1).attr('disabled', true)
                 })
                     .fail(function(jqxhr, settings, ex) { alert('Enter all data'); })
             });
