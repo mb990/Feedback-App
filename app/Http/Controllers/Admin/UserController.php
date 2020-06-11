@@ -16,24 +16,17 @@ class UserController extends Controller
      * @var UserService
      */
     private $userService;
-    /**
-     * @var JobTitleService
-     */
-    private $jobTitleService;
 
-    public function __construct(UserService $userService, JobTitleService $jobTitleService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
-        $this->jobTitleService = $jobTitleService;
     }
 
     public function index(AdminRequest $request)
     {
         $users = auth()->user()->company->users();
 
-        $positions = $this->jobTitleService->all();
-
-        return response()->json(['users' => $users, 'positions' => $positions]);
+        return response()->json(['users' => $users]);
     }
 
     public function store(CreateUserRequest $request)
@@ -52,7 +45,7 @@ class UserController extends Controller
 
     public function edit(AdminRequest $request, $id)
     {
-        $user = $this->userService->find($id);
+        $user = $this->userService->findWithProfile($id);
 
         return response()->json(['user' => $user]);
     }

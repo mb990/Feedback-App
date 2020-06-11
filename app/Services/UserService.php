@@ -33,6 +33,11 @@ class UserService
         return $this->user->find($id);
     }
 
+    public function findWithProfile($id)
+    {
+        return $this->user->findWithProfile($id);
+    }
+
     public function byCompany()
     {
         $company = $this->companyService->find(auth()->user()->profile->company_id);

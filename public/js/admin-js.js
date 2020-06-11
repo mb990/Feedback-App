@@ -2,7 +2,6 @@ $(document).ready(function () {
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
-                console.log(data.positions[0].name);
                 let output = [];
 
                 $.each(data.users, function (i, e) {
