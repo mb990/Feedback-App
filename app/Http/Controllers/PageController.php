@@ -49,18 +49,13 @@ class PageController extends Controller
     {
         $skills = $this->skillService->all();
 
-        $users = $this->userService->teammates();
+//        $users = $this->userService->teammates();
 
         $titles = [
             'Really bad', 'Kinda bad', 'Meh', 'Pretty good', 'Awesome'
         ];
 
-        return view('dashboard', compact(['skills', 'users', 'titles']));
-    }
-
-    public function testGet(Request $request)
-    {
-//        return response()->json(['success' => 'Success message','result' => $request->feedback_1]);
+        return view('dashboard', compact(['skills', 'titles']));
     }
 
     public function profile(ProfileRequest $request, $id)

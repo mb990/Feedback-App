@@ -40,7 +40,7 @@ class UserService
 
     public function byCompany()
     {
-        $company = $this->companyService->find(auth()->user()->profile->company_id);
+        $company = $this->companyService->find(auth()->user()->company_id);
 
         return $this->user->byCompany($company);
     }

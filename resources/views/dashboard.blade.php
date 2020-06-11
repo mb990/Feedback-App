@@ -17,7 +17,7 @@
             <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
             <ul class="list">
 
-                @forelse($users as $user)
+                @forelse(auth()->user()->company->users() as $user)
 
                     <li data-userId="{{$user->id}}" class="teammate js"><img src="https://source.unsplash.com/random" class="teammate-image"><a href="#{{$user->first_name}}" class="teammate-name js">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif<span class="hidden js{{$user->id}}"><i class="fas fa-check reviewed"></i></span></li>
 
@@ -48,7 +48,7 @@
     <div class='messages'> Your feedback <br>accepted</div>
     <p class='info'>You can review other your teammate</p>
 </div>
-    @forelse($users as $user)
+    @forelse(auth()->user()->company->users() as $user)
 
         <!--Modal-->
         <div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">

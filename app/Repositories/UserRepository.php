@@ -37,9 +37,8 @@ class UserRepository
 
     public function byCompany($company)
     {
-        return $this->user->whereHas('profile', function ($q) use ($company) {
-            $q->where('company_id', $company->id);
-        })->get();
+        return $this->user->where('company_id', $company->id)
+            ->get();
     }
 
     public function admins()
@@ -78,7 +77,7 @@ class UserRepository
 
         $user->profile()->update([
             'job_title_id' => $request->job_title_id,
-            'picture' => $request->picture
+//            'picture' => $request->picture
         ]);
 
         return $user;

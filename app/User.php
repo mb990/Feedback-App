@@ -72,7 +72,7 @@ class User extends Authenticatable
     public function hasFeedback()
     {
         return $this->feedbacked()->where('creator_id', auth()->user()->id)
-            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->company->feedbackDuration->value))
             ->latest()
             ->first();
     }
@@ -80,7 +80,7 @@ class User extends Authenticatable
     public function activeFeedback()
     {
         return $this->feedbacked()->where('target_user_id', auth()->user()->id)
-            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->company->feedbackDuration->value))
             ->latest()
             ->first();
     }
@@ -88,7 +88,7 @@ class User extends Authenticatable
     public function activeFeedbacks()
     {
         return $this->feedbacked()->where('target_user_id', auth()->user()->id)
-            ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+            ->where('created_at', '>=', Carbon::now()->subSeconds($this->company->feedbackDuration->value))
             ->latest()
             ->get();
     }
@@ -118,7 +118,7 @@ class User extends Authenticatable
             if ($memberId !== auth()->user()->id) {
 
                 if (!$this->feedbacks()->where('target_user_id', $memberId)
-                    ->where('created_at', '>=', Carbon::now()->subSeconds($this->profile->company->feedback_time))
+                    ->where('created_at', '>=', Carbon::now()->subSeconds($this->company->feedbackDuration->value))
                     ->latest()
                     ->exists()) {
 
