@@ -59,12 +59,15 @@
             </div>
                 <br>
                 <div style="background-color: rgb(139, 139, 139);">
+{{--                    <form name="picture-form" id="picture-form" enctype="multipart/form-data">--}}
                 <label for="add-img">Add profile picture</label>
                 <br>
-                <input name="add-img" type='file' />
+                <input class="picture-upload" name="picture" id="picture" type='file'>
+                <input class="test-text-class" value="" type='text'>
                 <span>
-                    <button class="admin-btn js-upload-img">Upload</button>
+                    <button type="submit" class="admin-btn js-upload-img">Upload</button>
                 </span>
+{{--                    </form>--}}
                 </div>
                 <br>
                 <div>
@@ -115,7 +118,11 @@
 
                 </select>
 
-                <button class="admin-btn">Add user</button>
+                    <label for="add-img">Add profile picture</label>
+                    <br>
+                    <input name="add-img" id="add-img" type='file' />
+
+                <button class="admin-btn js-add-user">Add user</button>
             </div>
                 <table class="admin-table">
                 <thead>

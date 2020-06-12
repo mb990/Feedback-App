@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
@@ -75,7 +76,21 @@ class UserService
     {
         $password = $this->hashPassword($request->password);
 
-        return $this->user->store($request, $password);
+        $user = $this->user->store($request, $password);
+
+        if ($request->picture) {
+
+            $picture = $request->picture;
+
+            $name = $user->id . '.' . $picture->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
+
+            $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
+
+            return $this->user->storePicture($pictureFile, $user);
+        }
+
+        return $user;
     }
 
     public function delete($id)
@@ -85,11 +100,18 @@ class UserService
 
     public function update($request, $id)
     {
+        $user = $this->find($id);
+
         if ($request->picture) {
 
             $picture = $request->picture;
 
-            return $this->user->update($request, $this->find($id), $picture);
+            $name = $user->id . '.' . $picture->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
+
+            $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
+
+            return $this->user->update($request, $user, $pictureFile);
         }
 
         return $this->user->update($request, $this->find($id));
@@ -105,5 +127,16 @@ class UserService
     public function createAdmin($request)
     {
         return $this->store($request)->assignRole('admin');
+    }
+
+    public function uploadPicture($request, $id)
+    {
+        $picture = $request->picture;
+
+        $name = $id . '.' . $picture->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs('profile-pictures/' . $this->find($id)->company->name, $picture, $name);
+
+        $pictureFile = asset('storage/profile-pictures/' . $this->find($id)->company->name . '/' . $name);
+        return $this->user->uploadPicture($pictureFile, $this->find($id));
     }
 }

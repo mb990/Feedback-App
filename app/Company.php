@@ -37,6 +37,7 @@ class Company extends Model
     {
         $users = $this->members()->where('company_id', $this->id)
             ->where('active', true)
+            ->with('profile.jobTitle')
             ->get();
 
         return $users->filter(function ($user) {

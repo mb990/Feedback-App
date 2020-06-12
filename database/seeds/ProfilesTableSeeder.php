@@ -58,7 +58,7 @@ class ProfilesTableSeeder extends Seeder
 //            $path = public_path('profile-pictures/' . $company->name);
 //            Storage::disk('public')->putFileAs('profile-pictures/' . $company->name, $picture, $name);
 
-//            $profile->picture = asset('storage/profile-pictures/' . $name);
+//            $profile->picture = asset('storage/profile-pictures/' . $company->name . '/' . $name);
             $profile->picture = $this->faker->imageUrl();
 
             $profile->save();

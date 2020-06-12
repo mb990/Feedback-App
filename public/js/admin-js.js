@@ -41,7 +41,7 @@ $(document).ready(function () {
 
                 // ADD USER
 
-                $('.admin-btn').click(addUser);
+                $('.js-add-user').click(addUser);
 
                 function addUser() {
                     let first_name = $('#first-name').val();
@@ -51,8 +51,14 @@ $(document).ready(function () {
                     let password_confirmation = $('#password-confirm').val();
                     let company_id = $('#company-id').val();
                     let job_title_id = $('#job-title').val();
-                    $.post(
-                        '/admin/users',
+                    let picture = $('#add-img').prop('files');
+
+                    $.ajax({
+                        url:'/admin/users',
+                        type: 'post',
+                        contentType: false,
+                        // processData: false,
+                        data:
                         {
                             first_name: first_name,
                             last_name: last_name,
@@ -61,12 +67,12 @@ $(document).ready(function () {
                             password_confirmation: password_confirmation,
                             company_id: company_id,
                             job_title_id: job_title_id,
-                            picture: 'https://picsum.photos/200/300'
-                        })
+                            picture: picture
+                        }})
                         .done(function(data){
                             // console.log(data.user);
-                            $(".js-admins-list").empty().append(getUsers),
-                            $('.js-edit-form input').val('')
+                            $(".js-admins-list").empty().append(getUsers);
+                            $('.js-edit-form input').val('');
                             alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
                         })
                 }
@@ -95,6 +101,7 @@ $(document).ready(function () {
         last_name = $('.js-edit-lname').val();
         email = $('.js-edit-mail').val();
         job_title_id = $('#update-job-title').val()
+        picture = document.getElementById('picture').files[0];
         $.ajax(
             {
                 url: "/admin/users/" + id,
@@ -103,7 +110,8 @@ $(document).ready(function () {
                     first_name: first_name,
                     last_name: last_name,
                     email: email,
-                    job_title_id: job_title_id
+                    job_title_id: job_title_id,
+                    picture: picture
                 }
             }).done(alert("User is updated"),
             $(".js-user-modal").hide(),
@@ -165,19 +173,35 @@ $('.js-edit-user-close').click(closeEdit)
 function closeEdit(){
     $(".js-user-modal").hide()
 }
-$(".js-upload-img").on('click',(function(e){
-    e.preventDefault();
-    $.ajax({
-    url: "upload.php",
-    type: "POST",
-    data:  new FormData(this),
-    contentType: false,
-    cache: false,
-    processData:false,
-    success: function(data){
-    alert('Picture is uploaded')
-    },
-    error: function(){} 	        
+
+    let picture = document.getElementById('picture').files[0];
+
+    // let test = 'test';
+    let form_data = new FormData();
+    // form_data.append('picture', picture);
+    form_data.append('test', text);
+    $(".js-upload-img").click(function(e){
+        e.preventDefault();
+        // let picture = $('#picture').prop('files')[0];
+        let text = $('.test-text-class').val();
+
+        $.ajax({
+        url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
+        type: "put",
+        data: {
+            // picture: picture,
+            test: text
+        },
+        // contentType: false,
+        // cache: false,
+        // processData:false,
+        enctype: 'multipart/form-data',
+        success: function(data){
+        alert('Picture is uploaded');
+        console.log(data.request);
+        },
+        error: function(){}
+        });
     });
-    }));
+
 })
