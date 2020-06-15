@@ -70,7 +70,7 @@ class UserController extends Controller
 
 //        $user->update(['first_name' => $request->test]);
 
-//        $this->userService->uploadPicture($request, $id);
+        $this->userService->uploadPicture($request, $id);
     return response()->json(['request' => $request]);
 
 

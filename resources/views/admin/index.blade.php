@@ -183,8 +183,8 @@
             $("#uploadimage").on('submit',(function(e) {
                 e.preventDefault();
                 let form_data = new FormData();
-                form_data.append('picture', $('#file')[0].files[0]);
-                debugger;
+                form_data.append('picture', $('input[type=file]')[0].files[0]);
+                // form_data.append('picture', $('#file')[0].files[0]);
                 $.ajax({
                     url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
                     type: "PUT",             // Type of request to be send, called as method

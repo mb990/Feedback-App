@@ -104,12 +104,7 @@ class UserService
 
         if ($request->picture) {
 
-            $picture = $request->picture;
-
-            $name = $user->id . '.' . $picture->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
-
-            $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
+            $pictureFile = $this->uploadPicture($request, $id);
 
             return $this->user->update($request, $user, $pictureFile);
         }
@@ -131,7 +126,7 @@ class UserService
 
     public function uploadPicture($request, $id)
     {
-        $picture = $request->file('add_img');
+        $picture = $request->file('picture');
 
         $name = $id . '.' . $picture->getClientOriginalExtension();
         Storage::disk('public')->putFileAs('profile-pictures/' . $this->find($id)->company->name, $picture, $name);

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PageController@index')->name('home');
+Route::get('/', 'PageController@index')->name('home')->middleware('guest');
 Route::get('/dashboard', 'PageController@dashboard')->name('user.dashboard');
 Route::get('/profile/{id}', 'PageController@profile')->name('user.profile');
 Route::get('/feedback', 'PageController@feedback')->name('user.feedback');
