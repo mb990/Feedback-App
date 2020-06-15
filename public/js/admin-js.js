@@ -174,34 +174,56 @@ function closeEdit(){
     $(".js-user-modal").hide()
 }
 
-    let picture = document.getElementById('picture').files[0];
 
-    // let test = 'test';
-    let form_data = new FormData();
-    // form_data.append('picture', picture);
-    form_data.append('test', text);
-    $(".js-upload-img").click(function(e){
-        e.preventDefault();
-        // let picture = $('#picture').prop('files')[0];
-        let text = $('.test-text-class').val();
+    // let text = $('#tekst').val();
+    // let picture = document.getElementById('add_img').files[0];
+    // // form_data.append('picture', picture);
+    // // form_data.append('text', text);
+    // $("#upload-picture-button").click(function(e){
+    //     e.preventDefault();
+    //     // let picture = $('#picture').prop('files')[0];
+        let form_data = new FormData($("#forma")[0]);
+    //     $.ajax({
+    //     url: "/admin/users/" + 6 + "/update/picture",
+    //     type: "put",
+    //     data: form_data,
+    //     contentType: false,
+    //     cache: false,
+    //     processData:false,
+    //     enctype: 'multipart/form-data',
+    //     success: function(data){
+    //     alert('Picture is uploaded');
+    //     console.log(data.request);
+    //     },
+    //     error: function(){}
+    //     });
+    // });
+    // let form_data = new FormData();
+    // form_data.append('picture', $('#add-img')[0].files[0]);
+    // let text = $('#tekst').val();
+    // let picture = ;
+    //
+    // form_data.append('tekst', text);
 
-        $.ajax({
-        url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
-        type: "put",
-        data: {
-            // picture: picture,
-            test: text
-        },
-        // contentType: false,
-        // cache: false,
-        // processData:false,
-        enctype: 'multipart/form-data',
-        success: function(data){
-        alert('Picture is uploaded');
-        console.log(data.request);
-        },
-        error: function(){}
-        });
-    });
 
+    // forma
+
+    // $("#uploadimage").on('submit', function(e) {
+    //     e.preventDefault();
+    //     let form_data = new FormData(this);
+    //     form_data.append('picture',$('#file')[0].files[0])
+    //     $.ajax({
+    //         url: "/admin/users/" + 6 + "/update/picture",
+    //         type: "put",
+    //         data: form_data,
+    //         contentType: false,
+    //         dataType: 'JSON',
+    //         cache: false,
+    //         processData:false,
+    //         success: function(data){
+    //             alert('Picture is uploaded');
+    //             console.log(data.request);
+    //             },
+    //     })
+    // })
 })

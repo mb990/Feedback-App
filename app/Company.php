@@ -35,9 +35,9 @@ class Company extends Model
     // without admin and with active status
     public function users()
     {
-        $users = $this->members()->where('company_id', $this->id)
+        $users = $this->members()->with('profile.jobTitle')
+            ->where('company_id', $this->id)
             ->where('active', true)
-            ->with('profile.jobTitle')
             ->get();
 
         return $users->filter(function ($user) {

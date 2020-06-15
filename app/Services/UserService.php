@@ -131,7 +131,7 @@ class UserService
 
     public function uploadPicture($request, $id)
     {
-        $picture = $request->picture;
+        $picture = $request->file('add_img');
 
         $name = $id . '.' . $picture->getClientOriginalExtension();
         Storage::disk('public')->putFileAs('profile-pictures/' . $this->find($id)->company->name, $picture, $name);

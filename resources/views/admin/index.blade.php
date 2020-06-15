@@ -23,24 +23,24 @@
         <h2>Your account is temporarily deactivated</h2>
     @else
 
-    <div class="admin">
+        <div class="admin">
 
-        <div class="edit-user-modal js-user-modal">
-            <div class="edit-title">EDIT USER<button class="close-btn edit-btn js-edit-user-close"><i class="fas fa-times"></i></button></div>
-            <div class="edit-form-admin">
-                <div>
-                <label>First name</label>
-                <input class="js-edit-fname" type="text" required>
-                <br>
-                <label>Last name</label>
-                <input class="js-edit-lname" type="text" required>
-                <br>
-                <label>User email</label>
-                <input class="js-edit-mail" type="email" required>
-                <br>
-                <input type="hidden" name="hidden_user_id" id="hidden_user_id">
-                <label for="job-title">Positions:</label>
-                <span>
+            <div class="edit-user-modal js-user-modal">
+                <div class="edit-title">EDIT USER<button class="close-btn edit-btn js-edit-user-close"><i class="fas fa-times"></i></button></div>
+                <div class="edit-form-admin">
+                    <div>
+                        <label>First name</label>
+                        <input class="js-edit-fname" type="text" required>
+                        <br>
+                        <label>Last name</label>
+                        <input class="js-edit-lname" type="text" required>
+                        <br>
+                        <label>User email</label>
+                        <input class="js-edit-mail" type="email" required>
+                        <br>
+                        <input type="hidden" name="hidden_user_id" id="hidden_user_id">
+                        <label for="job-title">Positions:</label>
+                        <span>
                     <select name="job-title" id="update-job-title" required>
                         @forelse($positions as $position)
 
@@ -56,108 +56,150 @@
 
                     </select>
                 </span>
-            </div>
-                <br>
-                <div style="background-color: rgb(139, 139, 139);">
-{{--                    <form name="picture-form" id="picture-form" enctype="multipart/form-data">--}}
-                <label for="add-img">Add profile picture</label>
-                <br>
-                <input class="picture-upload" name="picture" id="picture" type='file'>
-                <input class="test-text-class" value="" type='text'>
-                <span>
-                    <button type="submit" class="admin-btn js-upload-img">Upload</button>
-                </span>
-{{--                    </form>--}}
-                </div>
-                <br>
-                <div>
-                <label style="background-color: rgb(139, 139, 139);" for="user-password">Password</label>
-                <input type="password" name="user-password" id="password1" placeholder="New password" required>
-                <br><label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
-                <input type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
-                </div>
-                <div style="text-align: center;">
-                    <button type="button" class="admin-btn js-update-password">Update password</button>
-                </div>
-
-                <div style="text-align: center;">
-                    <button class="admin-btn js-update-user">Update</button>
-                </div>
-            </div>
-        </div>
-
-        <h2>Admin panel</h2>
-
-        <div id="tabs">
-            <ul class="inline-flex tabs">
-                <li class="tab"><a class="admin-tab current-tab">Users</a></li>
-            </ul>
-            <div id="tabs-1" class="js-edit-form tab-view">
-                <div>
-                    <button class="admin-btn">New user</button>
-                </div>
-                <div class="admin-modal">
-                <input type="text" name="first-name" id="first-name" placeholder="User first name">
-                <input type="text" name="last-name" id="last-name" placeholder="User last name">
-                <input type="email" name="email" id="email" placeholder="User e-mail">
-                <input type="hidden" name="company-id" id="company-id" value="{{auth()->user()->company_id}}">
-                <input type="password" name="password" id="password" placeholder="User password">
-                <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
-                <select name="job-title" id="job-title">
-                    @forelse($positions as $position)
-
-                        <option value="{{$position->id}}">
-                            {{$position->name}}
-                        </option>
-
-                    @empty
-
-                        <option disabled>No positions</option>
-
-                    @endforelse
-
-                </select>
-
-                    <label for="add-img">Add profile picture</label>
+                    </div>
                     <br>
-                    <input name="add-img" id="add-img" type='file' />
+                    <div style="background-color: rgb(139, 139, 139);">
+                        {{--                    <form name="picture-form" id="picture-form" enctype="multipart/form-data">--}}
+                        <label for="add-img">Add profile picture</label>
+                        <br>
+                        <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" id="file" required />
+                            <input type="submit" value="Upload" class="admin-btn js-upload-img" />
+                            <!-- <input class="picture-upload" name="picture"  type='file'> -->
+                            <span>
+                    <!-- <button type="submit" class="admin-btn js-upload-img">Upload</button> -->
+                </span></form>
+                        {{--                    </form>--}}
+                    </div>
+                    <br>
+                    <div style="background-color: rgb(139, 139, 139);">
+                        <label style="background-color: rgb(139, 139, 139);" for="user-password">Password</label>
+                        <input type="password" name="user-password" id="password1" placeholder="New password" required>
+                        <br><label style="background-color: rgb(139, 139, 139);" for="password_confirmation">Password Confirm</label>
+                        <input type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="button" class="admin-btn js-update-password">Update password</button>
+                    </div>
 
-                <button class="admin-btn js-add-user">Add user</button>
+                    <div style="text-align: center;">
+                        <button class="admin-btn js-update-user">Update</button>
+                    </div>
+                </div>
             </div>
-                <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th style="position: sticky;top: 0;background-color: #22282d;">First Name</th>
-                        <th style="position: sticky;top: 0;background-color: #22282d;">Last Name</th>
-                        <th style="position: sticky;top: 0;background-color: #22282d;">Email</th>
-                        <th style="position: sticky;top: 0;background-color: #22282d;">Status</th>
-                        <th style="position: sticky;top: 0;background-color: #22282d;">Options</th>
-                    </tr>
-                </thead>
-                <tbody class="js-admins-list">
 
-                </tbody>
-            </div>
+            <h2>Admin panel</h2>
 
-            <div id="tabs-2" class="tab-view" style="margin-left: 0px; width: 10vw; min-width: 100px;">
-                <label for="feedback-time">Change feedback time</label>
-                <select name="feedback_time" id="feedback-time">
-                    @foreach($durations as $duration)
+            <div id="tabs">
+                <ul class="inline-flex tabs">
+                    <li class="tab"><a class="admin-tab current-tab" href="#tabs-1">Users</a></li>
+                    <!-- <li class="tab"><a class="admin-tab current-tab" href="#tabs-2">Feedback time</a></li> -->
+                </ul>
+                <div id="tabs-1" class="js-edit-form tab-view admin-width">
+                    <div>
+                        <button class="js-show-new-user admin-btn">New user</button>
+                        <button class="js-show-time-update admin-btn">Edit time</button>
+                    </div>
+                    <div style="display: flex; width: 50vw;">
+                        <div>
+                            <div  class="admin-modal js-admin-modal">
+                                <input type="text" name="first-name" id="first-name" placeholder="User first name">
+                                <input type="text" name="last-name" id="last-name" placeholder="User last name">
+                                <input type="email" name="email" id="email" placeholder="User e-mail">
+                                <input type="hidden" name="company-id" id="company-id" value="{{auth()->user()->company_id}}">
+                                <input type="password" name="password" id="password" placeholder="User password">
+                                <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
+                                <select name="job-title" id="job-title">
+                                    @forelse($positions as $position)
 
-                        <option value="{{$duration->id}}‬" @if(auth()->user()->company->feedback_duration_id === $duration->id) selected @endif >{{$duration->name}} </option>
+                                        <option value="{{$position->id}}">
+                                            {{$position->name}}
+                                        </option>
 
-                    @endforeach
+                                    @empty
 
-                </select>
-                <button data-id="{{auth()->user()->company->id}}" class="admin-btn admin-btn-feedback-duration">Submit</button>
+                                        <option disabled>No positions</option>
+
+                                    @endforelse
+
+                                </select>
+                                <br>
+                                <button class="js-add-user admin-btn">Add user</button>
+                            </div>
+                        </div>
+                        <div id="tabs-2" class="admin-modal js-tab-2 admin-modal-right">
+                            <label for="feedback-time">Change feedback time</label>
+                            <select name="feedback_time" id="feedback-time">
+                                @foreach($durations as $duration)
+
+                                    <option value="{{$duration->id}}" @if(auth()->user()->company->feedback_duration_id === $duration->id) selected @endif >{{$duration->name}} </option>
+
+                                    <!-- <label for="add-img">Add profile picture</label>
+                                    <br>
+                                    <input name="add-img" id="add-img" type='file' />
+
+                                <button class="admin-btn js-add-user">Add user</button> -->
+                                @endforeach
+
+                            </select>
+                            <button data-id="{{auth()->user()->company->id}}" class="admin-btn admin-btn-feedback-duration">Submit</button>
+                        </div>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                        <tr>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">First Name</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Last Name</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Email</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Position</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Status</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Options</th>
+                        </tr>
+                        </thead>
+                        <tbody class="js-admins-list">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
             </div>
 
         </div>
 
-    </div>
-
-@endif
+    @endif
 
 @endsection
 
 
+@section('script')
+    <script>
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+        $(document).ready(function(e){
+
+            $("#uploadimage").on('submit',(function(e) {
+                e.preventDefault();
+                let form_data = new FormData();
+                form_data.append('picture', $('#file')[0].files[0]);
+                debugger;
+                $.ajax({
+                    url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
+                    type: "PUT",             // Type of request to be send, called as method
+                    data: form_data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    enctype: 'multipart/form-data',
+                    dataType:'JSON',
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        console.log(data.request)
+                    }
+                });
+            }))
+        })
+    </script>
+@endsection
