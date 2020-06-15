@@ -33,7 +33,7 @@ class Company extends Model
     }
 
     // without admin and with active status
-    public function users()
+public function users()
     {
         $users = $this->members()->with('profile.jobTitle')
             ->where('company_id', $this->id)

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
@@ -7,7 +8,7 @@ $(document).ready(function () {
                 $.each(data.users, function (i, e) {
                     // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
+                    e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot">'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
                     '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
                     // '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
                     // '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
@@ -51,7 +52,7 @@ $(document).ready(function () {
                     let password_confirmation = $('#password-confirm').val();
                     let company_id = $('#company-id').val();
                     let job_title_id = $('#job-title').val();
-                    let picture = $('#add-img').prop('files');
+                    // let picture = $('#add-img').prop('files');
 
                     $.ajax({
                         url:'/admin/users',
@@ -67,7 +68,7 @@ $(document).ready(function () {
                             password_confirmation: password_confirmation,
                             company_id: company_id,
                             job_title_id: job_title_id,
-                            picture: picture
+                            // picture: picture
                         }})
                         .done(function(data){
                             // console.log(data.user);
@@ -118,8 +119,6 @@ $(document).ready(function () {
             $('.js-admins-list').empty().append(getUsers)
             )
 
-
-
     // UPDATE USER PASSWORD
 
     $('.js-update-password').click(updatePassword);
@@ -134,10 +133,33 @@ $(document).ready(function () {
             data: {
                 password: password,
                 password_confirmation: password_confirmation
-            },
+            }
         })
     }
 
+}
+$('.js-show-new-user').click(showNew)
+function showNew(){
+    var ix = $(this).index();
+    $('.js-admin-modal').toggle( ix ===  '1' ? '0' : '1');
+    $('.js-interactive-text').toggle( ix ===  '0' ? '1' : '0');
+    if($(this).text()=="New user"){
+        $(this).text("Close");
+    } else {
+        $(this).text("New user");
+    }
+}    
+$('.js-show-time-update').click(showTime)
+function showTime(){
+    var ix = $(this).index();
+    $('.js-tab-2').toggle( ix ===  '1' ? '0' : '1');
+    $('.js-feedback-interval').toggle( ix ===  '0' ? '1' : '0');
+    if($(this).text()=="Edit time"){
+        $(this).text("Close");
+    } else {
+        $(this).text("Edit time");
+    }
+    
 }
     // DELETE USER
     $(document).on ('click', '#delete-user', function () {
@@ -182,7 +204,6 @@ function closeEdit(){
     // $("#upload-picture-button").click(function(e){
     //     e.preventDefault();
     //     // let picture = $('#picture').prop('files')[0];
-        let form_data = new FormData($("#forma")[0]);
     //     $.ajax({
     //     url: "/admin/users/" + 6 + "/update/picture",
     //     type: "put",

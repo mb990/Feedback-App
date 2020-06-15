@@ -477,9 +477,38 @@
 }
 
 .admin-table {
-  height: 25vh;
+  height: 40vh;
   overflow: auto;
   display: block;
+}
+
+table,
+th,
+td {
+  width: 60vw;
+}
+
+.admin-modal,
+.admin-modal2 {
+  display: none;
+}
+
+.admin-modal input,
+.admin-modal2 input {
+  border: none;
+  margin-bottom: 3px;
+}
+
+.admin-modal-right {
+  width: 30vw;
+}
+
+.admin-width {
+  width: 65vw;
+}
+
+.user-status-dot {
+  text-align: center;
 }
 
 .comments {
@@ -598,6 +627,7 @@
   border-radius: 50%;
   display: inline-block;
   margin: auto 5px;
+  cursor: help;
 }
 
 .dot-red {
@@ -607,6 +637,7 @@
   border-radius: 50%;
   display: inline-block;
   margin: auto 5px;
+  cursor: help;
 }
 
 .edit-modal {

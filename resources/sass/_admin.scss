@@ -66,10 +66,26 @@
     margin-top: 100px;
 }
 .admin-table{
-    height: 25vh;
+    height: 40vh;
     overflow: auto;
     display: block;
 }
-.admin-modal{
+table, th, td {
+    width:60vw;
+}
+.admin-modal, .admin-modal2{
     display: none;
+    input{
+        border: none;
+        margin-bottom: 3px;
+    }
+}
+.admin-modal-right{
+    width: 30vw;
+}
+.admin-width{
+    width: 65vw;
+}
+.user-status-dot{
+    text-align: center;
 }
