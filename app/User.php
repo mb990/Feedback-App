@@ -128,4 +128,16 @@ class User extends Authenticatable
         }
         return true;
     }
+
+    public function teammates()
+    {
+        $users = $this->company->members()
+//                ->where('id', '!=', $this->id)
+                ->where('active', true)
+                ->get()->except($this->id);
+
+        return $users->filter(function ($user) {
+            return !$user->hasRole('admin');
+        });
+    }
 }

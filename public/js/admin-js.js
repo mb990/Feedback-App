@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
@@ -53,12 +53,10 @@ $(document).ready(function () {
                     let company_id = $('#company-id').val();
                     let job_title_id = $('#job-title').val();
                     // let picture = $('#add-img').prop('files');
-
+                    // console.log(job_title_id);
                     $.ajax({
                         url:'/admin/users',
                         type: 'post',
-                        contentType: false,
-                        // processData: false,
                         data:
                         {
                             first_name: first_name,
@@ -71,10 +69,10 @@ $(document).ready(function () {
                             // picture: picture
                         }})
                         .done(function(data){
-                            // console.log(data.user);
-                            $(".js-admins-list").empty().append(getUsers);
-                            $('.js-edit-form input').val('');
-                            alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
+                            console.log(data.request);
+                            // $(".js-admins-list").empty().append(getUsers);
+                            // $('.js-edit-form input').val('');
+                            // alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
                         })
                 }
             }
@@ -148,7 +146,7 @@ function showNew(){
     } else {
         $(this).text("New user");
     }
-}    
+}
 $('.js-show-time-update').click(showTime)
 function showTime(){
     var ix = $(this).index();
@@ -159,7 +157,7 @@ function showTime(){
     } else {
         $(this).text("Edit time");
     }
-    
+
 }
     // DELETE USER
     $(document).on ('click', '#delete-user', function () {

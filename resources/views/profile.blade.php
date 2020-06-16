@@ -3,7 +3,7 @@
 @section("users")
     <div class="user-box">
         <div class="user">
-            <img src="https://source.unsplash.com/random" class="user-image">
+            <img src="{{auth()->user()->profile->picture}}" class="user-image">
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
@@ -20,9 +20,9 @@
             <input class="search-teammate js-search js-live-search" type="search" placeholder="Search a teammate">
             <ul class="list">
 
-                @forelse(auth()->user()->company->users() as $user)
+                @forelse(auth()->user()->teammates() as $user)
 
-                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="https://source.unsplash.com/random" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
+                    <li data-userId="{{$user->id}}" class="teammate js"><a href="#"><img src="{{$user->profile->picture}}" class="teammate-image"></a> <a href="#" class="teammate-name js{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</a>@if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif</li>
                 <!-- @if($user->hasFeedback())<i class="fas fa-check reviewed"></i>@endif -->
 
                 @empty

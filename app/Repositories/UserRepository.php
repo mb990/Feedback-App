@@ -61,6 +61,7 @@ class UserRepository
 
        $user->profile()->create([
             'job_title_id' => $request->job_title_id,
+            'picture' => 'https://lorempixel.com/640/480/?24742'
        ]);
 
 //        if ($picture) {

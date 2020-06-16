@@ -62,12 +62,12 @@
 {{--                    <form name="picture-form" id="picture-form" enctype="multipart/form-data">--}}
                 <label for="add-img">Add profile picture</label>
                 <br>
-                <form id="uploadimage" action="" method="put" enctype="form-data">
-                    <input type="file" name="file" id="file" required />
-                    <!-- <input type="submit" value="Upload" class="admin-btn" /> -->
-                    <button type="submit">Submit</button>
-                <!-- <input class="picture-upload" name="picture"  type='file'> -->
-                <span>
+                    <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file" required />
+                        <!-- <input type="submit" value="Upload" class="admin-btn" /> -->
+                        <button type="submit">Submit</button>
+                        <!-- <input class="picture-upload" name="picture"  type='file'> -->
+                        <span>
                     <!-- <button type="submit" class="admin-btn js-upload-img">Upload</button> -->
                 </span></form>
 {{--                    </form>--}}
@@ -183,26 +183,29 @@
 
 
 @section('script')
-<script>
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
-    $(document).ready(function(e){
-        $("#uploadimage").on('submit',(function(e) {
-    e.preventDefault();
-    $.ajax({
-        url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
-        type: "PUT",             // Type of request to be send, called as method
-        data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-        contentType: false,       // The content type used when sending data to the server.
-        cache: false,             // To unable request pages to be cached
-        processData:false,        // To send DOMDocument or non processed data file it is set to false
-        success: function(data)   // A function to be called if request succeeds
-        {
-            console.log(data.request)
-        }
-        }).done(alert('Picture is updated'));
-}))
-    })
-</script>
+    <script>
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+        $(document).ready(function(e){
+            $("#uploadimage").on('submit',(function(e) {
+                e.preventDefault();
+                let form_data = new FormData();
+                form_data.append('picture', $('#file')[0].files[0]);
+                form_data.append('_method', 'PUT');
+                $.ajax({
+                    url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
+                    type: "post",             // Type of request to be send, called as method
+                    data: form_data,         // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        console.log(data.request)
+                    }
+                }).done(alert('Picture is updated'));
+            }))
+        })
+    </script>
 @endsection

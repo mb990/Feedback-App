@@ -66,14 +66,8 @@ class UserController extends Controller
 
     public function updatePicture(AdminRequest $request, $id)
     {
-//        $user = $this->userService->find($id);
-
-//        $user->update(['first_name' => $request->test]);
-
         $this->userService->uploadPicture($request, $id);
-    return response()->json(['request' => $request]);
 
-
-//        return response()->json(['success' => 'User picture is updated']);
+        return response()->json(['success' => 'User picture is updated']);
     }
 }
