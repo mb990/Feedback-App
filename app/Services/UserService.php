@@ -123,7 +123,7 @@ class UserService
     {
         $picture = $request->file('picture');
 
-        $name = $user . '.' . $picture->getClientOriginalExtension();
+        $name = $user->id . '.' . $picture->getClientOriginalExtension();
         Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
 
         $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);

@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $users = auth()->user()->company->users();
 
-        return response()->json(['users' => $users, 'highestScore' => $highestScore, 'lowestScore' => $lowestScore]);
+        return response()->json(['users' => $users]);
     }
 
     public function store(CreateUserRequest $request)
@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function updatePicture(AdminRequest $request, $id)
     {
-        $this->userService->uploadPicture($request, $id);
+        $this->userService->uploadPicture($request, $this->userService->find($id));
 
         return response()->json(['success' => 'User picture is updated']);
     }
