@@ -157,9 +157,12 @@
             </div>
             </div>
             <div style="flex-grow: 1;">
-                <div style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                <div class="js-stats-info" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                 statiskitka ide ovde <br> <hr>
                 i ovde isto ide
+                </div>
+                <div class="js-statistics">
+
                 </div>
             </div>
             </div>

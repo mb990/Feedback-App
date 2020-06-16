@@ -160,15 +160,15 @@ function showTime(){
     }
 }
 //SHOW STATS BUTTON
-$('.js-stats').click(showNew)
-function showNew(){
+$('.js-stats').click(showStats)
+function showStats(){
     var ix = $(this).index();
-    $('.js-admin-modal').toggle( ix ===  '1' ? '0' : '1');
-    $('.js-interactive-text').toggle( ix ===  '0' ? '1' : '0');
-    if($(this).text()=="New user"){
+    $('.js-statistics').toggle( ix ===  '1' ? '0' : '1');
+    $('.js-stats-info').toggle( ix ===  '0' ? '1' : '0');
+    if($(this).text()=="Statistics"){
         $(this).text("Close");
     } else {
-        $(this).text("New user");
+        $(this).text("Statistics");
     }
 }    
 
