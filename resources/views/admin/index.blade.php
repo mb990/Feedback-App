@@ -64,12 +64,8 @@
                 <br>
                     <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
                         <input type="file" name="file" id="file" required />
-                        <!-- <input type="submit" value="Upload" class="admin-btn" /> -->
                         <button type="submit">Submit</button>
-                        <!-- <input class="picture-upload" name="picture"  type='file'> -->
-                        <span>
-                    <!-- <button type="submit" class="admin-btn js-upload-img">Upload</button> -->
-                </span></form>
+                    </form>
 {{--                    </form>--}}
                 </div>
                 <br>
@@ -89,7 +85,9 @@
             </div>
         </div>
 
-        <h2>Admin panel</h2>
+        <h2>{{auth()->user()->first_name}}, welcome to admin panel
+            <br>
+            Company: {{auth()->user()->company->name}}</h2>
 
         <div id="tabs">
             <ul class="inline-flex tabs">
@@ -100,9 +98,10 @@
                 <div>
                     <button class="js-show-new-user admin-btn" style="width: 10vw">New user</button>
                     <button class="js-show-time-update admin-btn" style="width: 10vw; margin-left: 15vw;">Edit time</button>
+                    <button class="js-stats admin-btn" style="width: 10vw; margin-left: 15vw;">Statistics</button>
                 </div>
                 <div style="display: flex; width: 50vw;">
-                <div>
+                <div style="flex-grow: 1;">
                     <div class="js-interactive-text" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                         Add new <br> user to your <br> company
                     </div>
@@ -128,10 +127,14 @@
 
                 </select>
                 <br>
+                <form id="upload-new-image" action="" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" id="image" required />
+                </form>
+                <br>
                 <button class="js-add-user admin-btn">Add user</button>
                 </div>
                 </div>
-                <div>
+                <div style="flex-grow: 1;">
                     <div class="js-feedback-interval admin-modal-right"style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                         Change your <br> feedback time interval
                     </div>
@@ -152,6 +155,12 @@
                 </select>
                 <button data-id="{{auth()->user()->company->id}}" class="admin-btn admin-btn-feedback-duration">Submit</button>
             </div>
+            </div>
+            <div style="flex-grow: 1;">
+                <div style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                statiskitka ide ovde <br> <hr>
+                i ovde isto ide
+                </div>
             </div>
             </div>
                 <table class="admin-table">

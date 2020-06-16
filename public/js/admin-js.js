@@ -6,7 +6,6 @@ $(document).ready(function () {
                 let output = [];
 
                 $.each(data.users, function (i, e) {
-                    // varijable: e.first_name, e.last_name, e.email, e.active
                     output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                     e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot">'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
                     '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
@@ -136,6 +135,7 @@ $(document).ready(function () {
     }
 
 }
+//ADD USER MODAL BUTTON
 $('.js-show-new-user').click(showNew)
 function showNew(){
     var ix = $(this).index();
@@ -147,6 +147,7 @@ function showNew(){
         $(this).text("New user");
     }
 }
+//EDIT FEEDBACK TIME MODAL BUTTON
 $('.js-show-time-update').click(showTime)
 function showTime(){
     var ix = $(this).index();
@@ -157,8 +158,20 @@ function showTime(){
     } else {
         $(this).text("Edit time");
     }
-
 }
+//SHOW STATS BUTTON
+$('.js-stats').click(showNew)
+function showNew(){
+    var ix = $(this).index();
+    $('.js-admin-modal').toggle( ix ===  '1' ? '0' : '1');
+    $('.js-interactive-text').toggle( ix ===  '0' ? '1' : '0');
+    if($(this).text()=="New user"){
+        $(this).text("Close");
+    } else {
+        $(this).text("New user");
+    }
+}    
+
     // DELETE USER
     $(document).on ('click', '#delete-user', function () {
         let id = $(this).data('id');

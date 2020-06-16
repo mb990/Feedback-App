@@ -7,9 +7,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="{{ asset('js/main-js.js') }}"></script>
-        <!-- <script src="{{ asset('js/superadmin-js.js') }}"></script>
+        <script src="{{ asset('js/superadmin-js.js') }}"></script>
         <script src="{{ asset('js/company-list.js') }}"></script>
-        <script src="{{ asset('js/job-titles.js') }}"></script> -->
+        <script src="{{ asset('js/job-titles.js') }}"></script>
         <script src="{{ asset('js/admin-js.js') }}"></script>
 {{--        <script src="{{ asset('js/test.js') }}"></script>--}}
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
