@@ -130,4 +130,57 @@ class UserService
 
         return $this->user->uploadPicture($pictureFile, $user);
     }
+
+    public function highestAverageFeedbackScore()
+    {
+        $company = auth()->user()->company;
+
+        $data = ['score' => 0];
+
+        foreach ($company->users() as $user) {
+
+            if ($user->averageFeedbackScore() > $data['score']) {
+
+                $data['score'] = $user->averageFeedbackScore();
+
+                $data['user'] = $user->first_name . ' ' . $user->last_name;
+            }
+        }
+
+        return $data;
+    }
+
+    public function lowestAverageFeedbackScore()
+    {
+        $company = auth()->user()->company;
+
+        $data = [];
+
+        foreach ($company->users() as $user) {
+
+            if ($user->averageFeedbackScore()) {
+
+                if (!isset($data['score'])) {
+
+                    $data['score'] = $user->averageFeedbackScore();
+
+                    $data['user'] = $user->first_name . ' ' . $user->last_name;
+                }
+
+                else {
+
+                    if ($user->averageFeedbackScore() < $data['score']) {
+
+                        $data['score'] = $user->averageFeedbackScore();
+
+                        $data['user'] = $user->first_name . ' ' . $user->last_name;
+                    }
+
+                }
+            }
+
+        }
+
+        return $data;
+    }
 }

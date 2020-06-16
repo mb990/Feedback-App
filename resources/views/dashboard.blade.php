@@ -37,9 +37,16 @@
 @endsection
 
 @section('content')
+    highest:
+    {{$highestScore['user']}}
+    {{$highestScore['score']}}
+
+    lowest:
+    {{$lowestScore['user']}}
+    {{$lowestScore['score']}}
 
     @if(!auth()->user()->active)
-<h2>Your account is temporarily deactivated</h2>
+        <h2>Your account is temporarily deactivated</h2>
     @else
 
 <div class="container js-no-selected">

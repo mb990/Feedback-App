@@ -103,12 +103,17 @@ class User extends Authenticatable
     {
         $pivots = [];
 
-        foreach ($this->allFeedback() as $feedback) {
+        if ($this->allFeedback()) {
 
-            $pivots[] = $feedback->skills->avg('pivot.score');
+            foreach ($this->allFeedback() as $feedback) {
+
+                $pivots[] = $feedback->skills->avg('pivot.score');
+            }
+
+            return collect($pivots)->avg();
         }
 
-        return collect($pivots)->avg();
+        return false;
     }
 
     public function doneFeedback()
