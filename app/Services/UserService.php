@@ -39,28 +39,28 @@ class UserService
         return $this->user->findWithProfile($id);
     }
 
-    public function byCompany()
-    {
-        $company = $this->companyService->find(auth()->user()->company_id);
-
-        return $this->user->byCompany($company);
-    }
-
-    public function teammates()
-    {
-        $users = $this->byCompany()->pluck('id')->toArray();
-
-        $withoutCurrent = array_diff($users, [auth()->user()->id]);
-
-        $teamamtes = [];
-
-        foreach ($withoutCurrent as $userId) {
-
-            $teamamtes[] = $this->find($userId);
-        }
-
-        return $teamamtes;
-    }
+//    public function byCompany()
+//    {
+//        $company = $this->companyService->find(auth()->user()->company_id);
+//
+//        return $this->user->byCompany($company);
+//    }
+//
+//    public function teammates()
+//    {
+//        $users = $this->byCompany()->pluck('id')->toArray();
+//
+//        $withoutCurrent = array_diff($users, [auth()->user()->id]);
+//
+//        $teamamtes = [];
+//
+//        foreach ($withoutCurrent as $userId) {
+//
+//            $teamamtes[] = $this->find($userId);
+//        }
+//
+//        return $teamamtes;
+//    }
 
     public function admins()
     {
@@ -80,12 +80,7 @@ class UserService
 
         if ($request->picture) {
 
-            $picture = $request->picture;
-
-            $name = $user->id . '.' . $picture->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
-
-            $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
+            $pictureFile = $this->uploadPicture($request, $user);
 
             return $this->user->storePicture($pictureFile, $user);
         }
@@ -124,14 +119,15 @@ class UserService
         return $this->store($request)->assignRole('admin');
     }
 
-    public function uploadPicture($request, $id)
+    public function uploadPicture($request, $user)
     {
         $picture = $request->file('picture');
 
-        $name = $id . '.' . $picture->getClientOriginalExtension();
-        Storage::disk('public')->putFileAs('profile-pictures/' . $this->find($id)->company->name, $picture, $name);
+        $name = $user . '.' . $picture->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs('profile-pictures/' . $user->company->name, $picture, $name);
 
-        $pictureFile = asset('storage/profile-pictures/' . $this->find($id)->company->name . '/' . $name);
-        return $this->user->uploadPicture($pictureFile, $this->find($id));
+        $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
+
+        return $this->user->uploadPicture($pictureFile, $user);
     }
 }

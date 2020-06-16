@@ -35,11 +35,11 @@ class UserRepository
             ->find($id);
     }
 
-    public function byCompany($company)
-    {
-        return $this->user->where('company_id', $company->id)
-            ->get();
-    }
+//    public function byCompany($company)
+//    {
+//        return $this->user->where('company_id', $company->id)
+//            ->get();
+//    }
 
     public function admins()
     {

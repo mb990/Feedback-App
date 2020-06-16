@@ -69,10 +69,10 @@ $(document).ready(function () {
                             // picture: picture
                         }})
                         .done(function(data){
-                            console.log(data.request);
-                            // $(".js-admins-list").empty().append(getUsers);
-                            // $('.js-edit-form input').val('');
-                            // alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
+                            // console.log(data.request);
+                            $(".js-admins-list").empty().append(getUsers);
+                            $('.js-edit-form input').val('');
+                            alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
                         })
                 }
             }
@@ -100,7 +100,7 @@ $(document).ready(function () {
         last_name = $('.js-edit-lname').val();
         email = $('.js-edit-mail').val();
         job_title_id = $('#update-job-title').val()
-        picture = document.getElementById('picture').files[0];
+        // picture = document.getElementById('picture').files[0];
         $.ajax(
             {
                 url: "/admin/users/" + id,
@@ -110,7 +110,7 @@ $(document).ready(function () {
                     last_name: last_name,
                     email: email,
                     job_title_id: job_title_id,
-                    picture: picture
+                    // picture: picture
                 }
             }).done(alert("User is updated"),
             $(".js-user-modal").hide(),
