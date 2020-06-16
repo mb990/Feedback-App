@@ -19,6 +19,11 @@
 
 @section('content')
 
+    {{$highest['user']}}
+    {{$highest['score']}}
+    {{$lowest['user']}}
+    {{$lowest['score']}}
+
     @if(!auth()->user()->active)
         <h2>Your account is temporarily deactivated</h2>
     @else

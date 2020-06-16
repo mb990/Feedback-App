@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Repositories\FeedbackDurationRepository;
 use App\Services\CompanyService;
+use App\Services\FeedbackDurationService;
+use App\Services\FeedbackService;
 use App\Services\JobTitleService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,23 +23,32 @@ class HomeController extends Controller
      */
     private $jobTitleService;
     /**
-     * @var FeedbackDurationRepository
+     * @var FeedbackDurationService
      */
-    private $feedbackDurationRepository;
+    private $feedbackDurationService;
+    /**
+     * @var UserService
+     */
+    private $userService;
 
-    public function __construct(CompanyService $companyService, JobTitleService $jobTitleService, FeedbackDurationRepository $feedbackDurationRepository)
+    public function __construct(CompanyService $companyService, JobTitleService $jobTitleService, FeedbackDurationService $feedbackDurationService, UserService $userService)
     {
         $this->companyService = $companyService;
         $this->jobTitleService = $jobTitleService;
-        $this->feedbackDurationRepository = $feedbackDurationRepository;
+        $this->feedbackDurationService = $feedbackDurationService;
+        $this->userService = $userService;
     }
 
     public function index(AdminRequest $request)
     {
         $positions = $this->jobTitleService->all();
 
-        $durations = $this->feedbackDurationRepository->all();
+        $durations = $this->feedbackDurationService->all();
 
-        return view('admin.index', compact(['positions', 'durations']));
+        $highest = $this->userService->highestAverageFeedbackScore();
+
+        $lowest = $this->userService->lowestAverageFeedbackScore();
+
+        return view('admin.index', compact(['positions', 'durations', 'highest', 'lowest']));
     }
 }

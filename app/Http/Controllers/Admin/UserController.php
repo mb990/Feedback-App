@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $users = auth()->user()->company->users();
 
-        return response()->json(['users' => $users]);
+        return response()->json(['users' => $users, 'highestScore' => $highestScore, 'lowestScore' => $lowestScore]);
     }
 
     public function store(CreateUserRequest $request)

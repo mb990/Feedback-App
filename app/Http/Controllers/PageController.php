@@ -49,15 +49,11 @@ class PageController extends Controller
     {
         $skills = $this->skillService->all();
 
-        $highestScore = $this->userService->highestAverageFeedbackScore();
-
-        $lowestScore = $this->userService->lowestAverageFeedbackScore();
-
         $titles = [
             'Really bad', 'Kinda bad', 'Meh', 'Pretty good', 'Awesome'
         ];
 
-        return view('dashboard', compact(['skills', 'titles', 'highestScore', 'lowestScore']));
+        return view('dashboard', compact(['skills', 'titles']));
     }
 
     public function profile(ProfileRequest $request, $id)
