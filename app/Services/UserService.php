@@ -17,11 +17,16 @@ class UserService
      * @var CompanyService
      */
     private $companyService;
+    /**
+     * @var StorageService
+     */
+    private $storageService;
 
-    public function __construct(UserRepository $user, CompanyService $companyService)
+    public function __construct(UserRepository $user, CompanyService $companyService, StorageService $storageService)
     {
         $this->user = $user;
         $this->companyService = $companyService;
+        $this->storageService = $storageService;
     }
 
     public function all()
@@ -78,7 +83,7 @@ class UserService
 
         $user = $this->user->store($request, $password);
 
-        $picture = $this->uploadPicture($request, $user);
+        $picture = $this->storageService->storeProfilePicture($request, $user);
 
         $this->user->updatePicture($picture, $user);
 
@@ -87,7 +92,11 @@ class UserService
 
     public function delete($id)
     {
-        return $this->user->delete($this->find($id));
+        $user = $this->find($id);
+
+        $this->storageService->deleteProfilePicture($user);
+
+        return $this->user->delete($user);
     }
 
     public function update($request, $id)
@@ -108,7 +117,7 @@ class UserService
     {
         $user = $this->find($id);
 
-        $picture = $this->uploadPicture($request, $user);
+        $picture = $this->storageService->storeProfilePicture($request, $user);
 
         return $this->user->updatePicture($picture, $user);
     }
