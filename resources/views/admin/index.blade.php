@@ -103,11 +103,11 @@
                     <button class="js-stats admin-btn" style="width: 10vw; margin-left: 15vw;">Statistics</button>
                 </div>
                 <div style="display: flex; width: 60vw;">
-                <div style="flex-grow: 1;">
+                <div style="flex-grow: 1;width: 30%;">
                     <div class="js-interactive-text" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                         Add new <br> user to your <br> company
                     </div>
-                <div  class="admin-modal js-admin-modal">
+                <div  class="admin-modal js-admin-modal" style="padding: 5px; border: 1px solid #ec1940;">
                     <form id="form" action="" method="post" enctype="multipart/form-data">
 
                         <input type="text" name="first_name" id="first-name" placeholder="User first name">
@@ -133,17 +133,14 @@
                         <input type="file" name="image" id="image"/>
                         <button type="submit" class="js-add-user admin-btn">Add user</button>
                     </form>
-                <br>
-
-                <br>
 
                 </div>
                 </div>
                 <div style="flex-grow: 1;">
-                    <div class="js-feedback-interval admin-modal-right"style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                    <div class="js-feedback-interval admin-modal-right" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                         Change your <br> feedback time interval
                     </div>
-                <div id="tabs-2" class="admin-modal2 js-tab-2 admin-modal-right">
+                <div id="tabs-2" class="admin-modal2 js-tab-2" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940;">
                 <label for="feedback-time">Change feedback time</label>
                 <select name="feedback_time" id="feedback-time">
                     @foreach($durations as $duration)
@@ -166,14 +163,14 @@
                 Company <br> <hr>
                 Stats
                 </div>
-                <div class="js-statistics hidden-stats">
+                <div class="js-statistics hidden-stats" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940;">
                     <span>Active users:{{count(auth()->user()->company->users())}}</span>
                     <br>
                     <span>Inactive users:{{count(auth()->user()->company->inactiveUsers())}}</span>
                     <br>
-                    Highest rated<br> {{$highest['user']}} : {{$highest['score']}}
+                    <span>Highest rated<br> {{$highest['user']}} : {{$highest['score']}}</span>
                     <br>
-                    Lowest rated<br>{{$lowest['user']}} : {{$lowest['score']}}
+                    <span>Lowest rated<br>{{$lowest['user']}} : {{$lowest['score']}}</span>
 
                 </div>
             </div>

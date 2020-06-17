@@ -3,7 +3,7 @@
 @section('users')
 
     <div class="user-box">
-        <div class="user">
+        <div class="user superadmin-media-user">
             <img src="https://source.unsplash.com/random" class="user-image">
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">

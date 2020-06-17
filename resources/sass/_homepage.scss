@@ -26,6 +26,9 @@
     padding: 10px 15px;
     font-weight: bold;
     letter-spacing: 3px;
+    @media screen and (max-width: 952px) {
+        display: none;
+    }
 }
 .main{
     // height: 100vh;
@@ -43,6 +46,12 @@
 .login-text{
     font-size: 4rem;
     color: #4e5357;
+    @media screen and (max-width: 425px) {
+        font-size: 2rem;
+    }
+    @media screen and (max-width: 375px) {
+        font-size: 1.3rem;
+    }
 }
 .e-mail, .password{
     width: 43vw;

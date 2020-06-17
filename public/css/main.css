@@ -32,6 +32,12 @@
   letter-spacing: 3px;
 }
 
+@media screen and (max-width: 952px) {
+  .logo-name {
+    display: none;
+  }
+}
+
 .main {
   width: 75vw;
   position: relative;
@@ -49,6 +55,18 @@
 .login-text {
   font-size: 4rem;
   color: #4e5357;
+}
+
+@media screen and (max-width: 425px) {
+  .login-text {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .login-text {
+    font-size: 1.3rem;
+  }
 }
 
 .e-mail,
@@ -734,6 +752,12 @@ input:checked + .slider:before {
 
 .edit-btn {
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .superadmin-media-user {
+    display: block;
+  }
 }
 
 body {

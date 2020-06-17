@@ -66,6 +66,7 @@ $(document).ready(function () {
                         alert('User added')
                         $(".js-admins-list").empty().append(getUsers)
                         $('.js-edit-form input').val('')
+                        $(".js-statistics").load(location.href+" .js-statistics>*","");
                     })
                         );
                 }));
@@ -214,6 +215,7 @@ function showStats(){
                 },
             }).done(function (data) {
                 alert(data.success);
+                $(".js-statistics").load(location.href+" .js-statistics>*","");
                 $(".js-user-del"+id).remove();
         })
     })
@@ -248,6 +250,7 @@ function closeEdit(){
                     id: id
                 }
             }).done(function (data) {
+                $(".js-statistics").load(location.href+" .js-statistics>*","");
                 alert(data.success);
             })
         });
