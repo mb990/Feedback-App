@@ -417,8 +417,16 @@
   margin: 0 auto;
 }
 
+.admin-title {
+  text-align: center;
+}
+
 .inline-flex {
   display: inline-flex;
+}
+
+.hidden-stats {
+  display: none;
 }
 
 .tab {

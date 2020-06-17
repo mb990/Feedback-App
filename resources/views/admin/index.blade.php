@@ -19,13 +19,10 @@
 
 @section('content')
 
-    {{$highest['user']}}
-    {{$highest['score']}}
-    {{$lowest['user']}}
-    {{$lowest['score']}}
+
 
     @if(!auth()->user()->active)
-        <h2>Your account is temporarily deactivated</h2>
+        <h2 class="admin-title">Your account is temporarily deactivated</h2>
     @else
 
     <div class="admin">
@@ -90,7 +87,7 @@
             </div>
         </div>
 
-        <h2>{{auth()->user()->first_name}}, welcome to admin panel
+        <h2 class="admin-title">{{auth()->user()->first_name}}, welcome to admin panel
             <br>
             Company: {{auth()->user()->company->name}}</h2>
 
@@ -105,7 +102,7 @@
                     <button class="js-show-time-update admin-btn" style="width: 10vw; margin-left: 15vw;">Edit time</button>
                     <button class="js-stats admin-btn" style="width: 10vw; margin-left: 15vw;">Statistics</button>
                 </div>
-                <div style="display: flex; width: 50vw;">
+                <div style="display: flex; width: 60vw;">
                 <div style="flex-grow: 1;">
                     <div class="js-interactive-text" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                         Add new <br> user to your <br> company
@@ -166,10 +163,17 @@
             </div>
             <div style="flex-grow: 1;">
                 <div class="js-stats-info" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
-                statiskitka ide ovde <br> <hr>
-                i ovde isto ide
+                Company <br> <hr>
+                Stats
                 </div>
-                <div class="js-statistics">
+                <div class="js-statistics hidden-stats">
+                    <span>Active users:{{count(auth()->user()->company->users())}}</span>
+                    <br>
+                    <span>Inactive users:{{count(auth()->user()->company->inactiveUsers())}}</span>
+                    <br>
+                    Highest rated<br> {{$highest['user']}} : {{$highest['score']}}
+                    <br>
+                    Lowest rated<br>{{$lowest['user']}} : {{$lowest['score']}}
 
                 </div>
             </div>
@@ -210,31 +214,7 @@
         $(document).ready(function(e){
 
 
-            $("#form").on('submit',(function(e) {
-                e.preventDefault();
-                let form_data = new FormData();
-                form_data.append('first_name', $('#first-name').val());
-                form_data.append('last_name', $('#last-name').val());
-                form_data.append('email', $('#email').val());
-                form_data.append('password', $('#password').val());
-                form_data.append('password_confirmation', $('#password-confirm').val());
-                form_data.append('company_id', $('#company-id').val());
-                form_data.append('job_title_id', $('#job-title').val());
-                form_data.append('picture', $('#image')[0].files[0]);
-                // debugger;
-                $.ajax({
-                    url: "/admin/users",
-                    type: "post",             // Type of request to be send, called as method
-                    data: form_data,
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    success: function(data)   // A function to be called if request succeeds
-                    {
-                        console.log(data.request);
-                    }
-                }).done(alert('User added'));
-            }));
+
 
 
             $("#uploadimage").on('submit',(function(e) {
@@ -255,6 +235,15 @@
                     }
                 }).done(alert('Picture is updated'));
             }))
+            $("#chk-box").click(getCheck)
+            function getCheck(){
+                chk = $("#chk-box").checked ? 1 : 0;
+                $.ajax({
+                    type: 'GET',
+                    url: '',
+                    data: {}
+        });
+            }
         })
     </script>
 @endsection

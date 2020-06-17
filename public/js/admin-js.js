@@ -7,7 +7,7 @@ $(document).ready(function () {
 
                 $.each(data.users, function (i, e) {
                     output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot">'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
+                    e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><input name="chk-box" id="chk-box" value="1" type="checkbox">'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
                     '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
                     // '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
                     // '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
@@ -38,7 +38,36 @@ $(document).ready(function () {
                     $('#hidden_user_id').val(id)
                     $(".js-user-modal").show()
                 }
-
+                $("#form").on('submit',(function(e) {
+                    e.preventDefault();
+                    let form_data = new FormData();
+                    form_data.append('first_name', $('#first-name').val());
+                    form_data.append('last_name', $('#last-name').val());
+                    form_data.append('email', $('#email').val());
+                    form_data.append('password', $('#password').val());
+                    form_data.append('password_confirmation', $('#password-confirm').val());
+                    form_data.append('company_id', $('#company-id').val());
+                    form_data.append('job_title_id', $('#job-title').val());
+                    form_data.append('picture', $('#image')[0].files[0]);
+                    // debugger;
+                    $.ajax({
+                        url: "/admin/users",
+                        type: "post",             // Type of request to be send, called as method
+                        data: form_data,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        success: function(data)   // A function to be called if request succeeds
+                        {
+                            console.log(data.request);
+                        }
+                    }).done((function(data){
+                        alert('User added')
+                        $(".js-admins-list").empty().append(getUsers)
+                        $('.js-edit-form input').val('')
+                    })
+                        );
+                }));
                 // ADD USER
 
                 // $('.js-add-user').click(addUser);
