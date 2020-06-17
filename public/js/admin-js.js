@@ -41,39 +41,39 @@ $(document).ready(function () {
 
                 // ADD USER
 
-                $('.js-add-user').click(addUser);
+                // $('.js-add-user').click(addUser);
 
-                function addUser() {
-                    let first_name = $('#first-name').val();
-                    let last_name = $('#last-name').val();
-                    let email = $('#email').val();
-                    let password = $('#password').val();
-                    let password_confirmation = $('#password-confirm').val();
-                    let company_id = $('#company-id').val();
-                    let job_title_id = $('#job-title').val();
-                    // let picture = $('#add-img').prop('files');
-                    // console.log(job_title_id);
-                    $.ajax({
-                        url:'/admin/users',
-                        type: 'post',
-                        data:
-                        {
-                            first_name: first_name,
-                            last_name: last_name,
-                            email: email,
-                            password: password,
-                            password_confirmation: password_confirmation,
-                            company_id: company_id,
-                            job_title_id: job_title_id,
-                            // picture: picture
-                        }})
-                        .done(function(data){
-                            // console.log(data.request);
-                            $(".js-admins-list").empty().append(getUsers);
-                            $('.js-edit-form input').val('');
-                            alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
-                        })
-                }
+                // function addUser() {
+                //     let first_name = $('#first-name').val();
+                //     let last_name = $('#last-name').val();
+                //     let email = $('#email').val();
+                //     let password = $('#password').val();
+                //     let password_confirmation = $('#password-confirm').val();
+                //     let company_id = $('#company-id').val();
+                //     let job_title_id = $('#job-title').val();
+                //     // let picture = $('#add-img').prop('files');
+                //     // console.log(job_title_id);
+                //     $.ajax({
+                //         url:'/admin/users',
+                //         type: 'post',
+                //         data:
+                //         {
+                //             first_name: first_name,
+                //             last_name: last_name,
+                //             email: email,
+                //             password: password,
+                //             password_confirmation: password_confirmation,
+                //             company_id: company_id,
+                //             job_title_id: job_title_id,
+                //             // picture: picture
+                //         }})
+                //         .done(function(data){
+                //             console.log(data.request);
+                //             $(".js-admins-list").empty().append(getUsers);
+                //             $('.js-edit-form input').val('');
+                //             // alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
+                //         })
+                // }
             }
         )
     }
@@ -92,13 +92,13 @@ $(document).ready(function () {
     // })}
 
     // UPDATE USER
-    $('.js-update-user').click(updateUser)
+    $('.js-update-user').click(updateUser);
     function updateUser(){
         id = $('#hidden_user_id').val();
         first_name = $('.js-edit-fname').val();
         last_name = $('.js-edit-lname').val();
         email = $('.js-edit-mail').val();
-        job_title_id = $('#update-job-title').val()
+        job_title_id = $('#update-job-title').val();
         // picture = document.getElementById('picture').files[0];
         $.ajax(
             {
@@ -114,7 +114,7 @@ $(document).ready(function () {
             }).done(alert("User is updated"),
             $(".js-user-modal").hide(),
             $('.js-admins-list').empty().append(getUsers)
-            )
+            );
 
     // UPDATE USER PASSWORD
 
@@ -170,7 +170,7 @@ function showStats(){
     } else {
         $(this).text("Statistics");
     }
-}    
+}
 
     // DELETE USER
     $(document).on ('click', '#delete-user', function () {

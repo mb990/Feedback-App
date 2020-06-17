@@ -61,15 +61,7 @@ class UserRepository
 
        $user->profile()->create([
             'job_title_id' => $request->job_title_id,
-            'picture' => 'https://lorempixel.com/640/480/?24742'
        ]);
-
-//        if ($picture) {
-//
-//            $user->profile()->update([
-//                'picture' => $picture
-//            ]);
-//        }
 
             return $user;
     }
@@ -81,7 +73,7 @@ class UserRepository
         ]);
     }
 
-    public function update($request, $user, $picture = null)
+    public function update($request, $user)
     {
         $user->update([
             'first_name' => $request->first_name,
@@ -93,32 +85,29 @@ class UserRepository
             'job_title_id' => $request->job_title_id,
         ]);
 
-        if ($picture) {
-
-            $user->profile()->update([
-            'picture' => $picture
-            ]);
-        }
-
         return $user;
     }
 
     public function updatePassword($password, $user)
     {
-        return $user->update([
+        $user->update([
            'password' => $password
         ]);
+
+        return $user;
+    }
+
+    public function updatePicture($picture, $user)
+    {
+        $user->profile()->update([
+            'picture' => $picture
+        ]);
+
+        return $user;
     }
 
     public function delete($user)
     {
         $user->delete();
-    }
-
-    public function uploadPicture($picture, $user)
-    {
-        return $user->profile()->update([
-            'picture' => $picture
-        ]);
     }
 }

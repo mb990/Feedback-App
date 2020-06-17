@@ -111,32 +111,35 @@
                         Add new <br> user to your <br> company
                     </div>
                 <div  class="admin-modal js-admin-modal">
-                <input type="text" name="first-name" id="first-name" placeholder="User first name">
-                <input type="text" name="last-name" id="last-name" placeholder="User last name">
-                <input type="email" name="email" id="email" placeholder="User e-mail">
-                <input type="hidden" name="company-id" id="company-id" value="{{auth()->user()->company_id}}">
-                <input type="password" name="password" id="password" placeholder="User password">
-                <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
-                <select name="job-title" id="job-title">
-                    @forelse($positions as $position)
+                    <form id="form" action="" method="post" enctype="multipart/form-data">
 
-                        <option value="{{$position->id}}">
-                            {{$position->name}}
-                        </option>
+                        <input type="text" name="first_name" id="first-name" placeholder="User first name">
+                        <input type="text" name="last_name" id="last-name" placeholder="User last name">
+                        <input type="email" name="email" id="email" placeholder="User e-mail">
+                        <input type="hidden" name="company_id" id="company-id" value="{{auth()->user()->company_id}}">
+                        <input type="password" name="password" id="password" placeholder="User password">
+                        <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
+                        <select name="job_title_id" id="job-title">
+                            @forelse($positions as $position)
 
-                    @empty
+                                <option value="{{$position->id}}">
+                                    {{$position->name}}
+                                </option>
 
-                        <option disabled>No positions</option>
+                            @empty
 
-                    @endforelse
+                                <option disabled>No positions</option>
 
-                </select>
+                            @endforelse
+
+                        </select>
+                        <input type="file" name="image" id="image"/>
+                        <button type="submit" class="js-add-user admin-btn">Add user</button>
+                    </form>
                 <br>
-                <form id="upload-new-image" action="" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" id="image" required />
-                </form>
+
                 <br>
-                <button class="js-add-user admin-btn">Add user</button>
+
                 </div>
                 </div>
                 <div style="flex-grow: 1;">
@@ -205,6 +208,35 @@
             $( "#tabs" ).tabs();
         } );
         $(document).ready(function(e){
+
+
+            $("#form").on('submit',(function(e) {
+                e.preventDefault();
+                let form_data = new FormData();
+                form_data.append('first_name', $('#first-name').val());
+                form_data.append('last_name', $('#last-name').val());
+                form_data.append('email', $('#email').val());
+                form_data.append('password', $('#password').val());
+                form_data.append('password_confirmation', $('#password-confirm').val());
+                form_data.append('company_id', $('#company-id').val());
+                form_data.append('job_title_id', $('#job-title').val());
+                form_data.append('picture', $('#image')[0].files[0]);
+                // debugger;
+                $.ajax({
+                    url: "/admin/users",
+                    type: "post",             // Type of request to be send, called as method
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        console.log(data.request);
+                    }
+                }).done(alert('User added'));
+            }));
+
+
             $("#uploadimage").on('submit',(function(e) {
                 e.preventDefault();
                 let form_data = new FormData();

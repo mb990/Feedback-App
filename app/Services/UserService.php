@@ -78,12 +78,9 @@ class UserService
 
         $user = $this->user->store($request, $password);
 
-        if ($request->picture) {
+        $picture = $this->uploadPicture($request, $user);
 
-            $pictureFile = $this->uploadPicture($request, $user);
-
-            return $this->user->storePicture($pictureFile, $user);
-        }
+        $this->user->storePicture($picture, $user);
 
         return $user;
     }
@@ -97,14 +94,7 @@ class UserService
     {
         $user = $this->find($id);
 
-        if ($request->picture) {
-
-            $pictureFile = $this->uploadPicture($request, $id);
-
-            return $this->user->update($request, $user, $pictureFile);
-        }
-
-        return $this->user->update($request, $this->find($id));
+        return $this->user->update($request, $user);
     }
 
     public function updatePassword($request, $id)
@@ -112,6 +102,15 @@ class UserService
         $password = $this->hashPassword($request->password);
 
         return $this->user->updatePassword($password, $this->find($id));
+    }
+
+    public function updatePicture($request, $id)
+    {
+        $user = $this->find($id);
+
+        $picture = $this->uploadPicture($request, $user);
+
+        return $this->user->updatePicture($picture, $user);
     }
 
     public function createAdmin($request)
@@ -128,7 +127,7 @@ class UserService
 
         $pictureFile = asset('storage/profile-pictures/' . $user->company->name . '/' . $name);
 
-        return $this->user->uploadPicture($pictureFile, $user);
+        return $pictureFile;
     }
 
     public function highestAverageFeedbackScore()

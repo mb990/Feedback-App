@@ -34,7 +34,8 @@ class CreateUserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'company_id' => 'required',
-            'job_title_id' => 'required'
+            'job_title_id' => 'required',
+            'picture' => 'required'
         ];
     }
 }
