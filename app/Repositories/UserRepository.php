@@ -66,13 +66,6 @@ class UserRepository
             return $user;
     }
 
-    public function storePicture($picture, $user)
-    {
-        return $user->profile()->update([
-            'picture' => $picture
-        ]);
-    }
-
     public function update($request, $user)
     {
         $user->update([
@@ -104,6 +97,13 @@ class UserRepository
         ]);
 
         return $user;
+    }
+
+    public function updateStatus($value, $user)
+    {
+        return $user->update([
+            'active' => $value
+        ]);
     }
 
     public function delete($user)

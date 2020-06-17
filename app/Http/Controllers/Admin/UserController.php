@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function index(AdminRequest $request)
     {
-        $users = auth()->user()->company->users();
+        $users = auth()->user()->company->adminListUsers();
 
         return response()->json(['users' => $users]);
     }
@@ -69,5 +69,12 @@ class UserController extends Controller
         $this->userService->updatePicture($request, $id);
 
         return response()->json(['success' => 'User picture is updated']);
+    }
+
+    public function updateStatus(AdminRequest $request, $id)
+    {
+        $this->userService->updateStatus($request, $id);
+
+        return response()->json(['success' => 'User status is updated']);
     }
 }

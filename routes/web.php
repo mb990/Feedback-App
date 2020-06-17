@@ -66,6 +66,7 @@ Route::put('/admin/users/{id}', 'Admin\UserController@update')->name('user.updat
 Route::put('/admin/users/{id}/update/password', 'Admin\UserController@updatePassword')->name('user.update-password');
 Route::delete('/admin/users/{id}', 'Admin\UserController@destroy')->name('user.delete');
 Route::put('/admin/users/{id}/update/picture', 'Admin\UserController@updatePicture')->name('user.update-picture');
+Route::put('/admin/users/{id}/update/status', 'Admin\UserController@updateStatus')->name('user.update-status');
 
 Route::put('/admin/companies/{id}', 'Admin\CompanyController@update')->name('admin.company.update');
 

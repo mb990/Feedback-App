@@ -58,8 +58,6 @@ class PageController extends Controller
 
     public function profile(ProfileRequest $request, $id)
     {
-//        $users = $this->userService->teammates();
-
         $skills = $this->skillService->all();
 
         return view('profile', compact(['skills']));

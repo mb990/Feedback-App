@@ -45,6 +45,18 @@ class Company extends Model
         });
     }
 
+    // shows also inactive users
+    public function adminListUsers()
+    {
+        $users = $this->members()->with('profile.jobTitle')
+            ->where('company_id', $this->id)
+            ->get();
+
+        return $users->filter(function ($user) {
+            return !$user->hasRole('admin');
+        });
+    }
+
     public function inactiveUsers()
     {
         $users = $this->members()->with('profile.jobTitle')

@@ -7,7 +7,7 @@ $(document).ready(function () {
 
                 $.each(data.users, function (i, e) {
                     output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
-                    e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><input name="chk-box" id="chk-box" value="1" type="checkbox">'+(e.active === 1 ? '<span title="active user"class="dot"></span>' : '<span title="Inactive user" class="dot-red"></span>')+
+                    e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><input data-id='+ e.id +' name="chk-box" id="chk-box" value="1" type="checkbox" '+ (e.active === 1 ? "checked" : "" )+' >'+(e.active === 1 ? '<span title="active user"class="dot"></span> ' : '<span title="Inactive user" class="dot-red"></span>')+
                     '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
                     // '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
                     // '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
@@ -235,6 +235,21 @@ $('.js-edit-user-close').click(closeEdit)
 function closeEdit(){
     $(".js-user-modal").hide()
 }
+    // change user status
+        $(document).on("change", "input[name='chk-box']", function() {
+
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: '/admin/users/' + id + '/update/status',
+                type: 'put',
+                data: {
+                    id: id
+                }
+            }).done(function (data) {
+                alert(data.success);
+            })
+        });
 
 
     // let text = $('#tekst').val();

@@ -213,10 +213,6 @@
         } );
         $(document).ready(function(e){
 
-
-
-
-
             $("#uploadimage").on('submit',(function(e) {
                 e.preventDefault();
                 let form_data = new FormData();

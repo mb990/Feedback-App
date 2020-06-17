@@ -80,7 +80,7 @@ class UserService
 
         $picture = $this->uploadPicture($request, $user);
 
-        $this->user->storePicture($picture, $user);
+        $this->user->updatePicture($picture, $user);
 
         return $user;
     }
@@ -111,6 +111,18 @@ class UserService
         $picture = $this->uploadPicture($request, $user);
 
         return $this->user->updatePicture($picture, $user);
+    }
+
+    public function updateStatus($request, $id)
+    {
+        $user = $this->find($id);
+
+        if ($user->active) {
+
+            return $this->user->updateStatus(0, $user);
+        }
+
+        return $this->user->updateStatus(1, $user);
     }
 
     public function createAdmin($request)
