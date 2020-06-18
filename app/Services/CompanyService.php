@@ -50,8 +50,6 @@ class CompanyService
             return $this->company->updateFeedbackDurationTime($company, $request);
         }
 
-        $this->storageService->deleteCompanyDirectory($company);
-
         return $this->company->update($company, $request);
     }
 
