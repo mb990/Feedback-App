@@ -68,6 +68,9 @@ Route::delete('/admin/users/{id}', 'Admin\UserController@destroy')->name('user.d
 Route::put('/admin/users/{id}/update/picture', 'Admin\UserController@updatePicture')->name('user.update-picture');
 Route::put('/admin/users/{id}/update/status', 'Admin\UserController@updateStatus')->name('user.update-status');
 
+Route::get('/admin/notification/create', 'Admin\UserNotificationController@index')->name('users.notify-all.create');
+Route::post('/admin/notification/send', 'Admin\UserNotificationController@messageToAll')->name('users.notify-all.send');
+
 Route::put('/admin/companies/{id}', 'Admin\CompanyController@update')->name('admin.company.update');
 
 Route::get('/company/{id}', 'CompanyController@show')->name('company.show');
