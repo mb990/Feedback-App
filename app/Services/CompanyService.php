@@ -13,10 +13,15 @@ class CompanyService
      * @var CompanyRepository
      */
     private $company;
+    /**
+     * @var StorageService
+     */
+    private $storageService;
 
-    public function __construct(CompanyRepository $company)
+    public function __construct(CompanyRepository $company, StorageService $storageService)
     {
         $this->company = $company;
+        $this->storageService = $storageService;
     }
 
     public function all()
@@ -38,10 +43,14 @@ class CompanyService
     {
         $company = $this->company->find($id);
 
+        $this->storageService->updateCompanyDirectoryName($company, $request->name);
+
         if ($request->feedback_duration_id) {
 
             return $this->company->updateFeedbackDurationTime($company, $request);
         }
+
+        $this->storageService->deleteCompanyDirectory($company);
 
         return $this->company->update($company, $request);
     }
@@ -49,6 +58,8 @@ class CompanyService
     public function delete($id)
     {
         $company = $this->find($id);
+
+        $this->storageService->deleteCompanyDirectory($company);
 
         return $this->company->delete($company);
     }

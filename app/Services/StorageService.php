@@ -33,6 +33,26 @@ class StorageService
         return false;
     }
 
+    public function updateCompanyDirectoryName($company, $new)
+    {
+        if (Storage::exists('public/profile-pictures/' . $company->name)) {
+
+            return Storage::move('public/profile-pictures/' . $company->name, 'public/profile-pictures/' . $new);
+        }
+
+        return false;
+    }
+
+    public function deleteCompanyDirectory($company)
+    {
+        if (Storage::exists('public/profile-pictures/' . $company->name)) {
+
+            return Storage::deleteDirectory('public/profile-pictures/' . $company->name);
+        }
+
+        return false;
+    }
+
     public function storeProfilePicture($request, $user)
     {
         $picture = $request->file('picture');
