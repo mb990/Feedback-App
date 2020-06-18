@@ -61,14 +61,23 @@ $(document).ready(function () {
                         success: function(data)   // A function to be called if request succeeds
                         {
                             console.log(data.request);
-                        }
+                        },
+                        error: (function(data){
+                        //     alert(data.responseJSON.errors.first_name[0]);
+                        //     alert(data.responseJSON.errors.last_name[0]);
+                        //     alert(data.responseJSON.errors.email[0]);
+                        $('.js-error-msg').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(1000).fadeOut("slow");
+                            // alert(data.responseJSON.errors.password[0]);
+                        //     alert(data.responseJSON.errors.picture[0]);
+
+                        })
                     }).done((function(data){
                         alert('User added')
                         $(".js-admins-list").empty().append(getUsers)
                         $('.js-edit-form input').val('')
                         $(".js-statistics").load(location.href+" .js-statistics>*","");
                     })
-                        );
+                        )
                 }));
                 // ADD USER
 

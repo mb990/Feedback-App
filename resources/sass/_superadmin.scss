@@ -19,6 +19,9 @@
         &:hover{
             background-color: #aaaaaa;
         }
+        @media screen and (max-width: 425px) {
+            padding: 5px;
+        }
     }
 .tabs{
     margin-bottom: 9px;

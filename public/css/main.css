@@ -12,6 +12,13 @@
   padding: 5vw 0px 5vw 5vw;
 }
 
+@media screen and (max-width: 425px) {
+  .aside {
+    width: 100vw;
+    display: none;
+  }
+}
+
 .logo {
   background-color: #ec1940;
   color: white;
@@ -41,6 +48,12 @@
 .main {
   width: 75vw;
   position: relative;
+}
+
+@media screen and (max-width: 425px) {
+  .main {
+    width: 100vw;
+  }
 }
 
 .login {
@@ -451,6 +464,12 @@
   list-style: none;
 }
 
+@media screen and (max-width: 425px) {
+  #tabs {
+    width: 100vw;
+  }
+}
+
 .tab-view {
   padding: 10px;
   margin-left: 40px;
@@ -463,6 +482,13 @@
 
 .tab-view li {
   list-style: none;
+}
+
+@media screen and (max-width: 425px) {
+  .tab-view {
+    margin-left: 0px;
+    width: auto;
+  }
 }
 
 .admin-btn {
@@ -689,6 +715,12 @@ input:checked + .slider:before {
   background-color: #aaaaaa;
 }
 
+@media screen and (max-width: 425px) {
+  .admin-tab {
+    padding: 5px;
+  }
+}
+
 .tabs {
   margin-bottom: 9px;
 }
@@ -769,5 +801,24 @@ body {
 
 .modal {
   display: none;
+}
+
+.alert {
+  padding: 5px;
+  display: none;
+  position: absolute;
+  background-color: lightgrey;
+}
+
+.menu-media {
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 465px) {
+  .menu-media {
+    display: none;
+  }
 }
 

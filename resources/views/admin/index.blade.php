@@ -18,7 +18,15 @@
 @endsection
 
 @section('content')
-
+@component('components.alert')
+    @slot('class')
+        warning
+    @endslot
+    @slot('title')
+        Warning Message
+    @endslot
+    Please input correct data!
+@endcomponent
 
 
     @if(!auth()->user()->active)
@@ -110,11 +118,14 @@
                 <div  class="admin-modal js-admin-modal" style="padding: 5px; border: 1px solid #ec1940;">
                     <form id="form" action="" method="post" enctype="multipart/form-data">
 
-                        <input type="text" name="first_name" id="first-name" placeholder="User first name">
-                        <input type="text" name="last_name" id="last-name" placeholder="User last name">
-                        <input type="email" name="email" id="email" placeholder="User e-mail">
+                        <input type="text" name="first_name" id="first-name" placeholder="User first name" required>
+                        <input type="text" name="last_name" id="last-name" placeholder="User last name" required>
+                        <input type="email" name="email" id="email" placeholder="User e-mail" required>
                         <input type="hidden" name="company_id" id="company-id" value="{{auth()->user()->company_id}}">
-                        <input type="password" name="password" id="password" placeholder="User password">
+                        <input type="password" name="password" id="password" placeholder="User password" required>
+                        
+                        <span class="hidden js-error-msg"><br>Testttt<br></span>
+                        
                         <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
                         <select name="job_title_id" id="job-title">
                             @forelse($positions as $position)
@@ -130,7 +141,7 @@
                             @endforelse
 
                         </select>
-                        <input type="file" name="image" id="image"/>
+                        <input type="file" name="image" id="image" required/>
                         <button type="submit" class="js-add-user admin-btn">Add user</button>
                     </form>
 

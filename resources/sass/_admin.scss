@@ -26,6 +26,11 @@
     //     }
     // }
 }
+#tabs{
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
+}
 .tab-view{
     padding: 10px;
     margin-left: 40px;
@@ -36,6 +41,10 @@
     color: white;
     li{
         list-style: none;
+    }
+    @media screen and (max-width: 425px) {
+        margin-left: 0px;
+        width: auto;
     }
 }
 .admin-btn{

@@ -1,13 +1,18 @@
 .web-name{
     // margin: 8vh 8vw;
     display: flex;
-}.aside{
+}
+.aside{
     // height: 100vh;
     width: 20vw;
     background-color: #22282d;
     display: flex;
     flex-direction: column;
     padding: 5vw 0px 5vw 5vw;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+        display: none;
+    }
 }
 .logo{
     background-color: #ec1940;
@@ -34,6 +39,9 @@
     // height: 100vh;
     width: 75vw;
     position: relative;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
 }
 .login{
     font-family: Verdana, Geneva, Tahoma, sans-serif;

@@ -25,7 +25,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     </head>
     <body>
-<div class="aside">
+<div class="aside aside-media-view">
+    <div class="menu-media js-menu-media"><i class="fas fa-bars"></i></div>
     <div class="web-name">
         <div class="logo">F</div>
         <span class="logo-name">FEEDBACK
@@ -34,7 +35,10 @@
     </div>
     @yield('users')
 </div>
-<div class="main">
+<div class="main js-main">
+    @auth
+    <div class="menu-media js-menu-media"><i class="fas fa-bars"></i></div>
+    @endauth
     @yield('content')
 </div>
     @yield('script')

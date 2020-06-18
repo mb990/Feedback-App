@@ -166,6 +166,11 @@ $('.js-accepted').hide()
     $( document ).ready(function() {
         $('span.stars').stars();
     });
+    $('.js-menu-media').click(getAside);
+    function getAside(){
+        $('.aside-media-view').toggle("slide");
+        $('.js-main').toggle("slide");
+    }
 });
 
 
