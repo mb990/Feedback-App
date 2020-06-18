@@ -157,7 +157,7 @@ class UserService
 
         $data = ['score' => 0];
 
-        foreach ($company->users() as $user) {
+        foreach ($company->adminListUsers() as $user) {
 
             if ($user->averageFeedbackScore() > $data['score']) {
 
@@ -176,7 +176,7 @@ class UserService
 
         $data = [];
 
-        foreach ($company->users() as $user) {
+        foreach ($company->adminListUsers() as $user) {
 
             if ($user->averageFeedbackScore()) {
 
