@@ -12,8 +12,8 @@ $(document).ready(function () {
                         '"class="edit-position super-admin-btn" id="edit-position">Update</button>' +
                         '<input type="text" name="edit-position'+ e.id +'" id="edit-position'+ e.id +'" data-id="'+ e.id +
                         '"class="js-edit-input'+ e.id +'" placeholder="Update job title">' +
-                        '</span></p>';
-                })
+                        '</span><br><span class="hidden js-edit-job-title-name'+ e.id +'"><br><br></span></p>';
+                });
                 $('.js-positions').append(output);
             }
         )
@@ -29,6 +29,11 @@ $(document).ready(function () {
             '/superadmin/job-titles',
             {
                 name: $('[name="position-name"]').val()
+            })
+            .fail(function (data) {
+                if (data.responseJSON.errors.name) {
+                    $('.js-admin-job-title-name').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
             })
             .done(function(data){
                 $('.js-positions').empty().append(getJobTitles);
@@ -48,10 +53,16 @@ $(document).ready(function () {
                 data: {
                     name: name,
                 }
-            }).done(function (data) {
+            })
+            .fail(function (data) {
+                if (data.responseJSON.errors.name) {
+                    $('.js-edit-job-title-name' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+            })
+            .done(function (data) {
             $('.js-positions').empty().append(getJobTitles);
         });
-    })
+    });
 
     // Delete job title
 
@@ -67,7 +78,7 @@ $(document).ready(function () {
             }).done(function (data) {
             $('.js-positions').empty().append(getJobTitles);
         })
-    })
+    });
 
         //Search positions
         $(".search-position").on("keyup", function() {
@@ -80,8 +91,8 @@ $(document).ready(function () {
         //Update job
         $(document).on ('click', '.js-job-show', function(){
             let id = $(this).data('id');
-            let field = $('.js-job-hide'+id)
+            let field = $('.js-job-hide'+id);
             field.toggle()
             $(this).toggleClass('fa-plus-circle fa-minus-circle')
         });
-})
+});

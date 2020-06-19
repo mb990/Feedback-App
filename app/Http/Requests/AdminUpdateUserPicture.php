@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminUpdateCompanyRequest extends FormRequest
+class AdminUpdateUserPicture extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class AdminUpdateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:companies'
+            'picture' => 'required|mimes:jpeg,jpg,png|max:4000'
         ];
     }
 }

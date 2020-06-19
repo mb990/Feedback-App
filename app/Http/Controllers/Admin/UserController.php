@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\AdminUpdateUserPassword;
+use App\Http\Requests\AdminUpdateUserPicture;
 use App\Http\Requests\AdminUpdateUserRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Services\JobTitleService;
@@ -57,14 +59,14 @@ class UserController extends Controller
         return response()->json(['user' => $user, 'success' => 'User is updated']);
     }
 
-    public function updatePassword(AdminUpdateUserRequest $request, $id)
+    public function updatePassword(AdminUpdateUserPassword $request, $id)
     {
         $this->userService->updatePassword($request, $id);
 
         return response()->json(['success' => 'User password is updated']);
     }
 
-    public function updatePicture(AdminRequest $request, $id)
+    public function updatePicture(AdminUpdateUserPicture $request, $id)
     {
         $this->userService->updatePicture($request, $id);
 

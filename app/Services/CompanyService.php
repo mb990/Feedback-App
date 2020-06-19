@@ -43,7 +43,10 @@ class CompanyService
     {
         $company = $this->company->find($id);
 
-        $this->storageService->updateCompanyDirectoryName($company, $request->name);
+        if ($company->name !== $request->name) {
+
+            $this->storageService->updateCompanyDirectoryName($company, $request->name);
+        }
 
         if ($request->feedback_duration_id) {
 

@@ -20,7 +20,6 @@ class CompanyAdminMessage extends Notification
      */
     public function __construct($message)
     {
-        //
         $this->message = $message;
     }
 

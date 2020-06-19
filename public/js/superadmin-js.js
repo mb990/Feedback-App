@@ -7,18 +7,18 @@ $(document).ready(function () {
                     output += '<p>' + e.first_name + ' ' + e.last_name + ' <button data-id="'+ e.id +
                         '" class="delete-admin super-admin-btn" name="delete-admin">DEL</button>'+
                         '<button name="edit-admin" id="'+ e.id +'" class="super-admin-btn js-edit-modal">EDIT</button></p>';
-                })
+                });
                 $('.js-admins').append(output);
                 $(".js-edit-modal").click(editAdmin);
                 function editAdmin(){
-                    id = $(this).attr('id')
+                    id = $(this).attr('id');
                     $.get('/superadmin/admins/'+id+'/update', function(data){
-                        $('#first_name').val(data.admin.first_name)
-                        $('#last_name').val(data.admin.last_name)
-                        $('#admin-email').val(data.admin.email)
+                        $('#first_name').val(data.admin.first_name);
+                        $('#last_name').val(data.admin.last_name);
+                        $('#admin-email').val(data.admin.email);
                     }
-                    )
-                    $('#hidden_id').val(id)
+                    );
+                    $('#hidden_id').val(id);
                     $(".edit-modal").show();
                 }
             }
@@ -26,7 +26,7 @@ $(document).ready(function () {
     }
     getAdmins();
 
-$('.js-edit-admin-btn').click(updateAdmin)
+$('.js-edit-admin-btn').click(updateAdmin);
 function updateAdmin(){
     id = $('#hidden_id').val();
     first_name = $('#first_name').val();
@@ -41,8 +41,19 @@ function updateAdmin(){
                 last_name: last_name,
                 email: email
             }
-    }).done(function(data){
-        $(".js-admins").empty().append(getAdmins),
+    }).fail(function (data) {
+        if (data.responseJSON.errors.first_name) {
+            $('.js-error-admin-edit-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
+        if (data.responseJSON.errors.last_name) {
+            $('.js-error-admin-edit-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
+        if (data.responseJSON.errors.email) {
+            $('.js-error-admin-edit-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
+    })
+        .done(function(data){
+        $(".js-admins").empty().append(getAdmins);
         $(".edit-modal").hide()
     })
     }
@@ -58,8 +69,8 @@ function updateAdmin(){
                         '<i style="margin:auto 0" class="add fas fa-plus-circle js-skill-show" data-id="'+ e.id +'"></i>'+
                         '<span class="hide js-skill-hide'+ e.id +'"><button data-id="'+ e.id +
                         '"class="edit-skill super-admin-btn" name="edit-skill">Update</button><input data-id="'+ e.id +
-                        '"class="js-edit-input'+ e.id +'" placeholder="Update skill name"></span></p>';
-                })
+                        '"class="js-edit-skill-name'+ e.id +'" placeholder="Update skill name"></span><br><span class="hidden js-edit-skill'+ e.id +'"><br><br></span></p>';
+                });
                 $('.js-skills').append(output);
             }
         )
@@ -69,12 +80,12 @@ function updateAdmin(){
         //ADD ADMIN
         $('.js-add-admin-btn').click(addAdmin);
         function addAdmin(){
-            let first_name = $('#first-name').val()
-            let last_name = $('#last-name').val()
-            let email = $('#email').val()
-            let password = $('#password').val()
-            let password_confirmation = $('#password-confirm').val()
-            let company_id = $('#company-id').val()
+            let first_name = $('#first-name').val();
+            let last_name = $('#last-name').val();
+            let email = $('#email').val();
+            let password = $('#password').val();
+            let password_confirmation = $('#password-confirm').val();
+            let company_id = $('#company-id').val();
             $.post('/superadmin/admins',
             {
                 first_name: first_name,
@@ -83,22 +94,41 @@ function updateAdmin(){
                 password: password,
                 password_confirmation: password_confirmation,
                 company_id: company_id
-            },
-        ).done(function(data){
-            $('.js-admins').empty().append(getAdmins);
-            $(".superadmin-modal").hide()
-            $(".superadmin-modal > input").val("")
+            }
+        ).fail(function (data) {
+                if (data.responseJSON.errors.first_name) {
+                    $('.js-error-admin-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+                if (data.responseJSON.errors.last_name) {
+                    $('.js-error-admin-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+                if (data.responseJSON.errors.email) {
+                    $('.js-error-admin-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+                if (data.responseJSON.errors.password) {
+                    $('.js-error-admin-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+            })
+            .done(function(data){
+                $('.js-admins').empty().append(getAdmins);
+                $(".superadmin-modal").hide();
+                $(".superadmin-modal > input").val("")
         })
         }
         $('.js-add-skill-btn').click(addSkill);
         function addSkill(){
-            var name = $('.js-skill').val()
+            var name = $('.js-skill').val();
             $.post('/superadmin/skills',
             {
                 name: name
             },
-        ).done(function(data){
-            $('.js-skill').val('')
+        ).fail(function (data) {
+                if (data.responseJSON.errors.name) {
+                    $('.js-add-skill').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+            })
+            .done(function(data){
+            $('.js-skill').val('');
             $('.js-skills').empty().append(getSkills);
         })
         }
@@ -118,11 +148,11 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-skills').empty().append(getSkills);
         })
-    })
+    });
 
     $(document).on ('click', '.edit-skill', function () {
         let id = $(this).data('id');
-        let name = $('.js-edit-input'+id).val();
+        let name = $('.js-edit-skill-name'+id).val();
         $.ajax(
             {
                 url: "/superadmin/skills/" + id + "/update",
@@ -130,10 +160,15 @@ function updateAdmin(){
                 data: {
                     name: name
                 },
-            }).done(function (data) {
+            }).fail(function (data) {
+            if (data.responseJSON.errors.name) {
+                $('.js-edit-skill' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
+            .done(function (data) {
             $('.js-skills').empty().append(getSkills);
         })
-    })
+    });
     $(document).on ('click', '.delete-admin', function () {
         let id = $(this).data('id');
         $.ajax(
@@ -146,18 +181,18 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-admins').empty().append(getAdmins);
         })
-    })
+    });
     $(document).on ('click', '.js-super-show', function(){
         let id = $(this).data('id');
-        let field = $('.js-super-hide'+id)
+        let field = $('.js-super-hide'+id);
         field.toggle()
         $(this).toggleClass('fa-plus-circle fa-minus-circle')
 
     });
     $(document).on ('click', '.js-skill-show', function(){
         let id = $(this).data('id');
-        let field = $('.js-skill-hide'+id)
-        field.toggle()
+        let field = $('.js-skill-hide'+id);
+        field.toggle();
         $(this).toggleClass('fa-plus-circle fa-minus-circle')
     });
 
@@ -177,7 +212,7 @@ function updateAdmin(){
 
     $(".js-superadmin-modal-btn").click(getModal);
     function getModal(){
-        $(".superadmin-modal").toggle()
+        $(".superadmin-modal").toggle();
         $(this).text(function(i, text){
             return text === "Close" ? "Add new admin" : "Close";
         })
@@ -197,7 +232,6 @@ function updatePassword(){
     id = $('#hidden_id').val();
     password = $('#password1').val();
     password_confirmation = $('#password-confirm1').val();
-    alert(password)
     $.ajax(            {
         url: "superadmin/admins/"+id+"/update/password",
         type: 'PUT',
@@ -205,7 +239,12 @@ function updatePassword(){
             password: password,
             password_confirmation: password_confirmation
         },
-    }).done(
+    }).fail(function (data) {
+        if (data.responseJSON.errors.password) {
+            $('.js-error-admin-edit-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
+    })
+        .done(
         alert('updated'),
         $('#password').val(''),
         $('#password-confirm').val('')

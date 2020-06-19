@@ -40,7 +40,9 @@
                 <div id="tabs-1" class="tab-view">
                     <span>
                         Companies:<br>
-                        <input class="js-company" value="" placeholder="Add company name"><button class="super-admin-btn js-add-company-btn">ADD</button>
+                        <input class="js-company" value="" placeholder="Add company name">
+                        <span class="hidden js-admin-company-name"><br><br></span>
+                        <button class="super-admin-btn js-add-company-btn">ADD</button>
                         <input class="search-company" type="search" placeholder="Search company"><i class="js-find-company fas fa-search"></i>
                         <div class="js-companies">
                         </div>
@@ -50,11 +52,15 @@
                 <span>
                     Admins:<br><button class="js-superadmin-modal-btn js-new-admin-title super-admin-btn">Add new admin</button>
                     <div class="modal superadmin-modal">
-                        <input class="js-admin" type="text" name="first-name" id="first-name" placeholder="first name" value="{{old('first_name')}}" required>
-                        <input class="js-admin" type="text" name="last-name" id="last-name" placeholder="last name" value="{{old('last_name')}}" required>
-                        <input class="js-admin" type="email" name="email" id="email" placeholder="email address" value="{{old('email')}}" required>
-                        <input class="js-admin" type="password" name="password" id="password" placeholder="password" value="{{old('password')}}" required>
-                        <input class="js-admin" type="password" name="password_confirmation" id="password-confirm" placeholder="confirm password" required>
+                        <input class="js-admin" type="text" name="first-name" id="first-name" placeholder="first name" value="{{old('first_name')}}">
+                        <span class="hidden js-error-admin-first-name"><br><br></span>
+                        <input class="js-admin" type="text" name="last-name" id="last-name" placeholder="last name" value="{{old('last_name')}}">
+                        <span class="hidden js-error-admin-last-name"><br><br></span>
+                        <input class="js-admin" type="email" name="email" id="email" placeholder="email address" value="{{old('email')}}">
+                        <span class="hidden js-error-admin-email"><br><br></span>
+                        <input class="js-admin" type="password" name="password" id="password" placeholder="password" value="{{old('password')}}">
+                        <span class="hidden js-error-admin-password"><br><br></span>
+                        <input class="js-admin" type="password" name="password_confirmation" id="password-confirm" placeholder="confirm password">
                         <select name="company-id" id="company-id">
                             @forelse($companies as $company)
 
@@ -74,14 +80,18 @@
                 <div id="tabs-3" class="tab-view">
                     <span>
                         Skills:<br>
-                        <input class="js-skill" placeholder="Add new skill"><button class="super-admin-btn js-add-skill-btn">ADD</button>
+                        <input class="js-skill" placeholder="Add new skill">
+                        <span class="hidden js-add-skill"><br><br></span>
+                        <button class="super-admin-btn js-add-skill-btn">ADD</button>
                         <div class="js-skills"></div>
                     </span>
                 </div>
                 <div id="tabs-4" class="tab-view">
                     <span>
                         Job Titles:<br>
-                        <input name="position-name" class="js-position" value="" placeholder="Add job title"><button class="super-admin-btn js-add-position-btn">ADD</button>
+                        <input name="position-name" class="js-position" value="" placeholder="Add job title">
+                        <span class="hidden js-admin-job-title-name"><br><br></span>
+                        <button class="super-admin-btn js-add-position-btn">ADD</button>
                         <input class="search-position" type="search" placeholder="Search job titles"><i class="js-find-position fas fa-search"></i>
                         <div class="js-positions">
                         </div>
@@ -97,27 +107,31 @@
         <span>
             <label for="first_name">First name</label>
             <input id="first_name" name="first_name" type="text">
+            <span class="hidden js-error-admin-edit-first-name"><br><br></span>
         </span>
         <br>
         <span>
             <label for="last-name">Last name</label>
-            <input id="last_name" name="last-name" type="text" required>
+            <input id="last_name" name="last-name" type="text">
+            <span class="hidden js-error-admin-edit-last-name"><br><br></span>
         </span>
         <br>
         <span>
             <label for="email">Email</label>
-            <input id="admin-email" name="email" type="email" required>
+            <input id="admin-email" name="email" type="email">
+            <span class="hidden js-error-admin-edit-email"><br><br></span>
         </span>
         <br>
         <div style="background-color: rgb(139, 139, 139);">
             <span>
                 <label for="password">Password</label>
-                <input class="js-admin" type="password" name="password" id="password1" placeholder="New password" required>
+                <input class="js-admin" type="password" name="password" id="password1" placeholder="New password">
+                <span class="hidden js-error-admin-edit-password"><br><br></span>
             </span>
-            <br>        
+            <br>
             <span>
                 <label for="password_confirmation">Password Confirm</label>
-                <input class="js-admin" type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password" required>
+                <input class="js-admin" type="password" name="password_confirmation" id="password-confirm1" placeholder="Confirm new password">
             </span>
             <br>
             <button type="button" class="super-admin-btn js-update-password">Update password</button>

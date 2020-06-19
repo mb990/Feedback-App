@@ -12,10 +12,10 @@ $(document).ready(function(){
                     '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
                     '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
                     '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
-                    '<input class="js-edit-input'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
+                    '<input class="js-edit-company-name'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
                         (e.active === 1 ? "checked" : "")
-                        + ">"+'</span></p>';
-                })
+                        + ">"+'</span><br><span class="hidden js-error-edit-company-name'+ e.id +'"><br><br></span></p>';
+                });
                 $('.js-companies').append(output);
 
             }
@@ -25,14 +25,19 @@ $(document).ready(function(){
     //ADD COMPANY
     $('.js-add-company-btn').click(addCompany);
     function addCompany(){
-        var name = $('.js-company').val()
+        var name = $('.js-company').val();
         $.post('/superadmin/companies',
         {
             name: name
         },
-    ).done(function(data){
+    ).fail(function (data) {
+            if (data.responseJSON.errors.name) {
+                $('.js-admin-company-name').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
+        .done(function(data){
         $('.js-companies').empty().append(getCompany);
-        $('#company-id').append('<option value="'+ data.company.id +'">'+ name +'</option>')
+        $('#company-id').append('<option value="'+ data.company.id +'">'+ name +'</option>');
         $('.js-company').val("");
     })
     }
@@ -56,7 +61,7 @@ $(document).ready(function(){
     $(document).on ('click', '.edit-company', function () {
         let id = $(this).data('id');
         let active = '';
-        let name = $('.js-edit-input'+id).val();
+        let name = $('.js-edit-company-name'+id).val();
         if (document.getElementById('active-' + id).checked) {
             active = 1;
         }
@@ -71,10 +76,15 @@ $(document).ready(function(){
                     name: name,
                     active: active
                 }
-        }).done(function (data) {
+        }).fail(function (data) {
+            if (data.responseJSON.errors.name) {
+                $('.js-error-edit-company-name' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
+            .done(function (data) {
             $('.js-companies').empty().append(getCompany);
             $("#company-id option[value='"+id+"']").remove();
             $('#company-id').append('<option value="'+ id +'">'+ name +'</option>')
         });
     })
-})
+});
