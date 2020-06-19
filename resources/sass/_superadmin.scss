@@ -25,6 +25,11 @@
     }
 .tabs{
     margin-bottom: 9px;
+    @media screen and (max-width: 425px) {
+        font-size: 0.8rem;
+        margin: 4px;
+        padding: 0px;
+    }
 }
 .current-tab{
     background-color: #22282d;
@@ -50,6 +55,13 @@
     margin: auto 5px;
     cursor: help;
 }
+.superadmin-modal{
+    display: block;
+    @media screen and (max-width: 425px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
 .edit-modal{
     display: none;
     position: absolute;
@@ -68,14 +80,28 @@
     width: 30vw;
     justify-content: space-between;
     margin-top: 100px;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
 }
 .edit-form{
     background-color: rgb(209, 209, 209);
     display: grid;
     width: 30vw;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+        text-align: center;
+        justify-items: center;
+    }
 }
 .edit-btn{
     position: relative;
+}
+.media-list{
+    display:flex;
+    @media screen and (max-width: 425px) {
+        display: block;
+    }
 }
 .superadmin-media-user{
     @media screen and (max-width: 768px) {

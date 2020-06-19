@@ -6,7 +6,7 @@ $(document).ready(function () {
                 let output = [];
 
                 $.each(data.users, function (i, e) {
-                    output += '<tr class="js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
+                    output += '<tr class="media-user js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                         e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><label class="switch"><input class="check-slider "data-id='+ e.id +' name="chk-box" id="chk-box" value="1" type="checkbox" '+ (e.active === 1 ? "checked" : "" )+' ><span class="slider round"></span></label>'+
                         // (e.active === 1 ? '<span title="active user"class="dot"></span> ' : '<span title="Inactive user" class="dot-red"></span>')+
                         '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
@@ -238,7 +238,24 @@ $(document).ready(function () {
             $(this).text("Statistics");
         }
     }
-
+$('.js-media-show').click(mediaUsers);
+function mediaUsers(){
+    var ix = $(this).index();
+    $('.js-admin-modal').toggle( ix === '1' ? '0' : '1');
+    $('.js-interactive-text').toggle( ix === '0' ? '1' : '0');
+}
+$('.js-media-time').click(mediaTime);
+function mediaTime(){
+    var ix = $(this).index();
+    $('.js-tab-2').toggle( ix === '1' ? '0' : '1');
+    $('.js-feedback-interval').toggle( ix === '0' ? '1' : '0');
+}
+$('.js-media-stats').click(mediaStats);
+function mediaStats(){
+    var ix = $(this).index();
+    $('.js-statistics').toggle( ix === '1' ? '0' : '1');
+    $('.js-stats-info').toggle( ix === '0' ? '1' : '0');
+}
 // DELETE USER
     $(document).on ('click', '#delete-user', function () {
         let id = $(this).data('id');

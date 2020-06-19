@@ -4,7 +4,7 @@ $(document).ready(function () {
             '/superadmin/job-titles', function (data) {
                 let output = [];
                 data.positions.forEach(function (e) {
-                    output += '<p style="display:flex">' + e.name +
+                    output += '<p class="media-list">' + e.name +
                         '<button data-id="'+ e.id +
                         '" class="delete-position super-admin-btn" name="delete-position">DEL</button>'+
                         '<i style="margin:auto 0" class="add fas fa-plus-circle js-job-show" data-id="'+ e.id +'"></i>'+

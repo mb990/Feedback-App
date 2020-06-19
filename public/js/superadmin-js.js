@@ -63,7 +63,7 @@ function updateAdmin(){
             '/superadmin/skills', function (data) {
                 let output = [];
                 data.skills.forEach(function (e) {
-                    output += '<p style="display:flex"><span style="margin:auto 0; margin-right:10px">'+ e.name + '</span>' +
+                    output += '<p class="media-list"><span style="margin:auto 0; margin-right:10px">'+ e.name + '</span>' +
                         '<button data-id="'+ e.id +
                         '" class="delete-skill super-admin-btn" name="delete-skill">DEL</button>'+
                         '<i style="margin:auto 0" class="add fas fa-plus-circle js-skill-show" data-id="'+ e.id +'"></i>'+
@@ -212,7 +212,7 @@ function updateAdmin(){
 
     $(".js-superadmin-modal-btn").click(getModal);
     function getModal(){
-        $(".superadmin-modal").toggle();
+        $(".superadmin-modal").toggleClass("modal")
         $(this).text(function(i, text){
             return text === "Close" ? "Add new admin" : "Close";
         })

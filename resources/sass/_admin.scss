@@ -13,6 +13,11 @@
 .hidden-stats{
     display: none;
 }
+.media-menu{
+    @media screen and (max-width: 425px) {
+        display: none;
+    }
+}
 .tab{
     list-style: none;
     // a{
@@ -71,15 +76,18 @@
     background-color: rgb(209, 209, 209);
     display: grid;
     width: 30vw;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
 }
-.edit-title{
-    background-color: #7a7e81;
-    font-size: 1.3rem;
-    display: flex;
-    width: 30vw;
-    justify-content: space-between;
-    margin-top: 100px;
-}
+// .edit-title{
+//     background-color: #7a7e81;
+//     font-size: 1.3rem;
+//     display: flex;
+//     width: 30vw;
+//     justify-content: space-between;
+//     margin-top: 100px;
+// }
 .admin-table{
     height: 40vh;
     overflow: auto;
@@ -87,6 +95,20 @@
 }
 table, th, td {
     width:60vw;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
+}
+.media-thead{
+    @media screen and (max-width: 425px) {
+        display: none;
+    }
+}
+.media-user{
+    @media screen and (max-width: 425px) {
+        display: grid;
+        text-align: center;
+    }
 }
 .admin-modal, .admin-modal2{
     display: none;
@@ -95,11 +117,41 @@ table, th, td {
         margin-bottom: 3px;
     }
 }
+.addon-modals{
+    display: flex;
+    width: 60vw;
+    @media screen and (max-width: 425px) {
+        flex-direction: column;
+        width: 100vw;
+    }
+}
+.addon-single-modal{
+    flex-grow: 1;
+    width: 30%;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+    }
+}
 .admin-modal-right{
     width: 30vw;
+    @media screen and (max-width: 425px) {
+        width: auto;
+    }
 }
 .admin-width{
     width: 65vw;
+    @media screen and (max-width: 425px) {
+        width: 100vw;
+        padding: 0px;
+    }
+}
+.admin-style{
+    margin-left:10px;
+    padding: 5px;
+    border: 1px solid #ec1940;
+    @media screen and (max-width: 425px) {
+        margin: 0;
+    }
 }
 .user-status-dot{
     text-align: center;

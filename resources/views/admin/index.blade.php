@@ -107,20 +107,20 @@
             <div id="tabs">
                 <ul class="inline-flex tabs">
                     <li class="tab"><a class="admin-tab current-tab" href="#tabs-1">Users</a></li>
-                    <!-- <li class="tab"><a class="admin-tab current-tab" href="#tabs-2">Feedback time</a></li> -->
+                    <li class="tab"><a class="admin-tab" href="#tabs-mail">Send e-mail</a></li>
                 </ul>
                 <div id="tabs-1" class="js-edit-form tab-view admin-width">
-                    <div>
+                    <div class="media-menu">
                         <button class="js-show-new-user admin-btn" style="width: 10vw">New user</button>
                         <button class="js-show-time-update admin-btn" style="width: 10vw; margin-left: 15vw;">Edit time</button>
                         <button class="js-stats admin-btn" style="width: 10vw; margin-left: 15vw;">Statistics</button>
                     </div>
-                    <div style="display: flex; width: 60vw;">
-                        <div style="flex-grow: 1;width: 30%;">
-                            <div class="js-interactive-text" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                    <div class="addon-modals">
+                        <div class="addon-single-modal">
+                            <div class="js-interactive-text js-media-show" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                                 Add new <br> user to your <br> company
                             </div>
-                            <div class="admin-modal js-admin-modal" style="padding: 5px; border: 1px solid #ec1940;">
+                            <div class="admin-modal js-admin-modal js-media-show" style="padding: 5px; border: 1px solid #ec1940;">
                                 <form id="form" action="" method="post" enctype="multipart/form-data">
 
                                     <input type="text" name="first_name" id="first-name" placeholder="User first name">
@@ -155,10 +155,10 @@
                             </div>
                         </div>
                         <div style="flex-grow: 1;">
-                            <div class="js-feedback-interval admin-modal-right" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                        <div class="js-feedback-interval admin-modal-right admin-style js-media-time" style="font-size: 2rem;">
                                 Change your <br> feedback time interval
                             </div>
-                            <div id="tabs-2" class="admin-modal2 js-tab-2" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940;">
+                            <div id="tabs-2" class="admin-modal2 js-tab-2 admin-style js-media-time">
                                 <label for="feedback-time">Change feedback time</label>
                                 <select name="feedback_time" id="feedback-time">
                                     @foreach($durations as $duration)
@@ -177,11 +177,11 @@
                             </div>
                         </div>
                         <div style="flex-grow: 1;">
-                            <div class="js-stats-info" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
+                        <div class="js-stats-info admin-style js-media-stats" style=" font-size: 2rem;">
                                 Company <br> <hr>
                                 Stats
                             </div>
-                            <div class="js-statistics hidden-stats" style="margin-left:10px; padding: 5px; border: 1px solid #ec1940;">
+                            <div class="js-statistics hidden-stats admin-style js-media-stats">
                                 <span>Active users:{{count(auth()->user()->company->users())}}</span>
                                 <br>
                                 <span>Inactive users:{{count(auth()->user()->company->inactiveUsers())}}</span>
@@ -194,13 +194,13 @@
                         </div>
                     </div>
                     <table class="admin-table">
-                        <thead>
+                        <thead class="media-thead">
                         <tr>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">First Name</th>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Last Name</th>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Email</th>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Position</th>
-                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Status</th>
+                            <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d; z-index:1;">Status</th>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">Options</th>
                         </tr>
                         </thead>
@@ -209,7 +209,15 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div id="tabs-mail" class="js-edit-form tab-view admin-width">
+                    <h2>Type a message to all your users</h2>
+                    <textarea name="message" id="message"style="resize: none; height:30vh;" 
+                    placeholder="Remember to be nice to your employees"></textarea>
+                    <div>
+                        <button type="submit" id="send" class="admin-btn">Send</button>
+                    </div>
+                </div>
+            </div>
 
 
             </div>
@@ -260,7 +268,6 @@
                     data: {}
                 });
             }
-
         })
     </script>
 @endsection

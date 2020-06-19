@@ -460,6 +460,12 @@
   display: none;
 }
 
+@media screen and (max-width: 425px) {
+  .media-menu {
+    display: none;
+  }
+}
+
 .tab {
   list-style: none;
 }
@@ -519,13 +525,10 @@
   width: 30vw;
 }
 
-.edit-title {
-  background-color: #7a7e81;
-  font-size: 1.3rem;
-  display: flex;
-  width: 30vw;
-  justify-content: space-between;
-  margin-top: 100px;
+@media screen and (max-width: 425px) {
+  .edit-form-admin {
+    width: 100vw;
+  }
 }
 
 .admin-table {
@@ -540,6 +543,27 @@ td {
   width: 60vw;
 }
 
+@media screen and (max-width: 425px) {
+  table,
+  th,
+  td {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .media-thead {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .media-user {
+    display: grid;
+    text-align: center;
+  }
+}
+
 .admin-modal,
 .admin-modal2 {
   display: none;
@@ -551,12 +575,60 @@ td {
   margin-bottom: 3px;
 }
 
+.addon-modals {
+  display: flex;
+  width: 60vw;
+}
+
+@media screen and (max-width: 425px) {
+  .addon-modals {
+    flex-direction: column;
+    width: 100vw;
+  }
+}
+
+.addon-single-modal {
+  flex-grow: 1;
+  width: 30%;
+}
+
+@media screen and (max-width: 425px) {
+  .addon-single-modal {
+    width: 100vw;
+  }
+}
+
 .admin-modal-right {
   width: 30vw;
 }
 
+@media screen and (max-width: 425px) {
+  .admin-modal-right {
+    width: auto;
+  }
+}
+
 .admin-width {
   width: 65vw;
+}
+
+@media screen and (max-width: 425px) {
+  .admin-width {
+    width: 100vw;
+    padding: 0px;
+  }
+}
+
+.admin-style {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ec1940;
+}
+
+@media screen and (max-width: 425px) {
+  .admin-style {
+    margin: 0;
+  }
 }
 
 .user-status-dot {
@@ -725,6 +797,14 @@ input:checked + .slider:before {
   margin-bottom: 9px;
 }
 
+@media screen and (max-width: 425px) {
+  .tabs {
+    font-size: 0.8rem;
+    margin: 4px;
+    padding: 0px;
+  }
+}
+
 .current-tab {
   background-color: #22282d;
 }
@@ -755,6 +835,17 @@ input:checked + .slider:before {
   cursor: help;
 }
 
+.superadmin-modal {
+  display: block;
+}
+
+@media screen and (max-width: 425px) {
+  .superadmin-modal {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .edit-modal {
   display: none;
   position: absolute;
@@ -776,14 +867,38 @@ input:checked + .slider:before {
   margin-top: 100px;
 }
 
+@media screen and (max-width: 425px) {
+  .edit-title {
+    width: 100vw;
+  }
+}
+
 .edit-form {
   background-color: #d1d1d1;
   display: grid;
   width: 30vw;
 }
 
+@media screen and (max-width: 425px) {
+  .edit-form {
+    width: 100vw;
+    text-align: center;
+    justify-items: center;
+  }
+}
+
 .edit-btn {
   position: relative;
+}
+
+.media-list {
+  display: flex;
+}
+
+@media screen and (max-width: 425px) {
+  .media-list {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -18,15 +18,6 @@
 @endsection
 
 @section('content')
-@component('components.alert')
-    @slot('class')
-        warning
-    @endslot
-    @slot('title')
-        Warning Message
-    @endslot
-    Please input correct data!
-@endcomponent
 <div class="admin">
             <h2 class="admin-title">Superadmin panel</h2>
 
