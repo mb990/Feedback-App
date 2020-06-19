@@ -25,7 +25,7 @@ $(document).ready(function(){
     //ADD COMPANY
     $('.js-add-company-btn').click(addCompany);
     function addCompany(){
-        var name = $('.js-company').val();
+        var name = $('.js-company-name').val();
         $.post('/superadmin/companies',
         {
             name: name
