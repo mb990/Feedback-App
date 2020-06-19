@@ -40,7 +40,7 @@
                 <div id="tabs-1" class="tab-view">
                     <span>
                         Companies:<br>
-                        <input class="js-company" value="" placeholder="Add company name">
+                        <input class="js-company-name" value="" placeholder="Add company name">
                         <span class="hidden js-admin-company-name"><br><br></span>
                         <button class="super-admin-btn js-add-company-btn">ADD</button>
                         <input class="search-company" type="search" placeholder="Search company"><i class="js-find-company fas fa-search"></i>

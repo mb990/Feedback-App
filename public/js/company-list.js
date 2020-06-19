@@ -11,7 +11,7 @@ $(document).ready(function(){
                     '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+
                     '<span class="hide js-super-hide'+ e.id +'"><button data-id="'+ e.id +
                     '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="'+ e.id +
-                    '"class="js-edit-input'+ e.id +'" value="'+ e.name +'">'+
+                    '"class="js-edit-input-company-name'+ e.id +'" value="'+ e.name +'">'+
                     '<input class="js-edit-company-name'+ e.id +'name="active" id="active-'+ e.id +'" type="checkbox"' +
                         (e.active === 1 ? "checked" : "")
                         + ">"+'</span><br><span class="hidden js-error-edit-company-name'+ e.id +'"><br><br></span></p>';
@@ -61,7 +61,7 @@ $(document).ready(function(){
     $(document).on ('click', '.edit-company', function () {
         let id = $(this).data('id');
         let active = '';
-        let name = $('.js-edit-company-name'+id).val();
+        let name = $('.js-edit-input-company-name'+id).val();
         if (document.getElementById('active-' + id).checked) {
             active = 1;
         }
