@@ -66,6 +66,21 @@ class UserRepository
             return $user;
     }
 
+    public function storeAdmin($request, $password)
+    {
+        $user = $this->user->create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => $password,
+            'company_id' => $request->company_id,
+//            'email_verified_at' => now(),
+//            'remember_token' => Str::random(10)
+        ]);
+
+        return $user;
+    }
+
     public function update($request, $user)
     {
         $user->update([

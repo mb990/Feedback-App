@@ -90,6 +90,13 @@ class UserService
         return $user;
     }
 
+    public function storeAdmin($request)
+    {
+        $password = $this->hashPassword($request->password);
+
+        return $user = $this->user->storeAdmin($request, $password);
+    }
+
     public function delete($id)
     {
         $user = $this->find($id);
@@ -122,7 +129,7 @@ class UserService
         return $this->user->updatePicture($picture, $user);
     }
 
-    public function updateStatus($request, $id)
+    public function updateStatus($id)
     {
         $user = $this->find($id);
 
@@ -136,7 +143,7 @@ class UserService
 
     public function createAdmin($request)
     {
-        return $this->store($request)->assignRole('admin');
+        return $this->storeAdmin($request)->assignRole('admin');
     }
 
     public function uploadPicture($request, $user)
