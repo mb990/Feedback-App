@@ -45,6 +45,8 @@
 
     @if(!auth()->user()->active)
         <h2>Your account is temporarily deactivated</h2>
+    @elseif (!auth()->user()->company->active)
+        <h2>Your company is temporarily deactivated</h2>
     @else
 
 @if(count(auth()->user()->activeFeedbacks()))
