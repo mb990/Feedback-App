@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     function getUsers() {
         $.get(
             '/admin/users', function (data) {
@@ -61,6 +60,10 @@ $(document).ready(function () {
                         success: function(data) // A function to be called if request succeeds
                         {
                             console.log(data.request);
+                            alert('User added');
+                            $(".js-admins-list").empty().append(getUsers);
+                            $('.js-edit-form input').val('');
+                            $(".js-statistics").load(location.href+" .js-statistics>*","");
                         },
                         error: (function(data){
                             if (data.responseJSON.errors.first_name) {
@@ -80,10 +83,7 @@ $(document).ready(function () {
                             }
                         })
                     }).done((function(data){
-                            alert('User added');
-                            $(".js-admins-list").empty().append(getUsers);
-                            $('.js-edit-form input').val('');
-                            $(".js-statistics").load(location.href+" .js-statistics>*","");
+
                         })
                     )
                 }));
@@ -238,24 +238,30 @@ $(document).ready(function () {
             $(this).text("Statistics");
         }
     }
-$('.js-media-show').click(mediaUsers);
-function mediaUsers(){
-    var ix = $(this).index();
-    $('.js-admin-modal').toggle( ix === '1' ? '0' : '1');
-    $('.js-interactive-text').toggle( ix === '0' ? '1' : '0');
-}
-$('.js-media-time').click(mediaTime);
-function mediaTime(){
-    var ix = $(this).index();
-    $('.js-tab-2').toggle( ix === '1' ? '0' : '1');
-    $('.js-feedback-interval').toggle( ix === '0' ? '1' : '0');
-}
-$('.js-media-stats').click(mediaStats);
-function mediaStats(){
-    var ix = $(this).index();
-    $('.js-statistics').toggle( ix === '1' ? '0' : '1');
-    $('.js-stats-info').toggle( ix === '0' ? '1' : '0');
-}
+    //MOBILE VIEW TEST
+    function testScreen(){
+        if($(window).width() < 430 ){
+            $('.js-media-show').click(mediaUsers);
+                function mediaUsers(){
+                    var ix = $(this).index();
+                    $('.js-admin-modal').toggle();
+                    $('.js-interactive-text').toggle();
+                }
+            $('.js-media-time').click(mediaTime);
+                function mediaTime(){
+                    var ix = $(this).index();
+                    $('.js-tab-2').toggle();
+                    $('.js-feedback-interval').toggle();
+                }
+            $('.js-media-stats').click(mediaStats);
+                function mediaStats(){
+                    var ix = $(this).index();
+                    $('.js-statistics').toggle();
+                    $('.js-stats-info').toggle();
+                }
+        }
+    }
+testScreen()
 // DELETE USER
     $(document).on ('click', '#delete-user', function () {
         let id = $(this).data('id');
