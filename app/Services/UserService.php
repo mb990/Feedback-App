@@ -161,7 +161,7 @@ class UserService
 
             if ($user->averageFeedbackScore() > $data['score']) {
 
-                $data['score'] = $user->averageFeedbackScore();
+                $data['score'] = round($user->averageFeedbackScore(), 2);
 
                 $data['user'] = $user->first_name . ' ' . $user->last_name;
             }
@@ -182,7 +182,7 @@ class UserService
 
                 if (!isset($data['score'])) {
 
-                    $data['score'] = $user->averageFeedbackScore();
+                    $data['score'] = round($user->averageFeedbackScore());
 
                     $data['user'] = $user->first_name . ' ' . $user->last_name;
                 }
