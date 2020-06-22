@@ -31,6 +31,8 @@
 
     @if(!auth()->user()->active)
         <h2 class="admin-title">Your account is temporarily deactivated</h2>
+    @elseif (!auth()->user()->company->active)
+        <h2 class="admin-title">Your company is temporarily deactivated</h2>
     @else
 
         <div class="admin">
