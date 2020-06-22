@@ -242,6 +242,10 @@
   margin-bottom: 20px;
 }
 
+.active-teammate {
+  background-color: #616161;
+}
+
 .teammate-image {
   background-color: salmon;
   width: 25px;
@@ -799,6 +803,25 @@ input:checked + .slider:before {
 .average-score-big {
   font-size: 1.99rem;
   color: #6b6e70;
+}
+
+@media screen and (max-width: 370px) {
+  .average-score-big {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .media-profile-info {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .media-profile-rating {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .star-rating {

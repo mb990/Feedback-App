@@ -54,12 +54,12 @@
     <div class="single-feedback">
         <div class="feedback-person">
             <img class="feedback-image" src="{{auth()->user()->profile->picture}}">
-            <div class="feedback-person-info">
+            <div class="feedback-person-info media-profile-info">
                 <span class="js-user">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</span>
                 <span class="js-position">{{$user->profile->jobTitle->name}}</span>
             </div>
             <div class="feedback-person-info"><span style="font-size: 0.8rem; color: #9c9c9c;">Average score: </span>
-                <span class="average-score-big">{{number_format(auth()->user()->averageFeedbackScore(), 1, '.', '')}}<span class="star-rating">{{round(auth()->user()->averageFeedbackScore(), 1)}}</span></span>
+                <span class="average-score-big">{{number_format(auth()->user()->averageFeedbackScore(), 1, '.', '')}}<span class="star-rating media-profile-info">{{round(auth()->user()->averageFeedbackScore(), 1)}}</span></span>
             </div>
             <!-- <button class="close-btn js-close{{$user->id}}"><i class="fas fa-times"> <br> ESC</i></button> -->
         </div>
@@ -71,7 +71,7 @@
                 <div class="my-rating"></div>
                     @foreach($skills as $skill)
                     <span>
-                        <p style="color: #bdbcbc;">{{$skill->name}}:
+                        <p class="media-profile-rating" style="color: #bdbcbc;">{{$skill->name}}:
                         <span class="float-right">
                         <span>(@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}) </span> @else 0 @endif
                         <span class="test1">@if($skill->averageForUser(auth()->user())){{$skill->averageForUser(auth()->user())}}</span> @else 0 @endif

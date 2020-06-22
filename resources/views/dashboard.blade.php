@@ -43,18 +43,32 @@
     @elseif (!auth()->user()->company->active)
         <h2>Your company is temporarily deactivated</h2>
     @else
-
-<div class="container js-no-selected">
-    <i class='far'>&#xf11a;</i>
-    <div class="messages">
-        No teammate <br>selected
+    @if(auth()->user()->doneFeedback())
+    <div class="container js-no-selected">
+        <i class='far'>&#xf11a;</i>
+        <div class="messages">
+            You reviewed <br> all your team
+        </div>
+        <p class="info">
+            Great job! You can only wait for the <br>
+            feedback session at
+            {{auth()->user()->company->nextFeedbackSessionDate()}}
+        </p>
     </div>
-    <p class="info">
-        To provide a feedback you should select <br>
-        an employee from teammmates list or<br>
-        to search by a name using the search field
-    </p>
-</div>
+    @else
+    <div class="container js-no-selected">
+        <i class='far'>&#xf11a;</i>
+        <div class="messages">
+            No teammate <br>selected
+        </div>
+        <p class="info">
+            To provide a feedback you should select <br>
+            an employee from teammmates list or<br>
+            to search by a name using the search field
+        </p>
+    </div>
+    @endif
+
 <div class='container js-accepted hide'>
     <i class='far'>&#xf118;</i>
     <div class='messages'> Your feedback <br>accepted</div>
@@ -66,7 +80,7 @@
         <div data-userId="{{$user->id}}" class="modal modal{{$user->id}}">
             <div class="single-feedback">
                 <div class="feedback-person">
-                    <img class="feedback-image">
+                    <img class="feedback-image" src="{{$user->profile->picture}}">
                     <div class="feedback-person-info">
                         <span class="js-user">{{$user->first_name}} {{$user->last_name}}</span>
                         <span class="js-position">{{$user->profile->jobTitle->name}}</span>
@@ -158,6 +172,8 @@
             $(document).on('click', '.list li', function () {
                 id1 = $(this).attr('data-userId');
                 console.log('id1 = ' + id1)
+                $(".list li").removeClass("active-teammate");
+                $(this).addClass("active-teammate");
             });
 
             $('.js-submit').click(function(e) {
@@ -192,7 +208,11 @@
 
 
 
-
+                // $(".teammate-name").click(function() {
+                //     alert("clicked")
+                //     $(".teammate-name").removeClass("active-teammate");
+                //     $(this).addClass("active-teammate");
+                // });
 
 
 
