@@ -188,6 +188,12 @@
   padding-left: 10px;
 }
 
+@media screen and (max-width: 425px) {
+  .search-teammate {
+    width: 55vw;
+  }
+}
+
 .reviewed {
   position: absolute;
   transform: translateX(150px);
@@ -222,6 +228,12 @@
   height: 40vh;
   overflow: hidden;
   overflow-y: scroll;
+}
+
+@media screen and (max-width: 425px) {
+  .list {
+    width: 55vw;
+  }
 }
 
 .teammate {
@@ -291,6 +303,12 @@
   margin-bottom: 30px;
 }
 
+@media screen and (max-width: 425px) {
+  .single-feedback {
+    width: 90vw;
+  }
+}
+
 .feedback-person {
   display: flex;
   position: relative;
@@ -328,6 +346,12 @@
 
 .single-skill {
   display: flex;
+}
+
+@media screen and (max-width: 424px) {
+  .single-skill {
+    display: block;
+  }
 }
 
 .skill-name {
@@ -884,7 +908,7 @@ input:checked + .slider:before {
   display: block;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .superadmin-modal {
     display: flex;
     flex-direction: column;

@@ -45,6 +45,9 @@
     width: 13vw;
     padding-right: 10px;
     padding-left: 10px;
+    @media screen and (max-width: 425px) {
+        width: 55vw;
+    }
 }
 .reviewed{
     position: absolute;
@@ -76,6 +79,9 @@
     height:40vh;
     overflow:hidden; 
     overflow-y:scroll;
+    @media screen and (max-width: 425px) {
+        width: 55vw;
+    }
 }
 .teammate{
     list-style: none;

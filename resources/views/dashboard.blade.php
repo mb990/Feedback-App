@@ -204,26 +204,15 @@
                         ratings: ratings,
                         skills: skills
                     },
-                    // function (result) {
-                    //     console.log(data);
-                    //     // $('.alert').show();
-                    //     // $('.alert').html(result.success);
-                    //     $('.main').html("<div class='container'> <i class='far'>&#xf118;</i> <div class='messages'> Your feedback <br>accepted</div><p class='info'>You can review other your teammate</p></div>");
-
-
-                    // }
-                    // function(data, status, xhr) {
-                    // }
 
                 ).done(function(){
                     $('.js-accepted').show();
                     $('.modal').hide();
                     $('.js-submit'+id1).hide();
                     $('.js'+id1).removeClass('hidden');
-
-            $('.js-wrong'+id1).attr('disabled', true)
-            $('.js-improve'+id1).attr('disabled', true)
-            $('.js-rating'+id1).attr('disabled', true)
+                    $('.js-wrong'+id1).attr('disabled', true)
+                    $('.js-improve'+id1).attr('disabled', true)
+                    $('.js-rating'+id1).attr('disabled', true)
                 })
                     .fail(function(jqxhr, settings, ex) { alert('Enter all data'); })
             });

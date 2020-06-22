@@ -171,6 +171,31 @@ $('.js-accepted').hide()
         $('.aside-media-view').toggle("slide");
         $('.js-main').toggle("slide");
     }
+    
+    var smallScreen = false;
+    $(document).ready(function() {
+        if($(window).width() < 426) {
+            smallScreen = true;
+        }
+        $(window).resize(function() {
+            if($(window).width() < 426) {
+                smallScreen = true;
+            } else {
+                smallScreen = false;
+            }
+        });
+        function getTeammates() {
+            if(smallScreen) {
+                $('.teammate').click(function(){
+                    $('.aside-media-view').toggle("slide");
+                    $('.js-main').toggle("slide");
+                    console.log('getTeammates')
+                })
+            }
+        };
+        getTeammates();
+    });
+
+
+
 });
-
-
