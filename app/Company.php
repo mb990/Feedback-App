@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -67,5 +68,12 @@ class Company extends Model
         return $users->filter(function ($user) {
             return !$user->hasRole('admin');
         });
+    }
+
+    public function nextFeedbackSessionDate()
+    {
+        $feedbackTime = $this->feedbackDuration()->first()->value;
+
+        return Carbon::parse(now())->addSeconds($feedbackTime)->format('H:i, F, d');
     }
 }

@@ -16,7 +16,7 @@ class CreateFeedbackDurationsTable extends Migration
         Schema::create('feedback_durations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('value');
+            $table->integer('value'); // in seconds
             $table->timestamps();
         });
     }

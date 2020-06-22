@@ -241,6 +241,7 @@ $(document).ready(function () {
     //MOBILE VIEW TEST
     function testScreen(){
         if($(window).width() < 430 ){
+            console.log('test');
             $('.js-media-show').click(mediaUsers);
                 function mediaUsers(){
                     var ix = $(this).index();
@@ -261,7 +262,7 @@ $(document).ready(function () {
                 }
         }
     }
-testScreen()
+testScreen();
 // DELETE USER
     $(document).on ('click', '#delete-user', function () {
         let id = $(this).data('id');
