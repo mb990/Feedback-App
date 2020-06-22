@@ -118,7 +118,7 @@ class User extends Authenticatable
 
     public function doneFeedback()
     {
-        foreach ($this->company->members->pluck('id')->toArray() as $memberId) {
+        foreach ($this->company->users()->pluck('id')->toArray() as $memberId) {
 
             if ($memberId !== auth()->user()->id) {
 
