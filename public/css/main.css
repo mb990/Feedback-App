@@ -834,6 +834,12 @@ input:checked + .slider:before {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .media-super-tab {
+    width: auto;
+  }
+}
+
 .current-tab {
   background-color: #22282d;
 }
@@ -842,6 +848,16 @@ input:checked + .slider:before {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+}
+
+.media-companies-list > p {
+  display: flex;
+}
+
+@media screen and (max-width: 425px) {
+  .media-companies-list > p {
+    display: block;
+  }
 }
 
 .dot {
@@ -914,9 +930,9 @@ input:checked + .slider:before {
   width: 30vw;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .edit-form {
-    width: 100vw;
+    width: auto;
     text-align: center;
     justify-items: center;
   }
@@ -930,7 +946,7 @@ input:checked + .slider:before {
   display: flex;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .media-list {
     display: block;
   }

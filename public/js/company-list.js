@@ -5,7 +5,7 @@ $(document).ready(function(){
             '/superadmin/companies', function (data) {
                 let output = [];
                 data.companies.forEach(function (e) {
-                    output += '<p style="display:flex"><span style="margin:auto 0; margin-right:10px">'+ e.name + '</span>' +
+                    output += '<p><span style="margin:auto 0; margin-right:10px">'+ e.name + '</span>' +
                     (e.active === 1 ? '<span title="active company"class="dot"></span>' : '<span title="Inactive company" class="dot-red"></span>') + '<button data-id="'+ e.id +
                     '" class="delete-company super-admin-btn" name="delete-company">DEL</button>'+
                     '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="'+ e.id +'"></i>'+

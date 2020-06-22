@@ -28,18 +28,18 @@
                     <li class="tab"><a class="admin-tab" href="#tabs-3">All Skills</a></li>
                     <li class="tab"><a class="admin-tab" href="#tabs-4">All Job Titles</a></li>
                 </ul>
-                <div id="tabs-1" class="tab-view">
+                <div id="tabs-1" class="tab-view media-super-tab">
                     <span>
                         Companies:<br>
                         <input class="js-company-name" value="" placeholder="Add company name">
                         <span class="hidden js-admin-company-name"><br><br></span>
                         <button class="super-admin-btn js-add-company-btn">ADD</button>
                         <input class="search-company" type="search" placeholder="Search company"><i class="js-find-company fas fa-search"></i>
-                        <div class="js-companies">
+                        <div class="js-companies media-companies-list">
                         </div>
                     </span>
                 </div>
-                <div id="tabs-2" class="tab-view">
+                <div id="tabs-2" class="tab-view media-super-tab">
                 <span>
                     Admins:<br><button class="js-superadmin-modal-btn js-new-admin-title super-admin-btn">Add new admin</button>
                     <div class="modal superadmin-modal">
@@ -68,7 +68,7 @@
                     <div class="js-admins"></div>
                 </span>
                 </div>
-                <div id="tabs-3" class="tab-view">
+                <div id="tabs-3" class="tab-view media-super-tab">
                     <span>
                         Skills:<br>
                         <input class="js-skill" placeholder="Add new skill">
@@ -77,7 +77,7 @@
                         <div class="js-skills"></div>
                     </span>
                 </div>
-                <div id="tabs-4" class="tab-view">
+                <div id="tabs-4" class="tab-view media-super-tab">
                     <span>
                         Job Titles:<br>
                         <input name="position-name" class="js-position" value="" placeholder="Add job title">
