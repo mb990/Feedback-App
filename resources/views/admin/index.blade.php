@@ -111,7 +111,7 @@
                     <li class="tab"><a class="admin-tab current-tab" href="#tabs-1">Users</a></li>
                     <li class="tab"><a class="admin-tab" href="#tabs-mail">Send e-mail</a></li>
                 </ul>
-                <div id="tabs-1" class="js-edit-form tab-view admin-width">
+                <div id="tabs-1" class="js-edit-form tab-view admin-width media-tab">
                     <div class="media-menu">
                         <button class="js-show-new-user admin-btn" style="width: 10vw">New user</button>
                         <button class="js-show-time-update admin-btn" style="width: 10vw; margin-left: 15vw;">Edit time</button>
@@ -122,7 +122,7 @@
                             <div class="js-interactive-text js-media-show" style="padding: 5px; border: 1px solid #ec1940; font-size: 2rem;">
                                 Add new <br> user to your <br> company
                             </div>
-                            <div class="admin-modal js-admin-modal js-media-show" style="padding: 5px; border: 1px solid #ec1940;">
+                            <div class="admin-modal js-admin-modal js-media-show media-input" style="padding: 5px; border: 1px solid #ec1940;">
                                 <form id="form" action="" method="post" enctype="multipart/form-data">
 
                                     <input type="text" name="first_name" id="first-name" placeholder="User first name">
@@ -135,7 +135,7 @@
                                     <input type="password" name="password" id="password" placeholder="User password">
                                     <span class="hidden js-error-password"><br><br></span>
                                     <input type="password" name="password_confirmation" id="password-confirm" placeholder="Confirm password">
-                                    <select name="job_title_id" id="job-title">
+                                    <select name="job_title_id" id="job-title" class="media-job-title">
                                         @forelse($positions as $position)
 
                                             <option value="{{$position->id}}">
@@ -195,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="admin-table">
+                    <table class="admin-table media-table">
                         <thead class="media-thead">
                         <tr>
                             <th style="border: 1px solid #ec1940;position: sticky;top: 0;background-color: #22282d;">First Name</th>

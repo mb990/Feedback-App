@@ -240,26 +240,23 @@ $(document).ready(function () {
     }
     //MOBILE VIEW TEST
     function testScreen(){
-        if($(window).width() < 430 ){
-            console.log('test');
+        var width = window.innerWidth;
+        if(width < 430 ){
             $('.js-media-show').click(mediaUsers);
                 function mediaUsers(){
-                    var ix = $(this).index();
                     $('.js-admin-modal').toggle();
                     $('.js-interactive-text').toggle();
-                }
+                };
             $('.js-media-time').click(mediaTime);
                 function mediaTime(){
-                    var ix = $(this).index();
                     $('.js-tab-2').toggle();
                     $('.js-feedback-interval').toggle();
-                }
+                };
             $('.js-media-stats').click(mediaStats);
                 function mediaStats(){
-                    var ix = $(this).index();
                     $('.js-statistics').toggle();
                     $('.js-stats-info').toggle();
-                }
+                };
         }
     }
 testScreen();
