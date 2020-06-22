@@ -8,7 +8,7 @@
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
-                    <a class="user-name" href="{{route('user.profile', auth()->user()->id)}}">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
+                    <p class="user-name">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</p>
                     <span><button type="submit" class="logout-btn">Log out</button></span>
                 </form>
             </div>
@@ -211,7 +211,7 @@
                 </div>
                 <div id="tabs-mail" class="js-edit-form tab-view admin-width">
                     <h2>Type a message to all your users</h2>
-                    <textarea name="message" id="message"style="resize: none; height:30vh;" 
+                    <textarea name="message" id="message"style="resize: none; height:30vh;"
                     placeholder="Remember to be nice to your employees"></textarea>
                     <div>
                         <button type="submit" id="send" class="admin-btn">Send</button>

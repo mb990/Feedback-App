@@ -8,7 +8,7 @@
             <div class="user-status">
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
-                    <a class="user-name" href="{{route('user.profile', auth()->user()->id)}}">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a>
+                    <p class="user-name">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</p>
                     <span><button type="submit" class="logout-btn">Log out</button></span>
                 </form>
             </div>
