@@ -8,19 +8,19 @@ $(document).ready(function () {
                     output += '<tr class="media-user js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                         e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><label class="switch"><input class="check-slider "data-id='+ e.id +' name="chk-box" id="chk-box" value="1" type="checkbox" '+ (e.active === 1 ? "checked" : "" )+' ><span class="slider round"></span></label>'+
                         '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
-                })
+                });
                 $('.js-admins-list').append(output);
-                $(".js-edit-user").click(editUser)
+                $(".js-edit-user").click(editUser);
                 function editUser(){
-                    id = $(this).attr('id')
+                    id = $(this).attr('id');
                     $.get('/admin/users/'+id, function(data){
-                            $('.js-edit-fname').val(data.user.first_name)
-                            $('.js-edit-lname').val(data.user.last_name)
-                            $('.js-edit-mail').val(data.user.email)
+                            $('.js-edit-fname').val(data.user.first_name);
+                            $('.js-edit-lname').val(data.user.last_name);
+                            $('.js-edit-mail').val(data.user.email);
                             $('#update-job-title').val(data.user.profile.job_title_id)
                         }
-                    )
-                    $('#hidden_user_id').val(id)
+                    );
+                    $('#hidden_user_id').val(id);
                     $(".js-user-modal").show()
                 }
                 $("#form").on('submit',(function(e) {
@@ -75,14 +75,14 @@ $(document).ready(function () {
             }
         )
     }
-    getUsers();
+
 
 
 
 
 
 // UPDATE USER
-    $('.js-update-user').click(updateUser);
+
     function updateUser(){
         id = $('#hidden_user_id').val();
         first_name = $('.js-edit-fname').val();
@@ -120,7 +120,7 @@ $(document).ready(function () {
     }
 // UPDATE USER PASSWORD
 
-    $('.js-user-update-password').click(updateUserPassword);
+
     function updateUserPassword(){
         id = $('#hidden_user_id').val();
         password = $('#password1').val();
@@ -143,7 +143,7 @@ $(document).ready(function () {
         }).done(alert("Password is updated"))
     }
 //ADD USER MODAL BUTTON
-    $('.js-show-new-user').click(showNew)
+
     function showNew(){
         var ix = $(this).index();
         $('.js-admin-modal').toggle( ix === '1' ? '0' : '1');
@@ -155,7 +155,7 @@ $(document).ready(function () {
         }
     }
 //EDIT FEEDBACK TIME MODAL BUTTON
-    $('.js-show-time-update').click(showTime)
+
     function showTime(){
         var ix = $(this).index();
         $('.js-tab-2').toggle( ix === '1' ? '0' : '1');
@@ -167,7 +167,7 @@ $(document).ready(function () {
         }
     }
 //SHOW STATS BUTTON
-    $('.js-stats').click(showStats)
+
     function showStats(){
         var ix = $(this).index();
         $('.js-statistics').toggle( ix === '1' ? '0' : '1');
@@ -186,22 +186,23 @@ $(document).ready(function () {
                 function mediaUsers(){
                     $('.js-admin-modal').toggle();
                     $('.js-interactive-text').toggle();
-                };
+                }
             $('.js-media-time').click(mediaTime);
                 function mediaTime(){
                     $('.js-tab-2').toggle();
                     $('.js-feedback-interval').toggle();
-                };
+                }
             $('.js-media-stats').click(mediaStats);
                 function mediaStats(){
                     $('.js-statistics').toggle();
                     $('.js-stats-info').toggle();
-                };
+                }
         }
     }
-testScreen();
+
 // DELETE USER
-    $(document).on ('click', '#delete-user', function () {
+
+    function deleteUser() {
         let id = $(this).data('id');
         $.ajax(
             {
@@ -215,9 +216,12 @@ testScreen();
             $(".js-statistics").load(location.href+" .js-statistics>*","");
             $(".js-user-del"+id).remove();
         })
-    })
+    }
+
 // UPDATE COMPANY FEEDBACK DURATION
-    $(document).on ('click', '.admin-btn-feedback-duration', function () {
+
+    function updateFeedbackDurationTime() {
+
         let id = $(this).data('id');
         let feedback_duration_id = $('#feedback-time').val();
         $.ajax(
@@ -230,13 +234,14 @@ testScreen();
             }).done(function (data) {
             alert('Feedback time is updated.')
         });
-    })
-    $('.js-edit-user-close').click(closeEdit)
+    }
+
     function closeEdit(){
         $(".js-user-modal").hide()
     }
 // change user status
-    $(document).on("change", "input[name='chk-box']", function() {
+
+    function changeUserStatus() {
 
         let id = $(this).data('id');
 
@@ -250,5 +255,32 @@ testScreen();
             $(".js-statistics").load(location.href+" .js-statistics>*","");
             alert(data.success);
         })
-    });
-})
+    }
+
+    // edit image
+
+    function editImage() {
+
+        e.preventDefault();
+        let form_data = new FormData();
+        form_data.append('picture', $('#file')[0].files[0]);
+        form_data.append('_method', 'PUT');
+        $.ajax({
+            url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
+            type: "post", // Type of request to be send, called as method
+            data: form_data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData:false, // To send DOMDocument or non processed data file it is set to false
+            success: function(data) // A function to be called if request succeeds
+            {
+                console.log(data.request)
+            },
+            error: (function(data){
+                if (data.responseJSON.errors.picture) {
+                    $('.js-error-edit-user-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+            })
+        }).done(alert('Picture is updated'));
+    }
+});

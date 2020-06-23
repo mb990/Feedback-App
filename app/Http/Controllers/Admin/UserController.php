@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function updateStatus(AdminRequest $request, $id)
     {
-        $this->userService->updateStatus($request, $id);
+        $this->userService->updateStatus($id);
 
         return response()->json(['success' => 'User status is updated']);
     }
