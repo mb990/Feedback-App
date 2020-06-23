@@ -37218,6 +37218,27 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin-notifications-js.js":
+/*!************************************************!*\
+  !*** ./resources/js/admin-notifications-js.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  // send notification to all users
+  $('#send').click(function () {
+    var message = $('#message').val();
+    $.post('/admin/notification/send', {
+      message: message
+    }).done(function (data) {
+      console.log(data.request);
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37226,6 +37247,16 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./admin-notifications-js */ "./resources/js/admin-notifications-js.js");
+
+__webpack_require__(/*! ./company-list */ "./resources/js/company-list.js");
+
+__webpack_require__(/*! ./job-titles */ "./resources/js/job-titles.js");
+
+__webpack_require__(/*! ./main-js */ "./resources/js/main-js.js");
+
+__webpack_require__(/*! ./superadmin-js */ "./resources/js/superadmin-js.js");
 
 /***/ }),
 
@@ -37271,6 +37302,576 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/company-list.js":
+/*!**************************************!*\
+  !*** ./resources/js/company-list.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  //GET ALL COMPANY
+  function getCompany() {
+    $.get('/superadmin/companies', function (data) {
+      var output = [];
+      data.companies.forEach(function (e) {
+        output += '<p><span style="margin:auto 0; margin-right:10px">' + e.name + '</span>' + (e.active === 1 ? '<span title="active company"class="dot"></span>' : '<span title="Inactive company" class="dot-red"></span>') + '<button data-id="' + e.id + '" class="delete-company super-admin-btn" name="delete-company">DEL</button>' + '<i style="margin:auto 0" class="add fas fa-plus-circle js-super-show" data-id="' + e.id + '"></i>' + '<span class="hide js-super-hide' + e.id + '"><button data-id="' + e.id + '"class="edit-company super-admin-btn" name="edit-company">Update</button><input data-id="' + e.id + '"class="js-edit-input-company-name' + e.id + '" value="' + e.name + '">' + '<input class="js-edit-company-name' + e.id + 'name="active" id="active-' + e.id + '" type="checkbox"' + (e.active === 1 ? "checked" : "") + ">" + '</span><br><span class="hidden js-error-edit-company-name' + e.id + '"><br><br></span></p>';
+      });
+      $('.js-companies').append(output);
+    });
+  }
+
+  getCompany(); //ADD COMPANY
+
+  $('.js-add-company-btn').click(addCompany);
+
+  function addCompany() {
+    var name = $('.js-company-name').val();
+    $.post('/superadmin/companies', {
+      name: name
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-admin-company-name').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-companies').empty().append(getCompany);
+      $('#company-id').append('<option value="' + data.company.id + '">' + name + '</option>');
+      $('.js-company').val("");
+    });
+  } //DELETE COMPANY
+
+
+  $(document).on('click', '.delete-company', function () {
+    var id = $(this).data('id');
+    $.ajax({
+      url: "/superadmin/companies/" + id + "/delete",
+      type: 'DELETE',
+      data: {
+        id: id
+      }
+    }).done(function (data) {
+      $('.js-companies').empty().append(getCompany);
+      $("#company-id option[value='" + id + "']").remove();
+    });
+  }); //UPDATE COMPANY
+
+  $(document).on('click', '.edit-company', function () {
+    var id = $(this).data('id');
+    var active = '';
+    var name = $('.js-edit-input-company-name' + id).val();
+
+    if (document.getElementById('active-' + id).checked) {
+      active = 1;
+    } else {
+      active = 0;
+    }
+
+    $.ajax({
+      url: "/superadmin/companies/" + id + "/update",
+      type: 'PUT',
+      data: {
+        name: name,
+        active: active
+      }
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-error-edit-company-name' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-companies').empty().append(getCompany);
+      $("#company-id option[value='" + id + "']").remove();
+      $('#company-id').append('<option value="' + id + '">' + name + '</option>');
+    });
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/job-titles.js":
+/*!************************************!*\
+  !*** ./resources/js/job-titles.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  function getJobTitles() {
+    $.get('/superadmin/job-titles', function (data) {
+      var output = [];
+      data.positions.forEach(function (e) {
+        output += '<p class="media-list">' + e.name + '<button data-id="' + e.id + '" class="delete-position super-admin-btn" name="delete-position">DEL</button>' + '<i style="margin:auto 0" class="add fas fa-plus-circle js-job-show" data-id="' + e.id + '"></i>' + '<span class="js-job-hide' + e.id + ' hide"><button data-id="' + e.id + '"class="edit-position super-admin-btn" id="edit-position">Update</button>' + '<input type="text" name="edit-position' + e.id + '" id="edit-position' + e.id + '" data-id="' + e.id + '"class="js-edit-input' + e.id + '" placeholder="Update job title">' + '</span><br><span class="hidden js-edit-job-title-name' + e.id + '"><br><br></span></p>';
+      });
+      $('.js-positions').append(output);
+    });
+  }
+
+  getJobTitles(); // Add job
+
+  $('.js-add-position-btn').click(addJobTitle);
+
+  function addJobTitle() {
+    $.post('/superadmin/job-titles', {
+      name: $('[name="position-name"]').val()
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-admin-job-title-name').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-positions').empty().append(getJobTitles);
+      $('.js-position').val("");
+    });
+  } // Update job title
+
+
+  $(document).on('click', '.edit-position', function () {
+    var id = $(this).data('id');
+    var name = $('#edit-position' + id).val();
+    $.ajax({
+      url: "/superadmin/job-titles/" + id,
+      type: 'PUT',
+      data: {
+        name: name
+      }
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-edit-job-title-name' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-positions').empty().append(getJobTitles);
+    });
+  }); // Delete job title
+
+  $(document).on('click', '.delete-position', function () {
+    var id = $(this).data('id');
+    $.ajax({
+      url: "/superadmin/job-titles/" + id,
+      type: 'DELETE',
+      data: {
+        id: id
+      }
+    }).done(function (data) {
+      $('.js-positions').empty().append(getJobTitles);
+    });
+  }); //Search positions
+
+  $(".search-position").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $(".js-positions p").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  }); //Update job
+
+  $(document).on('click', '.js-job-show', function () {
+    var id = $(this).data('id');
+    var field = $('.js-job-hide' + id);
+    field.toggle();
+    $(this).toggleClass('fa-plus-circle fa-minus-circle');
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/main-js.js":
+/*!*********************************!*\
+  !*** ./resources/js/main-js.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  //Log in input animation
+  $(".js-e-mail").change(function () {
+    $(".e-mail").css("border-color", "#ec1940");
+    $(".js-mail").toggle();
+  });
+  $(".js-password").change(function () {
+    $(".password").css("border-color", "#ec1940");
+    $(".js-pass").toggle();
+  });
+  $(".js-search").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $(".list li").filter(function () {
+      $(this).toggle($(this).text().toLocaleLowerCase().indexOf(value) > -1);
+    });
+  }); //Search teammate input
+
+  $(".js-search").before("<i class='fas fasa js-live-search'>&#xf002;</i>");
+  $(".js-search").attr('spellcheck', false);
+  $(".write-feedback").attr('spellcheck', false);
+  var $inputs = $(".js-search");
+  $inputs.on("input", function () {
+    var $filled = $inputs.filter(function () {
+      return this.value.trim().length > 0;
+    });
+    $('.js-live-search').toggleClass('js-filled', $filled.length > 0);
+  });
+  $('.list li').click(getUser);
+  $('.js-comments').click(getComments);
+
+  function getComments() {
+    $('.comments').slideToggle('500');
+    $('.btn-container').find('i').toggleClass('fa-chevron-down fa-chevron-up');
+  }
+
+  $('.js-accepted').hide();
+
+  function getUser() {
+    // e.preventDefault();
+    var id = $(this).attr('data-userId');
+    $('.js-write' + id).blur(function () {
+      if (!$(this).val()) {
+        $(this).removeClass("written");
+      } else {
+        $(this).addClass("written");
+      }
+
+      if (!$('.js-write' + id).val()) {
+        $('.js-hide' + id).addClass("hide");
+      } else {
+        $('.js-hide' + id).removeClass("hide");
+      }
+    });
+    $('.js-write-two' + id).blur(function () {
+      if (!$(this).val()) {
+        $(this).removeClass("written");
+      } else {
+        $(this).addClass("written");
+      }
+
+      if (!$('.js-write-two' + id).val()) {
+        $('.js-hide-2' + id).addClass("hide");
+      } else {
+        $('.js-hide-2' + id).removeClass("hide");
+      }
+    });
+    $('.js-close' + id).click(closeFeedback);
+
+    function closeFeedback() {
+      $('.modal' + id).hide();
+      $('.js-no-selected').show();
+    }
+
+    $.get('/feedback/user/' + id, {
+      success: function success() {
+        $('.modal').css('display', 'none');
+        $('.modal' + id).show();
+        $('.js-no-selected').hide();
+        $('.js-accepted').hide();
+      }
+    });
+  }
+
+  var star = $('.star-rating').text();
+  $('.star-rating').html(getStars(star));
+
+  function getStars(star) {
+    star = Math.round(star * 2) / 2;
+    var output = [];
+
+    for (var i = star; i >= 1; i--) {
+      output.push('<i class="fa fa-star"  style="color: #ec1940;"></i>&nbsp;');
+    }
+
+    if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: #ec1940;"></i>&nbsp;');
+
+    for (var _i = 5 - star; _i >= 1; _i--) {
+      output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: lightgray;"></i>&nbsp;');
+    }
+
+    return output.join('');
+  }
+
+  $.fn.stars = function () {
+    return $(this).each(function () {
+      var val = parseFloat($(this).html());
+      var size = Math.max(0, Math.min(5, val)) * 16;
+      var $span = $('<span />').width(size);
+      $(this).html($span);
+    });
+  };
+
+  $(document).ready(function () {
+    $('span.stars').stars();
+  });
+  $('.js-menu-media').click(getAside);
+
+  function getAside() {
+    $('.aside-media-view').toggle("slide");
+    $('.js-main').toggle("slide");
+  }
+
+  var smallScreen = false;
+  $(document).ready(function () {
+    if ($(window).width() < 426) {
+      smallScreen = true;
+    }
+
+    $(window).resize(function () {
+      if ($(window).width() < 426) {
+        smallScreen = true;
+      } else {
+        smallScreen = false;
+      }
+    });
+
+    function getTeammates() {
+      if (smallScreen) {
+        $('.teammate').click(function () {
+          $('.aside-media-view').toggle("slide");
+          $('.js-main').toggle("slide");
+          console.log('getTeammates');
+        });
+      }
+    }
+
+    ;
+    getTeammates();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/superadmin-js.js":
+/*!***************************************!*\
+  !*** ./resources/js/superadmin-js.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  function getAdmins() {
+    $.get('/superadmin/admins', function (data) {
+      var output = [];
+      data.admins.forEach(function (e) {
+        output += '<p>' + e.first_name + ' ' + e.last_name + ' <button data-id="' + e.id + '" class="delete-admin super-admin-btn" name="delete-admin">DEL</button>' + '<button name="edit-admin" id="' + e.id + '" class="super-admin-btn js-edit-modal">EDIT</button></p>';
+      });
+      $('.js-admins').append(output);
+      $(".js-edit-modal").click(editAdmin);
+
+      function editAdmin() {
+        id = $(this).attr('id');
+        $.get('/superadmin/admins/' + id + '/update', function (data) {
+          $('#first_name').val(data.admin.first_name);
+          $('#last_name').val(data.admin.last_name);
+          $('#admin-email').val(data.admin.email);
+        });
+        $('#hidden_id').val(id);
+        $(".edit-modal").show();
+      }
+    });
+  }
+
+  getAdmins();
+  $('.js-edit-admin-btn').click(updateAdmin);
+
+  function updateAdmin() {
+    id = $('#hidden_id').val();
+    first_name = $('#first_name').val();
+    last_name = $('#last_name').val();
+    email = $('#admin-email').val();
+    $.ajax({
+      url: "/superadmin/admins/" + id + "/update",
+      type: 'PUT',
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        email: email
+      }
+    }).fail(function (data) {
+      if (data.responseJSON.errors.first_name) {
+        $('.js-error-admin-edit-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+
+      if (data.responseJSON.errors.last_name) {
+        $('.js-error-admin-edit-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+
+      if (data.responseJSON.errors.email) {
+        $('.js-error-admin-edit-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $(".js-admins").empty().append(getAdmins);
+      $(".edit-modal").hide();
+    });
+  }
+
+  function getSkills() {
+    $.get('/superadmin/skills', function (data) {
+      var output = [];
+      data.skills.forEach(function (e) {
+        output += '<p class="media-list"><span style="margin:auto 0; margin-right:10px">' + e.name + '</span>' + '<button data-id="' + e.id + '" class="delete-skill super-admin-btn" name="delete-skill">DEL</button>' + '<i style="margin:auto 0" class="add fas fa-plus-circle js-skill-show" data-id="' + e.id + '"></i>' + '<span class="hide js-skill-hide' + e.id + '"><button data-id="' + e.id + '"class="edit-skill super-admin-btn" name="edit-skill">Update</button><input data-id="' + e.id + '"class="js-edit-skill-name' + e.id + '" placeholder="Update skill name"></span><br><span class="hidden js-edit-skill' + e.id + '"><br><br></span></p>';
+      });
+      $('.js-skills').append(output);
+    });
+  }
+
+  getSkills(); //ADD ADMIN
+
+  $('.js-add-admin-btn').click(addAdmin);
+
+  function addAdmin() {
+    var first_name = $('#first-name').val();
+    var last_name = $('#last-name').val();
+    var email = $('#email').val();
+    var password = $('#password').val();
+    var password_confirmation = $('#password-confirm').val();
+    var company_id = $('#company-id').val();
+    $.post('/superadmin/admins', {
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation,
+      company_id: company_id
+    }).fail(function (data) {
+      if (data.responseJSON.errors.first_name) {
+        $('.js-error-admin-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+
+      if (data.responseJSON.errors.last_name) {
+        $('.js-error-admin-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+
+      if (data.responseJSON.errors.email) {
+        $('.js-error-admin-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+
+      if (data.responseJSON.errors.password) {
+        $('.js-error-admin-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-admins').empty().append(getAdmins);
+      $(".superadmin-modal").hide();
+      $(".superadmin-modal > input").val("");
+    });
+  }
+
+  $('.js-add-skill-btn').click(addSkill);
+
+  function addSkill() {
+    var name = $('.js-skill').val();
+    $.post('/superadmin/skills', {
+      name: name
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-add-skill').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-skill').val('');
+      $('.js-skills').empty().append(getSkills);
+    });
+  }
+
+  $(document).on('click', '.delete-skill', function () {
+    var id = $(this).data('id');
+    $.ajax({
+      url: "/superadmin/skills/" + id + "/delete",
+      type: 'DELETE',
+      data: {
+        id: id
+      }
+    }).done(function (data) {
+      $('.js-skills').empty().append(getSkills);
+    });
+  });
+  $(document).on('click', '.edit-skill', function () {
+    var id = $(this).data('id');
+    var name = $('.js-edit-skill-name' + id).val();
+    $.ajax({
+      url: "/superadmin/skills/" + id + "/update",
+      type: 'PUT',
+      data: {
+        name: name
+      }
+    }).fail(function (data) {
+      if (data.responseJSON.errors.name) {
+        $('.js-edit-skill' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(function (data) {
+      $('.js-skills').empty().append(getSkills);
+    });
+  });
+  $(document).on('click', '.delete-admin', function () {
+    var id = $(this).data('id');
+    $.ajax({
+      url: "/superadmin/users/" + id + "/delete",
+      type: 'DELETE',
+      data: {
+        id: id
+      }
+    }).done(function (data) {
+      $('.js-admins').empty().append(getAdmins);
+    });
+  });
+  $(document).on('click', '.js-super-show', function () {
+    var id = $(this).data('id');
+    var field = $('.js-super-hide' + id);
+    field.toggle();
+    $(this).toggleClass('fa-plus-circle fa-minus-circle');
+  });
+  $(document).on('click', '.js-skill-show', function () {
+    var id = $(this).data('id');
+    var field = $('.js-skill-hide' + id);
+    field.toggle();
+    $(this).toggleClass('fa-plus-circle fa-minus-circle');
+  });
+  $('#tabs ul li a').click(function () {
+    $('#tabs ul li a').removeClass('current-tab');
+    $(this).addClass('current-tab');
+  }); //Search company
+
+  $(document).ready(function () {
+    $(".search-company").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $(".js-companies p").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+  $(".js-superadmin-modal-btn").click(getModal);
+
+  function getModal() {
+    $(".superadmin-modal").toggleClass("modal");
+    $(this).text(function (i, text) {
+      return text === "Close" ? "Add new admin" : "Close";
+    });
+  }
+
+  $(".js-edit-modal").click(editAdmin);
+
+  function editAdmin() {
+    $(".edit-modal").show();
+  }
+
+  $('.js-edit-close').click(closeEdit);
+
+  function closeEdit() {
+    $('.edit-modal').hide();
+  }
+
+  $('.js-update-password').click(updatePassword);
+
+  function updatePassword() {
+    id = $('#hidden_id').val();
+    password = $('#password1').val();
+    password_confirmation = $('#password-confirm1').val();
+    $.ajax({
+      url: "superadmin/admins/" + id + "/update/password",
+      type: 'PUT',
+      data: {
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    }).fail(function (data) {
+      if (data.responseJSON.errors.password) {
+        $('.js-error-admin-edit-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+      }
+    }).done(alert('updated'), $('#password').val(''), $('#password-confirm').val(''));
+  }
+});
 
 /***/ }),
 

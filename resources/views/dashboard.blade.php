@@ -200,7 +200,6 @@
                         skills: skills,
                         success: function(){
 
-
                     }
                     },
                     
