@@ -7,22 +7,7 @@ $(document).ready(function () {
                 $.each(data.users, function (i, e) {
                     output += '<tr class="media-user js-user-del'+e.id+'"><td>' + e.first_name + '</td><td>' + e.last_name + '</td><td>'+
                         e.email+'</td><td>'+e.profile.job_title.name+'</td><td class="user-status-dot"><label class="switch"><input class="check-slider "data-id='+ e.id +' name="chk-box" id="chk-box" value="1" type="checkbox" '+ (e.active === 1 ? "checked" : "" )+' ><span class="slider round"></span></label>'+
-                        // (e.active === 1 ? '<span title="active user"class="dot"></span> ' : '<span title="Inactive user" class="dot-red"></span>')+
                         '</td><td><button id="'+e.id+'" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>'+' '+'<button class="admin-btn" id="delete-user" data-id='+e.id+'>Delete</button></td></tr>'
-// '<input type="text" id="edit-user-first-name '+ e.id +'" name="edit-user-first-name" value="'+ e.first_name +'">' +
-// '<input type="hidden" id="hidden_user_id" name="id" value="'+ e.id +'">' +
-// '<input type="text" id="edit-user-last-name '+ e.id +'" name="edit-user-last-name" value="'+ e.last_name +'">' +
-// '<input type="text" id="edit-user-email '+ e.id +'" name="edit-user-email" value="'+ e.email +'">' +
-// '<select>'
-// data.positions.forEach(function (e) {
-// + '<option value="'+ e.id +'">'+ e.name + '</option>'
-// })
-// '</select>' +
-// '<button id="edit-user" class="admin-btn js-edit-user" data-id='+e.id+'>Edit</button>' +
-// '<input type="hidden" id="hidden_pass_id" name="id" value="'+ e.id +'">' +
-// '<input type="password" id="edit-user-password '+ e.id +'" name="password" placeholder="update password">' +
-// '<input type="password" id="password-confirm '+ e.id +'" name="password_confirmation" placeholder="confirm password">' +
-// '<button id="edit-user-password" class="admin-btn js-edit-user-password" data-id='+e.id+'>Update password</button></td></tr>';
                 })
                 $('.js-admins-list').append(output);
                 $(".js-edit-user").click(editUser)
@@ -87,41 +72,6 @@ $(document).ready(function () {
                         })
                     )
                 }));
-// ADD USER
-
-// $('.js-add-user').click(addUser);
-
-// function addUser() {
-// let first_name = $('#first-name').val();
-// let last_name = $('#last-name').val();
-// let email = $('#email').val();
-// let password = $('#password').val();
-// let password_confirmation = $('#password-confirm').val();
-// let company_id = $('#company-id').val();
-// let job_title_id = $('#job-title').val();
-// // let picture = $('#add-img').prop('files');
-// // console.log(job_title_id);
-// $.ajax({
-// url:'/admin/users',
-// type: 'post',
-// data:
-// {
-// first_name: first_name,
-// last_name: last_name,
-// email: email,
-// password: password,
-// password_confirmation: password_confirmation,
-// company_id: company_id,
-// job_title_id: job_title_id,
-// // picture: picture
-// }})
-// .done(function(data){
-// console.log(data.request);
-// $(".js-admins-list").empty().append(getUsers);
-// $('.js-edit-form input').val('');
-// // alert(data.user.first_name + ' ' + data.user.last_name + ' je sacuvan.');
-// })
-// }
             }
         )
     }
@@ -129,15 +79,7 @@ $(document).ready(function () {
 
 
 
-// EDIT USER
 
-// function editUser() {
-// id = $(this).attr('id');
-// $.get('/admin/users/'+id, function(data){
-// // $('#first_name').val(data.user.first_name);
-// // $('#last_name').val(data.user.last_name);
-// // $('#admin-email').val(data.user.email);
-// })}
 
 // UPDATE USER
     $('.js-update-user').click(updateUser);
@@ -147,7 +89,6 @@ $(document).ready(function () {
         last_name = $('.js-edit-lname').val();
         email = $('.js-edit-mail').val();
         job_title_id = $('#update-job-title').val();
-// picture = document.getElementById('picture').files[0];
         $.ajax(
             {
                 url: "/admin/users/" + id,
@@ -157,7 +98,6 @@ $(document).ready(function () {
                     last_name: last_name,
                     email: email,
                     job_title_id: job_title_id,
-// picture: picture
                 },
                 error: (function(data){
                     if (data.responseJSON.errors.first_name) {
@@ -311,56 +251,4 @@ testScreen();
             alert(data.success);
         })
     });
-
-
-// let text = $('#tekst').val();
-// let picture = document.getElementById('add_img').files[0];
-// // form_data.append('picture', picture);
-// // form_data.append('text', text);
-// $("#upload-picture-button").click(function(e){
-// e.preventDefault();
-// // let picture = $('#picture').prop('files')[0];
-// $.ajax({
-// url: "/admin/users/" + 6 + "/update/picture",
-// type: "put",
-// data: form_data,
-// contentType: false,
-// cache: false,
-// processData:false,
-// enctype: 'multipart/form-data',
-// success: function(data){
-// alert('Picture is uploaded');
-// console.log(data.request);
-// },
-// error: function(){}
-// });
-// });
-// let form_data = new FormData();
-// form_data.append('picture', $('#add-img')[0].files[0]);
-// let text = $('#tekst').val();
-// let picture = ;
-//
-// form_data.append('tekst', text);
-
-
-// forma
-
-// $("#uploadimage").on('submit', function(e) {
-// e.preventDefault();
-// let form_data = new FormData(this);
-// form_data.append('picture',$('#file')[0].files[0])
-// $.ajax({
-// url: "/admin/users/" + 6 + "/update/picture",
-// type: "put",
-// data: form_data,
-// contentType: false,
-// dataType: 'JSON',
-// cache: false,
-// processData:false,
-// success: function(data){
-// alert('Picture is uploaded');
-// console.log(data.request);
-// },
-// })
-// })
 })

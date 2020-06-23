@@ -132,10 +132,7 @@ function updateAdmin(){
             $('.js-skills').empty().append(getSkills);
         })
         }
-
-
-
-
+        
     $(document).on ('click', '.delete-skill', function () {
         let id = $(this).data('id');
         $.ajax(
@@ -227,30 +224,27 @@ function updateAdmin(){
         $('.edit-modal').hide();
     }
 
-$('.js-update-password').click(updatePassword);
-function updatePassword(){
-    id = $('#hidden_id').val();
-    password = $('#password1').val();
-    password_confirmation = $('#password-confirm1').val();
-    $.ajax(            {
-        url: "superadmin/admins/"+id+"/update/password",
-        type: 'PUT',
-        data: {
-            password: password,
-            password_confirmation: password_confirmation
-        },
-    }).fail(function (data) {
-        if (data.responseJSON.errors.password) {
-            $('.js-error-admin-edit-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-        }
-    })
-        .done(
-        alert('updated'),
-        $('#password').val(''),
-        $('#password-confirm').val('')
-        );
-}
-
-
-
+    $('.js-update-password').click(updatePassword);
+    function updatePassword(){
+        id = $('#hidden_id').val();
+        password = $('#password1').val();
+        password_confirmation = $('#password-confirm1').val();
+        $.ajax(            {
+            url: "superadmin/admins/"+id+"/update/password",
+            type: 'PUT',
+            data: {
+                password: password,
+                password_confirmation: password_confirmation
+            },
+        }).fail(function (data) {
+            if (data.responseJSON.errors.password) {
+                $('.js-error-admin-edit-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
+            .done(
+            alert('updated'),
+            $('#password').val(''),
+            $('#password-confirm').val('')
+            );
+    }
 })

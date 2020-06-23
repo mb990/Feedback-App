@@ -165,7 +165,9 @@ table, th, td {
     width: -webkit-fill-available;
 }
 .media-job-title * {
-    width: -webkit-fill-available;
+    @media screen and (max-width: 768px) and (min-width: 426px){
+        max-width: 110px;
+    }
 }
 .admin-style{
     margin-left:10px;

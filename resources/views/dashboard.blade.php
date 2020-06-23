@@ -43,19 +43,21 @@
     @elseif (!auth()->user()->company->active)
         <h2>Your company is temporarily deactivated</h2>
     @else
+    <div class="js-check-done">
     @if(auth()->user()->doneFeedback())
-    <div class="container js-no-selected">
-        <i class='far'>&#xf11a;</i>
-        <div class="messages">
-            You reviewed <br> all your team
+        <div class="container js-no-selected">
+            <i class='far'>&#xf11a;</i>
+            <div class="messages">
+                You reviewed <br> all your team
+            </div>
+            <p class="info">
+                Great job! You can only wait for the <br>
+                feedback session at
+                {{auth()->user()->company->nextFeedbackSessionDate()}}
+            </p>
         </div>
-        <p class="info">
-            Great job! You can only wait for the <br>
-            feedback session at
-            {{auth()->user()->company->nextFeedbackSessionDate()}}
-        </p>
-    </div>
     @else
+    </div>
     <div class="container js-no-selected">
         <i class='far'>&#xf11a;</i>
         <div class="messages">
@@ -190,43 +192,21 @@
                     ratings[current] = $(`input[name="${current}"]:checked`).val();
                 });
 
-                // $.ajax({
-                //     url: 'feedback/store',
-                //     method: 'POST',
-                //     data: {
-                //         data: data,
-                //         ratings: ratings,
-                //         skills: skills
-                //     },
-                //     success: function (result) {
-                //         console.log(data);
-                //
-                //         // $('.alert').show();
-                //         $('.alert').html(result.success);
-                //     }
-                // });
-
-
-
-                // $(".teammate-name").click(function() {
-                //     alert("clicked")
-                //     $(".teammate-name").removeClass("active-teammate");
-                //     $(this).addClass("active-teammate");
-                // });
-
-
-
-
-
                 $.post('feedback/store',
                     {
                         data: data,
                         ratings: ratings,
-                        skills: skills
+                        skills: skills,
+                        success: function(){
+                            $('.js-accepted').show();
+                            $(".js-check-done").load(location.href+" .js-check-done>*","");
+                            $(".js-accepted").hide();
+
+                    }
                     },
+                    
 
                 ).done(function(){
-                    $('.js-accepted').show();
                     $('.modal').hide();
                     $('.js-submit'+id1).hide();
                     $('.js'+id1).removeClass('hidden');
