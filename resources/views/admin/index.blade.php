@@ -258,6 +258,8 @@
 
         $("#uploadimage").submit(editImage);
 
+        $('#send').click(notifyUsers);
+
         $( function() {
             $( "#tabs" ).tabs();
         } );

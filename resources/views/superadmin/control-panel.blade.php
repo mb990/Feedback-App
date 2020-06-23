@@ -139,8 +139,51 @@
 @endsection
 @section('script')
 <script>
+
     $( function() {
         $( "#tabs" ).tabs();
     } );
+
+    getAdmins();
+
+    $('.js-edit-admin-btn').click(updateAdmin);
+
+    getSkills();
+
+    $('.js-add-admin-btn').click(addAdmin);
+
+    $('.js-add-skill-btn').click(addSkill);
+
+    $('.delete-skill').click(deleteSkill);
+
+    $('.edit-skill').click(editSkill);
+
+    $('.delete-admin').click(deleteAdmin);
+
+    $(".js-superadmin-modal-btn").click(getModal);
+
+    $(".js-edit-modal").click(editAdmin);
+
+    $('.js-edit-close').click(closeEdit);
+
+    $('.js-update-password').click(updatePassword);
+
+    getJobTitles();
+
+    $('.js-add-position-btn').click(addJobTitle);
+
+    $('.edit-position').click(editJobTitle);
+
+    $('.delete-position').click(deleteJobTitle);
+
+    getCompany();
+
+    $('.js-add-company-btn').click(addCompany);
+
+    $('.delete-company').click(deleteCompany);
+
+    $('.edit-company').click(editCompany);
+
+
 </script>
 @endsection

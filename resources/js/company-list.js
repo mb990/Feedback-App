@@ -21,9 +21,9 @@ $(document).ready(function(){
             }
         )
     }
-    getCompany();
+
     //ADD COMPANY
-    $('.js-add-company-btn').click(addCompany);
+
     function addCompany(){
         var name = $('.js-company-name').val();
         $.post('/superadmin/companies',
@@ -42,7 +42,9 @@ $(document).ready(function(){
     })
     }
     //DELETE COMPANY
-    $(document).on ('click', '.delete-company', function () {
+
+    function deleteCompany() {
+
         let id = $(this).data('id');
         $.ajax(
             {
@@ -51,14 +53,20 @@ $(document).ready(function(){
                 data: {
                     id: id
                 },
-        }).done(function (data) {
+            }).done(function (data) {
             $('.js-companies').empty().append(getCompany);
             $("#company-id option[value='"+id+"']").remove();
         })
+    }
+
+    $(document).on ('click', '.delete-company', function () {
+
     });
 
     //UPDATE COMPANY
-    $(document).on ('click', '.edit-company', function () {
+
+    function editCompany() {
+
         let id = $(this).data('id');
         let active = '';
         let name = $('.js-edit-input-company-name'+id).val();
@@ -76,15 +84,15 @@ $(document).ready(function(){
                     name: name,
                     active: active
                 }
-        }).fail(function (data) {
+            }).fail(function (data) {
             if (data.responseJSON.errors.name) {
                 $('.js-error-edit-company-name' + id).slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
             }
         })
             .done(function (data) {
-            $('.js-companies').empty().append(getCompany);
-            $("#company-id option[value='"+id+"']").remove();
-            $('#company-id').append('<option value="'+ id +'">'+ name +'</option>')
-        });
-    })
+                $('.js-companies').empty().append(getCompany);
+                $("#company-id option[value='"+id+"']").remove();
+                $('#company-id').append('<option value="'+ id +'">'+ name +'</option>')
+            });
+    }
 });

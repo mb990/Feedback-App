@@ -24,9 +24,7 @@ $(document).ready(function () {
             }
         )
     }
-    getAdmins();
 
-$('.js-edit-admin-btn').click(updateAdmin);
 function updateAdmin(){
     id = $('#hidden_id').val();
     first_name = $('#first_name').val();
@@ -75,10 +73,10 @@ function updateAdmin(){
             }
         )
     }
-    getSkills();
+
 
         //ADD ADMIN
-        $('.js-add-admin-btn').click(addAdmin);
+
         function addAdmin(){
             let first_name = $('#first-name').val();
             let last_name = $('#last-name').val();
@@ -115,7 +113,7 @@ function updateAdmin(){
                 $(".superadmin-modal > input").val("")
         })
         }
-        $('.js-add-skill-btn').click(addSkill);
+
         function addSkill(){
             var name = $('.js-skill').val();
             $.post('/superadmin/skills',
@@ -132,8 +130,11 @@ function updateAdmin(){
             $('.js-skills').empty().append(getSkills);
         })
         }
-        
-    $(document).on ('click', '.delete-skill', function () {
+
+        // delete skill
+
+    function deleteSkill() {
+
         let id = $(this).data('id');
         $.ajax(
             {
@@ -145,9 +146,12 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-skills').empty().append(getSkills);
         })
-    });
+    }
 
-    $(document).on ('click', '.edit-skill', function () {
+    // edit skill
+
+    function editSkill() {
+
         let id = $(this).data('id');
         let name = $('.js-edit-skill-name'+id).val();
         $.ajax(
@@ -163,10 +167,14 @@ function updateAdmin(){
             }
         })
             .done(function (data) {
-            $('.js-skills').empty().append(getSkills);
-        })
-    });
-    $(document).on ('click', '.delete-admin', function () {
+                $('.js-skills').empty().append(getSkills);
+            })
+    }
+
+    // delete admin
+
+    function deleteAdmin() {
+
         let id = $(this).data('id');
         $.ajax(
             {
@@ -178,11 +186,12 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-admins').empty().append(getAdmins);
         })
-    });
+    }
+
     $(document).on ('click', '.js-super-show', function(){
         let id = $(this).data('id');
         let field = $('.js-super-hide'+id);
-        field.toggle()
+        field.toggle();
         $(this).toggleClass('fa-plus-circle fa-minus-circle')
 
     });
@@ -207,24 +216,22 @@ function updateAdmin(){
         });
     });
 
-    $(".js-superadmin-modal-btn").click(getModal);
+
     function getModal(){
-        $(".superadmin-modal").toggleClass("modal")
+        $(".superadmin-modal").toggleClass("modal");
         $(this).text(function(i, text){
             return text === "Close" ? "Add new admin" : "Close";
         })
     }
-    $(".js-edit-modal").click(editAdmin);
+
     function editAdmin(){
         $(".edit-modal").show();
     }
 
-    $('.js-edit-close').click(closeEdit);
     function closeEdit(){
         $('.edit-modal').hide();
     }
 
-    $('.js-update-password').click(updatePassword);
     function updatePassword(){
         id = $('#hidden_id').val();
         password = $('#password1').val();
@@ -247,4 +254,4 @@ function updateAdmin(){
             $('#password-confirm').val('')
             );
     }
-})
+});

@@ -19,10 +19,7 @@ $(document).ready(function () {
         )
     }
 
-    getJobTitles();
-
     // Add job
-    $('.js-add-position-btn').click(addJobTitle);
 
     function addJobTitle() {
         $.post(
@@ -43,7 +40,8 @@ $(document).ready(function () {
 
     // Update job title
 
-    $(document).on ('click', '.edit-position', function () {
+    function editJobTitle() {
+
         let id = $(this).data('id');
         let name = $('#edit-position'+id).val();
         $.ajax(
@@ -60,13 +58,14 @@ $(document).ready(function () {
                 }
             })
             .done(function (data) {
-            $('.js-positions').empty().append(getJobTitles);
-        });
-    });
+                $('.js-positions').empty().append(getJobTitles);
+            });
+    }
 
     // Delete job title
 
-    $(document).on ('click', '.delete-position', function () {
+    function deleteJobTitle() {
+
         let id = $(this).data('id');
         $.ajax(
             {
@@ -78,7 +77,7 @@ $(document).ready(function () {
             }).done(function (data) {
             $('.js-positions').empty().append(getJobTitles);
         })
-    });
+    }
 
         //Search positions
         $(".search-position").on("keyup", function() {
@@ -92,7 +91,7 @@ $(document).ready(function () {
         $(document).on ('click', '.js-job-show', function(){
             let id = $(this).data('id');
             let field = $('.js-job-hide'+id);
-            field.toggle()
+            field.toggle();
             $(this).toggleClass('fa-plus-circle fa-minus-circle')
         });
 });

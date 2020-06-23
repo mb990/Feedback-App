@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // send notification to all users
 
-    $('#send').click(function () {
+    function notifyUsers() {
 
         let message = $('#message').val();
 
@@ -11,9 +11,9 @@ $(document).ready(function () {
             {
                 message: message
             })
-        .done(function (data) {
-            console.log(data.request);
-        });
-    })
+            .done(function (data) {
+                console.log(data.request);
+            });
+    }
 
 });
