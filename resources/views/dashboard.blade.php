@@ -199,15 +199,16 @@
                         ratings: ratings,
                         skills: skills,
                         success: function(){
-                            $('.js-accepted').show();
-                            $(".js-check-done").load(location.href+" .js-check-done>*","");
-                            $(".js-accepted").hide();
+
 
                     }
                     },
                     
 
                 ).done(function(){
+                    $('.js-accepted').show();
+                            $(".js-check-done").load(location.href+" .js-check-done>*","");
+                            $(".js-accepted").hide();
                     $('.modal').hide();
                     $('.js-submit'+id1).hide();
                     $('.js'+id1).removeClass('hidden');
