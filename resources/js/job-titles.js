@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    function getJobTitles() {
+    window.getJobTitles = function() {
         $.get(
             '/superadmin/job-titles', function (data) {
                 let output = [];
@@ -17,11 +17,11 @@ $(document).ready(function () {
                 $('.js-positions').append(output);
             }
         )
-    }
+    };
 
     // Add job
 
-    function addJobTitle() {
+    window.addJobTitle = function() {
         $.post(
             '/superadmin/job-titles',
             {
@@ -36,11 +36,11 @@ $(document).ready(function () {
                 $('.js-positions').empty().append(getJobTitles);
                 $('.js-position').val("");
         })
-    }
+    };
 
     // Update job title
 
-    function editJobTitle() {
+    window.editJobTitle = function() {
 
         let id = $(this).data('id');
         let name = $('#edit-position'+id).val();
@@ -60,11 +60,11 @@ $(document).ready(function () {
             .done(function (data) {
                 $('.js-positions').empty().append(getJobTitles);
             });
-    }
+    };
 
     // Delete job title
 
-    function deleteJobTitle() {
+    window.deleteJobTitle = function() {
 
         let id = $(this).data('id');
         $.ajax(
@@ -77,7 +77,7 @@ $(document).ready(function () {
             }).done(function (data) {
             $('.js-positions').empty().append(getJobTitles);
         })
-    }
+    };
 
         //Search positions
         $(".search-position").on("keyup", function() {

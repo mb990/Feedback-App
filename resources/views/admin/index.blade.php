@@ -234,46 +234,50 @@
 @section('script')
     <script>
 
-        $( function() {
-            $( "#tabs" ).tabs();
-        } );
+        $(document).ready(function () {
+            $( function() {
+                $( "#tabs" ).tabs();
+            } );
 
-        getUsers();
+            getUsers();
 
-        $('.js-update-user').click(updateUser);
+            $('.js-update-user').click(updateUser);
 
-        $('.js-user-update-password').click(updateUserPassword);
+            $('.js-user-update-password').click(updateUserPassword);
 
-        $('#delete-user').click(deleteUser);
+            $('#delete-user').click(deleteUser);
 
-        $('.js-stats').click(showStats);
+            $('.js-stats').click(showStats);
 
-        $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
+            $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
 
-        $('.js-edit-user-close').click(closeEdit);
+            $('.js-edit-user-close').click(closeEdit);
 
-        $("input[name='chk-box\']").change(changeUserStatus);
+            $("input[name='chk-box\']").change(changeUserStatus);
 
-        testScreen();
+            testScreen();
 
-        $('.js-show-time-update').click(showTime);
+            $('.js-show-time-update').click(showTime);
 
-        $('.js-show-new-user').click(showNew);
+            $('.js-show-new-user').click(showNew);
 
-        $("#uploadimage").submit(editImage);
+            $("#uploadimage").submit(editImage);
 
-        $('#send').click(notifyUsers);
+            $('#send').click(notifyUsers);
 
 
-        $("#chk-box").click(getCheck);
-        function getCheck(){
-            chk = $("#chk-box").checked ? 1 : 0;
-            $.ajax({
-                type: 'GET',
-                url: '',
-                data: {}
-            });
-        }
+            $("#chk-box").click(getCheck);
+            function getCheck(){
+                chk = $("#chk-box").checked ? 1 : 0;
+                $.ajax({
+                    type: 'GET',
+                    url: '',
+                    data: {}
+                });
+            }
+        });
+
+
 
     </script>
 @endsection

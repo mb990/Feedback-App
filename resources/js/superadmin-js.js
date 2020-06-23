@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    function getAdmins(){
+    window.getAdmins = function(){
         $.get(
             '/superadmin/admins', function (data) {
                 let output = [];
@@ -23,9 +23,9 @@ $(document).ready(function () {
                 }
             }
         )
-    }
+    };
 
-function updateAdmin(){
+    window.updateAdmin = function(){
     id = $('#hidden_id').val();
     first_name = $('#first_name').val();
     last_name = $('#last_name').val();
@@ -54,9 +54,9 @@ function updateAdmin(){
         $(".js-admins").empty().append(getAdmins);
         $(".edit-modal").hide()
     })
-    }
+    };
 
-    function getSkills(){
+    window.getSkills = function(){
         $.get(
             '/superadmin/skills', function (data) {
                 let output = [];
@@ -72,12 +72,12 @@ function updateAdmin(){
                 $('.js-skills').append(output);
             }
         )
-    }
+    };
 
 
         //ADD ADMIN
 
-        function addAdmin(){
+    window.addAdmin = function(){
             let first_name = $('#first-name').val();
             let last_name = $('#last-name').val();
             let email = $('#email').val();
@@ -112,9 +112,9 @@ function updateAdmin(){
                 $(".superadmin-modal").hide();
                 $(".superadmin-modal > input").val("")
         })
-        }
+        };
 
-        function addSkill(){
+    window.addSkill = function(){
             var name = $('.js-skill').val();
             $.post('/superadmin/skills',
             {
@@ -129,11 +129,11 @@ function updateAdmin(){
             $('.js-skill').val('');
             $('.js-skills').empty().append(getSkills);
         })
-        }
+        };
 
         // delete skill
 
-    function deleteSkill() {
+    window.deleteSkill = function() {
 
         let id = $(this).data('id');
         $.ajax(
@@ -146,11 +146,11 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-skills').empty().append(getSkills);
         })
-    }
+    };
 
     // edit skill
 
-    function editSkill() {
+    window.editSkill = function() {
 
         let id = $(this).data('id');
         let name = $('.js-edit-skill-name'+id).val();
@@ -169,11 +169,11 @@ function updateAdmin(){
             .done(function (data) {
                 $('.js-skills').empty().append(getSkills);
             })
-    }
+    };
 
     // delete admin
 
-    function deleteAdmin() {
+    window.deleteAdmin = function() {
 
         let id = $(this).data('id');
         $.ajax(
@@ -186,7 +186,7 @@ function updateAdmin(){
             }).done(function (data) {
             $('.js-admins').empty().append(getAdmins);
         })
-    }
+    };
 
     $(document).on ('click', '.js-super-show', function(){
         let id = $(this).data('id');
@@ -217,22 +217,22 @@ function updateAdmin(){
     });
 
 
-    function getModal(){
+    window.getModal = function(){
         $(".superadmin-modal").toggleClass("modal");
         $(this).text(function(i, text){
             return text === "Close" ? "Add new admin" : "Close";
         })
-    }
+    };
 
-    function editAdmin(){
+    window.editAdmin = function(){
         $(".edit-modal").show();
-    }
+    };
 
     function closeEdit(){
         $('.edit-modal').hide();
     }
 
-    function updatePassword(){
+    window.updatePassword = function(){
         id = $('#hidden_id').val();
         password = $('#password1').val();
         password_confirmation = $('#password-confirm1').val();

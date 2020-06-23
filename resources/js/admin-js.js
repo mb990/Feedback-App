@@ -74,7 +74,7 @@ $(document).ready(function () {
                 }));
             }
         )
-    }
+    };
 
 
 
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
 // UPDATE USER
 
-    function updateUser(){
+    window.updateUser = function(){
         id = $('#hidden_user_id').val();
         first_name = $('.js-edit-fname').val();
         last_name = $('.js-edit-lname').val();
@@ -117,11 +117,11 @@ $(document).ready(function () {
 
 
 
-    }
+    };
 // UPDATE USER PASSWORD
 
 
-    function updateUserPassword(){
+    window.updateUserPassword = function(){
         id = $('#hidden_user_id').val();
         password = $('#password1').val();
         password_confirmation = $('#password-confirm1').val();
@@ -141,10 +141,10 @@ $(document).ready(function () {
                 }
             })
         }).done(alert("Password is updated"))
-    }
+    };
 //ADD USER MODAL BUTTON
 
-    function showNew(){
+    window.showNew = function(){
         var ix = $(this).index();
         $('.js-admin-modal').toggle( ix === '1' ? '0' : '1');
         $('.js-interactive-text').toggle( ix === '0' ? '1' : '0');
@@ -156,7 +156,7 @@ $(document).ready(function () {
     }
 //EDIT FEEDBACK TIME MODAL BUTTON
 
-    function showTime(){
+    window.showTime = function(){
         var ix = $(this).index();
         $('.js-tab-2').toggle( ix === '1' ? '0' : '1');
         $('.js-feedback-interval').toggle( ix === '0' ? '1' : '0');
@@ -165,10 +165,10 @@ $(document).ready(function () {
         } else {
             $(this).text("Edit time");
         }
-    }
+    };
 //SHOW STATS BUTTON
 
-    function showStats(){
+    window.showStats = function(){
         var ix = $(this).index();
         $('.js-statistics').toggle( ix === '1' ? '0' : '1');
         $('.js-stats-info').toggle( ix === '0' ? '1' : '0');
@@ -177,9 +177,9 @@ $(document).ready(function () {
         } else {
             $(this).text("Statistics");
         }
-    }
+    };
     //MOBILE VIEW TEST
-    function testScreen(){
+    window.testScreen = function(){
         var width = window.innerWidth;
         if(width < 430 ){
             $('.js-media-show').click(mediaUsers);
@@ -198,11 +198,11 @@ $(document).ready(function () {
                     $('.js-stats-info').toggle();
                 }
         }
-    }
+    };
 
 // DELETE USER
 
-    function deleteUser() {
+    window.deleteUser = function() {
         let id = $(this).data('id');
         $.ajax(
             {
@@ -216,11 +216,11 @@ $(document).ready(function () {
             $(".js-statistics").load(location.href+" .js-statistics>*","");
             $(".js-user-del"+id).remove();
         })
-    }
+    };
 
 // UPDATE COMPANY FEEDBACK DURATION
 
-    function updateFeedbackDurationTime() {
+    window.updateFeedbackDurationTime = function() {
 
         let id = $(this).data('id');
         let feedback_duration_id = $('#feedback-time').val();
@@ -234,14 +234,14 @@ $(document).ready(function () {
             }).done(function (data) {
             alert('Feedback time is updated.')
         });
-    }
+    };
 
-    function closeEdit(){
+    window.closeEdit = function(){
         $(".js-user-modal").hide()
-    }
+    };
 // change user status
 
-    function changeUserStatus() {
+    window.changeUserStatus = function() {
 
         let id = $(this).data('id');
 
@@ -255,11 +255,11 @@ $(document).ready(function () {
             $(".js-statistics").load(location.href+" .js-statistics>*","");
             alert(data.success);
         })
-    }
+    };
 
     // edit image
 
-    function editImage() {
+    window.editImage = function() {
 
         e.preventDefault();
         let form_data = new FormData();

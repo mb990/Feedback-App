@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // send notification to all users
 
-    function notifyUsers() {
+    window.notifyUsers = function() {
 
         let message = $('#message').val();
 

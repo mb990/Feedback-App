@@ -140,50 +140,52 @@
 @section('script')
 <script>
 
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
+    $(document).ready(function () {
 
-    getAdmins();
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
 
-    $('.js-edit-admin-btn').click(updateAdmin);
+        getAdmins();
 
-    getSkills();
+        $('.js-edit-admin-btn').click(updateAdmin);
 
-    $('.js-add-admin-btn').click(addAdmin);
+        getSkills();
 
-    $('.js-add-skill-btn').click(addSkill);
+        $('.js-add-admin-btn').click(addAdmin);
 
-    $('.delete-skill').click(deleteSkill);
+        $('.js-add-skill-btn').click(addSkill);
 
-    $('.edit-skill').click(editSkill);
+        $('.delete-skill').click(deleteSkill);
 
-    $('.delete-admin').click(deleteAdmin);
+        $('.edit-skill').click(editSkill);
 
-    $(".js-superadmin-modal-btn").click(getModal);
+        $('.delete-admin').click(deleteAdmin);
 
-    $(".js-edit-modal").click(editAdmin);
+        $(".js-superadmin-modal-btn").click(getModal);
 
-    $('.js-edit-close').click(closeEdit);
+        $(".js-edit-modal").click(editAdmin);
 
-    $('.js-update-password').click(updatePassword);
+        $('.js-edit-close').click(closeEdit);
 
-    getJobTitles();
+        $('.js-update-password').click(updatePassword);
 
-    $('.js-add-position-btn').click(addJobTitle);
+        getJobTitles();
 
-    $('.edit-position').click(editJobTitle);
+        $('.js-add-position-btn').click(addJobTitle);
 
-    $('.delete-position').click(deleteJobTitle);
+        $('.edit-position').click(editJobTitle);
 
-    getCompany();
+        $('.delete-position').click(deleteJobTitle);
 
-    $('.js-add-company-btn').click(addCompany);
+        getCompany();
 
-    $('.delete-company').click(deleteCompany);
+        $('.js-add-company-btn').click(addCompany);
 
-    $('.edit-company').click(editCompany);
+        $('.delete-company').click(deleteCompany);
 
+        $('.edit-company').click(editCompany);
+    });
 
 </script>
 @endsection

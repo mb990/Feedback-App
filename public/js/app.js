@@ -37302,7 +37302,7 @@ $(document).ready(function () {
   }; // UPDATE USER
 
 
-  function updateUser() {
+  window.updateUser = function () {
     id = $('#hidden_user_id').val();
     first_name = $('.js-edit-fname').val();
     last_name = $('.js-edit-lname').val();
@@ -37331,10 +37331,10 @@ $(document).ready(function () {
         }
       }
     }).done(alert("User is updated"), $(".js-user-modal").hide(), $('.js-admins-list').empty().append(getUsers));
-  } // UPDATE USER PASSWORD
+  }; // UPDATE USER PASSWORD
 
 
-  function updateUserPassword() {
+  window.updateUserPassword = function () {
     id = $('#hidden_user_id').val();
     password = $('#password1').val();
     password_confirmation = $('#password-confirm1').val();
@@ -37354,10 +37354,10 @@ $(document).ready(function () {
         }
       }
     }).done(alert("Password is updated"));
-  } //ADD USER MODAL BUTTON
+  }; //ADD USER MODAL BUTTON
 
 
-  function showNew() {
+  window.showNew = function () {
     var ix = $(this).index();
     $('.js-admin-modal').toggle(ix === '1' ? '0' : '1');
     $('.js-interactive-text').toggle(ix === '0' ? '1' : '0');
@@ -37367,10 +37367,10 @@ $(document).ready(function () {
     } else {
       $(this).text("New user");
     }
-  } //EDIT FEEDBACK TIME MODAL BUTTON
+  }; //EDIT FEEDBACK TIME MODAL BUTTON
 
 
-  function showTime() {
+  window.showTime = function () {
     var ix = $(this).index();
     $('.js-tab-2').toggle(ix === '1' ? '0' : '1');
     $('.js-feedback-interval').toggle(ix === '0' ? '1' : '0');
@@ -37380,10 +37380,10 @@ $(document).ready(function () {
     } else {
       $(this).text("Edit time");
     }
-  } //SHOW STATS BUTTON
+  }; //SHOW STATS BUTTON
 
 
-  function showStats() {
+  window.showStats = function () {
     var ix = $(this).index();
     $('.js-statistics').toggle(ix === '1' ? '0' : '1');
     $('.js-stats-info').toggle(ix === '0' ? '1' : '0');
@@ -37393,10 +37393,10 @@ $(document).ready(function () {
     } else {
       $(this).text("Statistics");
     }
-  } //MOBILE VIEW TEST
+  }; //MOBILE VIEW TEST
 
 
-  function testScreen() {
+  window.testScreen = function () {
     var width = window.innerWidth;
 
     if (width < 430) {
@@ -37419,10 +37419,10 @@ $(document).ready(function () {
       $('.js-media-time').click(mediaTime);
       $('.js-media-stats').click(mediaStats);
     }
-  } // DELETE USER
+  }; // DELETE USER
 
 
-  function deleteUser() {
+  window.deleteUser = function () {
     var id = $(this).data('id');
     $.ajax({
       url: "/admin/users/" + id,
@@ -37435,10 +37435,10 @@ $(document).ready(function () {
       $(".js-statistics").load(location.href + " .js-statistics>*", "");
       $(".js-user-del" + id).remove();
     });
-  } // UPDATE COMPANY FEEDBACK DURATION
+  }; // UPDATE COMPANY FEEDBACK DURATION
 
 
-  function updateFeedbackDurationTime() {
+  window.updateFeedbackDurationTime = function () {
     var id = $(this).data('id');
     var feedback_duration_id = $('#feedback-time').val();
     $.ajax({
@@ -37450,14 +37450,14 @@ $(document).ready(function () {
     }).done(function (data) {
       alert('Feedback time is updated.');
     });
-  }
+  };
 
-  function closeEdit() {
+  window.closeEdit = function () {
     $(".js-user-modal").hide();
-  } // change user status
+  }; // change user status
 
 
-  function changeUserStatus() {
+  window.changeUserStatus = function () {
     var id = $(this).data('id');
     $.ajax({
       url: '/admin/users/' + id + '/update/status',
@@ -37469,10 +37469,10 @@ $(document).ready(function () {
       $(".js-statistics").load(location.href + " .js-statistics>*", "");
       alert(data.success);
     });
-  } // edit image
+  }; // edit image
 
 
-  function editImage() {
+  window.editImage = function () {
     e.preventDefault();
     var form_data = new FormData();
     form_data.append('picture', $('#file')[0].files[0]);
@@ -37499,7 +37499,7 @@ $(document).ready(function () {
         }
       }
     }).done(alert('Picture is updated'));
-  }
+  };
 });
 
 /***/ }),
@@ -37513,14 +37513,14 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   // send notification to all users
-  function notifyUsers() {
+  window.notifyUsers = function () {
     var message = $('#message').val();
     $.post('/admin/notification/send', {
       message: message
     }).done(function (data) {
       console.log(data.request);
     });
-  }
+  };
 });
 
 /***/ }),
@@ -37602,7 +37602,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 $(document).ready(function () {
   //GET ALL COMPANY
-  function getCompany() {
+  window.getCompany = function () {
     $.get('/superadmin/companies', function (data) {
       var output = [];
       data.companies.forEach(function (e) {
@@ -37610,10 +37610,10 @@ $(document).ready(function () {
       });
       $('.js-companies').append(output);
     });
-  } //ADD COMPANY
+  }; //ADD COMPANY
 
 
-  function addCompany() {
+  window.addCompany = function () {
     var name = $('.js-company-name').val();
     $.post('/superadmin/companies', {
       name: name
@@ -37626,10 +37626,10 @@ $(document).ready(function () {
       $('#company-id').append('<option value="' + data.company.id + '">' + name + '</option>');
       $('.js-company').val("");
     });
-  } //DELETE COMPANY
+  }; //DELETE COMPANY
 
 
-  function deleteCompany() {
+  window.deleteCompany = function () {
     var id = $(this).data('id');
     $.ajax({
       url: "/superadmin/companies/" + id + "/delete",
@@ -37641,11 +37641,11 @@ $(document).ready(function () {
       $('.js-companies').empty().append(getCompany);
       $("#company-id option[value='" + id + "']").remove();
     });
-  }
+  };
 
   $(document).on('click', '.delete-company', function () {}); //UPDATE COMPANY
 
-  function editCompany() {
+  window.editCompany = function () {
     var id = $(this).data('id');
     var active = '';
     var name = $('.js-edit-input-company-name' + id).val();
@@ -37672,7 +37672,7 @@ $(document).ready(function () {
       $("#company-id option[value='" + id + "']").remove();
       $('#company-id').append('<option value="' + id + '">' + name + '</option>');
     });
-  }
+  };
 });
 
 /***/ }),
@@ -37685,7 +37685,7 @@ $(document).ready(function () {
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  function getJobTitles() {
+  window.getJobTitles = function () {
     $.get('/superadmin/job-titles', function (data) {
       var output = [];
       data.positions.forEach(function (e) {
@@ -37693,10 +37693,10 @@ $(document).ready(function () {
       });
       $('.js-positions').append(output);
     });
-  } // Add job
+  }; // Add job
 
 
-  function addJobTitle() {
+  window.addJobTitle = function () {
     $.post('/superadmin/job-titles', {
       name: $('[name="position-name"]').val()
     }).fail(function (data) {
@@ -37707,10 +37707,10 @@ $(document).ready(function () {
       $('.js-positions').empty().append(getJobTitles);
       $('.js-position').val("");
     });
-  } // Update job title
+  }; // Update job title
 
 
-  function editJobTitle() {
+  window.editJobTitle = function () {
     var id = $(this).data('id');
     var name = $('#edit-position' + id).val();
     $.ajax({
@@ -37726,10 +37726,10 @@ $(document).ready(function () {
     }).done(function (data) {
       $('.js-positions').empty().append(getJobTitles);
     });
-  } // Delete job title
+  }; // Delete job title
 
 
-  function deleteJobTitle() {
+  window.deleteJobTitle = function () {
     var id = $(this).data('id');
     $.ajax({
       url: "/superadmin/job-titles/" + id,
@@ -37740,7 +37740,7 @@ $(document).ready(function () {
     }).done(function (data) {
       $('.js-positions').empty().append(getJobTitles);
     });
-  } //Search positions
+  }; //Search positions
 
 
   $(".search-position").on("keyup", function () {
@@ -37927,7 +37927,7 @@ $(document).ready(function () {
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  function getAdmins() {
+  window.getAdmins = function () {
     $.get('/superadmin/admins', function (data) {
       var output = [];
       data.admins.forEach(function (e) {
@@ -37947,9 +37947,9 @@ $(document).ready(function () {
         $(".edit-modal").show();
       }
     });
-  }
+  };
 
-  function updateAdmin() {
+  window.updateAdmin = function () {
     id = $('#hidden_id').val();
     first_name = $('#first_name').val();
     last_name = $('#last_name').val();
@@ -37978,9 +37978,9 @@ $(document).ready(function () {
       $(".js-admins").empty().append(getAdmins);
       $(".edit-modal").hide();
     });
-  }
+  };
 
-  function getSkills() {
+  window.getSkills = function () {
     $.get('/superadmin/skills', function (data) {
       var output = [];
       data.skills.forEach(function (e) {
@@ -37988,10 +37988,10 @@ $(document).ready(function () {
       });
       $('.js-skills').append(output);
     });
-  } //ADD ADMIN
+  }; //ADD ADMIN
 
 
-  function addAdmin() {
+  window.addAdmin = function () {
     var first_name = $('#first-name').val();
     var last_name = $('#last-name').val();
     var email = $('#email').val();
@@ -38026,9 +38026,9 @@ $(document).ready(function () {
       $(".superadmin-modal").hide();
       $(".superadmin-modal > input").val("");
     });
-  }
+  };
 
-  function addSkill() {
+  window.addSkill = function () {
     var name = $('.js-skill').val();
     $.post('/superadmin/skills', {
       name: name
@@ -38040,10 +38040,10 @@ $(document).ready(function () {
       $('.js-skill').val('');
       $('.js-skills').empty().append(getSkills);
     });
-  } // delete skill
+  }; // delete skill
 
 
-  function deleteSkill() {
+  window.deleteSkill = function () {
     var id = $(this).data('id');
     $.ajax({
       url: "/superadmin/skills/" + id + "/delete",
@@ -38054,10 +38054,10 @@ $(document).ready(function () {
     }).done(function (data) {
       $('.js-skills').empty().append(getSkills);
     });
-  } // edit skill
+  }; // edit skill
 
 
-  function editSkill() {
+  window.editSkill = function () {
     var id = $(this).data('id');
     var name = $('.js-edit-skill-name' + id).val();
     $.ajax({
@@ -38073,10 +38073,10 @@ $(document).ready(function () {
     }).done(function (data) {
       $('.js-skills').empty().append(getSkills);
     });
-  } // delete admin
+  }; // delete admin
 
 
-  function deleteAdmin() {
+  window.deleteAdmin = function () {
     var id = $(this).data('id');
     $.ajax({
       url: "/superadmin/users/" + id + "/delete",
@@ -38087,7 +38087,7 @@ $(document).ready(function () {
     }).done(function (data) {
       $('.js-admins').empty().append(getAdmins);
     });
-  }
+  };
 
   $(document).on('click', '.js-super-show', function () {
     var id = $(this).data('id');
@@ -38115,22 +38115,22 @@ $(document).ready(function () {
     });
   });
 
-  function getModal() {
+  window.getModal = function () {
     $(".superadmin-modal").toggleClass("modal");
     $(this).text(function (i, text) {
       return text === "Close" ? "Add new admin" : "Close";
     });
-  }
+  };
 
-  function editAdmin() {
+  window.editAdmin = function () {
     $(".edit-modal").show();
-  }
+  };
 
   function closeEdit() {
     $('.edit-modal').hide();
   }
 
-  function updatePassword() {
+  window.updatePassword = function () {
     id = $('#hidden_id').val();
     password = $('#password1').val();
     password_confirmation = $('#password-confirm1').val();
@@ -38146,7 +38146,7 @@ $(document).ready(function () {
         $('.js-error-admin-edit-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
       }
     }).done(alert('updated'), $('#password').val(''), $('#password-confirm').val(''));
-  }
+  };
 });
 
 /***/ }),

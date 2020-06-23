@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //GET ALL COMPANY
-    function getCompany(){
+    window.getCompany = function(){
         $.get(
             '/superadmin/companies', function (data) {
                 let output = [];
@@ -20,11 +20,11 @@ $(document).ready(function(){
 
             }
         )
-    }
+    };
 
     //ADD COMPANY
 
-    function addCompany(){
+    window.addCompany = function(){
         var name = $('.js-company-name').val();
         $.post('/superadmin/companies',
         {
@@ -40,10 +40,10 @@ $(document).ready(function(){
         $('#company-id').append('<option value="'+ data.company.id +'">'+ name +'</option>');
         $('.js-company').val("");
     })
-    }
+    };
     //DELETE COMPANY
 
-    function deleteCompany() {
+    window.deleteCompany = function() {
 
         let id = $(this).data('id');
         $.ajax(
@@ -57,7 +57,7 @@ $(document).ready(function(){
             $('.js-companies').empty().append(getCompany);
             $("#company-id option[value='"+id+"']").remove();
         })
-    }
+    };
 
     $(document).on ('click', '.delete-company', function () {
 
@@ -65,7 +65,7 @@ $(document).ready(function(){
 
     //UPDATE COMPANY
 
-    function editCompany() {
+    window.editCompany = function() {
 
         let id = $(this).data('id');
         let active = '';
