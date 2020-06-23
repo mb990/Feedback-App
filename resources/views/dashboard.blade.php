@@ -57,7 +57,14 @@
             </p>
         </div>
     @else
+    <div class='container js-accepted'>
+        <i class='far'>&#xf118;</i>
+        <div class='messages'> Your feedback <br>accepted</div>
+        <p class='info'>You can review other your teammate</p>
     </div>
+    @endif
+    </div>
+    @if (!auth()->user()->doneFeedback())
     <div class="container js-no-selected">
         <i class='far'>&#xf11a;</i>
         <div class="messages">
@@ -69,13 +76,7 @@
             to search by a name using the search field
         </p>
     </div>
-    @endif
-
-<div class='container js-accepted hide'>
-    <i class='far'>&#xf118;</i>
-    <div class='messages'> Your feedback <br>accepted</div>
-    <p class='info'>You can review other your teammate</p>
-</div>
+@endif
     @forelse(auth()->user()->teammates() as $user)
 
         <!--Modal-->
