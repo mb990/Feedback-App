@@ -234,6 +234,10 @@
 @section('script')
     <script>
 
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+
         getUsers();
 
         $('.js-update-user').click(updateUser);
@@ -259,11 +263,6 @@
         $("#uploadimage").submit(editImage);
 
         $('#send').click(notifyUsers);
-
-        $( function() {
-            $( "#tabs" ).tabs();
-        } );
-
 
 
         $("#chk-box").click(getCheck);
