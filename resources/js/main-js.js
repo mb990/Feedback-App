@@ -35,7 +35,7 @@ $(document).ready(function(){
         $('.btn-container').find('i').toggleClass('fa-chevron-down fa-chevron-up')
     }
 
-$('.js-accepted').hide()
+$('.js-accepted').hide();
 
     function getUser() {
         // e.preventDefault();
@@ -52,7 +52,7 @@ $('.js-accepted').hide()
             } else{
                 $('.js-hide'+id).removeClass("hide");
             }
-        })
+        });
         $('.js-write-two'+id).blur(function(){
             if(!$(this).val()){
                 $(this).removeClass("written");
@@ -74,16 +74,16 @@ $('.js-accepted').hide()
         $.get('/feedback/user/'+id,
             {
                 success:  function(){
-                        $('.modal').css('display', 'none')
+                        $('.modal').css('display', 'none');
                         $('.modal'+id).show();
-                        $('.js-no-selected').hide()
+                        $('.js-no-selected').hide();
                         $('.js-accepted').hide()
                 }
             }
         )
     }
-    let star = $('.star-rating').text()
-    $('.star-rating').html(getStars(star))
+    let star = $('.star-rating').text();
+    $('.star-rating').html(getStars(star));
     function getStars(star) {
         star = Math.round(star * 2) / 2;
         let output = [];
@@ -105,7 +105,7 @@ $('.js-accepted').hide()
             var $span = $('<span />').width(size);
             $(this).html($span);
         });
-    }
+    };
 
     $( document ).ready(function() {
         $('span.stars').stars();
@@ -115,7 +115,7 @@ $('.js-accepted').hide()
         $('.aside-media-view').toggle("slide");
         $('.js-main').toggle("slide");
     }
-    
+
     var smallScreen = false;
     $(document).ready(function() {
         if($(window).width() < 426) {
@@ -136,7 +136,7 @@ $('.js-accepted').hide()
                     console.log('getTeammates')
                 })
             }
-        };
+        }
         getTeammates();
     });
 });

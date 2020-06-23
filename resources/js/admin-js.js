@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    function getUsers() {
+    window.getUsers = function() {
         $.get(
             '/admin/users', function (data) {
                 let output = [];
