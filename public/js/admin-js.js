@@ -76,14 +76,9 @@ $(document).ready(function () {
         )
     };
 
-
-
-
-
-
 // UPDATE USER
 
-    window.updateUser = function(){
+    function updateUser(){
         id = $('#hidden_user_id').val();
         first_name = $('.js-edit-fname').val();
         last_name = $('.js-edit-lname').val();
@@ -114,20 +109,19 @@ $(document).ready(function () {
             $(".js-user-modal").hide(),
             $('.js-admins-list').empty().append(getUsers)
         );
+    }
 
+    $('.js-update-user').click(updateUser);
 
-
-    };
 // UPDATE USER PASSWORD
-
 
     window.updateUserPassword = function(){
         id = $('#hidden_user_id').val();
         password = $('#password1').val();
         password_confirmation = $('#password-confirm1').val();
-        alert(id)
-        alert(password)
-        alert(password_confirmation)
+        alert(id);
+        alert(password);
+        alert(password_confirmation);
         $.ajax( {
             url: "/admin/users/"+id+"/update/password",
             type: 'PUT',
@@ -142,6 +136,7 @@ $(document).ready(function () {
             })
         }).done(alert("Password is updated"))
     };
+    $('.js-user-update-password').click(updateUserPassword);
 //ADD USER MODAL BUTTON
 
     window.showNew = function(){
@@ -153,7 +148,9 @@ $(document).ready(function () {
         } else {
             $(this).text("New user");
         }
-    }
+    };
+
+    $('.js-show-new-user').click(showNew);
 //EDIT FEEDBACK TIME MODAL BUTTON
 
     window.showTime = function(){
@@ -166,6 +163,9 @@ $(document).ready(function () {
             $(this).text("Edit time");
         }
     };
+
+    $('.js-show-time-update').click(showTime);
+
 //SHOW STATS BUTTON
 
     window.showStats = function(){
@@ -178,6 +178,9 @@ $(document).ready(function () {
             $(this).text("Statistics");
         }
     };
+
+    $('.js-stats').click(showStats);
+
     //MOBILE VIEW TEST
     window.testScreen = function(){
         var width = window.innerWidth;
@@ -200,6 +203,8 @@ $(document).ready(function () {
         }
     };
 
+    testScreen();
+
 // DELETE USER
 
     window.deleteUser = function() {
@@ -217,6 +222,8 @@ $(document).ready(function () {
             $(".js-user-del"+id).remove();
         })
     };
+
+    $('#delete-user').click(deleteUser);
 
 // UPDATE COMPANY FEEDBACK DURATION
 
@@ -236,9 +243,14 @@ $(document).ready(function () {
         });
     };
 
+    $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
+
     window.closeEdit = function(){
         $(".js-user-modal").hide()
     };
+
+    $('.js-edit-user-close').click(closeEdit);
+
 // change user status
 
     window.changeUserStatus = function() {
@@ -256,6 +268,8 @@ $(document).ready(function () {
             alert(data.success);
         })
     };
+
+    $("input[name='chk-box']").change(changeUserStatus);
 
     // edit image
 
@@ -282,5 +296,7 @@ $(document).ready(function () {
                 }
             })
         }).done(alert('Picture is updated'));
-    }
+    };
+
+    $("#uploadimage").submit(editImage);
 });

@@ -239,45 +239,20 @@
                 $( "#tabs" ).tabs();
             } );
 
+        $(document).ready(function () {
             getUsers();
-
-            $('.js-update-user').click(updateUser);
-
-            $('.js-user-update-password').click(updateUserPassword);
-
-            $('#delete-user').click(deleteUser);
-
-            $('.js-stats').click(showStats);
-
-            $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
-
-            $('.js-edit-user-close').click(closeEdit);
-
-            $("input[name='chk-box\']").change(changeUserStatus);
-
-            testScreen();
-
-            $('.js-show-time-update').click(showTime);
-
-            $('.js-show-new-user').click(showNew);
-
-            $("#uploadimage").submit(editImage);
-
-            $('#send').click(notifyUsers);
-
-
-            $("#chk-box").click(getCheck);
-            function getCheck(){
-                chk = $("#chk-box").checked ? 1 : 0;
-                $.ajax({
-                    type: 'GET',
-                    url: '',
-                    data: {}
-                });
-            }
         });
 
-
+        $("#chk-box").click(getCheck);
+        function getCheck(){
+            chk = $("#chk-box").checked ? 1 : 0;
+            $.ajax({
+                type: 'GET',
+                url: '',
+                data: {}
+            });
+        }
+    });
 
     </script>
 @endsection
