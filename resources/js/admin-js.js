@@ -76,9 +76,14 @@ $(document).ready(function () {
         )
     };
 
+
+
+
+
+
 // UPDATE USER
 
-    function updateUser(){
+    window.updateUser = function(){
         id = $('#hidden_user_id').val();
         first_name = $('.js-edit-fname').val();
         last_name = $('.js-edit-lname').val();
@@ -109,19 +114,20 @@ $(document).ready(function () {
             $(".js-user-modal").hide(),
             $('.js-admins-list').empty().append(getUsers)
         );
-    }
 
-    $('.js-update-user').click(updateUser);
 
+
+    };
 // UPDATE USER PASSWORD
+
 
     window.updateUserPassword = function(){
         id = $('#hidden_user_id').val();
         password = $('#password1').val();
         password_confirmation = $('#password-confirm1').val();
-        alert(id);
-        alert(password);
-        alert(password_confirmation);
+        alert(id)
+        alert(password)
+        alert(password_confirmation)
         $.ajax( {
             url: "/admin/users/"+id+"/update/password",
             type: 'PUT',
@@ -136,7 +142,6 @@ $(document).ready(function () {
             })
         }).done(alert("Password is updated"))
     };
-    $('.js-user-update-password').click(updateUserPassword);
 //ADD USER MODAL BUTTON
 
     window.showNew = function(){
@@ -148,9 +153,7 @@ $(document).ready(function () {
         } else {
             $(this).text("New user");
         }
-    };
-
-    $('.js-show-new-user').click(showNew);
+    }
 //EDIT FEEDBACK TIME MODAL BUTTON
 
     window.showTime = function(){
@@ -163,9 +166,6 @@ $(document).ready(function () {
             $(this).text("Edit time");
         }
     };
-
-    $('.js-show-time-update').click(showTime);
-
 //SHOW STATS BUTTON
 
     window.showStats = function(){
@@ -178,32 +178,27 @@ $(document).ready(function () {
             $(this).text("Statistics");
         }
     };
-
-    $('.js-stats').click(showStats);
-
     //MOBILE VIEW TEST
     window.testScreen = function(){
         var width = window.innerWidth;
         if(width < 430 ){
             $('.js-media-show').click(mediaUsers);
-                function mediaUsers(){
-                    $('.js-admin-modal').toggle();
-                    $('.js-interactive-text').toggle();
-                }
+            function mediaUsers(){
+                $('.js-admin-modal').toggle();
+                $('.js-interactive-text').toggle();
+            }
             $('.js-media-time').click(mediaTime);
-                function mediaTime(){
-                    $('.js-tab-2').toggle();
-                    $('.js-feedback-interval').toggle();
-                }
+            function mediaTime(){
+                $('.js-tab-2').toggle();
+                $('.js-feedback-interval').toggle();
+            }
             $('.js-media-stats').click(mediaStats);
-                function mediaStats(){
-                    $('.js-statistics').toggle();
-                    $('.js-stats-info').toggle();
-                }
+            function mediaStats(){
+                $('.js-statistics').toggle();
+                $('.js-stats-info').toggle();
+            }
         }
     };
-
-    testScreen();
 
 // DELETE USER
 
@@ -223,8 +218,6 @@ $(document).ready(function () {
         })
     };
 
-    $('#delete-user').click(alert(134));
-
 // UPDATE COMPANY FEEDBACK DURATION
 
     window.updateFeedbackDurationTime = function() {
@@ -243,14 +236,9 @@ $(document).ready(function () {
         });
     };
 
-    $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
-
     window.closeEdit = function(){
         $(".js-user-modal").hide()
     };
-
-    $('.js-edit-user-close').click(closeEdit);
-
 // change user status
 
     window.changeUserStatus = function() {
@@ -269,9 +257,30 @@ $(document).ready(function () {
         })
     };
 
-    $("input[name='chk-box']").change(changeUserStatus);
-
     // edit image
 
+    window.editImage = function() {
 
+        e.preventDefault();
+        let form_data = new FormData();
+        form_data.append('picture', $('#file')[0].files[0]);
+        form_data.append('_method', 'PUT');
+        $.ajax({
+            url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
+            type: "post", // Type of request to be send, called as method
+            data: form_data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData:false, // To send DOMDocument or non processed data file it is set to false
+            success: function(data) // A function to be called if request succeeds
+            {
+                console.log(data.request)
+            },
+            error: (function(data){
+                if (data.responseJSON.errors.picture) {
+                    $('.js-error-edit-user-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+                }
+            })
+        }).done(alert('Picture is updated'));
+    }
 });

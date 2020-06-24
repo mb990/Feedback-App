@@ -35,7 +35,7 @@ $(document).ready(function(){
         $('.btn-container').find('i').toggleClass('fa-chevron-down fa-chevron-up')
     }
 
-$('.js-accepted').hide();
+    $('.js-accepted').hide();
 
     function getUser() {
         // e.preventDefault();
@@ -74,10 +74,10 @@ $('.js-accepted').hide();
         $.get('/feedback/user/'+id,
             {
                 success:  function(){
-                        $('.modal').css('display', 'none');
-                        $('.modal'+id).show();
-                        $('.js-no-selected').hide();
-                        $('.js-accepted').hide()
+                    $('.modal').css('display', 'none');
+                    $('.modal'+id).show();
+                    $('.js-no-selected').hide();
+                    $('.js-accepted').hide()
                 }
             }
         )
@@ -89,12 +89,12 @@ $('.js-accepted').hide();
         let output = [];
 
         for (var i = star; i >= 1; i--)
-        output.push('<i class="fa fa-star"  style="color: #ec1940;"></i>&nbsp;');
+            output.push('<i class="fa fa-star"  style="color: #ec1940;"></i>&nbsp;');
 
         if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: #ec1940;"></i>&nbsp;');
 
         for (let i = (5 - star); i >= 1; i--)
-        output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: lightgray;"></i>&nbsp;');
+            output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: lightgray;"></i>&nbsp;');
 
         return output.join('');
     }

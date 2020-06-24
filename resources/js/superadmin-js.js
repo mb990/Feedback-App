@@ -13,10 +13,10 @@ $(document).ready(function () {
                 function editAdmin(){
                     id = $(this).attr('id');
                     $.get('/superadmin/admins/'+id+'/update', function(data){
-                        $('#first_name').val(data.admin.first_name);
-                        $('#last_name').val(data.admin.last_name);
-                        $('#admin-email').val(data.admin.email);
-                    }
+                            $('#first_name').val(data.admin.first_name);
+                            $('#last_name').val(data.admin.last_name);
+                            $('#admin-email').val(data.admin.email);
+                        }
                     );
                     $('#hidden_id').val(id);
                     $(".edit-modal").show();
@@ -26,37 +26,35 @@ $(document).ready(function () {
     };
 
     window.updateAdmin = function(){
-    id = $('#hidden_id').val();
-    first_name = $('#first_name').val();
-    last_name = $('#last_name').val();
-    email = $('#admin-email').val();
-    $.ajax(
-        {
-            url: "/superadmin/admins/" + id + "/update",
-            type: 'PUT',
-            data: {
-                first_name: first_name,
-                last_name: last_name,
-                email: email
+        id = $('#hidden_id').val();
+        first_name = $('#first_name').val();
+        last_name = $('#last_name').val();
+        email = $('#admin-email').val();
+        $.ajax(
+            {
+                url: "/superadmin/admins/" + id + "/update",
+                type: 'PUT',
+                data: {
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email
+                }
+            }).fail(function (data) {
+            if (data.responseJSON.errors.first_name) {
+                $('.js-error-admin-edit-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
             }
-    }).fail(function (data) {
-        if (data.responseJSON.errors.first_name) {
-            $('.js-error-admin-edit-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-        }
-        if (data.responseJSON.errors.last_name) {
-            $('.js-error-admin-edit-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-        }
-        if (data.responseJSON.errors.email) {
-            $('.js-error-admin-edit-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-        }
-    })
-        .done(function(data){
-        $(".js-admins").empty().append(getAdmins);
-        $(".edit-modal").hide()
-    })
+            if (data.responseJSON.errors.last_name) {
+                $('.js-error-admin-edit-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+            if (data.responseJSON.errors.email) {
+                $('.js-error-admin-edit-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
+            .done(function(data){
+                $(".js-admins").empty().append(getAdmins);
+                $(".edit-modal").hide()
+            })
     };
-
-    $('.js-edit-admin-btn').click(updateAdmin);
 
     window.getSkills = function(){
         $.get(
@@ -77,16 +75,16 @@ $(document).ready(function () {
     };
 
 
-        //ADD ADMIN
+    //ADD ADMIN
 
     window.addAdmin = function(){
-            let first_name = $('#first-name').val();
-            let last_name = $('#last-name').val();
-            let email = $('#email').val();
-            let password = $('#password').val();
-            let password_confirmation = $('#password-confirm').val();
-            let company_id = $('#company-id').val();
-            $.post('/superadmin/admins',
+        let first_name = $('#first-name').val();
+        let last_name = $('#last-name').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
+        let password_confirmation = $('#password-confirm').val();
+        let company_id = $('#company-id').val();
+        $.post('/superadmin/admins',
             {
                 first_name: first_name,
                 last_name: last_name,
@@ -96,48 +94,44 @@ $(document).ready(function () {
                 company_id: company_id
             }
         ).fail(function (data) {
-                if (data.responseJSON.errors.first_name) {
-                    $('.js-error-admin-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-                if (data.responseJSON.errors.last_name) {
-                    $('.js-error-admin-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-                if (data.responseJSON.errors.email) {
-                    $('.js-error-admin-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-                if (data.responseJSON.errors.password) {
-                    $('.js-error-admin-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-            })
+            if (data.responseJSON.errors.first_name) {
+                $('.js-error-admin-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+            if (data.responseJSON.errors.last_name) {
+                $('.js-error-admin-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+            if (data.responseJSON.errors.email) {
+                $('.js-error-admin-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+            if (data.responseJSON.errors.password) {
+                $('.js-error-admin-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
+        })
             .done(function(data){
                 $('.js-admins').empty().append(getAdmins);
                 $(".superadmin-modal").hide();
                 $(".superadmin-modal > input").val("")
-        })
-        };
-
-    $('.js-add-admin-btn').click(addAdmin);
+            })
+    };
 
     window.addSkill = function(){
-            var name = $('.js-skill').val();
-            $.post('/superadmin/skills',
+        var name = $('.js-skill').val();
+        $.post('/superadmin/skills',
             {
                 name: name
             },
         ).fail(function (data) {
-                if (data.responseJSON.errors.name) {
-                    $('.js-add-skill').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-            })
-            .done(function(data){
-            $('.js-skill').val('');
-            $('.js-skills').empty().append(getSkills);
+            if (data.responseJSON.errors.name) {
+                $('.js-add-skill').slideDown().text(data.responseJSON.errors.name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+            }
         })
-        };
+            .done(function(data){
+                $('.js-skill').val('');
+                $('.js-skills').empty().append(getSkills);
+            })
+    };
 
-    $('.js-add-skill-btn').click(addSkill);
-
-        // delete skill
+    // delete skill
 
     window.deleteSkill = function() {
 
@@ -153,8 +147,6 @@ $(document).ready(function () {
             $('.js-skills').empty().append(getSkills);
         })
     };
-
-    $('.delete-skill').click(deleteSkill);
 
     // edit skill
 
@@ -179,8 +171,6 @@ $(document).ready(function () {
             })
     };
 
-    $('.edit-skill').click(editSkill);
-
     // delete admin
 
     window.deleteAdmin = function() {
@@ -197,8 +187,6 @@ $(document).ready(function () {
             $('.js-admins').empty().append(getAdmins);
         })
     };
-
-    $('.delete-admin').click(deleteAdmin);
 
     $(document).on ('click', '.js-super-show', function(){
         let id = $(this).data('id');
@@ -223,7 +211,7 @@ $(document).ready(function () {
         $(".search-company").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $(".js-companies p").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
     });
@@ -236,19 +224,13 @@ $(document).ready(function () {
         })
     };
 
-    $(".js-superadmin-modal-btn").click(getModal);
-
     window.editAdmin = function(){
         $(".edit-modal").show();
     };
 
-    $(".js-edit-modal").click(editAdmin);
-
     function closeEdit(){
         $('.edit-modal').hide();
     }
-
-    $('.js-edit-close').click(closeEdit);
 
     window.updatePassword = function(){
         id = $('#hidden_id').val();
@@ -267,11 +249,9 @@ $(document).ready(function () {
             }
         })
             .done(
-            alert('updated'),
-            $('#password').val(''),
-            $('#password-confirm').val('')
+                alert('updated'),
+                $('#password').val(''),
+                $('#password-confirm').val('')
             );
     }
-
-    $('.js-update-password').click(updatePassword);
 });

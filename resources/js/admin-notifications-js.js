@@ -14,7 +14,6 @@ $(document).ready(function () {
             .done(function (data) {
                 console.log(data.request);
             });
-    };
+    }
 
-    $('#send').click(notifyUsers);
 });

@@ -35,10 +35,8 @@ $(document).ready(function () {
             .done(function(data){
                 $('.js-positions').empty().append(getJobTitles);
                 $('.js-position').val("");
-        })
+            })
     };
-
-    $('.js-add-position-btn').click(addJobTitle);
 
     // Update job title
 
@@ -64,8 +62,6 @@ $(document).ready(function () {
             });
     };
 
-    $('.edit-position').click(editJobTitle);
-
     // Delete job title
 
     window.deleteJobTitle = function() {
@@ -83,21 +79,19 @@ $(document).ready(function () {
         })
     };
 
-    $('.delete-position').click(deleteJobTitle);
-
-        //Search positions
-        $(".search-position").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $(".js-positions p").filter(function() {
+    //Search positions
+    $(".search-position").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".js-positions p").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
         });
+    });
 
-        //Update job
-        $(document).on ('click', '.js-job-show', function(){
-            let id = $(this).data('id');
-            let field = $('.js-job-hide'+id);
-            field.toggle();
-            $(this).toggleClass('fa-plus-circle fa-minus-circle')
-        });
+    //Update job
+    $(document).on ('click', '.js-job-show', function(){
+        let id = $(this).data('id');
+        let field = $('.js-job-hide'+id);
+        field.toggle();
+        $(this).toggleClass('fa-plus-circle fa-minus-circle')
+    });
 });
