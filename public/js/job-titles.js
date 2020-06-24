@@ -38,6 +38,8 @@ $(document).ready(function () {
         })
     };
 
+    $('.js-add-position-btn').click(addJobTitle);
+
     // Update job title
 
     window.editJobTitle = function() {
@@ -62,6 +64,8 @@ $(document).ready(function () {
             });
     };
 
+    $('.edit-position').click(editJobTitle);
+
     // Delete job title
 
     window.deleteJobTitle = function() {
@@ -78,6 +82,8 @@ $(document).ready(function () {
             $('.js-positions').empty().append(getJobTitles);
         })
     };
+
+    $('.delete-position').click(deleteJobTitle);
 
         //Search positions
         $(".search-position").on("keyup", function() {

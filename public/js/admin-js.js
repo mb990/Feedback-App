@@ -223,7 +223,7 @@ $(document).ready(function () {
         })
     };
 
-    $('#delete-user').click(deleteUser);
+    $('#delete-user').click(alert(134));
 
 // UPDATE COMPANY FEEDBACK DURATION
 
@@ -273,30 +273,5 @@ $(document).ready(function () {
 
     // edit image
 
-    window.editImage = function() {
 
-        e.preventDefault();
-        let form_data = new FormData();
-        form_data.append('picture', $('#file')[0].files[0]);
-        form_data.append('_method', 'PUT');
-        $.ajax({
-            url: "/admin/users/" + $('#hidden_user_id').val() + "/update/picture",
-            type: "post", // Type of request to be send, called as method
-            data: form_data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false, // The content type used when sending data to the server.
-            cache: false, // To unable request pages to be cached
-            processData:false, // To send DOMDocument or non processed data file it is set to false
-            success: function(data) // A function to be called if request succeeds
-            {
-                console.log(data.request)
-            },
-            error: (function(data){
-                if (data.responseJSON.errors.picture) {
-                    $('.js-error-edit-user-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-                }
-            })
-        }).done(alert('Picture is updated'));
-    };
-
-    $("#uploadimage").submit(editImage);
 });

@@ -41,6 +41,9 @@ $(document).ready(function(){
         $('.js-company').val("");
     })
     };
+
+    $('.js-add-company-btn').click(addCompany);
+
     //DELETE COMPANY
 
     window.deleteCompany = function() {
@@ -59,9 +62,11 @@ $(document).ready(function(){
         })
     };
 
-    $(document).on ('click', '.delete-company', function () {
+    $('.delete-company').click(deleteCompany);
 
-    });
+    // $(document).on ('click', '.delete-company', function () {
+    //
+    // });
 
     //UPDATE COMPANY
 
@@ -94,5 +99,7 @@ $(document).ready(function(){
                 $("#company-id option[value='"+id+"']").remove();
                 $('#company-id').append('<option value="'+ id +'">'+ name +'</option>')
             });
-    }
+    };
+
+    $('.edit-company').click(editCompany);
 });

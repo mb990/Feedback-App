@@ -56,6 +56,8 @@ $(document).ready(function () {
     })
     };
 
+    $('.js-edit-admin-btn').click(updateAdmin);
+
     window.getSkills = function(){
         $.get(
             '/superadmin/skills', function (data) {
@@ -114,6 +116,8 @@ $(document).ready(function () {
         })
         };
 
+    $('.js-add-admin-btn').click(addAdmin);
+
     window.addSkill = function(){
             var name = $('.js-skill').val();
             $.post('/superadmin/skills',
@@ -131,6 +135,8 @@ $(document).ready(function () {
         })
         };
 
+    $('.js-add-skill-btn').click(addSkill);
+
         // delete skill
 
     window.deleteSkill = function() {
@@ -147,6 +153,8 @@ $(document).ready(function () {
             $('.js-skills').empty().append(getSkills);
         })
     };
+
+    $('.delete-skill').click(deleteSkill);
 
     // edit skill
 
@@ -171,6 +179,8 @@ $(document).ready(function () {
             })
     };
 
+    $('.edit-skill').click(editSkill);
+
     // delete admin
 
     window.deleteAdmin = function() {
@@ -187,6 +197,8 @@ $(document).ready(function () {
             $('.js-admins').empty().append(getAdmins);
         })
     };
+
+    $('.delete-admin').click(deleteAdmin);
 
     $(document).on ('click', '.js-super-show', function(){
         let id = $(this).data('id');
@@ -224,13 +236,19 @@ $(document).ready(function () {
         })
     };
 
+    $(".js-superadmin-modal-btn").click(getModal);
+
     window.editAdmin = function(){
         $(".edit-modal").show();
     };
 
+    $(".js-edit-modal").click(editAdmin);
+
     function closeEdit(){
         $('.edit-modal').hide();
     }
+
+    $('.js-edit-close').click(closeEdit);
 
     window.updatePassword = function(){
         id = $('#hidden_id').val();
@@ -254,4 +272,6 @@ $(document).ready(function () {
             $('#password-confirm').val('')
             );
     }
+
+    $('.js-update-password').click(updatePassword);
 });
