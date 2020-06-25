@@ -173,9 +173,9 @@ $(document).ready(function () {
 
     // delete admin
 
-    window.deleteAdmin = function() {
+    window.deleteAdmin = function(e) {
 
-        let id = $(this).data('id');
+        let id = e.target.getAttribute("data-id");
         $.ajax(
             {
                 url: "/superadmin/users/" + id + "/delete",

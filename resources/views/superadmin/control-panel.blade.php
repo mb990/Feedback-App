@@ -160,7 +160,7 @@
 
             $('.edit-skill').click(editSkill);
 
-            $('.delete-admin').click(deleteAdmin);
+            $(document).on('click', ".delete-admin", deleteAdmin);
 
             $(".js-superadmin-modal-btn").click(getModal);
 
@@ -174,9 +174,9 @@
 
             $('.js-add-position-btn').click(addJobTitle);
 
-            $('.edit-position').click(editJobTitle);
+            $(document).on('click', ".edit-position", editJobTitle);
 
-            $('.delete-position').click(deleteJobTitle);
+            $(document).on('click', ".delete-position", deleteJobTitle);
 
             getCompany();
 
@@ -184,7 +184,7 @@
 
             $('.delete-company').click(deleteCompany);
 
-            $('.edit-company').click(editCompany);
+            $(document).on('click', ".edit-company", editCompany);
         });
 
     </script>

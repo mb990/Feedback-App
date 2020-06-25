@@ -40,9 +40,9 @@ $(document).ready(function () {
 
     // Update job title
 
-    window.editJobTitle = function() {
+    window.editJobTitle = function(e) {
 
-        let id = $(this).data('id');
+        let id = e.target.getAttribute("data-id");
         let name = $('#edit-position'+id).val();
         $.ajax(
             {
@@ -64,9 +64,9 @@ $(document).ready(function () {
 
     // Delete job title
 
-    window.deleteJobTitle = function() {
+    window.deleteJobTitle = function(e) {
 
-        let id = $(this).data('id');
+        let id = e.target.getAttribute("data-id");
         $.ajax(
             {
                 url: "/superadmin/job-titles/" + id,

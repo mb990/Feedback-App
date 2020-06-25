@@ -37645,8 +37645,8 @@ $(document).ready(function () {
 
   $(document).on('click', '.delete-company', function () {}); //UPDATE COMPANY
 
-  window.editCompany = function () {
-    var id = $(this).data('id');
+  window.editCompany = function (e) {
+    var id = e.target.getAttribute("data-id");
     var active = '';
     var name = $('.js-edit-input-company-name' + id).val();
 
@@ -37710,8 +37710,8 @@ $(document).ready(function () {
   }; // Update job title
 
 
-  window.editJobTitle = function () {
-    var id = $(this).data('id');
+  window.editJobTitle = function (e) {
+    var id = e.target.getAttribute("data-id");
     var name = $('#edit-position' + id).val();
     $.ajax({
       url: "/superadmin/job-titles/" + id,
@@ -37729,8 +37729,8 @@ $(document).ready(function () {
   }; // Delete job title
 
 
-  window.deleteJobTitle = function () {
-    var id = $(this).data('id');
+  window.deleteJobTitle = function (e) {
+    var id = e.target.getAttribute("data-id");
     $.ajax({
       url: "/superadmin/job-titles/" + id,
       type: 'DELETE',
@@ -38076,8 +38076,8 @@ $(document).ready(function () {
   }; // delete admin
 
 
-  window.deleteAdmin = function () {
-    var id = $(this).data('id');
+  window.deleteAdmin = function (e) {
+    var id = e.target.getAttribute("data-id");
     $.ajax({
       url: "/superadmin/users/" + id + "/delete",
       type: 'DELETE',
@@ -38169,8 +38169,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

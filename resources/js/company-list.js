@@ -65,9 +65,9 @@ $(document).ready(function(){
 
     //UPDATE COMPANY
 
-    window.editCompany = function() {
+    window.editCompany = function(e) {
 
-        let id = $(this).data('id');
+        var id = e.target.getAttribute("data-id");
         let active = '';
         let name = $('.js-edit-input-company-name'+id).val();
         if (document.getElementById('active-' + id).checked) {
