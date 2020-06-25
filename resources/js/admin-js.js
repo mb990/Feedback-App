@@ -11,8 +11,9 @@ $(document).ready(function () {
                 });
                 $('.js-admins-list').append(output);
                 $(".js-edit-user").click(editUser);
-                function editUser(){
-                    id = $(this).attr('id');
+                function editUser(e){
+                    id = e.target.getAttribute('id');
+                    console.log(id)
                     $.get('/admin/users/'+id, function(data){
                             $('.js-edit-fname').val(data.user.first_name);
                             $('.js-edit-lname').val(data.user.last_name);
@@ -47,7 +48,7 @@ $(document).ready(function () {
                             console.log(data.request);
                             alert('User added');
                             $(".js-admins-list").empty().append(getUsers);
-                            $('.js-edit-form input').val('');
+                            $('.input-clear').val('');
                             $(".js-statistics").load(location.href+" .js-statistics>*","");
                         },
                         error: (function(data){
@@ -67,10 +68,7 @@ $(document).ready(function () {
                                 $('.js-error-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
                             }
                         })
-                    }).done((function(data){
-
-                        })
-                    )
+                    })
                 }));
             }
         )
@@ -125,9 +123,6 @@ $(document).ready(function () {
         id = $('#hidden_user_id').val();
         password = $('#password1').val();
         password_confirmation = $('#password-confirm1').val();
-        alert(id)
-        alert(password)
-        alert(password_confirmation)
         $.ajax( {
             url: "/admin/users/"+id+"/update/password",
             type: 'PUT',
@@ -202,8 +197,11 @@ $(document).ready(function () {
 
 // DELETE USER
 
-    window.deleteUser = function() {
-        let id = $(this).data('id');
+    window.deleteUser = function(e) {
+            
+        var id = e.target.getAttribute("data-id");
+        
+        console.log(id)
         $.ajax(
             {
                 url: "/admin/users/" + id,

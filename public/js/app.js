@@ -37235,8 +37235,9 @@ $(document).ready(function () {
       $('.js-admins-list').append(output);
       $(".js-edit-user").click(editUser);
 
-      function editUser() {
-        id = $(this).attr('id');
+      function editUser(e) {
+        id = e.target.getAttribute('id');
+        console.log(id);
         $.get('/admin/users/' + id, function (data) {
           $('.js-edit-fname').val(data.user.first_name);
           $('.js-edit-lname').val(data.user.last_name);
@@ -37272,7 +37273,7 @@ $(document).ready(function () {
             console.log(data.request);
             alert('User added');
             $(".js-admins-list").empty().append(getUsers);
-            $('.js-edit-form input').val('');
+            $('.input-clear').val('');
             $(".js-statistics").load(location.href + " .js-statistics>*", "");
           },
           error: function error(data) {
@@ -37296,7 +37297,7 @@ $(document).ready(function () {
               $('.js-error-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
             }
           }
-        }).done(function (data) {});
+        });
       });
     });
   }; // UPDATE USER
@@ -37338,9 +37339,6 @@ $(document).ready(function () {
     id = $('#hidden_user_id').val();
     password = $('#password1').val();
     password_confirmation = $('#password-confirm1').val();
-    alert(id);
-    alert(password);
-    alert(password_confirmation);
     $.ajax({
       url: "/admin/users/" + id + "/update/password",
       type: 'PUT',
@@ -37422,8 +37420,9 @@ $(document).ready(function () {
   }; // DELETE USER
 
 
-  window.deleteUser = function () {
-    var id = $(this).data('id');
+  window.deleteUser = function (e) {
+    var id = e.target.getAttribute("data-id");
+    console.log(id);
     $.ajax({
       url: "/admin/users/" + id,
       type: 'DELETE',
@@ -38169,8 +38168,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
