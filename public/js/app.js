@@ -37247,58 +37247,59 @@ $(document).ready(function () {
         $('#hidden_user_id').val(id);
         $(".js-user-modal").show();
       }
+    });
+  };
 
-      $("#form").on('submit', function (e) {
-        e.preventDefault();
-        var form_data = new FormData();
-        form_data.append('first_name', $('#first-name').val());
-        form_data.append('last_name', $('#last-name').val());
-        form_data.append('email', $('#email').val());
-        form_data.append('password', $('#password').val());
-        form_data.append('password_confirmation', $('#password-confirm').val());
-        form_data.append('company_id', $('#company-id').val());
-        form_data.append('job_title_id', $('#job-title').val());
-        form_data.append('picture', $('#image')[0].files[0]); // debugger;
+  window.submitTest = function (e) {
+    e.preventDefault();
+    var form_data = new FormData();
+    form_data.append('first_name', $('#first-name').val());
+    form_data.append('last_name', $('#last-name').val());
+    form_data.append('email', $('#email').val());
+    form_data.append('password', $('#password').val());
+    form_data.append('password_confirmation', $('#password-confirm').val());
+    form_data.append('company_id', $('#company-id').val());
+    form_data.append('job_title_id', $('#job-title').val());
+    form_data.append('picture', $('#image')[0].files[0]); // debugger;
 
-        $.ajax({
-          url: "/admin/users",
-          type: "post",
-          // Type of request to be send, called as method
-          data: form_data,
-          contentType: false,
-          cache: false,
-          processData: false,
-          success: function success(data) // A function to be called if request succeeds
-          {
-            console.log(data.request);
-            alert('User added');
-            $(".js-admins-list").empty().append(getUsers);
-            $('.input-clear').val('');
-            $(".js-statistics").load(location.href + " .js-statistics>*", "");
-          },
-          error: function error(data) {
-            if (data.responseJSON.errors.first_name) {
-              $('.js-error-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-            }
+    $.ajax({
+      url: "/admin/users",
+      type: "post",
+      // Type of request to be send, called as method
+      data: form_data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function success(data) // A function to be called if request succeeds
+      {
+        console.log(data.request);
+        console.log("ajax inside submit");
+        alert('User added');
+        $(".js-admins-list").empty().append(getUsers);
+        $('.input-clear').val('');
+        $(".js-statistics").load(location.href + " .js-statistics>*", "");
+      },
+      error: function error(data) {
+        if (data.responseJSON.errors.first_name) {
+          $('.js-error-first-name').slideDown().text(data.responseJSON.errors.first_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
 
-            if (data.responseJSON.errors.last_name) {
-              $('.js-error-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-            }
+        if (data.responseJSON.errors.last_name) {
+          $('.js-error-last-name').slideDown().text(data.responseJSON.errors.last_name[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
 
-            if (data.responseJSON.errors.email) {
-              $('.js-error-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-            }
+        if (data.responseJSON.errors.email) {
+          $('.js-error-email').slideDown().text(data.responseJSON.errors.email[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
 
-            if (data.responseJSON.errors.password) {
-              $('.js-error-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-            }
+        if (data.responseJSON.errors.password) {
+          $('.js-error-password').slideDown().text(data.responseJSON.errors.password[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
 
-            if (data.responseJSON.errors.picture) {
-              $('.js-error-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
-            }
-          }
-        });
-      });
+        if (data.responseJSON.errors.picture) {
+          $('.js-error-picture').slideDown().text(data.responseJSON.errors.picture[0]).fadeIn(3000).delay(3000).fadeOut("slow");
+        }
+      }
     });
   }; // UPDATE USER
 

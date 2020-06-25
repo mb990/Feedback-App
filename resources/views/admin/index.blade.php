@@ -248,6 +248,8 @@
 
             $(document).on('click', "#delete-user", deleteUser);
 
+            $(document).on('submit', "#form", submitTest);
+
             $('.js-stats').click(showStats);
 
             $('.admin-btn-feedback-duration').click(updateFeedbackDurationTime);
