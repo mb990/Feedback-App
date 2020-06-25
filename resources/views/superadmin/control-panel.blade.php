@@ -152,13 +152,13 @@
 
             getSkills();
 
+            $(document).on('click', ".edit-skill", editSkill);
+
+            $(document).on('click', ".delete-skill", deleteSkill);
+
             $('.js-add-admin-btn').click(addAdmin);
 
             $('.js-add-skill-btn').click(addSkill);
-
-            $('.delete-skill').click(deleteSkill);
-
-            $('.edit-skill').click(editSkill);
 
             $(document).on('click', ".delete-admin", deleteAdmin);
 
@@ -182,9 +182,10 @@
 
             $('.js-add-company-btn').click(addCompany);
 
-            $('.delete-company').click(deleteCompany);
+            $(document).on('click', ".delete-company", deleteCompany);
 
             $(document).on('click', ".edit-company", editCompany);
+
         });
 
     </script>

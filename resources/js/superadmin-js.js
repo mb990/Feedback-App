@@ -133,9 +133,9 @@ $(document).ready(function () {
 
     // delete skill
 
-    window.deleteSkill = function() {
+    window.deleteSkill = function(e) {
 
-        let id = $(this).data('id');
+        let id =  e.target.getAttribute("data-id");
         $.ajax(
             {
                 url: "/superadmin/skills/" + id + "/delete",
@@ -150,9 +150,9 @@ $(document).ready(function () {
 
     // edit skill
 
-    window.editSkill = function() {
+    window.editSkill = function(e) {
 
-        let id = $(this).data('id');
+        let id =  e.target.getAttribute("data-id");
         let name = $('.js-edit-skill-name'+id).val();
         $.ajax(
             {

@@ -43,9 +43,9 @@ $(document).ready(function(){
     };
     //DELETE COMPANY
 
-    window.deleteCompany = function() {
+    window.deleteCompany = function(e) {
 
-        let id = $(this).data('id');
+        let id =  e.target.getAttribute("data-id");
         $.ajax(
             {
                 url: "/superadmin/companies/" + id + "/delete",
@@ -66,8 +66,7 @@ $(document).ready(function(){
     //UPDATE COMPANY
 
     window.editCompany = function(e) {
-
-        var id = e.target.getAttribute("data-id");
+        let  id =  e.target.getAttribute("data-id");
         let active = '';
         let name = $('.js-edit-input-company-name'+id).val();
         if (document.getElementById('active-' + id).checked) {

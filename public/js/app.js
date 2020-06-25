@@ -37629,8 +37629,8 @@ $(document).ready(function () {
   }; //DELETE COMPANY
 
 
-  window.deleteCompany = function () {
-    var id = $(this).data('id');
+  window.deleteCompany = function (e) {
+    var id = e.target.getAttribute("data-id");
     $.ajax({
       url: "/superadmin/companies/" + id + "/delete",
       type: 'DELETE',
@@ -38043,8 +38043,8 @@ $(document).ready(function () {
   }; // delete skill
 
 
-  window.deleteSkill = function () {
-    var id = $(this).data('id');
+  window.deleteSkill = function (e) {
+    var id = e.target.getAttribute("data-id");
     $.ajax({
       url: "/superadmin/skills/" + id + "/delete",
       type: 'DELETE',
@@ -38057,8 +38057,8 @@ $(document).ready(function () {
   }; // edit skill
 
 
-  window.editSkill = function () {
-    var id = $(this).data('id');
+  window.editSkill = function (e) {
+    var id = e.target.getAttribute("data-id");
     var name = $('.js-edit-skill-name' + id).val();
     $.ajax({
       url: "/superadmin/skills/" + id + "/update",
@@ -38169,8 +38169,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
