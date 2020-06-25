@@ -244,7 +244,7 @@
             $('.js-update-user').click(updateUser);
 
             $('.js-user-update-password').click(updateUserPassword);
-            
+
 
             $(document).on('click', "#delete-user", deleteUser);
 
@@ -256,7 +256,7 @@
 
             $('.js-edit-user-close').click(closeEdit);
 
-            $("input[name='chk-box\']").change(changeUserStatus);
+            $(document).on('change', "input[name='chk-box']", changeUserStatus);
 
             testScreen();
 
