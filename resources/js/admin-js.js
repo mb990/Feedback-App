@@ -199,9 +199,9 @@ $(document).ready(function () {
 // DELETE USER
 
     window.deleteUser = function(e) {
-            
+
         var id = e.target.getAttribute("data-id");
-        
+
         console.log(id)
         $.ajax(
             {
@@ -258,7 +258,7 @@ $(document).ready(function () {
 
     // edit image
 
-    window.editImage = function() {
+    window.editImage = function(e) {
 
         e.preventDefault();
         let form_data = new FormData();

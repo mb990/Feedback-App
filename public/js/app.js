@@ -37472,7 +37472,7 @@ $(document).ready(function () {
   }; // edit image
 
 
-  window.editImage = function () {
+  window.editImage = function (e) {
     e.preventDefault();
     var form_data = new FormData();
     form_data.append('picture', $('#file')[0].files[0]);
@@ -38169,8 +38169,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

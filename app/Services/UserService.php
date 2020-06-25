@@ -124,7 +124,7 @@ class UserService
     {
         $user = $this->find($id);
 
-        $picture = $this->storageService->storeProfilePicture($request, $user);
+        $picture = $this->storageService->updateProfilePicture($request, $user);
 
         return $this->user->updatePicture($picture, $user);
     }

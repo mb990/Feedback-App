@@ -65,4 +65,11 @@ class StorageService
 
         return $pictureFile;
     }
+
+    public function updateProfilePicture($request, $user)
+    {
+        $this->deleteProfilePicture($user);
+
+        return $this->storeProfilePicture($request, $user);
+    }
 }
