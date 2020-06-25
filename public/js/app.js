@@ -38023,7 +38023,10 @@ $(document).ready(function () {
       }
     }).done(function (data) {
       $('.js-admins').empty().append(getAdmins);
-      $(".superadmin-modal").hide();
+      $(".superadmin-modal").toggleClass("modal");
+      $(".js-superadmin-modal-btn").text(function (i, text) {
+        return text === "Close" ? "Add new admin" : "Close";
+      });
       $(".superadmin-modal > input").val("");
     });
   };
@@ -38126,9 +38129,9 @@ $(document).ready(function () {
     $(".edit-modal").show();
   };
 
-  function closeEdit() {
+  window.closeEdit = function () {
     $('.edit-modal').hide();
-  }
+  };
 
   window.updatePassword = function () {
     id = $('#hidden_id').val();
