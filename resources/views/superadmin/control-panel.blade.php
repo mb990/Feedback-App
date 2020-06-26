@@ -186,6 +186,11 @@
 
             $(document).on('click', ".edit-company", editCompany);
 
+            //Pagination
+            
+            $(document).on('click', '.pagination a', getPage);
+
+
         });
 
     </script>
