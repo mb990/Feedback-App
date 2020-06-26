@@ -1012,8 +1012,6 @@ input:checked + .slider:before {
 }
 
 .pagination li {
-  font-weight: 700;
-  padding: 10px;
   color: white;
   background-color: #ec1940;
   border: none;
@@ -1026,9 +1024,17 @@ input:checked + .slider:before {
   background-color: #fd758e;
 }
 
-.pagination a {
+.pagination a,
+.pagination span {
+  font-weight: 700;
+  margin: 4px;
+  padding: 10px;
   text-decoration: none;
   color: black;
+}
+
+.pagination span {
+  color: white;
 }
 
 body {

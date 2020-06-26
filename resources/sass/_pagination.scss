@@ -1,8 +1,6 @@
 .pagination{
     display: flex;
     li{
-        font-weight: 700;
-        padding: 10px;
         color: white;
         background-color: #ec1940;
         border: none;
@@ -13,8 +11,14 @@
             background-color: #fd758e;
         }
     }
-    a{
+    a, span{
+        font-weight: 700;
+        margin: 4px;
+        padding: 10px;
         text-decoration: none;
         color: black;
+    }
+    span{
+        color: white;
     }
 }
