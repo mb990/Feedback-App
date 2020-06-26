@@ -1027,7 +1027,6 @@ input:checked + .slider:before {
 .pagination a,
 .pagination span {
   font-weight: 700;
-  margin: 4px;
   padding: 10px;
   text-decoration: none;
   color: black;
