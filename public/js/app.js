@@ -37698,7 +37698,15 @@ $(document).ready(function () {
     $.ajax({
       url: "/superadmin/job-titles/paginated?page=" + page,
       success: function success(data) {
-        console.log(data); // $('#table_data').html(data);
+        var output = [];
+        var outputs = [];
+        console.log(data.jobTitles.data);
+        data.jobTitles.data.forEach(function (e) {
+          output += '<p class="media-list">' + e.name + '<button data-id="' + e.id + '" class="delete-position super-admin-btn" name="delete-position">DEL</button>' + '<i style="margin:auto 0" class="add fas fa-plus-circle js-job-show" data-id="' + e.id + '"></i>' + '<span class="js-job-hide' + e.id + ' hide"><button data-id="' + e.id + '"class="edit-position super-admin-btn" id="edit-position">Update</button>' + '<input type="text" name="edit-position' + e.id + '" id="edit-position' + e.id + '" data-id="' + e.id + '"class="js-edit-input' + e.id + '" placeholder="Update job title">' + '</span><br><span class="hidden js-edit-job-title-name' + e.id + '"><br><br></span></p>';
+        });
+        outputs += data.links;
+        $('.js-positions').html(output);
+        $('.js-pagination').html(outputs);
       }
     });
   };
@@ -37717,12 +37725,14 @@ $(document).ready(function () {
   window.getJobTitles = function () {
     $.get('/superadmin/job-titles', function (data) {
       var output = [];
+      var outputs = [];
       console.log(data.positions.data);
       data.positions.data.forEach(function (e) {
         output += '<p class="media-list">' + e.name + '<button data-id="' + e.id + '" class="delete-position super-admin-btn" name="delete-position">DEL</button>' + '<i style="margin:auto 0" class="add fas fa-plus-circle js-job-show" data-id="' + e.id + '"></i>' + '<span class="js-job-hide' + e.id + ' hide"><button data-id="' + e.id + '"class="edit-position super-admin-btn" id="edit-position">Update</button>' + '<input type="text" name="edit-position' + e.id + '" id="edit-position' + e.id + '" data-id="' + e.id + '"class="js-edit-input' + e.id + '" placeholder="Update job title">' + '</span><br><span class="hidden js-edit-job-title-name' + e.id + '"><br><br></span></p>';
       });
-      output += data.links;
+      outputs += data.links;
       $('.js-positions').append(output);
+      $('.js-pagination').append(outputs);
     });
   }; // Add job
 
@@ -38203,8 +38213,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\Feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\feedback-app\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

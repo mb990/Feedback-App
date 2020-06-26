@@ -3,6 +3,7 @@ $(document).ready(function () {
         $.get(
             '/superadmin/job-titles', function (data) {
                 let output = [];
+                let outputs =[];
                 console.log(data.positions.data);
                 data.positions.data.forEach(function (e) {
                     output += '<p class="media-list">' + e.name +
@@ -16,9 +17,10 @@ $(document).ready(function () {
                         '</span><br><span class="hidden js-edit-job-title-name'+ e.id +'"><br><br></span></p>';
                 });
 
-                output += data.links;
+                outputs += data.links;
 
                 $('.js-positions').append(output);
+                $('.js-pagination').append(outputs);
             }
         )
     };

@@ -86,6 +86,7 @@
                         <input class="search-position" type="search" placeholder="Search job titles"><i class="js-find-position fas fa-search"></i>
                         <div class="js-positions">
                         </div>
+                        <span class="js-pagination"></span>
                     </span>
             </div>
         </div>
