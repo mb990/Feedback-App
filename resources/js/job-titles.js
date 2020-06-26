@@ -3,7 +3,8 @@ $(document).ready(function () {
         $.get(
             '/superadmin/job-titles', function (data) {
                 let output = [];
-                data.positions.forEach(function (e) {
+                console.log(data.positions.data);
+                data.positions.data.forEach(function (e) {
                     output += '<p class="media-list">' + e.name +
                         '<button data-id="'+ e.id +
                         '" class="delete-position super-admin-btn" name="delete-position">DEL</button>'+
@@ -14,6 +15,9 @@ $(document).ready(function () {
                         '"class="js-edit-input'+ e.id +'" placeholder="Update job title">' +
                         '</span><br><span class="hidden js-edit-job-title-name'+ e.id +'"><br><br></span></p>';
                 });
+
+                output += data.links;
+
                 $('.js-positions').append(output);
             }
         )

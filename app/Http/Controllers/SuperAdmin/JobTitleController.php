@@ -23,9 +23,20 @@ class JobTitleController extends Controller
 
     public function index(SuperAdminRequest $request)
     {
-        $jobTitles = $this->jobTitleService->all();
+        $jobTitles = $this->jobTitleService->paginated(5);
 
-        return response()->json(['positions' => $jobTitles]);
+        $links = $jobTitles->links()->render();
+
+        return response()->json(['positions' => $jobTitles, 'links' => $links]);
+    }
+
+    public function paginationFetchData(SuperAdminRequest $request)
+    {
+        $jobTitles = $this->jobTitleService->paginated(5);
+
+        $links = $jobTitles->links()->render();
+
+        return response()->json(['jobTitles' => $jobTitles, 'links' => $links]);
     }
 
     public function store(CreateJobTitleRequest $request)

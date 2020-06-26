@@ -186,11 +186,8 @@
 
             $(document).on('click', ".edit-company", editCompany);
 
-            //Pagination
-            
+            //Job Titles Pagination
             $(document).on('click', '.pagination a', getPage);
-
-
         });
 
     </script>

@@ -51,6 +51,7 @@ Route::put('/superadmin/admins/{id}/update/password', 'SuperAdmin\AdminControlle
 Route::delete('/superadmin/users/{id}/delete', 'SuperAdmin\AdminController@destroy')->name('admin.delete');
 
 Route::get('/superadmin/job-titles', 'SuperAdmin\JobTitleController@index');
+Route::get('/superadmin/job-titles/paginated', 'SuperAdmin\JobTitleController@paginationFetchData');
 Route::post('/superadmin/job-titles', 'SuperAdmin\JobTitleController@store')->name('job-title.store');
 Route::put('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@update')->name('job-title.update');
 Route::delete('/superadmin/job-titles/{id}', 'SuperAdmin\JobTitleController@destroy')->name('job-title.delete');

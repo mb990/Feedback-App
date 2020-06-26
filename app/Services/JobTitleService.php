@@ -23,6 +23,11 @@ class JobTitleService
         return $this->jobTitle->all();
     }
 
+    public function paginated($perPage)
+    {
+        return $this->jobTitle->paginated($perPage);
+    }
+
     public function find($id)
     {
         return $this->jobTitle->find($id);
